@@ -1,0 +1,61 @@
+# GitHub Action: Sync this repository to a Databricks workspace
+#
+# Use this in your Git backup repo (e.g. sample-repo) so that when you push
+# (e.g. after publish-to-git from the catalog), the repo content is synced
+# to a Databricks workspace folder.
+#
+# Copy this file to your repo as: .github/workflows/databricks-workspace-sync.yaml
+# Configure GitHub Environments (Settings > Environments) with secrets DATABRICKS_HOST,
+# DATABRICKS_TOKEN and optional variable DATABRICKS_WORKSPACE_PATH per environment.
+# Manual runs: choose target environment; push to main uses the <github-environment-name> environment.
+# Replace <github-environment-name> with the name of the GitHub environment you want to use.
+#
+# Docs: https://docs.databricks.com/en/dev-tools/cli/sync-commands.html
+
+name: Sync to Databricks workspace
+
+on:
+
+  workflow_dispatch:
+    inputs:
+      target_environment:
+        description: 'GitHub Environment to use (loads env secrets/vars)'
+        required: true
+        type: string
+        default: '<github-environment-name>'
+
+jobs:
+  sync-to-workspace:
+    name: Sync repo to Databricks workspace
+    runs-on: ubuntu-latest
+    environment: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.target_environment }}
+    permissions:
+      contents: read
+    env:
+      # Resolved per job so environment-scoped vars apply (repo or env variable).
+      DATABRICKS_WORKSPACE_PATH: ${{ vars.DATABRICKS_WORKSPACE_PATH || '/Workspace/Users/sathish@bighammer.ai/bhai-devops' }} #/Workspace/Shared/codespace
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Databricks CLI
+        uses: databricks/setup-cli@main
+        
+      - name: Debug repo contents
+        run: |
+          pwd
+          ls -R
+          
+      - name: Sync to Databricks workspace
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        run: |
+          # One-way sync: local repo -> workspace (Databricks CLI 0.205+)
+          # --full = full sync each run; omit for incremental.
+          databricks sync . "${{ env.DATABRICKS_WORKSPACE_PATH }}" --full --debug
+
+      - name: Summary
+        run: |
+          echo "Synced repository to ${{ env.DATABRICKS_WORKSPACE_PATH }}"
