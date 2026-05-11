@@ -1,0 +1,184 @@
+{
+  "created_at": "2026-05-11T08:55:29.069198Z",
+  "updated_at": "2026-05-11T08:55:29.069198Z",
+  "created_by": "sasikumar@bighammer.ai",
+  "updated_by": "sasikumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 20,
+  "flow_id": 436,
+  "flow_name": "Notebook_v1",
+  "flow_key": "notebook_v1",
+  "recipient_email": {},
+  "notes": "",
+  "tags": {
+    "tagList": []
+  },
+  "bh_project_name": "Ingestion_1",
+  "bh_project_id": 300,
+  "alert_settings": {
+    "on_job_start": false,
+    "on_job_failure": false,
+    "on_job_success": false,
+    "long_running": false
+  },
+  "_graph": {
+    "root": {
+      "model": "Flow",
+      "pk": 436
+    },
+    "nodes": [
+      {
+        "model": "Flow",
+        "pk": 436,
+        "data": {
+          "flow_id": 436,
+          "flow_name": "Notebook_v1",
+          "flow_key": "notebook_v1",
+          "bh_project_id": 300,
+          "recipient_email": {},
+          "notes": "",
+          "tags": {
+            "tagList": []
+          },
+          "status": "active",
+          "alert_settings": {
+            "on_job_start": false,
+            "on_job_failure": false,
+            "on_job_success": false,
+            "long_running": false
+          },
+          "bh_bundle_id": null,
+          "tenant_id": 20,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowDefinition",
+        "pk": 436,
+        "data": {
+          "flow_definition_id": 436,
+          "flow_id": 436,
+          "flow_json": {
+            "flowJson": {
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "name": "Notebook_v1",
+              "flow_name": "Notebook_v1",
+              "flow_id": 436,
+              "flow_type": "INGESTION",
+              "flow_key": "notebook_v1",
+              "description": "Flow for Notebook_v1",
+              "version": "1.0.0",
+              "project_id": 300,
+              "project_name": "Ingestion_1",
+              "cron_expression": null,
+              "flow_tags": [],
+              "tenant_id": 20,
+              "bh_environment_id": 303,
+              "bh_environment_name": "new_env_ingestion",
+              "parameters": [],
+              "tasks": [
+                {
+                  "task_id": "create_compute_2464c6530",
+                  "type": "CreateCompute",
+                  "depends_on": [],
+                  "name": "Create_Compute",
+                  "nodeId": "Create Compute_1778489736387",
+                  "compute_config": {
+                    "cluster_name": "Verato_test1",
+                    "spark_version": "15.4.x-scala2.12",
+                    "node_type_id": "",
+                    "num_workers": 0,
+                    "autoscale": null,
+                    "driver_node_type_id": null,
+                    "runtime_engine": null,
+                    "data_security_mode": null,
+                    "single_user_name": null,
+                    "policy_id": null,
+                    "apply_policy_default_values": true,
+                    "idempotency_token": null,
+                    "aws_attributes": null,
+                    "azure_attributes": null,
+                    "gcp_attributes": null,
+                    "single_node": true,
+                    "autotermination_minutes": null,
+                    "enable_elastic_disk": true,
+                    "spark_conf": {},
+                    "spark_env_vars": {},
+                    "custom_tags": {},
+                    "cluster_log_conf": null,
+                    "init_scripts": [],
+                    "libraries": [],
+                    "databricks_region": null,
+                    "bh_tags": []
+                  },
+                  "cloud_type": "databricks",
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "cluster_name": "Verato_test1",
+                  "airflow_connection_id": "databricks_default"
+                },
+                {
+                  "name": "Submit_Notebook",
+                  "nodeId": "Submit Notebook_1778489742982",
+                  "depends_on": [
+                    "create_compute_2464c6530"
+                  ],
+                  "task_id": "submit_notebook_b9d4a28fc",
+                  "type": "SubmitNotebook",
+                  "notebook_path": "/Workspace/Users/sasikumar@bighammer.ai/verato_1",
+                  "compute_binding": {
+                    "source_task_id": "create_compute_2464c6530",
+                    "source_output_id": "compute_id"
+                  },
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "cloud_type": "databricks"
+                },
+                {
+                  "task_id": "delete_compute_e834b4c9e",
+                  "type": "DeleteCompute",
+                  "depends_on": [
+                    "submit_notebook_b9d4a28fc",
+                    "create_compute_2464c6530"
+                  ],
+                  "name": "Delete_Compute",
+                  "nodeId": "Delete Compute_1778489746231",
+                  "compute_binding": {
+                    "source_task_id": "create_compute_2464c6530",
+                    "source_output_id": "compute_id"
+                  },
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "cloud_type": "databricks"
+                }
+              ],
+              "bh_project_id": 300,
+              "cloud_provider": "databricks",
+              "vault_url": "https://bh-dev-westus3-kv-key.vault.azure.net"
+            }
+          },
+          "schema_id": null,
+          "tenant_id": 20,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowDeployment",
+        "pk": 436,
+        "data": {
+          "flow_deployment_id": 436,
+          "flow_id": 436,
+          "bh_env_id": 303,
+          "bh_airflow_id": null,
+          "flow_version_id": null,
+          "schema_id": null,
+          "cron_expression": null,
+          "last_deployed_at": null,
+          "tenant_id": 20,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      }
+    ]
+  }
+}
