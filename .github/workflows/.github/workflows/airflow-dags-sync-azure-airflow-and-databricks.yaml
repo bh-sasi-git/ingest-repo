@@ -1,0 +1,215 @@
+# GitHub Action: Sync DAGs to Azure Airflow and pipelines to Databricks
+#
+# Configure GitHub Environments (Settings > Environments) with secrets AZURE_STORAGE_ACCOUNT_KEY,
+# AZURE_STORAGE_ACCOUNT_NAME, AZURE_STORAGE_CONTAINER and optional variables AZURE_DAG_PREFIX,
+# AZURE_CODEBASE_PREFIX, PIPELINE_BASE_PATH, BH_ENVIRONMENT_NAME, BH_ENVIRONMENT_ID, BH_KC_SECRET_URL,
+# SETUP_BASE_PATH per environment.
+# Manual runs: choose target environment; push to main uses the <github-environment-name> environment.
+# Replace <github-environment-name> with the name of the GitHub environment you want to use.
+#
+name: Sync DAGs to Azure Airflow and pipelines to Databricks
+
+on:
+
+  workflow_dispatch:
+    inputs:
+      target_environment:
+        description: 'GitHub Environment to use (loads env secrets/vars)'
+        required: true
+        type: string
+        default: <github-environment-name>
+      sync_scope:
+        description: 'Which DAGs to sync'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - list
+      dag_list:
+        description: 'DAG file names (comma-separated, e.g. my_flow.py,other_flow.py). Used when sync_scope=list.'
+        required: false
+        type: string
+
+env:
+  AZURE_STORAGE_ACCOUNT_NAME: ${{ vars.AZURE_STORAGE_ACCOUNT_NAME || 'bhdevstoacct01' }}
+  AZURE_STORAGE_CONTAINER: ${{ vars.AZURE_STORAGE_CONTAINER || 'bh-airflow' }}
+  AZURE_DAG_PREFIX: ${{ vars.AZURE_DAG_PREFIX || 'dags' }}
+  AZURE_CODEBASE_PREFIX: ${{ vars.AZURE_CODEBASE_PREFIX || 'codebase' }}
+  #PIPELINE_BASE_PATH: ${{ vars.DATABRICKS_WORKSPACE_PATH || '/Workspace/Users/sathish@bighammer.ai/bhai-devops' }}
+  BH_ENVIRONMENT_NAME: ${{ vars.BH_ENVIRONMENT_NAME || 'Azure-Databricks-AK-Dev-Local-V9' }}
+  BH_ENVIRONMENT_ID: ${{ vars.BH_ENVIRONMENT_ID || '14' }}
+  #SETUP_BASE_PATH: ${{ vars.SETUP_BASE_PATH || '/Workspace/Shared/bh-dev-utils' }}
+
+jobs:
+  sync-dags-to-azure-airflow:
+    name: Sync DAGs to Azure Airflow
+    runs-on: ubuntu-latest
+    environment: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.target_environment }}
+    permissions:
+      contents: read
+    env:
+      DAG_FILTER: ${{ github.event.inputs.dag_list || vars.DAG_SYNC_FILTER || '' }}
+      SYNC_SCOPE: ${{ github.event.inputs.sync_scope || 'all' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Discover DAGs from flows
+        run: |
+          set -e
+          mkdir -p _all_dags _sync_dags
+
+          # Collect all DAGs from flows/**/dags/*.py into _all_dags
+          count=0
+          while IFS= read -r -d '' f; do
+            base=$(basename "$f")
+            cp "$f" "_all_dags/${base}"
+            count=$((count + 1))
+          done < <(find flows -path '*/dags/*.py' -type f -print0 2>/dev/null || true)
+
+          if [ "$count" -eq 0 ]; then
+            echo "No DAG files found under flows/*/flow/dags/"
+            exit 0
+          fi
+
+          # If DAG_FILTER provided (manual list or repo var), select only those; otherwise sync all
+          if [ -n "${{ env.DAG_FILTER }}" ] && [ "${{ env.SYNC_SCOPE }}" = "list" ]; then
+            echo "Syncing selected DAGs from flows: ${{ env.DAG_FILTER }}"
+            for name in $(echo "${{ env.DAG_FILTER }}" | tr ',' ' '); do
+              name=$(echo "$name" | xargs)
+              [ -z "$name" ] && continue
+              base=${name%.py}
+              fname="${base}.py"
+              if [ -f "_all_dags/${fname}" ]; then
+                cp "_all_dags/${fname}" _sync_dags/
+              elif [ -f "_all_dags/${name}" ]; then
+                cp "_all_dags/${name}" _sync_dags/
+              else
+                echo "Warning: DAG not found: $name (looked in flows/*/flow/dags/)"
+              fi
+            done
+          else
+            echo "Syncing all DAGs from flows"
+            cp _all_dags/*.py _sync_dags/ 2>/dev/null || true
+          fi
+
+          echo "DAG files to sync:"
+          ls -la _sync_dags/ || echo "No DAG files selected for sync."
+
+      - name: Inject Airflow params into DAGs
+        run: |
+          python3 << 'PYEOF'
+          import os
+          import re
+
+          dags_dir = "_sync_dags"
+          env_name = os.environ.get("BH_ENVIRONMENT_NAME", "azure-westus3")
+          env_id = os.environ.get("BH_ENVIRONMENT_ID", "1")
+          try:
+              env_id_int = int(env_id)
+          except ValueError:
+              env_id_int = 1
+
+          def esc(s):
+              return str(s).replace("\\", "\\\\").replace('"', '\\"').replace("%", "%%")
+
+          params_block = '''    params={
+            "bh_environment_name": "%s",
+            "bh_environment_id": %s
+          }''' % (esc(env_name), env_id_int)
+
+          for fname in os.listdir(dags_dir):
+              if not fname.endswith(".py"):
+                  continue
+              path = os.path.join(dags_dir, fname)
+              with open(path, "r") as f:
+                  content = f.read()
+
+              if ") as dag:" not in content:
+                  continue
+
+              # Only modify inside "with DAG( ... ) as dag:" so we don't touch dag_params in CommonTask etc.
+              dag_block = re.search(r"with\s+DAG\s*\((.*?)\)\s*as\s*dag:", content, re.DOTALL)
+              if not dag_block:
+                  continue
+              inner = dag_block.group(1)
+              if re.search(r"\bparams\s*=\s*\{", inner):
+                  inner_new = re.sub(
+                      r"\bparams\s*=\s*\{[^}]*\}",
+                      params_block.strip(),
+                      inner,
+                      count=1,
+                  )
+              else:
+                  # Add params before closing: ensure comma after last arg, then params block
+                  if re.search(r",\s*$", inner):
+                      inner_new = inner.rstrip() + "\n" + params_block
+                  else:
+                      inner_new = re.sub(r"(\s*)$", r",\n" + params_block + r"\n    \1", inner, count=1)
+                  if inner_new == inner:
+                      inner_new = inner + ",\n" + params_block
+              content = content[:dag_block.start(1)] + inner_new + content[dag_block.end(1):]
+
+              with open(path, "w") as f:
+                  f.write(content)
+              print("Injected params into", fname)
+          PYEOF
+
+      - name: Install Azure CLI
+        run: |
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+      - name: Upload DAGs to Azure Blob
+        env:
+          AZURE_STORAGE_ACCOUNT_KEY: ${{ secrets.AZURE_STORAGE_ACCOUNT_KEY }}
+        run: |
+          if [ "$(ls -A _sync_dags 2>/dev/null)" ]; then
+            if [ -z "${{ env.AZURE_STORAGE_ACCOUNT_NAME }}" ] || [ "${{ env.AZURE_STORAGE_ACCOUNT_NAME }}" = "your-storage-account" ]; then
+              echo "Edit env.AZURE_STORAGE_ACCOUNT_NAME in the workflow or set vars.AZURE_STORAGE_ACCOUNT_NAME"
+              exit 1
+            fi
+            if [ -z "${{ secrets.AZURE_STORAGE_ACCOUNT_KEY }}" ]; then
+              echo "Add GitHub secret AZURE_STORAGE_ACCOUNT_KEY"
+              exit 1
+            fi
+            dest="${{ env.AZURE_DAG_PREFIX }}"
+            az storage blob upload-batch \
+              --account-name "${{ env.AZURE_STORAGE_ACCOUNT_NAME }}" \
+              --account-key "${{ secrets.AZURE_STORAGE_ACCOUNT_KEY }}" \
+              --destination "${{ env.AZURE_STORAGE_CONTAINER }}" \
+              --source _sync_dags \
+              --destination-path "$dest" \
+              --overwrite
+            echo "Synced DAGs to ${{ env.AZURE_STORAGE_ACCOUNT_NAME }}/${{ env.AZURE_STORAGE_CONTAINER }}/$dest"
+          else
+            echo "No DAG files to sync."
+          fi
+
+      - name: Summary (DAGs)
+        run: |
+          echo "Target: ${{ env.AZURE_STORAGE_ACCOUNT_NAME }}/${{ env.AZURE_STORAGE_CONTAINER }}/${{ env.AZURE_DAG_PREFIX }}"
+          ls -la _sync_dags/ 2>/dev/null || true
+
+      - name: Sync repo content to Azure Blob for Airflow
+        env:
+          AZURE_STORAGE_ACCOUNT_KEY: ${{ secrets.AZURE_STORAGE_ACCOUNT_KEY }}
+        run: |
+          if [ -z "${{ env.AZURE_STORAGE_ACCOUNT_NAME }}" ] || [ -z "${{ env.AZURE_STORAGE_CONTAINER }}" ]; then
+            echo "Set AZURE_STORAGE_ACCOUNT_NAME and AZURE_STORAGE_CONTAINER (env or repo variables)."
+            exit 1
+          fi
+          if [ -z "${{ secrets.AZURE_STORAGE_ACCOUNT_KEY }}" ]; then
+            echo "Add GitHub secret AZURE_STORAGE_ACCOUNT_KEY"
+            exit 1
+          fi
+          airflow_prefix="${{ env.AZURE_CODEBASE_PREFIX }}"
+          echo "Syncing repo content to ${{ env.AZURE_STORAGE_ACCOUNT_NAME }}/${{ env.AZURE_STORAGE_CONTAINER }}/$airflow_prefix"
+          az storage blob upload-batch \
+            --account-name "${{ env.AZURE_STORAGE_ACCOUNT_NAME }}" \
+            --account-key "${{ secrets.AZURE_STORAGE_ACCOUNT_KEY }}" \
+            --destination "${{ env.AZURE_STORAGE_CONTAINER }}" \
+            --source . \
+            --destination-path "$airflow_prefix" \
+            --overwrite
