@@ -1,0 +1,192 @@
+{
+  "created_at": "2026-05-12T04:06:36.577753Z",
+  "updated_at": "2026-05-12T04:06:36.577753Z",
+  "created_by": "sasikumar@bighammer.ai",
+  "updated_by": "sasikumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 20,
+  "flow_id": 447,
+  "flow_name": "ingestion_9977",
+  "flow_key": "ingestion_9977",
+  "recipient_email": {},
+  "notes": "",
+  "tags": {
+    "tagList": []
+  },
+  "bh_project_name": "Ingestion_1",
+  "bh_project_id": 300,
+  "alert_settings": {
+    "on_job_start": false,
+    "on_job_failure": false,
+    "on_job_success": false,
+    "long_running": false
+  },
+  "_graph": {
+    "root": {
+      "model": "Flow",
+      "pk": 447
+    },
+    "nodes": [
+      {
+        "model": "Flow",
+        "pk": 447,
+        "data": {
+          "flow_id": 447,
+          "flow_name": "ingestion_9977",
+          "flow_key": "ingestion_9977",
+          "bh_project_id": 300,
+          "recipient_email": {},
+          "notes": "",
+          "tags": {
+            "tagList": []
+          },
+          "status": "active",
+          "alert_settings": {
+            "on_job_start": false,
+            "on_job_failure": false,
+            "on_job_success": false,
+            "long_running": false
+          },
+          "bh_bundle_id": null,
+          "tenant_id": 20,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowDefinition",
+        "pk": 447,
+        "data": {
+          "flow_definition_id": 447,
+          "flow_id": 447,
+          "flow_json": {
+            "flowJson": {
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "name": "ingestion_9977",
+              "flow_name": "ingestion_9977",
+              "flow_id": 447,
+              "flow_type": "INGESTION",
+              "flow_key": "ingestion_9977",
+              "description": "Flow for ingestion_9977",
+              "version": "1.0.0",
+              "project_id": 300,
+              "project_name": "Ingestion_1",
+              "cron_expression": null,
+              "flow_tags": [],
+              "tenant_id": 20,
+              "bh_environment_id": 303,
+              "bh_environment_name": "new_env_ingestion",
+              "parameters": [],
+              "tasks": [
+                {
+                  "task_id": "create_compute_944437e5a",
+                  "type": "CreateCompute",
+                  "depends_on": [],
+                  "name": "Create_Compute",
+                  "nodeId": "Create Compute_1778558802429",
+                  "compute_config": {
+                    "cluster_name": "verato_99",
+                    "spark_version": "15.4.x-scala2.12",
+                    "node_type_id": "",
+                    "num_workers": 0,
+                    "autoscale": null,
+                    "driver_node_type_id": null,
+                    "runtime_engine": null,
+                    "data_security_mode": null,
+                    "single_user_name": null,
+                    "policy_id": null,
+                    "apply_policy_default_values": true,
+                    "idempotency_token": null,
+                    "aws_attributes": null,
+                    "azure_attributes": null,
+                    "gcp_attributes": null,
+                    "single_node": true,
+                    "autotermination_minutes": null,
+                    "enable_elastic_disk": true,
+                    "spark_conf": {},
+                    "spark_env_vars": {
+                      "VERATO_SECRET_SCOPE": "bh_secret_scope_verato",
+                      "VERATO_USERNAME_KEY": "VERATO_USERNAME",
+                      "VERATO_PASSWORD_KEY": "VERATO_PASSWORD",
+                      "VERATO_INPUT_CATALOG": "enrollment",
+                      "VERATO_INPUT_SCHEMA": "silverraw",
+                      "VERATO_BATCH_ID": 1,
+                      "VERATO_SOURCE_SYSTEM": "centene_ga_medicaid",
+                      "VERATO_OUTPUT_TABLE": "enrollment.silverraw.verato_post_identity_audit_new777"
+                    },
+                    "custom_tags": {},
+                    "cluster_log_conf": null,
+                    "init_scripts": [],
+                    "libraries": [],
+                    "databricks_region": null,
+                    "bh_tags": []
+                  },
+                  "cloud_type": "databricks",
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "cluster_name": "verato_99",
+                  "airflow_connection_id": "databricks_default"
+                },
+                {
+                  "name": "Submit_Notebook",
+                  "nodeId": "Submit Notebook_1778558825123",
+                  "depends_on": [
+                    "create_compute_944437e5a"
+                  ],
+                  "task_id": "submit_notebook_be6478f71",
+                  "type": "SubmitNotebook",
+                  "notebook_path": "/Workspace/Users/sasikumar@bighammer.ai/verato_7",
+                  "compute_binding": {
+                    "source_task_id": "create_compute_944437e5a",
+                    "source_output_id": "compute_id"
+                  },
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "cloud_type": "databricks"
+                },
+                {
+                  "task_id": "delete_compute_b98430099",
+                  "type": "DeleteCompute",
+                  "depends_on": [
+                    "submit_notebook_be6478f71"
+                  ],
+                  "name": "Delete_Compute",
+                  "nodeId": "Delete Compute_1778558846696",
+                  "compute_binding": {
+                    "source_task_id": "create_compute_944437e5a",
+                    "source_output_id": "compute_id"
+                  },
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "cloud_type": "databricks"
+                }
+              ],
+              "bh_project_id": 300,
+              "cloud_provider": "databricks",
+              "vault_url": "https://bh-dev-westus3-kv-key.vault.azure.net"
+            }
+          },
+          "schema_id": null,
+          "tenant_id": 20,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowDeployment",
+        "pk": 447,
+        "data": {
+          "flow_deployment_id": 447,
+          "flow_id": 447,
+          "bh_env_id": 303,
+          "bh_airflow_id": null,
+          "flow_version_id": null,
+          "schema_id": null,
+          "cron_expression": null,
+          "last_deployed_at": null,
+          "tenant_id": 20,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      }
+    ]
+  }
+}
