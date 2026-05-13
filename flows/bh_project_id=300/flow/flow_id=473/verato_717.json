@@ -157,7 +157,8 @@
                     "source_output_id": "node_Create Compute_1778663248651_output_1"
                   },
                   "compute_type": "DATABRICKS_CLUSTER",
-                  "cloud_type": "databricks"
+                  "cloud_type": "databricks",
+                  "airflow_connection_id": "databricks_default"
                 },
                 {
                   "task_id": "delete_compute_a16407d68",
@@ -179,7 +180,8 @@
                     "source_output_id": "node_Create Compute_1778663248651_output_1"
                   },
                   "compute_type": "DATABRICKS_CLUSTER",
-                  "cloud_type": "databricks"
+                  "cloud_type": "databricks",
+                  "airflow_connection_id": "databricks_default"
                 }
               ],
               "bh_project_id": 300,
@@ -204,7 +206,7 @@
           "flow_version_id": null,
           "schema_id": null,
           "cron_expression": null,
-          "last_deployed_at": null,
+          "last_deployed_at": "2026-05-13 09:09:13.315531+00:00",
           "tenant_id": 20,
           "is_deleted": false,
           "deleted_by": null
