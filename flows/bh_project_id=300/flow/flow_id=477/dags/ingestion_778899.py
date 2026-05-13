@@ -4,8 +4,8 @@ from datetime import datetime, timedelta
 from airflow_plugins.dag_task_definitions.common_task import CommonTask
 from airflow_plugins.dag_task_definitions.lineage_task import LineageTask
 
-common_task = CommonTask(dag_id='ingestion_778899', dag_params={})
-lineage_task = LineageTask(dag_id='ingestion_778899', dag_params={})
+common_task = CommonTask(dag_id='ingestion_7171', dag_params={})
+lineage_task = LineageTask(dag_id='ingestion_7171', dag_params={})
 
 default_args = {
     'owner': 'bh',
@@ -14,7 +14,7 @@ default_args = {
 }
 
 with DAG(
-    dag_id='ingestion_778899',
+    dag_id='ingestion_7171',
     default_args=default_args,
     schedule=None,
     catchup=False,
@@ -30,8 +30,8 @@ with DAG(
         on_failure_callback=common_task.failure_callback,
         params = {
             'flow_id': 477,
-            'flow_name': 'ingestion_778899',
-            'flow_key': 'ingestion_778899',
+            'flow_name': 'ingestion_7171',
+            'flow_key': 'ingestion_7171',
             'bh_project_id': 300,
             'project_name': 'Ingestion_1',
             'flow_tags': [],
