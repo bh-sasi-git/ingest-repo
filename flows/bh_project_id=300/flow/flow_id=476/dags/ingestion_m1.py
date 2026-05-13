@@ -195,6 +195,42 @@ with DAG(
         on_failure_callback=common_task.failure_callback,
     )
 
+    from airflow.operators.python import PythonOperator
+    from airflow_plugins.cloud_factory import CloudFactory
+    import logging
+    logger = logging.getLogger(__name__)
+
+    def terminate_databricks_resources(**context):
+        ti = context["ti"]
+        compute_id = ti.xcom_pull(task_ids="create_compute_9004b6341", key="return_value")
+        if not compute_id or (isinstance(compute_id, str) and "{" in compute_id):
+            params = context.get("params") or {}
+            compute_id = params.get("compute_id")
+        if not compute_id or (isinstance(compute_id, str) and "{" in compute_id):
+            logger.warning("No compute_id from XCom task create_compute_9004b6341 or params; skipping terminate")
+            return
+        from airflow.hooks.base import BaseHook
+        conn = BaseHook.get_connection('databricks_default')
+        workspace_url = (conn.host or '').rstrip('/')
+        token = conn.password
+        if not workspace_url or not token:
+            raise ValueError("Databricks connection must have host and password (token)")
+        factory = CloudFactory("databricks", databricks_workspace_url=workspace_url, databricks_token=token)
+        compute = factory.get_compute(compute_type="databricks")
+        ok = compute.terminate_compute(compute_id, run_async=False)
+        logger.info("Terminated cluster %s: %s", compute_id, ok)
+
+    _terminate_params = {}
+    delete_compute_0b04c065e = PythonOperator(
+        pre_execute=common_task.pre_execute_callback,
+        task_id='delete_compute_0b04c065e',
+        python_callable=terminate_databricks_resources,
+        params=_terminate_params,
+        on_success_callback=common_task.success_callback,
+        on_failure_callback=common_task.failure_callback,
+        trigger_rule='all_done',
+    )
+
 
     from airflow.operators.python import PythonOperator
     end_flow_task = PythonOperator(
@@ -207,4 +243,6 @@ with DAG(
 
     start_flow_task >> create_compute_9004b6341
     create_compute_9004b6341 >> submit_notebook_ed54f7c8d
-    submit_notebook_ed54f7c8d >> end_flow_task
+    submit_notebook_ed54f7c8d >> delete_compute_0b04c065e
+    create_compute_9004b6341 >> delete_compute_0b04c065e
+    delete_compute_0b04c065e >> end_flow_task
