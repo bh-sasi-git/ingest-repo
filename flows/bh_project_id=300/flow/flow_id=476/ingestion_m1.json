@@ -80,11 +80,54 @@
               "parameters": [],
               "tasks": [
                 {
-                  "name": "Validate",
-                  "nodeId": "Validate_1778668684033",
-                  "task_id": "task_ba6481fb9",
-                  "type": "",
-                  "depends_on": []
+                  "task_id": "create_compute_9004b6341",
+                  "type": "CreateCompute",
+                  "depends_on": [],
+                  "name": "Create_Compute",
+                  "nodeId": "Create Compute_1778668708426",
+                  "compute_config": {
+                    "cluster_name": "Databricks_AK_Local_0303_V1",
+                    "spark_version": "15.4.x-scala2.12",
+                    "node_type_id": "Standard_D4ds_v5",
+                    "num_workers": 0,
+                    "autoscale": null,
+                    "driver_node_type_id": null,
+                    "runtime_engine": null,
+                    "data_security_mode": "SINGLE_USER",
+                    "single_user_name": "sasikumar@bighammer.ai",
+                    "policy_id": null,
+                    "apply_policy_default_values": true,
+                    "idempotency_token": null,
+                    "aws_attributes": null,
+                    "azure_attributes": null,
+                    "gcp_attributes": null,
+                    "single_node": true,
+                    "autotermination_minutes": null,
+                    "enable_elastic_disk": true,
+                    "spark_conf": {},
+                    "spark_env_vars": {
+                      "VERATO_SECRET_SCOPE": "bh_secret_scope_verato",
+                      "VERATO_USERNAME_KEY": "VERATO_USERNAME",
+                      "VERATO_PASSWORD_KEY": "VERATO_PASSWORD",
+                      "VERATO_INPUT_CATALOG": "enrollment",
+                      "VERATO_INPUT_SCHEMA": "silverraw",
+                      "VERATO_BATCH_ID": 1,
+                      "VERATO_SOURCE_SYSTEM": "centene_ga_medicaid",
+                      "VERATO_OUTPUT_TABLE": "enrollment.silverraw.verato_post_identity_audit_new777"
+                    },
+                    "custom_tags": {},
+                    "cluster_log_conf": null,
+                    "init_scripts": [
+                      "/Workspace/Shared/bh-dev-utils/scripts/bh_test_databricks_grpc_server_codeartifact.sh"
+                    ],
+                    "libraries": [],
+                    "databricks_region": "us-west-2",
+                    "bh_tags": []
+                  },
+                  "cloud_type": "databricks",
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "airflow_connection_id": "databricks_default",
+                  "cluster_name": "Databricks_AK_Local_0303_V1"
                 }
               ],
               "bh_project_id": 300,
@@ -109,7 +152,7 @@
           "flow_version_id": null,
           "schema_id": null,
           "cron_expression": null,
-          "last_deployed_at": null,
+          "last_deployed_at": "2026-05-13 10:38:23.357450+00:00",
           "tenant_id": 20,
           "is_deleted": false,
           "deleted_by": null
