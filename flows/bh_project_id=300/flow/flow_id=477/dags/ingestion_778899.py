@@ -88,7 +88,7 @@ with DAG(
                 },
                 "custom_tags": {},
                 "init_scripts": [
-                    "/Workspace/Shared/bh-dev-utils/scripts/bh_test_databricks_grpc_server_codeartifact.sh"
+                    ""
                 ],
                 "libraries": [],
                 "databricks_region": "us-west-1",
