@@ -135,53 +135,6 @@
                       "xcom_key": "output_1"
                     }
                   ]
-                },
-                {
-                  "name": "Submit_Notebook",
-                  "nodeId": "Submit Notebook_1778674178287",
-                  "depends_on": [
-                    "create_compute_187409f4d"
-                  ],
-                  "task_id": "submit_notebook_d624c854a",
-                  "type": "SubmitNotebook",
-                  "notebook_path": "/Workspace/Users/sasikumar@bighammer.ai/verato_7",
-                  "compute_type": "DATABRICKS_CLUSTER",
-                  "cloud_type": "databricks",
-                  "airflow_connection_id": "databricks_default",
-                  "output_variables": [
-                    {
-                      "id": "submit_notebook_Submit Notebook_1778674178287_output_1",
-                      "label": "submit_notebook_output_1",
-                      "xcom_key": "output_1"
-                    }
-                  ],
-                  "compute_binding": {
-                    "source_task_id": "create_compute_187409f4d",
-                    "source_output_id": "create_compute_Create Compute_1778674148615_output_1"
-                  }
-                },
-                {
-                  "task_id": "delete_compute_d0549af03",
-                  "type": "DeleteCompute",
-                  "depends_on": [
-                    "submit_notebook_d624c854a"
-                  ],
-                  "name": "Delete_Compute",
-                  "nodeId": "Delete Compute_1778674203376",
-                  "cloud_type": "databricks",
-                  "compute_type": "DATABRICKS_CLUSTER",
-                  "airflow_connection_id": "databricks_default",
-                  "output_variables": [
-                    {
-                      "id": "delete_compute_Delete Compute_1778674203376_output_1",
-                      "label": "delete_compute_output_1",
-                      "xcom_key": "output_1"
-                    }
-                  ],
-                  "compute_binding": {
-                    "source_task_id": "submit_notebook_d624c854a",
-                    "source_output_id": "submit_notebook_Submit Notebook_1778674178287_output_1"
-                  }
                 }
               ],
               "bh_project_id": 300,
@@ -206,7 +159,7 @@
           "flow_version_id": null,
           "schema_id": null,
           "cron_expression": null,
-          "last_deployed_at": null,
+          "last_deployed_at": "2026-05-13 12:10:35.975768+00:00",
           "tenant_id": 20,
           "is_deleted": false,
           "deleted_by": null
