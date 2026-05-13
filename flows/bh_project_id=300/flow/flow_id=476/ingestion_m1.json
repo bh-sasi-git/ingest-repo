@@ -1,0 +1,120 @@
+{
+  "created_at": "2026-05-13T10:37:51.324681Z",
+  "updated_at": "2026-05-13T10:37:51.324681Z",
+  "created_by": "sasikumar@bighammer.ai",
+  "updated_by": "sasikumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 20,
+  "flow_id": 476,
+  "flow_name": "ingestion_m1",
+  "flow_key": "ingestion_m1",
+  "recipient_email": {},
+  "notes": "",
+  "tags": {
+    "tagList": []
+  },
+  "bh_project_name": "Ingestion_1",
+  "bh_project_id": 300,
+  "alert_settings": {
+    "on_job_start": false,
+    "on_job_failure": false,
+    "on_job_success": false,
+    "long_running": false
+  },
+  "_graph": {
+    "root": {
+      "model": "Flow",
+      "pk": 476
+    },
+    "nodes": [
+      {
+        "model": "Flow",
+        "pk": 476,
+        "data": {
+          "flow_id": 476,
+          "flow_name": "ingestion_m1",
+          "flow_key": "ingestion_m1",
+          "bh_project_id": 300,
+          "recipient_email": {},
+          "notes": "",
+          "tags": {
+            "tagList": []
+          },
+          "status": "active",
+          "alert_settings": {
+            "on_job_start": false,
+            "on_job_failure": false,
+            "on_job_success": false,
+            "long_running": false
+          },
+          "bh_bundle_id": null,
+          "tenant_id": 20,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowDefinition",
+        "pk": 476,
+        "data": {
+          "flow_definition_id": 476,
+          "flow_id": 476,
+          "flow_json": {
+            "flowJson": {
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "name": "ingestion_m1",
+              "flow_name": "ingestion_m1",
+              "flow_id": 476,
+              "flow_type": "INGESTION",
+              "flow_key": "ingestion_m1",
+              "description": "Flow for ingestion_m1",
+              "version": "1.0.0",
+              "project_id": 300,
+              "project_name": "Ingestion_1",
+              "cron_expression": null,
+              "flow_tags": [],
+              "tenant_id": 20,
+              "bh_environment_id": 332,
+              "bh_environment_name": "Ingestion_9977_7",
+              "parameters": [],
+              "tasks": [
+                {
+                  "name": "Validate",
+                  "nodeId": "Validate_1778668684033",
+                  "task_id": "task_ba6481fb9",
+                  "type": "",
+                  "depends_on": []
+                }
+              ],
+              "bh_project_id": 300,
+              "cloud_provider": "databricks",
+              "vault_url": "https://bh-dev-westus3-kv-key.vault.azure.net"
+            }
+          },
+          "schema_id": null,
+          "tenant_id": 20,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowDeployment",
+        "pk": 476,
+        "data": {
+          "flow_deployment_id": 476,
+          "flow_id": 476,
+          "bh_env_id": 332,
+          "bh_airflow_id": null,
+          "flow_version_id": null,
+          "schema_id": null,
+          "cron_expression": null,
+          "last_deployed_at": null,
+          "tenant_id": 20,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      }
+    ]
+  }
+}
