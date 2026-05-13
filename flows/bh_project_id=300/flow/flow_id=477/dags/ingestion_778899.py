@@ -58,13 +58,13 @@ with DAG(
             {
                 "cluster_name": "Verato999",
                 "spark_version": "15.4.x-scala2.12",
-                "node_type_id": "Standard_D4ds_v5",
+                "node_type_id": "Standard_D4s_v3",
                 "num_workers": 0,
                 "autoscale": None,
                 "driver_node_type_id": None,
                 "runtime_engine": None,
                 "data_security_mode": "SINGLE_USER",
-                "single_user_name": "sasikumar@bighammer.ai",
+                "single_user_name": "sathish@bighammer.ai",
                 "policy_id": None,
                 "apply_policy_default_values": True,
                 "idempotency_token": None,
@@ -91,7 +91,7 @@ with DAG(
                     "/Workspace/Shared/bh-dev-utils/scripts/bh_test_databricks_grpc_server_codeartifact.sh"
                 ],
                 "libraries": [],
-                "databricks_region": "us-west-2",
+                "databricks_region": "us-west-1",
                 "bh_tags": []
             }
         )
