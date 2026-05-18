@@ -411,7 +411,7 @@ with DAG(
                 "aws_attributes": None,
                 "azure_attributes": None,
                 "gcp_attributes": None,
-                "single_node": TRUe,
+                "single_node": True,
                 "autotermination_minutes": 30,
                 "enable_elastic_disk": True,
                 "spark_conf": {},
