@@ -4,8 +4,8 @@ from datetime import datetime, timedelta
 from airflow_plugins.dag_task_definitions.common_task import CommonTask
 from airflow_plugins.dag_task_definitions.lineage_task import LineageTask
 
-common_task = CommonTask(dag_id='ip_upstate_s9_22', dag_params={})
-lineage_task = LineageTask(dag_id='ip_upstate_s9_22', dag_params={})
+common_task = CommonTask(dag_id='ip_upstate_s9_221', dag_params={})
+lineage_task = LineageTask(dag_id='ip_upstate_s9_221', dag_params={})
 
 default_args = {
     'owner': 'bh',
@@ -14,7 +14,7 @@ default_args = {
 }
 
 with DAG(
-    dag_id='ip_upstate_s9_22',
+    dag_id='ip_upstate_s9_221',
     default_args=default_args,
     schedule=None,
     catchup=False,
@@ -30,8 +30,8 @@ with DAG(
         on_failure_callback=common_task.failure_callback,
         params = {
             'flow_id': 49,
-            'flow_name': 'Ip_upstate_s9_22',
-            'flow_key': 'ip_upstate_s9_22',
+            'flow_name': 'ip_upstate_s9_221',
+            'flow_key': 'ip_upstate_s9_221',
             'bh_project_id': 3,
             'project_name': 'Ingest_repo1',
             'flow_tags': [{'key': 'environment', 'value': 'dev'}],
@@ -522,7 +522,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_pipelines_ip_upstate_s9_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/pipelines/ip_upstate_s9_22/ip_upstate_s9.json",
+                "/Workspace/Shared/codespace/pipelines/ip_upstate_s9_221/ip_upstate_s9.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ]
