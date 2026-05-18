@@ -522,7 +522,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_pipelines_ip_upstate_s9_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/pipelines/ip_upstate_s9_221/ip_upstate_s9.json",
+                "/Workspace/Shared/codespace/pipelines/bh_project_id=3/pipeline/pipeline_id=10/ip_upstate_s9.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ]
