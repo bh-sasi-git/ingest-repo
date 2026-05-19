@@ -1,6 +1,6 @@
 {
   "created_at": "2026-05-19T14:02:45.949244Z",
-  "updated_at": "2026-05-19T14:02:45.949244Z",
+  "updated_at": "2026-05-19T14:03:00.463139Z",
   "created_by": "muthukumar@bighammer.ai",
   "updated_by": "muthukumar@bighammer.ai",
   "is_deleted": false,
@@ -10,7 +10,7 @@
   "flow_name": "D0284_cclf_1_281",
   "flow_key": "d0284_cclf_1_281",
   "recipient_email": {},
-  "notes": "test",
+  "notes": null,
   "tags": null,
   "bh_project_name": "Take away",
   "bh_project_id": 3,
@@ -35,7 +35,7 @@
           "flow_key": "d0284_cclf_1_281",
           "bh_project_id": 3,
           "recipient_email": {},
-          "notes": "test",
+          "notes": null,
           "tags": null,
           "status": "active",
           "alert_settings": {
@@ -590,7 +590,6 @@
                 }
               ],
               "bh_environment_id": 18,
-              "template_parameters": [],
               "bh_project_id": 3,
               "bh_environment_name": "muthuas",
               "cloud_provider": "databricks",
@@ -614,7 +613,7 @@
           "flow_version_id": null,
           "schema_id": null,
           "cron_expression": null,
-          "last_deployed_at": null,
+          "last_deployed_at": "2026-05-19 14:03:00.207092+00:00",
           "tenant_id": 1,
           "is_deleted": false,
           "deleted_by": null
