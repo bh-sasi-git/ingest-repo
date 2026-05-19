@@ -1,6 +1,6 @@
 {
   "created_at": "2026-05-19T07:40:53.396546Z",
-  "updated_at": "2026-05-19T07:40:53.396546Z",
+  "updated_at": "2026-05-19T07:41:17.177256Z",
   "created_by": "muthukumar@bighammer.ai",
   "updated_by": "muthukumar@bighammer.ai",
   "is_deleted": false,
@@ -10,7 +10,7 @@
   "flow_name": "IG23_277",
   "flow_key": "ig23_277",
   "recipient_email": {},
-  "notes": "test",
+  "notes": null,
   "tags": null,
   "bh_project_name": "Take away",
   "bh_project_id": 3,
@@ -35,7 +35,7 @@
           "flow_key": "ig23_277",
           "bh_project_id": 3,
           "recipient_email": {},
-          "notes": "test",
+          "notes": null,
           "tags": null,
           "status": "active",
           "alert_settings": {
@@ -492,7 +492,6 @@
                 }
               ],
               "bh_environment_id": 18,
-              "template_parameters": [],
               "bh_project_id": 3,
               "bh_environment_name": "muthuas",
               "cloud_provider": "databricks",
@@ -516,7 +515,7 @@
           "flow_version_id": null,
           "schema_id": null,
           "cron_expression": null,
-          "last_deployed_at": null,
+          "last_deployed_at": "2026-05-19 07:41:16.709390+00:00",
           "tenant_id": 1,
           "is_deleted": false,
           "deleted_by": null
