@@ -1,0 +1,625 @@
+{
+  "created_at": "2026-05-19T14:02:45.949244Z",
+  "updated_at": "2026-05-19T14:02:45.949244Z",
+  "created_by": "muthukumar@bighammer.ai",
+  "updated_by": "muthukumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 1,
+  "flow_id": 42,
+  "flow_name": "D0284_cclf_1_281",
+  "flow_key": "d0284_cclf_1_281",
+  "recipient_email": {},
+  "notes": "test",
+  "tags": null,
+  "bh_project_name": "Take away",
+  "bh_project_id": 3,
+  "alert_settings": {
+    "on_job_start": false,
+    "on_job_failure": false,
+    "on_job_success": false,
+    "long_running": false
+  },
+  "_graph": {
+    "root": {
+      "model": "Flow",
+      "pk": 42
+    },
+    "nodes": [
+      {
+        "model": "Flow",
+        "pk": 42,
+        "data": {
+          "flow_id": 42,
+          "flow_name": "D0284_cclf_1_281",
+          "flow_key": "d0284_cclf_1_281",
+          "bh_project_id": 3,
+          "recipient_email": {},
+          "notes": "test",
+          "tags": null,
+          "status": "active",
+          "alert_settings": {
+            "on_job_start": false,
+            "on_job_failure": false,
+            "on_job_success": false,
+            "long_running": false
+          },
+          "bh_bundle_id": null,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowPipelineMapping",
+        "pk": 48,
+        "data": {
+          "flow_pipeline_mapping_id": 48,
+          "flow_id": 42,
+          "pipeline_id": 204,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 424,
+        "data": {
+          "flow_parameter_id": 424,
+          "flow_id": 42,
+          "parameter_name": "sources",
+          "parameter_value": "[{\"source_name\": \"p_d0284_aco_zc1y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zc2y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zc3y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zc4y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zc5y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zc6y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zc7y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zc8y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zc9y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zcay26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zcby26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}]",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 426,
+        "data": {
+          "flow_parameter_id": 426,
+          "flow_id": 42,
+          "parameter_name": "source_prefix",
+          "parameter_value": "D0284_cclf",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 419,
+        "data": {
+          "flow_parameter_id": 419,
+          "flow_id": 42,
+          "parameter_name": "pipelines",
+          "parameter_value": "[{\"id\": 204, \"name\": \"d0284_cclf_1\", \"pipeline_name\": \"D0284_cclf_1\"}]",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 416,
+        "data": {
+          "flow_parameter_id": 416,
+          "flow_id": 42,
+          "parameter_name": "parallelization_factor",
+          "parameter_value": 1,
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 422,
+        "data": {
+          "flow_parameter_id": 422,
+          "flow_id": 42,
+          "parameter_name": "files",
+          "parameter_value": "[{\"key\": \"D0284_cclf/P.D0284.ACO.ZC1Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC1Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc1y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC1Y26.D260501.dat\", \"size_bytes\": 1327975}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZC2Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC2Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc2y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC2Y26.D260501.dat\", \"size_bytes\": 5362881}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZC3Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC3Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc3y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC3Y26.D260501.dat\", \"size_bytes\": 26826}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZC4Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC4Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc4y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC4Y26.D260501.dat\", \"size_bytes\": 1815674}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZC5Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC5Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc5y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC5Y26.D260501.dat\", \"size_bytes\": 21565050}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZC6Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC6Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc6y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC6Y26.D260501.dat\", \"size_bytes\": 495012}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZC7Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC7Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc7y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC7Y26.D260501.dat\", \"size_bytes\": 7853664}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZC8Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC8Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc8y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC8Y26.D260501.dat\", \"size_bytes\": 3766636}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZC9Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC9Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc9y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC9Y26.D260501.dat\", \"size_bytes\": 48780}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZCAY26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZCAY26.D260501.dat\", \"source_name\": \"p_d0284_aco_zcay26_d260501\", \"relative_key\": \"P.D0284.ACO.ZCAY26.D260501.dat\", \"size_bytes\": 1086232}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZCBY26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZCBY26.D260501.dat\", \"source_name\": \"p_d0284_aco_zcby26_d260501\", \"relative_key\": \"P.D0284.ACO.ZCBY26.D260501.dat\", \"size_bytes\": 6856580}]",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 423,
+        "data": {
+          "flow_parameter_id": 423,
+          "flow_id": 42,
+          "parameter_name": "fail_on_invalid",
+          "parameter_value": false,
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 415,
+        "data": {
+          "flow_parameter_id": 415,
+          "flow_id": 42,
+          "parameter_name": "execute_in_parallel",
+          "parameter_value": false,
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 421,
+        "data": {
+          "flow_parameter_id": 421,
+          "flow_id": 42,
+          "parameter_name": "delete_source",
+          "parameter_value": true,
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 417,
+        "data": {
+          "flow_parameter_id": 417,
+          "flow_id": 42,
+          "parameter_name": "compute_type",
+          "parameter_value": "DATABRICKS_CLUSTER",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 418,
+        "data": {
+          "flow_parameter_id": 418,
+          "flow_id": 42,
+          "parameter_name": "cloud_type",
+          "parameter_value": "databricks",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 425,
+        "data": {
+          "flow_parameter_id": 425,
+          "flow_id": 42,
+          "parameter_name": "bucket_name",
+          "parameter_value": "my-test-bucket",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 427,
+        "data": {
+          "flow_parameter_id": 427,
+          "flow_id": 42,
+          "parameter_name": "archive_prefix",
+          "parameter_value": "Archive/D0284_cclf",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 420,
+        "data": {
+          "flow_parameter_id": 420,
+          "flow_id": 42,
+          "parameter_name": "allow_empty",
+          "parameter_value": true,
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowDefinition",
+        "pk": 42,
+        "data": {
+          "flow_definition_id": 42,
+          "flow_id": 42,
+          "flow_json": {
+            "flowJson": {
+              "$schema": "https://json-schema.org/draft-07/schema#",
+              "name": "d0284_cclf_1_281",
+              "flow_name": "D0284_cclf_1_281",
+              "flow_id": 42,
+              "flow_key": "d0284_cclf_1_281",
+              "flow_type": "INGESTION",
+              "description": "test",
+              "version": "1.0.0",
+              "project_id": 3,
+              "project_name": "Take away",
+              "cron_expression": null,
+              "tenant_id": 1,
+              "flow_tags": [
+                {
+                  "key": "environment",
+                  "value": "dev"
+                }
+              ],
+              "parameters": [
+                {
+                  "key": "allow_empty",
+                  "value": true
+                },
+                {
+                  "key": "archive_prefix",
+                  "value": "Archive/D0284_cclf"
+                },
+                {
+                  "key": "bucket_name",
+                  "value": "my-test-bucket"
+                },
+                {
+                  "key": "cloud_type",
+                  "value": "databricks"
+                },
+                {
+                  "key": "compute_type",
+                  "value": "DATABRICKS_CLUSTER"
+                },
+                {
+                  "key": "delete_source",
+                  "value": true
+                },
+                {
+                  "key": "execute_in_parallel",
+                  "value": false
+                },
+                {
+                  "key": "fail_on_invalid",
+                  "value": false
+                },
+                {
+                  "key": "files",
+                  "value": "[{\"key\": \"D0284_cclf/P.D0284.ACO.ZC1Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC1Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc1y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC1Y26.D260501.dat\", \"size_bytes\": 1327975}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZC2Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC2Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc2y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC2Y26.D260501.dat\", \"size_bytes\": 5362881}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZC3Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC3Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc3y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC3Y26.D260501.dat\", \"size_bytes\": 26826}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZC4Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC4Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc4y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC4Y26.D260501.dat\", \"size_bytes\": 1815674}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZC5Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC5Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc5y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC5Y26.D260501.dat\", \"size_bytes\": 21565050}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZC6Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC6Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc6y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC6Y26.D260501.dat\", \"size_bytes\": 495012}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZC7Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC7Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc7y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC7Y26.D260501.dat\", \"size_bytes\": 7853664}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZC8Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC8Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc8y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC8Y26.D260501.dat\", \"size_bytes\": 3766636}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZC9Y26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZC9Y26.D260501.dat\", \"source_name\": \"p_d0284_aco_zc9y26_d260501\", \"relative_key\": \"P.D0284.ACO.ZC9Y26.D260501.dat\", \"size_bytes\": 48780}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZCAY26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZCAY26.D260501.dat\", \"source_name\": \"p_d0284_aco_zcay26_d260501\", \"relative_key\": \"P.D0284.ACO.ZCAY26.D260501.dat\", \"size_bytes\": 1086232}, {\"key\": \"D0284_cclf/P.D0284.ACO.ZCBY26.D260501.dat\", \"base_name\": \"P.D0284.ACO.ZCBY26.D260501.dat\", \"source_name\": \"p_d0284_aco_zcby26_d260501\", \"relative_key\": \"P.D0284.ACO.ZCBY26.D260501.dat\", \"size_bytes\": 6856580}]"
+                },
+                {
+                  "key": "parallelization_factor",
+                  "value": 1
+                },
+                {
+                  "key": "pipelines",
+                  "value": "[{\"id\": 204, \"name\": \"d0284_cclf_1\", \"pipeline_name\": \"D0284_cclf_1\"}]"
+                },
+                {
+                  "key": "source_prefix",
+                  "value": "D0284_cclf"
+                },
+                {
+                  "key": "sources",
+                  "value": "[{\"source_name\": \"p_d0284_aco_zc1y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zc2y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zc3y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zc4y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zc5y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zc6y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zc7y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zc8y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zc9y26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zcay26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}, {\"source_name\": \"p_d0284_aco_zcby26_d260501\", \"prefix\": \"D0284_cclf\", \"min_bytes\": 10, \"min_files\": 1}]"
+                }
+              ],
+              "tasks": [
+                {
+                  "task_id": "validate_inbound_files",
+                  "type": "ValidateInboundFiles",
+                  "depends_on": [],
+                  "sources": [
+                    {
+                      "source_name": "p_d0284_aco_zc1y26_d260501",
+                      "prefix": "D0284_cclf",
+                      "min_bytes": 10,
+                      "min_files": 1
+                    },
+                    {
+                      "source_name": "p_d0284_aco_zc2y26_d260501",
+                      "prefix": "D0284_cclf",
+                      "min_bytes": 10,
+                      "min_files": 1
+                    },
+                    {
+                      "source_name": "p_d0284_aco_zc3y26_d260501",
+                      "prefix": "D0284_cclf",
+                      "min_bytes": 10,
+                      "min_files": 1
+                    },
+                    {
+                      "source_name": "p_d0284_aco_zc4y26_d260501",
+                      "prefix": "D0284_cclf",
+                      "min_bytes": 10,
+                      "min_files": 1
+                    },
+                    {
+                      "source_name": "p_d0284_aco_zc5y26_d260501",
+                      "prefix": "D0284_cclf",
+                      "min_bytes": 10,
+                      "min_files": 1
+                    },
+                    {
+                      "source_name": "p_d0284_aco_zc6y26_d260501",
+                      "prefix": "D0284_cclf",
+                      "min_bytes": 10,
+                      "min_files": 1
+                    },
+                    {
+                      "source_name": "p_d0284_aco_zc7y26_d260501",
+                      "prefix": "D0284_cclf",
+                      "min_bytes": 10,
+                      "min_files": 1
+                    },
+                    {
+                      "source_name": "p_d0284_aco_zc8y26_d260501",
+                      "prefix": "D0284_cclf",
+                      "min_bytes": 10,
+                      "min_files": 1
+                    },
+                    {
+                      "source_name": "p_d0284_aco_zc9y26_d260501",
+                      "prefix": "D0284_cclf",
+                      "min_bytes": 10,
+                      "min_files": 1
+                    },
+                    {
+                      "source_name": "p_d0284_aco_zcay26_d260501",
+                      "prefix": "D0284_cclf",
+                      "min_bytes": 10,
+                      "min_files": 1
+                    },
+                    {
+                      "source_name": "p_d0284_aco_zcby26_d260501",
+                      "prefix": "D0284_cclf",
+                      "min_bytes": 10,
+                      "min_files": 1
+                    }
+                  ],
+                  "fail_on_invalid": false,
+                  "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-nblosa",
+                  "airflow_connection_id": "databricks_default",
+                  "cloud_type": "databricks",
+                  "source_prefix": "D0284_cclf",
+                  "bucket_name": "my-test-bucket",
+                  "name": "Validate",
+                  "nodeId": "validate_validate_inbound_files"
+                },
+                {
+                  "task_id": "create_compute",
+                  "type": "CreateCompute",
+                  "depends_on": [
+                    "validate_inbound_files"
+                  ],
+                  "airflow_connection_id": "databricks_default",
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "cloud_type": "databricks",
+                  "compute_config": {
+                    "cluster_name": "Databricks_AK_Local_0303_V1",
+                    "spark_version": "15.4.x-scala2.12",
+                    "node_type_id": "Standard_D4s_v3",
+                    "num_workers": 0,
+                    "autoscale": null,
+                    "driver_node_type_id": null,
+                    "runtime_engine": null,
+                    "data_security_mode": null,
+                    "single_user_name": null,
+                    "policy_id": null,
+                    "apply_policy_default_values": true,
+                    "idempotency_token": null,
+                    "aws_attributes": null,
+                    "azure_attributes": null,
+                    "gcp_attributes": null,
+                    "single_node": false,
+                    "autotermination_minutes": 30,
+                    "enable_elastic_disk": true,
+                    "spark_conf": {},
+                    "spark_env_vars": {},
+                    "custom_tags": {},
+                    "cluster_log_conf": null,
+                    "init_scripts": [
+                      "/Workspace/Shared/bh-dev-utils/scripts/bh_databricks_grpc_server.sh"
+                    ],
+                    "libraries": [],
+                    "databricks_region": null,
+                    "bh_tags": [],
+                    "compute_config_name": "Databricks_AK_Local_0303_V1"
+                  },
+                  "cluster_name": "Databricks_AK_Local_0303_V1",
+                  "output_variables": [
+                    {
+                      "id": "compute_id",
+                      "label": "Cluster / job identifier",
+                      "xcom_key": "return_value"
+                    }
+                  ],
+                  "name": "Create_Compute",
+                  "nodeId": "create_compute_create_compute"
+                },
+                {
+                  "task_id": "run_pipelines_d0284_cclf_1",
+                  "type": "SubmitJob",
+                  "depends_on": [
+                    "create_compute"
+                  ],
+                  "bh_project_name": "Take away",
+                  "pipeline_key": "d0284_cclf_1",
+                  "pipeline_name": "D0284_cclf_1",
+                  "pipeline_id": 204,
+                  "compute_binding": {
+                    "source_task_id": "create_compute",
+                    "source_output_id": "compute_id"
+                  },
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "cloud_type": "databricks",
+                  "airflow_connection_id": "databricks_default",
+                  "name": "Submit_Job",
+                  "nodeId": "Submit_Job_run_pipelines_d0284_cclf_1"
+                },
+                {
+                  "task_id": "archive_processed_files",
+                  "type": "ArchiveProcessedFiles",
+                  "depends_on": [
+                    "run_pipelines_d0284_cclf_1"
+                  ],
+                  "allow_empty": true,
+                  "delete_source": true,
+                  "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-nblosa",
+                  "airflow_connection_id": "databricks_default",
+                  "files": [
+                    {
+                      "key": "D0284_cclf/P.D0284.ACO.ZC1Y26.D260501.dat",
+                      "base_name": "P.D0284.ACO.ZC1Y26.D260501.dat",
+                      "source_name": "p_d0284_aco_zc1y26_d260501",
+                      "relative_key": "P.D0284.ACO.ZC1Y26.D260501.dat",
+                      "size_bytes": 1327975
+                    },
+                    {
+                      "key": "D0284_cclf/P.D0284.ACO.ZC2Y26.D260501.dat",
+                      "base_name": "P.D0284.ACO.ZC2Y26.D260501.dat",
+                      "source_name": "p_d0284_aco_zc2y26_d260501",
+                      "relative_key": "P.D0284.ACO.ZC2Y26.D260501.dat",
+                      "size_bytes": 5362881
+                    },
+                    {
+                      "key": "D0284_cclf/P.D0284.ACO.ZC3Y26.D260501.dat",
+                      "base_name": "P.D0284.ACO.ZC3Y26.D260501.dat",
+                      "source_name": "p_d0284_aco_zc3y26_d260501",
+                      "relative_key": "P.D0284.ACO.ZC3Y26.D260501.dat",
+                      "size_bytes": 26826
+                    },
+                    {
+                      "key": "D0284_cclf/P.D0284.ACO.ZC4Y26.D260501.dat",
+                      "base_name": "P.D0284.ACO.ZC4Y26.D260501.dat",
+                      "source_name": "p_d0284_aco_zc4y26_d260501",
+                      "relative_key": "P.D0284.ACO.ZC4Y26.D260501.dat",
+                      "size_bytes": 1815674
+                    },
+                    {
+                      "key": "D0284_cclf/P.D0284.ACO.ZC5Y26.D260501.dat",
+                      "base_name": "P.D0284.ACO.ZC5Y26.D260501.dat",
+                      "source_name": "p_d0284_aco_zc5y26_d260501",
+                      "relative_key": "P.D0284.ACO.ZC5Y26.D260501.dat",
+                      "size_bytes": 21565050
+                    },
+                    {
+                      "key": "D0284_cclf/P.D0284.ACO.ZC6Y26.D260501.dat",
+                      "base_name": "P.D0284.ACO.ZC6Y26.D260501.dat",
+                      "source_name": "p_d0284_aco_zc6y26_d260501",
+                      "relative_key": "P.D0284.ACO.ZC6Y26.D260501.dat",
+                      "size_bytes": 495012
+                    },
+                    {
+                      "key": "D0284_cclf/P.D0284.ACO.ZC7Y26.D260501.dat",
+                      "base_name": "P.D0284.ACO.ZC7Y26.D260501.dat",
+                      "source_name": "p_d0284_aco_zc7y26_d260501",
+                      "relative_key": "P.D0284.ACO.ZC7Y26.D260501.dat",
+                      "size_bytes": 7853664
+                    },
+                    {
+                      "key": "D0284_cclf/P.D0284.ACO.ZC8Y26.D260501.dat",
+                      "base_name": "P.D0284.ACO.ZC8Y26.D260501.dat",
+                      "source_name": "p_d0284_aco_zc8y26_d260501",
+                      "relative_key": "P.D0284.ACO.ZC8Y26.D260501.dat",
+                      "size_bytes": 3766636
+                    },
+                    {
+                      "key": "D0284_cclf/P.D0284.ACO.ZC9Y26.D260501.dat",
+                      "base_name": "P.D0284.ACO.ZC9Y26.D260501.dat",
+                      "source_name": "p_d0284_aco_zc9y26_d260501",
+                      "relative_key": "P.D0284.ACO.ZC9Y26.D260501.dat",
+                      "size_bytes": 48780
+                    },
+                    {
+                      "key": "D0284_cclf/P.D0284.ACO.ZCAY26.D260501.dat",
+                      "base_name": "P.D0284.ACO.ZCAY26.D260501.dat",
+                      "source_name": "p_d0284_aco_zcay26_d260501",
+                      "relative_key": "P.D0284.ACO.ZCAY26.D260501.dat",
+                      "size_bytes": 1086232
+                    },
+                    {
+                      "key": "D0284_cclf/P.D0284.ACO.ZCBY26.D260501.dat",
+                      "base_name": "P.D0284.ACO.ZCBY26.D260501.dat",
+                      "source_name": "p_d0284_aco_zcby26_d260501",
+                      "relative_key": "P.D0284.ACO.ZCBY26.D260501.dat",
+                      "size_bytes": 6856580
+                    }
+                  ],
+                  "archive_prefix": "Archive/D0284_cclf",
+                  "cloud_type": "databricks",
+                  "bucket_name": "my-test-bucket",
+                  "name": "Archive",
+                  "nodeId": "archive_archive_processed_files"
+                },
+                {
+                  "task_id": "delete_compute",
+                  "type": "DeleteCompute",
+                  "depends_on": [
+                    "archive_processed_files"
+                  ],
+                  "airflow_connection_id": "databricks_default",
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "cloud_type": "databricks",
+                  "compute_binding": {
+                    "source_task_id": "create_compute",
+                    "source_output_id": "compute_id"
+                  },
+                  "name": "Delete_Compute",
+                  "nodeId": "delete_compute_delete_compute"
+                }
+              ],
+              "bh_environment_id": 18,
+              "template_parameters": [],
+              "bh_project_id": 3,
+              "bh_environment_name": "muthuas",
+              "cloud_provider": "databricks",
+              "vault_url": "https://bh-dev-westus3-kv-key.vault.azure.net/"
+            }
+          },
+          "schema_id": null,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowDeployment",
+        "pk": 42,
+        "data": {
+          "flow_deployment_id": 42,
+          "flow_id": 42,
+          "bh_env_id": 18,
+          "bh_airflow_id": null,
+          "flow_version_id": null,
+          "schema_id": null,
+          "cron_expression": null,
+          "last_deployed_at": null,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      }
+    ]
+  }
+}
