@@ -1,6 +1,6 @@
 {
   "created_at": "2026-04-28T08:36:12.692858Z",
-  "updated_at": "2026-05-19T07:40:24.313512Z",
+  "updated_at": "2026-05-19T07:42:31.407432Z",
   "created_by": "muthukumar@bighammer.ai",
   "updated_by": "muthukumar@bighammer.ai",
   "is_deleted": false,
@@ -350,7 +350,7 @@
       "atomic_commit_enabled": true,
       "group_id": 277,
       "expected_group_members": 1,
-      "group_run_id": "ig23_20260519T074024Z"
+      "group_run_id": "ig23_20260519T074231Z"
     }
   },
   "pipeline_type": "design",
