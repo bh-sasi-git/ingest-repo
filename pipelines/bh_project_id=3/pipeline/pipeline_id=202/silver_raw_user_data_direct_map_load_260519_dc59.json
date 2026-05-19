@@ -1,0 +1,449 @@
+{
+  "created_at": "2026-05-19T07:49:42.413107Z",
+  "updated_at": "2026-05-19T07:51:37.399712Z",
+  "created_by": "muthukumar@bighammer.ai",
+  "updated_by": "muthukumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 1,
+  "pipeline_id": 202,
+  "pipeline_name": "silver_raw_user_data_direct_map_load_260519_dc59",
+  "pipeline_key": "silver_raw_user_data_direct_map_load_260519_dc59",
+  "bh_project_id": 3,
+  "notes": "",
+  "tags": {
+    "data_domain_id": 22,
+    "data_domain_name": "Enrollment",
+    "source_count": 1,
+    "target_count": 1
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "Take away",
+  "bh_github_username": "bh-sasi-git",
+  "pipeline_json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "silver_raw_user_data_direct_map_load_260519_dc59",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "jun2s3connection_main": {
+        "connection_config_id": 11,
+        "name": "jun2s3connection_main",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "defult",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-jun2s3connection"
+      },
+      "jun2s3connection_dev": {
+        "connection_config_id": 11,
+        "name": "jun2s3connection_dev",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "dev",
+        "schema": "mock_data",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-jun2s3connection"
+      }
+    },
+    "sources": {
+      "user_data_e573z": {
+        "data_src_id": 656,
+        "name": "user_data_e573z",
+        "source_type": "Relational",
+        "table_name": "user_data_e573z",
+        "connection": {
+          "$ref": "#/connections/jun2s3connection_main"
+        },
+        "fields": [
+          "id",
+          "first_name",
+          "last_name",
+          "email",
+          "age",
+          "gender",
+          "corrupt_record",
+          "batch_id",
+          "feed_name",
+          "ingest_ts",
+          "ingest_year",
+          "ingest_month",
+          "ingest_day"
+        ],
+        "schema": [
+          {
+            "name": "id",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "age",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "gender",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": "defult"
+      }
+    },
+    "targets": {
+      "user_data": {
+        "data_src_id": 602,
+        "name": "user_data",
+        "target_type": "Relational",
+        "table_name": "user_data",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/jun2s3connection_dev"
+        },
+        "schema": "mock_data",
+        "merge_keys": [
+          "id"
+        ],
+        "process_deletes": false
+      },
+      "quarantine_user_data_e573z": {
+        "data_src_id": 602,
+        "name": "quarantine_user_data_e573z",
+        "target_type": "Relational",
+        "table_name": "quarantine_user_data_e573z",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/jun2s3connection_dev"
+        },
+        "schema": "mock_data"
+      }
+    },
+    "transformations": [
+      {
+        "name": "user_data_e573z",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/user_data_e573z"
+        },
+        "rename_columns": {
+          "id": "id_src_1",
+          "first_name": "first_name_src_1",
+          "last_name": "last_name_src_1",
+          "email": "email_src_1",
+          "age": "age_src_1",
+          "gender": "gender_src_1",
+          "corrupt_record": "corrupt_record_src_1",
+          "batch_id": "batch_id_src_1",
+          "feed_name": "feed_name_src_1",
+          "ingest_ts": "ingest_ts_src_1",
+          "ingest_year": "ingest_year_src_1",
+          "ingest_month": "ingest_month_src_1",
+          "ingest_day": "ingest_day_src_1"
+        },
+        "read_options": {},
+        "schema": [
+          {
+            "name": "id",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "age",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "gender",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "user_data_e573z_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "user_data_e573z"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_1) OVER ()"
+          }
+        ]
+      },
+      {
+        "name": "user_data_e573z_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "user_data_e573z_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')"
+      },
+      {
+        "name": "dq_checks_user_data_e573z",
+        "transformation": "DataQuality",
+        "dependent_on": [
+          "user_data_e573z_IngestFilter"
+        ],
+        "dq_rules": [
+          {
+            "rule_name": "NOT_NULL_id",
+            "column_type": "string",
+            "action": "error",
+            "column": "id_src_1",
+            "rule_type": "notnull",
+            "template_name": "NOT_NULL",
+            "rule_family": "QUALITY",
+            "source_type": "file",
+            "single_column": true
+          }
+        ]
+      },
+      {
+        "name": "MapUserData",
+        "transformation": "Expression",
+        "dependent_on": [
+          "dq_checks_user_data_e573z"
+        ],
+        "derived_fields": [
+          {
+            "name": "id",
+            "expression": "id_src_1"
+          },
+          {
+            "name": "first_name",
+            "expression": "first_name_src_1"
+          },
+          {
+            "name": "last_name",
+            "expression": "last_name_src_1"
+          },
+          {
+            "name": "email",
+            "expression": "email_src_1"
+          },
+          {
+            "name": "age",
+            "expression": "CAST(age_src_1 AS INTEGER)"
+          },
+          {
+            "name": "gender",
+            "expression": "gender_src_1"
+          },
+          {
+            "name": "batch_id",
+            "expression": "CAST(batch_id_src_1 AS STRING)"
+          },
+          {
+            "name": "created_by",
+            "expression": "'mock_data_pipeline'"
+          },
+          {
+            "name": "created_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'mock_data_pipeline'"
+          },
+          {
+            "name": "updated_at",
+            "expression": "current_timestamp()"
+          }
+        ],
+        "select_columns": [
+          "id",
+          "first_name",
+          "last_name",
+          "email",
+          "age",
+          "gender",
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at"
+        ]
+      },
+      {
+        "name": "quarantine_user_data_e573z",
+        "transformation": "Writer",
+        "dependent_on": [
+          "dq_checks_user_data_e573z"
+        ],
+        "target": {
+          "$ref": "#/targets/quarantine_user_data_e573z"
+        },
+        "write_options": {
+          "mode": "overwrite",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        },
+        "input_selection": {
+          "dq_checks_user_data_e573z": [
+            "dq_checks_user_data_e573z_err_recs"
+          ]
+        }
+      },
+      {
+        "name": "user_data_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "MapUserData"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "id",
+          "first_name",
+          "last_name",
+          "email",
+          "age",
+          "gender",
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "record_hash",
+          "is_active"
+        ],
+        "derived_fields": [
+          {
+            "name": "record_hash",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "is_active",
+            "expression": "CAST(NULL AS BOOLEAN)"
+          }
+        ]
+      },
+      {
+        "name": "user_data",
+        "transformation": "Writer",
+        "dependent_on": [
+          "user_data_final"
+        ],
+        "target": {
+          "$ref": "#/targets/user_data"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      }
+    ]
+  },
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
