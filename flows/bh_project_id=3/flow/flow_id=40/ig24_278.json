@@ -492,6 +492,7 @@
                 }
               ],
               "bh_environment_id": 18,
+              "template_parameters": [],
               "bh_project_id": 3,
               "bh_environment_name": "muthuas",
               "cloud_provider": "databricks",
