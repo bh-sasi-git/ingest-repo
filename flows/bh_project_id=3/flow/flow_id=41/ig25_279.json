@@ -492,7 +492,6 @@
                 }
               ],
               "bh_environment_id": 18,
-              "template_parameters": [],
               "bh_project_id": 3,
               "bh_environment_name": "dev_sv_db_local",
               "cloud_provider": "databricks",
