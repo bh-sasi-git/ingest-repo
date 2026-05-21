@@ -1,0 +1,344 @@
+{
+  "created_at": "2026-05-21T10:15:52.935378Z",
+  "updated_at": "2026-05-21T10:15:52.935378Z",
+  "created_by": "sasikumar@bighammer.ai",
+  "updated_by": "sasikumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 1,
+  "flow_id": 51,
+  "flow_name": "CCLF11_27",
+  "flow_key": "cclf11_27",
+  "recipient_email": {},
+  "notes": "CCLF2",
+  "tags": null,
+  "bh_project_name": "Ingest_repo1",
+  "bh_project_id": 3,
+  "alert_settings": {
+    "on_job_start": false,
+    "on_job_failure": false,
+    "on_job_success": false,
+    "long_running": false
+  },
+  "_graph": {
+    "root": {
+      "model": "Flow",
+      "pk": 51
+    },
+    "nodes": [
+      {
+        "model": "Flow",
+        "pk": 51,
+        "data": {
+          "flow_id": 51,
+          "flow_name": "CCLF11_27",
+          "flow_key": "cclf11_27",
+          "bh_project_id": 3,
+          "recipient_email": {},
+          "notes": "CCLF2",
+          "tags": null,
+          "status": "active",
+          "alert_settings": {
+            "on_job_start": false,
+            "on_job_failure": false,
+            "on_job_success": false,
+            "long_running": false
+          },
+          "bh_bundle_id": null,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowPipelineMapping",
+        "pk": 43,
+        "data": {
+          "flow_pipeline_mapping_id": 43,
+          "flow_id": 51,
+          "pipeline_id": 12,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 156,
+        "data": {
+          "flow_parameter_id": 156,
+          "flow_id": 51,
+          "parameter_name": "cloud_type",
+          "parameter_value": "databricks",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 155,
+        "data": {
+          "flow_parameter_id": 155,
+          "flow_id": 51,
+          "parameter_name": "compute_type",
+          "parameter_value": "DATABRICKS_CLUSTER",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 154,
+        "data": {
+          "flow_parameter_id": 154,
+          "flow_id": 51,
+          "parameter_name": "task_id_to_watch",
+          "parameter_value": "run_job",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 153,
+        "data": {
+          "flow_parameter_id": 153,
+          "flow_id": 51,
+          "parameter_name": "suffix",
+          "parameter_value": ".json",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 152,
+        "data": {
+          "flow_parameter_id": 152,
+          "flow_id": 51,
+          "parameter_name": "prefix",
+          "parameter_value": "logs/",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 151,
+        "data": {
+          "flow_parameter_id": 151,
+          "flow_id": 51,
+          "parameter_name": "parallelization_factor",
+          "parameter_value": 1,
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 150,
+        "data": {
+          "flow_parameter_id": 150,
+          "flow_id": 51,
+          "parameter_name": "execute_in_parallel",
+          "parameter_value": false,
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowDefinition",
+        "pk": 51,
+        "data": {
+          "flow_definition_id": 51,
+          "flow_id": 51,
+          "flow_json": {
+            "flowJson": {
+              "$schema": "https://json-schema.org/draft-07/schema#",
+              "name": "cclf11_27",
+              "flow_name": "CCLF11_27",
+              "flow_id": 51,
+              "flow_key": "cclf11_27",
+              "flow_type": "INGESTION",
+              "description": "CCLF2",
+              "version": "1.0.0",
+              "project_id": 3,
+              "project_name": "Ingest_repo1",
+              "cron_expression": null,
+              "tenant_id": 1,
+              "flow_tags": [
+                {
+                  "key": "drn",
+                  "value": "12346"
+                },
+                {
+                  "key": "environment",
+                  "value": "dev"
+                }
+              ],
+              "parameters": [
+                {
+                  "key": "execute_in_parallel",
+                  "value": false
+                },
+                {
+                  "key": "parallelization_factor",
+                  "value": 1
+                },
+                {
+                  "key": "prefix",
+                  "value": "logs/"
+                },
+                {
+                  "key": "suffix",
+                  "value": ".json"
+                },
+                {
+                  "key": "task_id_to_watch",
+                  "value": "run_job"
+                },
+                {
+                  "key": "compute_type",
+                  "value": "DATABRICKS_CLUSTER"
+                },
+                {
+                  "key": "cloud_type",
+                  "value": "databricks"
+                }
+              ],
+              "tasks": [
+                {
+                  "task_id": "Create Compute",
+                  "type": "CreateCompute",
+                  "depends_on": [],
+                  "airflow_connection_id": "databricks_default",
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "cloud_type": "databricks",
+                  "compute_config": {
+                    "cluster_name": "Databricks_AK_Local_0303_V1",
+                    "spark_version": "15.4.x-scala2.12",
+                    "node_type_id": "Standard_D4s_v3",
+                    "num_workers": 0,
+                    "autoscale": null,
+                    "driver_node_type_id": null,
+                    "runtime_engine": null,
+                    "data_security_mode": "SINGLE_USER",
+                    "single_user_name": "sasikumar@bighammer.ai",
+                    "policy_id": null,
+                    "apply_policy_default_values": true,
+                    "idempotency_token": null,
+                    "aws_attributes": null,
+                    "azure_attributes": null,
+                    "gcp_attributes": null,
+                    "single_node": true,
+                    "autotermination_minutes": 30,
+                    "enable_elastic_disk": true,
+                    "spark_conf": {},
+                    "spark_env_vars": {},
+                    "custom_tags": {},
+                    "cluster_log_conf": null,
+                    "init_scripts": [
+                      "/Workspace/Shared/dev-utils/scripts/bh_databricks_grpc_server.sh"
+                    ],
+                    "libraries": [],
+                    "databricks_region": "us-west-2",
+                    "bh_tags": [],
+                    "compute_config_name": "Databricks_1"
+                  },
+                  "cluster_name": "Databricks_1",
+                  "output_variables": [
+                    {
+                      "id": "compute_id",
+                      "label": "Cluster / job identifier",
+                      "xcom_key": "return_value"
+                    }
+                  ],
+                  "name": "Create_Compute",
+                  "nodeId": "create_compute_Create Compute"
+                },
+                {
+                  "task_id": "Run Jobs_cclf11",
+                  "type": "SubmitJob",
+                  "depends_on": [
+                    "Create Compute"
+                  ],
+                  "bh_project_name": "Ingest_repo1",
+                  "pipeline_key": "cclf11",
+                  "pipeline_name": "CCLF11",
+                  "pipeline_id": 12,
+                  "compute_binding": {
+                    "source_task_id": "Create Compute",
+                    "source_output_id": "compute_id"
+                  },
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "cloud_type": "databricks",
+                  "airflow_connection_id": "databricks_default",
+                  "name": "Submit_Job",
+                  "nodeId": "Submit_Job_Run Jobs_cclf11"
+                },
+                {
+                  "task_id": "Delete Compute",
+                  "type": "DeleteCompute",
+                  "depends_on": [
+                    "Run Jobs_cclf11"
+                  ],
+                  "airflow_connection_id": "databricks_default",
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "cloud_type": "databricks",
+                  "compute_binding": {
+                    "source_task_id": "Create Compute",
+                    "source_output_id": "compute_id"
+                  },
+                  "name": "Delete_Compute",
+                  "nodeId": "delete_compute_Delete Compute"
+                }
+              ],
+              "bh_environment_id": 1,
+              "template_parameters": [],
+              "bh_project_id": 3,
+              "bh_environment_name": "databricks_batch",
+              "cloud_provider": "databricks",
+              "vault_url": "https://bh-dev-westus3-kv-key.vault.azure.net/",
+              "ingestion_group_id": 27
+            }
+          },
+          "schema_id": null,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowDeployment",
+        "pk": 51,
+        "data": {
+          "flow_deployment_id": 51,
+          "flow_id": 51,
+          "bh_env_id": 1,
+          "bh_airflow_id": null,
+          "flow_version_id": null,
+          "schema_id": null,
+          "cron_expression": null,
+          "last_deployed_at": null,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      }
+    ]
+  }
+}
