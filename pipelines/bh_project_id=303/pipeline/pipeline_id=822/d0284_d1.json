@@ -1,0 +1,156 @@
+{
+  "created_at": "2026-05-25T05:44:42.739769Z",
+  "updated_at": "2026-05-25T05:45:23.145328Z",
+  "created_by": "muthukumar@bighammer.ai",
+  "updated_by": "muthukumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 4,
+  "pipeline_id": 822,
+  "pipeline_name": "D0284_d1",
+  "pipeline_key": "d0284_d1",
+  "bh_project_id": 303,
+  "notes": null,
+  "tags": null,
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "Project_s1",
+  "bh_github_username": "bh-sasi-git",
+  "pipeline_json": {
+    "name": "D0284_d1",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "parameters": [
+      {
+        "key": "safeharbor_p_a5743_aco_aalr_d269999_t0000000_1_1",
+        "value": "bhargs/1-Enrollment/1-Enrollment/D0284/safeharbor_P.A5743.ACO.AALR.D269999.T0000000_1-1.csv"
+      }
+    ],
+    "connections": {
+      "read_azure_blob_file_connection_obj831": {
+        "name": "read_azure_blob_file_connection_obj831",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "azure_unity_conn1_obj831": {
+        "name": "azure_unity_conn1_obj831",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "default",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureunityconn1",
+        "connection_config_id": 165
+      }
+    },
+    "sources": {
+      "read_file_source_obj831": {
+        "name": "read_file_source_obj831",
+        "source_type": "File",
+        "file_name": "${safeharbor_p_a5743_aco_aalr_d269999_t0000000_1_1}",
+        "connection": {
+          "$ref": "#/connections/read_azure_blob_file_connection_obj831"
+        },
+        "data_src_id": 1633
+      }
+    },
+    "targets": {
+      "write_to_db_target_obj831": {
+        "name": "write_to_db_target_obj831",
+        "target_type": "Relational",
+        "table_name": "safeharbor_p_a5743_aco_aalr_d269999_t0000000_1_1",
+        "connection": {
+          "$ref": "#/connections/azure_unity_conn1_obj831"
+        },
+        "load_mode": "append",
+        "schema": "default",
+        "data_src_id": 1634
+      }
+    },
+    "transformations": [
+      {
+        "name": "read_file_obj831",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/read_file_source_obj831"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ",",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\r\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER"
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_ingest_metadata_obj831",
+        "transformation": "Expression",
+        "dependent_on": [
+          "read_file_obj831"
+        ],
+        "derived_fields": [
+          {
+            "name": "ingest_timestamp",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_date",
+            "expression": "current_date()"
+          }
+        ]
+      },
+      {
+        "name": "write_to_db_obj831",
+        "transformation": "Writer",
+        "dependent_on": [
+          "add_ingest_metadata_obj831"
+        ],
+        "target": {
+          "$ref": "#/targets/write_to_db_target_obj831"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false"
+        }
+      }
+    ],
+    "description": "Ingest files from any supported source and write to any supported database"
+  },
+  "pipeline_type": "design",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
