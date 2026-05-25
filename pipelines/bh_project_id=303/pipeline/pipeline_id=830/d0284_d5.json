@@ -1,0 +1,300 @@
+{
+  "created_at": "2026-05-25T06:13:38.540421Z",
+  "updated_at": "2026-05-25T06:14:19.447969Z",
+  "created_by": "muthukumar@bighammer.ai",
+  "updated_by": "muthukumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 4,
+  "pipeline_id": 830,
+  "pipeline_name": "D0284_d5",
+  "pipeline_key": "d0284_d5",
+  "bh_project_id": 303,
+  "notes": null,
+  "tags": null,
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "Project_s1",
+  "bh_github_username": "bh-sasi-git",
+  "pipeline_json": {
+    "name": "D0284_d5",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "parameters": [
+      {
+        "key": "safeharbor_p_d0284_algc26_rp_d260421_t1117362",
+        "value": "bhargs/1-Enrollment/1-Enrollment/D0284/safeharbor_P.D0284.ALGC26.RP.D260421.T1117362.xlsx"
+      },
+      {
+        "key": "safeharbor_p_d0284_algc26_rp_d260421_t1117362_1",
+        "value": "bhargs/1-Enrollment/1-Enrollment/D0284/safeharbor_P.D0284.ALGC26.RP.D260421.T1117362.xlsx"
+      }
+    ],
+    "connections": {
+      "read_azure_blob_file_connection_obj853": {
+        "name": "read_azure_blob_file_connection_obj853",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "azure_unity_conn1_obj853": {
+        "name": "azure_unity_conn1_obj853",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "default",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureunityconn1",
+        "connection_config_id": 165
+      },
+      "read_azure_blob_file_connection_obj854": {
+        "name": "read_azure_blob_file_connection_obj854",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "azure_unity_conn1_obj854": {
+        "name": "azure_unity_conn1_obj854",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "default",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureunityconn1",
+        "connection_config_id": 165
+      }
+    },
+    "sources": {
+      "read_file_source_obj853": {
+        "name": "read_file_source_obj853",
+        "source_type": "File",
+        "file_name": "${safeharbor_p_d0284_algc26_rp_d260421_t1117362}",
+        "connection": {
+          "$ref": "#/connections/read_azure_blob_file_connection_obj853"
+        },
+        "data_src_id": 1639
+      },
+      "read_file_source_obj854": {
+        "name": "read_file_source_obj854",
+        "source_type": "File",
+        "file_name": "${safeharbor_p_d0284_algc26_rp_d260421_t1117362_1}",
+        "connection": {
+          "$ref": "#/connections/read_azure_blob_file_connection_obj854"
+        },
+        "data_src_id": 1641
+      }
+    },
+    "targets": {
+      "write_to_db_target_obj853": {
+        "name": "write_to_db_target_obj853",
+        "target_type": "Relational",
+        "table_name": "safeharbor_p_d0284_algc26_rp_d260421_t1117362",
+        "connection": {
+          "$ref": "#/connections/azure_unity_conn1_obj853"
+        },
+        "load_mode": "append",
+        "schema": "default",
+        "data_src_id": 1640
+      },
+      "write_to_db_target_obj854": {
+        "name": "write_to_db_target_obj854",
+        "target_type": "Relational",
+        "table_name": "safeharbor_p_d0284_algc26_rp_d260421_t1117362_1",
+        "connection": {
+          "$ref": "#/connections/azure_unity_conn1_obj854"
+        },
+        "load_mode": "append",
+        "schema": "default",
+        "data_src_id": 1642
+      }
+    },
+    "transformations": [
+      {
+        "name": "read_file_obj853",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/read_file_source_obj853"
+        },
+        "file_type": "Excel",
+        "read_options": {
+          "fetch_size": 10000,
+          "inferSchema": false,
+          "sheetName": "Overview (D0284)",
+          "sheet_name": "Overview (D0284)",
+          "useHeader": true,
+          "timestampFormat": "yyyy-MM-dd HH:mm:ss",
+          "lineSep": "\r\n",
+          "treatEmptyValuesAsNulls": true,
+          "addColorColumns": false,
+          "maxRowsInMemory": 20,
+          "excerptSize": 10
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_ingest_metadata_obj853",
+        "transformation": "Expression",
+        "dependent_on": [
+          "read_file_obj853"
+        ],
+        "derived_fields": [
+          {
+            "name": "ingest_timestamp",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_date",
+            "expression": "current_date()"
+          }
+        ]
+      },
+      {
+        "name": "write_to_db_obj853",
+        "transformation": "Writer",
+        "dependent_on": [
+          "add_ingest_metadata_obj853"
+        ],
+        "target": {
+          "$ref": "#/targets/write_to_db_target_obj853"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false"
+        }
+      },
+      {
+        "name": "read_file_obj854",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/read_file_source_obj854"
+        },
+        "file_type": "Excel",
+        "read_options": {
+          "fetch_size": 10000,
+          "inferSchema": false,
+          "sheetName": "Monthly Data",
+          "sheet_name": "Monthly Data",
+          "dataAddress": "'Monthly Data'!A3",
+          "useHeader": false,
+          "columnNamesOverride": [
+            "beneficiary_mbi",
+            "beneficiary_date_of_birth",
+            "medical_data_sharing_preference_jan",
+            "administrative_suppression_jan",
+            "partd_prescription_indicator_jan",
+            "supp_insurance_jan",
+            "alignment_status_jan",
+            "medical_data_sharing_preference_feb",
+            "administrative_suppression_feb",
+            "partd_prescription_indicator_feb",
+            "supp_insurance_feb",
+            "alignment_status_feb",
+            "medical_data_sharing_preference_mar",
+            "administrative_suppression_mar",
+            "partd_prescription_indicator_mar",
+            "supp_insurance_mar",
+            "alignment_status_mar",
+            "medical_data_sharing_preference_apr",
+            "administrative_suppression_apr",
+            "partd_prescription_indicator_apr",
+            "supp_insurance_apr",
+            "alignment_status_apr",
+            "medical_data_sharing_preference_may",
+            "administrative_suppression_may",
+            "partd_prescription_indicator_may",
+            "supp_insurance_may",
+            "alignment_status_may",
+            "medical_data_sharing_preference_jun",
+            "administrative_suppression_jun",
+            "partd_prescription_indicator_jun",
+            "supp_insurance_jun",
+            "alignment_status_jun",
+            "medical_data_sharing_preference_jul",
+            "administrative_suppression_jul",
+            "partd_prescription_indicator_jul",
+            "supp_insurance_jul",
+            "alignment_status_jul",
+            "medical_data_sharing_preference_aug",
+            "administrative_suppression_aug",
+            "partd_prescription_indicator_aug",
+            "supp_insurance_aug",
+            "alignment_status_aug",
+            "medical_data_sharing_preference_sep",
+            "administrative_suppression_sep",
+            "partd_prescription_indicator_sep",
+            "supp_insurance_sep",
+            "alignment_status_sep",
+            "medical_data_sharing_preference_oct",
+            "administrative_suppression_oct",
+            "partd_prescription_indicator_oct",
+            "supp_insurance_oct",
+            "alignment_status_oct",
+            "medical_data_sharing_preference_nov",
+            "administrative_suppression_nov",
+            "partd_prescription_indicator_nov",
+            "supp_insurance_nov",
+            "alignment_status_nov",
+            "medical_data_sharing_preference_dec",
+            "administrative_suppression_dec",
+            "partd_prescription_indicator_dec",
+            "supp_insurance_dec",
+            "alignment_status_dec"
+          ],
+          "timestampFormat": "yyyy-MM-dd HH:mm:ss",
+          "lineSep": "\r\n",
+          "treatEmptyValuesAsNulls": true,
+          "addColorColumns": false,
+          "maxRowsInMemory": 20,
+          "excerptSize": 10
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_ingest_metadata_obj854",
+        "transformation": "Expression",
+        "dependent_on": [
+          "read_file_obj854"
+        ],
+        "derived_fields": [
+          {
+            "name": "ingest_timestamp",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_date",
+            "expression": "current_date()"
+          }
+        ]
+      },
+      {
+        "name": "write_to_db_obj854",
+        "transformation": "Writer",
+        "dependent_on": [
+          "add_ingest_metadata_obj854"
+        ],
+        "target": {
+          "$ref": "#/targets/write_to_db_target_obj854"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false"
+        }
+      }
+    ],
+    "description": "Ingest files from any supported source and write to any supported database"
+  },
+  "pipeline_type": "design",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
