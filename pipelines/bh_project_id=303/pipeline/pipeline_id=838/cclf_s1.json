@@ -1,0 +1,2469 @@
+{
+  "created_at": "2026-05-26T05:13:10.049982Z",
+  "updated_at": "2026-05-26T05:15:22.573587Z",
+  "created_by": "muthukumar@bighammer.ai",
+  "updated_by": "muthukumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 4,
+  "pipeline_id": 838,
+  "pipeline_name": "CCLF_S1",
+  "pipeline_key": "cclf_s1",
+  "bh_project_id": 303,
+  "notes": null,
+  "tags": null,
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "Project_s1",
+  "bh_github_username": "bh-sasi-git",
+  "pipeline_json": {
+    "name": "CCLF_S1",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "parameters": [
+      {
+        "key": "p_d0284_aco_zc1y26_d260501",
+        "value": "D0284_cclf/P.D0284.ACO.ZC1Y26.D260501.dat"
+      },
+      {
+        "key": "p_d0284_aco_zc2y26_d260501",
+        "value": "D0284_cclf/P.D0284.ACO.ZC2Y26.D260501.dat"
+      },
+      {
+        "key": "p_d0284_aco_zc3y26_d260501",
+        "value": "D0284_cclf/P.D0284.ACO.ZC3Y26.D260501.dat"
+      },
+      {
+        "key": "p_d0284_aco_zc4y26_d260501",
+        "value": "D0284_cclf/P.D0284.ACO.ZC4Y26.D260501.dat"
+      },
+      {
+        "key": "p_d0284_aco_zc5y26_d260501",
+        "value": "D0284_cclf/P.D0284.ACO.ZC5Y26.D260501.dat"
+      },
+      {
+        "key": "p_d0284_aco_zc6y26_d260501",
+        "value": "D0284_cclf/P.D0284.ACO.ZC6Y26.D260501.dat"
+      },
+      {
+        "key": "p_d0284_aco_zc7y26_d260501",
+        "value": "D0284_cclf/P.D0284.ACO.ZC7Y26.D260501.dat"
+      },
+      {
+        "key": "p_d0284_aco_zc8y26_d260501",
+        "value": "D0284_cclf/P.D0284.ACO.ZC8Y26.D260501.dat"
+      },
+      {
+        "key": "p_d0284_aco_zc9y26_d260501",
+        "value": "D0284_cclf/P.D0284.ACO.ZC9Y26.D260501.dat"
+      },
+      {
+        "key": "p_d0284_aco_zcay26_d260501",
+        "value": "D0284_cclf/P.D0284.ACO.ZCAY26.D260501.dat"
+      },
+      {
+        "key": "p_d0284_aco_zcby26_d260501",
+        "value": "D0284_cclf/P.D0284.ACO.ZCBY26.D260501.dat"
+      }
+    ],
+    "connections": {
+      "read_azure_blob_file_connection_obj873": {
+        "name": "read_azure_blob_file_connection_obj873",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "azure_unity_conn1_obj873": {
+        "name": "azure_unity_conn1_obj873",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "default",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureunityconn1",
+        "connection_config_id": 165
+      },
+      "read_azure_blob_file_connection_obj874": {
+        "name": "read_azure_blob_file_connection_obj874",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "azure_unity_conn1_obj874": {
+        "name": "azure_unity_conn1_obj874",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "default",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureunityconn1",
+        "connection_config_id": 165
+      },
+      "read_azure_blob_file_connection_obj875": {
+        "name": "read_azure_blob_file_connection_obj875",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "azure_unity_conn1_obj875": {
+        "name": "azure_unity_conn1_obj875",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "default",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureunityconn1",
+        "connection_config_id": 165
+      },
+      "read_azure_blob_file_connection_obj876": {
+        "name": "read_azure_blob_file_connection_obj876",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "azure_unity_conn1_obj876": {
+        "name": "azure_unity_conn1_obj876",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "default",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureunityconn1",
+        "connection_config_id": 165
+      },
+      "read_azure_blob_file_connection_obj877": {
+        "name": "read_azure_blob_file_connection_obj877",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "azure_unity_conn1_obj877": {
+        "name": "azure_unity_conn1_obj877",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "default",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureunityconn1",
+        "connection_config_id": 165
+      },
+      "read_azure_blob_file_connection_obj878": {
+        "name": "read_azure_blob_file_connection_obj878",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "azure_unity_conn1_obj878": {
+        "name": "azure_unity_conn1_obj878",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "default",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureunityconn1",
+        "connection_config_id": 165
+      },
+      "read_azure_blob_file_connection_obj879": {
+        "name": "read_azure_blob_file_connection_obj879",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "azure_unity_conn1_obj879": {
+        "name": "azure_unity_conn1_obj879",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "default",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureunityconn1",
+        "connection_config_id": 165
+      },
+      "read_azure_blob_file_connection_obj880": {
+        "name": "read_azure_blob_file_connection_obj880",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "azure_unity_conn1_obj880": {
+        "name": "azure_unity_conn1_obj880",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "default",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureunityconn1",
+        "connection_config_id": 165
+      },
+      "read_azure_blob_file_connection_obj881": {
+        "name": "read_azure_blob_file_connection_obj881",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "azure_unity_conn1_obj881": {
+        "name": "azure_unity_conn1_obj881",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "default",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureunityconn1",
+        "connection_config_id": 165
+      },
+      "read_azure_blob_file_connection_obj882": {
+        "name": "read_azure_blob_file_connection_obj882",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "azure_unity_conn1_obj882": {
+        "name": "azure_unity_conn1_obj882",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "default",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureunityconn1",
+        "connection_config_id": 165
+      },
+      "read_azure_blob_file_connection_obj883": {
+        "name": "read_azure_blob_file_connection_obj883",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "azure_unity_conn1_obj883": {
+        "name": "azure_unity_conn1_obj883",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "default",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureunityconn1",
+        "connection_config_id": 165
+      }
+    },
+    "sources": {
+      "read_file_source_obj873": {
+        "name": "read_file_source_obj873",
+        "source_type": "File",
+        "file_name": "${p_d0284_aco_zc1y26_d260501}",
+        "connection": {
+          "$ref": "#/connections/read_azure_blob_file_connection_obj873"
+        },
+        "data_src_id": 1669
+      },
+      "read_file_source_obj874": {
+        "name": "read_file_source_obj874",
+        "source_type": "File",
+        "file_name": "${p_d0284_aco_zc2y26_d260501}",
+        "connection": {
+          "$ref": "#/connections/read_azure_blob_file_connection_obj874"
+        },
+        "data_src_id": 1671
+      },
+      "read_file_source_obj875": {
+        "name": "read_file_source_obj875",
+        "source_type": "File",
+        "file_name": "${p_d0284_aco_zc3y26_d260501}",
+        "connection": {
+          "$ref": "#/connections/read_azure_blob_file_connection_obj875"
+        },
+        "data_src_id": 1673
+      },
+      "read_file_source_obj876": {
+        "name": "read_file_source_obj876",
+        "source_type": "File",
+        "file_name": "${p_d0284_aco_zc4y26_d260501}",
+        "connection": {
+          "$ref": "#/connections/read_azure_blob_file_connection_obj876"
+        },
+        "data_src_id": 1675
+      },
+      "read_file_source_obj877": {
+        "name": "read_file_source_obj877",
+        "source_type": "File",
+        "file_name": "${p_d0284_aco_zc5y26_d260501}",
+        "connection": {
+          "$ref": "#/connections/read_azure_blob_file_connection_obj877"
+        },
+        "data_src_id": 1677
+      },
+      "read_file_source_obj878": {
+        "name": "read_file_source_obj878",
+        "source_type": "File",
+        "file_name": "${p_d0284_aco_zc6y26_d260501}",
+        "connection": {
+          "$ref": "#/connections/read_azure_blob_file_connection_obj878"
+        },
+        "data_src_id": 1679
+      },
+      "read_file_source_obj879": {
+        "name": "read_file_source_obj879",
+        "source_type": "File",
+        "file_name": "${p_d0284_aco_zc7y26_d260501}",
+        "connection": {
+          "$ref": "#/connections/read_azure_blob_file_connection_obj879"
+        },
+        "data_src_id": 1681
+      },
+      "read_file_source_obj880": {
+        "name": "read_file_source_obj880",
+        "source_type": "File",
+        "file_name": "${p_d0284_aco_zc8y26_d260501}",
+        "connection": {
+          "$ref": "#/connections/read_azure_blob_file_connection_obj880"
+        },
+        "data_src_id": 1683
+      },
+      "read_file_source_obj881": {
+        "name": "read_file_source_obj881",
+        "source_type": "File",
+        "file_name": "${p_d0284_aco_zc9y26_d260501}",
+        "connection": {
+          "$ref": "#/connections/read_azure_blob_file_connection_obj881"
+        },
+        "data_src_id": 1685
+      },
+      "read_file_source_obj882": {
+        "name": "read_file_source_obj882",
+        "source_type": "File",
+        "file_name": "${p_d0284_aco_zcay26_d260501}",
+        "connection": {
+          "$ref": "#/connections/read_azure_blob_file_connection_obj882"
+        },
+        "data_src_id": 1687
+      },
+      "read_file_source_obj883": {
+        "name": "read_file_source_obj883",
+        "source_type": "File",
+        "file_name": "${p_d0284_aco_zcby26_d260501}",
+        "connection": {
+          "$ref": "#/connections/read_azure_blob_file_connection_obj883"
+        },
+        "data_src_id": 1689
+      }
+    },
+    "targets": {
+      "write_to_db_target_obj873": {
+        "name": "write_to_db_target_obj873",
+        "target_type": "Relational",
+        "table_name": "cclf_c1",
+        "connection": {
+          "$ref": "#/connections/azure_unity_conn1_obj873"
+        },
+        "load_mode": "append",
+        "schema": "default",
+        "data_src_id": 1670
+      },
+      "write_to_db_target_obj874": {
+        "name": "write_to_db_target_obj874",
+        "target_type": "Relational",
+        "table_name": "cclf_c2",
+        "connection": {
+          "$ref": "#/connections/azure_unity_conn1_obj874"
+        },
+        "load_mode": "append",
+        "schema": "default",
+        "data_src_id": 1672
+      },
+      "write_to_db_target_obj875": {
+        "name": "write_to_db_target_obj875",
+        "target_type": "Relational",
+        "table_name": "cclf_c3",
+        "connection": {
+          "$ref": "#/connections/azure_unity_conn1_obj875"
+        },
+        "load_mode": "append",
+        "schema": "default",
+        "data_src_id": 1674
+      },
+      "write_to_db_target_obj876": {
+        "name": "write_to_db_target_obj876",
+        "target_type": "Relational",
+        "table_name": "cclf_c4",
+        "connection": {
+          "$ref": "#/connections/azure_unity_conn1_obj876"
+        },
+        "load_mode": "append",
+        "schema": "default",
+        "data_src_id": 1676
+      },
+      "write_to_db_target_obj877": {
+        "name": "write_to_db_target_obj877",
+        "target_type": "Relational",
+        "table_name": "cclf_c5",
+        "connection": {
+          "$ref": "#/connections/azure_unity_conn1_obj877"
+        },
+        "load_mode": "append",
+        "schema": "default",
+        "data_src_id": 1678
+      },
+      "write_to_db_target_obj878": {
+        "name": "write_to_db_target_obj878",
+        "target_type": "Relational",
+        "table_name": "cclf_c6",
+        "connection": {
+          "$ref": "#/connections/azure_unity_conn1_obj878"
+        },
+        "load_mode": "append",
+        "schema": "default",
+        "data_src_id": 1680
+      },
+      "write_to_db_target_obj879": {
+        "name": "write_to_db_target_obj879",
+        "target_type": "Relational",
+        "table_name": "cclf_c7",
+        "connection": {
+          "$ref": "#/connections/azure_unity_conn1_obj879"
+        },
+        "load_mode": "append",
+        "schema": "default",
+        "data_src_id": 1682
+      },
+      "write_to_db_target_obj880": {
+        "name": "write_to_db_target_obj880",
+        "target_type": "Relational",
+        "table_name": "cclf_c8",
+        "connection": {
+          "$ref": "#/connections/azure_unity_conn1_obj880"
+        },
+        "load_mode": "append",
+        "schema": "default",
+        "data_src_id": 1684
+      },
+      "write_to_db_target_obj881": {
+        "name": "write_to_db_target_obj881",
+        "target_type": "Relational",
+        "table_name": "cclf_c9",
+        "connection": {
+          "$ref": "#/connections/azure_unity_conn1_obj881"
+        },
+        "load_mode": "append",
+        "schema": "default",
+        "data_src_id": 1686
+      },
+      "write_to_db_target_obj882": {
+        "name": "write_to_db_target_obj882",
+        "target_type": "Relational",
+        "table_name": "cclf_cay",
+        "connection": {
+          "$ref": "#/connections/azure_unity_conn1_obj882"
+        },
+        "load_mode": "append",
+        "schema": "default",
+        "data_src_id": 1688
+      },
+      "write_to_db_target_obj883": {
+        "name": "write_to_db_target_obj883",
+        "target_type": "Relational",
+        "table_name": "cclf_cby",
+        "connection": {
+          "$ref": "#/connections/azure_unity_conn1_obj883"
+        },
+        "load_mode": "append",
+        "schema": "default",
+        "data_src_id": 1690
+      }
+    },
+    "transformations": [
+      {
+        "name": "read_file_obj873",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/read_file_source_obj873"
+        },
+        "file_type": "FixedWidth",
+        "read_options": {
+          "fetch_size": 10000,
+          "encoding": "UTF-8",
+          "columnPositions": [
+            [
+              1,
+              14
+            ],
+            [
+              13,
+              19
+            ],
+            [
+              19,
+              30
+            ],
+            [
+              30,
+              41
+            ],
+            [
+              41,
+              43
+            ],
+            [
+              43,
+              53
+            ],
+            [
+              53,
+              63
+            ],
+            [
+              63,
+              64
+            ],
+            [
+              64,
+              65
+            ],
+            [
+              65,
+              72
+            ],
+            [
+              72,
+              79
+            ],
+            [
+              79,
+              81
+            ],
+            [
+              81,
+              98
+            ],
+            [
+              98,
+              99
+            ],
+            [
+              99,
+              101
+            ],
+            [
+              101,
+              103
+            ],
+            [
+              103,
+              107
+            ],
+            [
+              107,
+              108
+            ],
+            [
+              108,
+              118
+            ],
+            [
+              118,
+              128
+            ],
+            [
+              128,
+              138
+            ],
+            [
+              138,
+              148
+            ],
+            [
+              148,
+              150
+            ],
+            [
+              150,
+              160
+            ],
+            [
+              160,
+              170
+            ],
+            [
+              170,
+              181
+            ],
+            [
+              181,
+              183
+            ],
+            [
+              183,
+              185
+            ],
+            [
+              185,
+              186
+            ],
+            [
+              186,
+              187
+            ],
+            [
+              187,
+              188
+            ],
+            [
+              188,
+              203
+            ],
+            [
+              203,
+              218
+            ],
+            [
+              218,
+              240
+            ],
+            [
+              240,
+              255
+            ],
+            [
+              255,
+              270
+            ],
+            [
+              270,
+              292
+            ],
+            [
+              292,
+              312
+            ],
+            [
+              312,
+              322
+            ],
+            [
+              322,
+              332
+            ],
+            [
+              332,
+              342
+            ],
+            [
+              342,
+              352
+            ],
+            [
+              352,
+              392
+            ],
+            [
+              392,
+              432
+            ],
+            [
+              432,
+              437
+            ]
+          ],
+          "columnNames": [
+            "CUR_CLM_UNIQ_ID",
+            "PRVDR_OSCAR_NUM",
+            "BENE_MBI_ID",
+            "BENE_HIC_NUM",
+            "CLM_TYPE_CD",
+            "CLM_FROM_DT",
+            "CLM_THRU_DT",
+            "CLM_BILL_FAC_TYPE_CD",
+            "CLM_BILL_CLSFCTN_CD",
+            "PRNCPL_DGNS_CD",
+            "ADMTG_DGNS_CD",
+            "CLM_MDCR_NPMT_RSN_CD",
+            "CLM_PMT_AMT",
+            "CLM_NCH_PRMRY_PYR_CD",
+            "PRVDR_FAC_FIPS_ST_CD",
+            "BENE_PTNT_STUS_CD",
+            "DGNS_DRG_CD",
+            "CLM_OP_SRVC_TYPE_CD",
+            "FAC_PRVDR_NPI_NUM",
+            "OPRTG_PRVDR_NPI_NUM",
+            "ATNDG_PRVDR_NPI_NUM",
+            "OTHR_PRVDR_NPI_NUM",
+            "CLM_ADJSMT_TYPE_CD",
+            "CLM_EFCTV_DT",
+            "CLM_IDR_LD_DT",
+            "BENE_EQTBL_BIC_HICN_NUM",
+            "CLM_ADMSN_TYPE_CD",
+            "CLM_ADMSN_SRC_CD",
+            "CLM_BILL_FREQ_CD",
+            "CLM_QUERY_CD",
+            "DGNS_PRCDR_ICD_IND",
+            "CLM_MDCR_INSTNL_TOT_CHRG_AMT",
+            "CLM_MDCR_IP_PPS_CPTL_IME_AMT",
+            "CLM_OPRTNL_IME_AMT",
+            "CLM_MDCR_IP_PPS_DSPRPRTNT_AMT",
+            "CLM_HIPPS_UNCOMPD_CARE_AMT",
+            "CLM_OPRTNL_DSPRPRTNT_AMT",
+            "CLM_BLG_PRVDR_OSCAR_NUM",
+            "CLM_BLG_PRVDR_NPI_NUM",
+            "CLM_OPRTG_PRVDR_NPI_NUM",
+            "CLM_ATNDG_PRVDR_NPI_NUM",
+            "CLM_OTHR_PRVDR_NPI_NUM",
+            "CLM_CNTL_NUM",
+            "CLM_ORG_CNTL_NUM",
+            "CLM_CNTRCTR_NUM"
+          ],
+          "nullValue": "",
+          "lineSep": "\r\n",
+          "trimValues": true,
+          "skipLines": 0
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_ingest_metadata_obj873",
+        "transformation": "Expression",
+        "dependent_on": [
+          "read_file_obj873"
+        ],
+        "derived_fields": [
+          {
+            "name": "ingest_timestamp",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_date",
+            "expression": "current_date()"
+          }
+        ]
+      },
+      {
+        "name": "write_to_db_obj873",
+        "transformation": "Writer",
+        "dependent_on": [
+          "add_ingest_metadata_obj873"
+        ],
+        "target": {
+          "$ref": "#/targets/write_to_db_target_obj873"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false"
+        }
+      },
+      {
+        "name": "read_file_obj874",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/read_file_source_obj874"
+        },
+        "file_type": "FixedWidth",
+        "read_options": {
+          "fetch_size": 10000,
+          "encoding": "UTF-8",
+          "columnPositions": [
+            [
+              1,
+              14
+            ],
+            [
+              13,
+              23
+            ],
+            [
+              23,
+              34
+            ],
+            [
+              34,
+              45
+            ],
+            [
+              67,
+              71
+            ],
+            [
+              86,
+              97
+            ],
+            [
+              97,
+              103
+            ],
+            [
+              123,
+              147
+            ],
+            [
+              147,
+              164
+            ],
+            [
+              164,
+              166
+            ],
+            [
+              166,
+              168
+            ],
+            [
+              168,
+              170
+            ],
+            [
+              170,
+              172
+            ],
+            [
+              172,
+              174
+            ],
+            [
+              174,
+              179
+            ]
+          ],
+          "columnNames": [
+            "CUR_CLM_UNIQ_ID",
+            "CLM_LINE_NUM",
+            "BENE_MBI_ID",
+            "BENE_HIC_NUM",
+            "CLM_LINE_PROD_REV_CTR_CD",
+            "BENE_EQTBL_BIC_HICN_NUM",
+            "PRVDR_OSCAR_NUM",
+            "CLM_LINE_SRVC_UNIT_QTY",
+            "CLM_LINE_CVRD_PD_AMT",
+            "HCPCS_1_MDFR_CD",
+            "HCPCS_2_MDFR_CD",
+            "HCPCS_3_MDFR_CD",
+            "HCPCS_4_MDFR_CD",
+            "HCPCS_5_MDFR_CD",
+            "CLM_REV_APC_HIPPS_CD"
+          ],
+          "nullValue": "",
+          "lineSep": "\r\n",
+          "trimValues": true,
+          "skipLines": 0
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_ingest_metadata_obj874",
+        "transformation": "Expression",
+        "dependent_on": [
+          "read_file_obj874"
+        ],
+        "derived_fields": [
+          {
+            "name": "ingest_timestamp",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_date",
+            "expression": "current_date()"
+          }
+        ]
+      },
+      {
+        "name": "write_to_db_obj874",
+        "transformation": "Writer",
+        "dependent_on": [
+          "add_ingest_metadata_obj874"
+        ],
+        "target": {
+          "$ref": "#/targets/write_to_db_target_obj874"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false"
+        }
+      },
+      {
+        "name": "read_file_obj875",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/read_file_source_obj875"
+        },
+        "file_type": "FixedWidth",
+        "read_options": {
+          "fetch_size": 10000,
+          "encoding": "UTF-8",
+          "columnPositions": [
+            [
+              1,
+              14
+            ],
+            [
+              13,
+              24
+            ],
+            [
+              24,
+              35
+            ],
+            [
+              35,
+              37
+            ],
+            [
+              37,
+              39
+            ],
+            [
+              39,
+              46
+            ],
+            [
+              46,
+              56
+            ],
+            [
+              56,
+              67
+            ],
+            [
+              67,
+              73
+            ],
+            [
+              73,
+              83
+            ],
+            [
+              83,
+              93
+            ],
+            [
+              93,
+              94
+            ],
+            [
+              94,
+              100
+            ]
+          ],
+          "columnNames": [
+            "CUR_CLM_UNIQ_ID",
+            "BENE_MBI_ID",
+            "BENE_HIC_NUM",
+            "CLM_TYPE_CD",
+            "CLM_VAL_SQNC_NUM",
+            "CLM_PRCDR_CD",
+            "CLM_PRCDR_PRFRM_DT",
+            "BENE_EQTBL_BIC_HICN_NUM",
+            "PRVDR_OSCAR_NUM",
+            "CLM_FROM_DT",
+            "CLM_THRU_DT",
+            "DGNS_PRCDR_ICD_IND",
+            "CLM_BLG_PRVDR_OSCAR_NUM"
+          ],
+          "nullValue": "",
+          "lineSep": "\r\n",
+          "trimValues": true,
+          "skipLines": 0
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_ingest_metadata_obj875",
+        "transformation": "Expression",
+        "dependent_on": [
+          "read_file_obj875"
+        ],
+        "derived_fields": [
+          {
+            "name": "ingest_timestamp",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_date",
+            "expression": "current_date()"
+          }
+        ]
+      },
+      {
+        "name": "write_to_db_obj875",
+        "transformation": "Writer",
+        "dependent_on": [
+          "add_ingest_metadata_obj875"
+        ],
+        "target": {
+          "$ref": "#/targets/write_to_db_target_obj875"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false"
+        }
+      },
+      {
+        "name": "read_file_obj876",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/read_file_source_obj876"
+        },
+        "file_type": "FixedWidth",
+        "read_options": {
+          "fetch_size": 10000,
+          "encoding": "UTF-8",
+          "columnPositions": [
+            [
+              1,
+              14
+            ],
+            [
+              13,
+              24
+            ],
+            [
+              24,
+              35
+            ],
+            [
+              35,
+              37
+            ],
+            [
+              37,
+              38
+            ],
+            [
+              38,
+              40
+            ],
+            [
+              40,
+              47
+            ],
+            [
+              47,
+              58
+            ],
+            [
+              58,
+              64
+            ],
+            [
+              64,
+              74
+            ],
+            [
+              74,
+              84
+            ],
+            [
+              84,
+              91
+            ],
+            [
+              91,
+              92
+            ],
+            [
+              92,
+              104
+            ]
+          ],
+          "columnNames": [
+            "CUR_CLM_UNIQ_ID",
+            "BENE_MBI_ID",
+            "BENE_HIC_NUM",
+            "CLM_TYPE_CD",
+            "CLM_PROD_TYPE_CD",
+            "CLM_VAL_SQNC_NUM",
+            "CLM_DGNS_CD",
+            "BENE_EQTBL_BIC_HICN_NUM",
+            "PRVDR_OSCAR_NUM",
+            "CLM_FROM_DT",
+            "CLM_THRU_DT",
+            "CLM_POA_IND",
+            "DGNS_PRCDR_ICD_IND",
+            "CLM_BLG_PRVDR_OSCAR_NUM"
+          ],
+          "nullValue": "",
+          "lineSep": "\r\n",
+          "trimValues": true,
+          "skipLines": 0
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_ingest_metadata_obj876",
+        "transformation": "Expression",
+        "dependent_on": [
+          "read_file_obj876"
+        ],
+        "derived_fields": [
+          {
+            "name": "ingest_timestamp",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_date",
+            "expression": "current_date()"
+          }
+        ]
+      },
+      {
+        "name": "write_to_db_obj876",
+        "transformation": "Writer",
+        "dependent_on": [
+          "add_ingest_metadata_obj876"
+        ],
+        "target": {
+          "$ref": "#/targets/write_to_db_target_obj876"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false"
+        }
+      },
+      {
+        "name": "read_file_obj877",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/read_file_source_obj877"
+        },
+        "file_type": "FixedWidth",
+        "read_options": {
+          "fetch_size": 10000,
+          "encoding": "UTF-8",
+          "columnPositions": [
+            [
+              1,
+              14
+            ],
+            [
+              13,
+              23
+            ],
+            [
+              23,
+              34
+            ],
+            [
+              34,
+              45
+            ],
+            [
+              45,
+              47
+            ],
+            [
+              47,
+              57
+            ],
+            [
+              57,
+              67
+            ],
+            [
+              67,
+              70
+            ],
+            [
+              70,
+              72
+            ],
+            [
+              72,
+              74
+            ],
+            [
+              74,
+              75
+            ],
+            [
+              75,
+              77
+            ],
+            [
+              77,
+              87
+            ],
+            [
+              87,
+              97
+            ],
+            [
+              97,
+              102
+            ],
+            [
+              102,
+              117
+            ],
+            [
+              117,
+              118
+            ],
+            [
+              118,
+              125
+            ],
+            [
+              125,
+              135
+            ],
+            [
+              135,
+              145
+            ],
+            [
+              145,
+              147
+            ],
+            [
+              147,
+              149
+            ],
+            [
+              149,
+              151
+            ],
+            [
+              151,
+              161
+            ],
+            [
+              161,
+              171
+            ],
+            [
+              171,
+              211
+            ],
+            [
+              211,
+              222
+            ],
+            [
+              222,
+              239
+            ],
+            [
+              239,
+              263
+            ],
+            [
+              263,
+              265
+            ],
+            [
+              265,
+              267
+            ],
+            [
+              267,
+              269
+            ],
+            [
+              269,
+              271
+            ],
+            [
+              271,
+              273
+            ],
+            [
+              273,
+              275
+            ],
+            [
+              275,
+              282
+            ],
+            [
+              282,
+              289
+            ],
+            [
+              289,
+              296
+            ],
+            [
+              296,
+              303
+            ],
+            [
+              303,
+              310
+            ],
+            [
+              310,
+              317
+            ],
+            [
+              317,
+              324
+            ],
+            [
+              324,
+              331
+            ],
+            [
+              331,
+              332
+            ],
+            [
+              332,
+              339
+            ],
+            [
+              339,
+              346
+            ],
+            [
+              346,
+              353
+            ],
+            [
+              353,
+              360
+            ],
+            [
+              360,
+              363
+            ],
+            [
+              363,
+              373
+            ],
+            [
+              373,
+              383
+            ],
+            [
+              383,
+              388
+            ]
+          ],
+          "columnNames": [
+            "CUR_CLM_UNIQ_ID",
+            "CLM_LINE_NUM",
+            "BENE_MBI_ID",
+            "BENE_HIC_NUM",
+            "CLM_TYPE_CD",
+            "CLM_FROM_DT",
+            "CLM_THRU_DT",
+            "RNDRG_PRVDR_TYPE_CD",
+            "RNDRG_PRVDR_FIPS_ST_CD",
+            "CLM_PRVDR_SPCLTY_CD",
+            "CLM_FED_TYPE_SRVC_CD",
+            "CLM_POS_CD",
+            "CLM_LINE_FROM_DT",
+            "CLM_LINE_THRU_DT",
+            "CLM_LINE_HCPCS_CD",
+            "CLM_LINE_CVRD_PD_AMT",
+            "CLM_LINE_PRMRY_PYR_CD",
+            "CLM_LINE_DGNS_CD",
+            "CLM_RNDRG_PRVDR_TAX_NUM",
+            "RNDRG_PRVDR_NPI_NUM",
+            "CLM_CARR_PMT_DNL_CD",
+            "CLM_PRCSG_IND_CD",
+            "CLM_ADJSMT_TYPE_CD",
+            "CLM_EFCTV_DT",
+            "CLM_IDR_LD_DT",
+            "CLM_CNTL_NUM",
+            "BENE_EQTBL_BIC_HICN_NUM",
+            "CLM_LINE_ALOWD_CHRG_AMT",
+            "CLM_LINE_SRVC_UNIT_QTY",
+            "HCPCS_1_MDFR_CD",
+            "HCPCS_2_MDFR_CD",
+            "HCPCS_3_MDFR_CD",
+            "HCPCS_4_MDFR_CD",
+            "HCPCS_5_MDFR_CD",
+            "CLM_DISP_CD",
+            "CLM_DGNS_1_CD",
+            "CLM_DGNS_2_CD",
+            "CLM_DGNS_3_CD",
+            "CLM_DGNS_4_CD",
+            "CLM_DGNS_5_CD",
+            "CLM_DGNS_6_CD",
+            "CLM_DGNS_7_CD",
+            "CLM_DGNS_8_CD",
+            "DGNS_PRCDR_ICD_IND",
+            "CLM_DGNS_9_CD",
+            "CLM_DGNS_10_CD",
+            "CLM_DGNS_11_CD",
+            "CLM_DGNS_12_CD",
+            "HCPCS_BETOS_CD",
+            "CLM_RNDRG_PRVDR_NPI_NUM",
+            "CLM_RFRG_PRVDR_NPI_NUM",
+            "CLM_CNTRCTR_NUM"
+          ],
+          "nullValue": "",
+          "lineSep": "\r\n",
+          "trimValues": true,
+          "skipLines": 0
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_ingest_metadata_obj877",
+        "transformation": "Expression",
+        "dependent_on": [
+          "read_file_obj877"
+        ],
+        "derived_fields": [
+          {
+            "name": "ingest_timestamp",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_date",
+            "expression": "current_date()"
+          }
+        ]
+      },
+      {
+        "name": "write_to_db_obj877",
+        "transformation": "Writer",
+        "dependent_on": [
+          "add_ingest_metadata_obj877"
+        ],
+        "target": {
+          "$ref": "#/targets/write_to_db_target_obj877"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false"
+        }
+      },
+      {
+        "name": "read_file_obj878",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/read_file_source_obj878"
+        },
+        "file_type": "FixedWidth",
+        "read_options": {
+          "fetch_size": 10000,
+          "encoding": "UTF-8",
+          "columnPositions": [
+            [
+              1,
+              14
+            ],
+            [
+              13,
+              23
+            ],
+            [
+              23,
+              34
+            ],
+            [
+              34,
+              45
+            ],
+            [
+              45,
+              47
+            ],
+            [
+              47,
+              57
+            ],
+            [
+              57,
+              67
+            ],
+            [
+              67,
+              68
+            ],
+            [
+              68,
+              70
+            ],
+            [
+              70,
+              80
+            ],
+            [
+              80,
+              90
+            ],
+            [
+              90,
+              95
+            ],
+            [
+              95,
+              110
+            ],
+            [
+              110,
+              111
+            ],
+            [
+              111,
+              121
+            ],
+            [
+              121,
+              131
+            ],
+            [
+              131,
+              133
+            ],
+            [
+              133,
+              135
+            ],
+            [
+              135,
+              137
+            ],
+            [
+              137,
+              147
+            ],
+            [
+              147,
+              157
+            ],
+            [
+              157,
+              197
+            ],
+            [
+              197,
+              208
+            ],
+            [
+              208,
+              225
+            ],
+            [
+              225,
+              227
+            ],
+            [
+              227,
+              237
+            ],
+            [
+              237,
+              247
+            ]
+          ],
+          "columnNames": [
+            "CUR_CLM_UNIQ_ID",
+            "CLM_LINE_NUM",
+            "BENE_MBI_ID",
+            "BENE_HIC_NUM",
+            "CLM_TYPE_CD",
+            "CLM_FROM_DT",
+            "CLM_THRU_DT",
+            "CLM_FED_TYPE_SRVC_CD",
+            "CLM_POS_CD",
+            "CLM_LINE_FROM_DT",
+            "CLM_LINE_THRU_DT",
+            "CLM_LINE_HCPCS_CD",
+            "CLM_LINE_CVRD_PD_AMT",
+            "CLM_PRMRY_PYR_CD",
+            "PAYTO_PRVDR_NPI_NUM",
+            "ORDRG_PRVDR_NPI_NUM",
+            "CLM_CARR_PMT_DNL_CD",
+            "CLM_PRCSG_IND_CD",
+            "CLM_ADJSMT_TYPE_CD",
+            "CLM_EFCTV_DT",
+            "CLM_IDR_LD_DT",
+            "CLM_CNTL_NUM",
+            "BENE_EQTBL_BIC_HICN_NUM",
+            "CLM_LINE_ALOWD_CHRG_AMT",
+            "CLM_DISP_CD",
+            "CLM_BLG_PRVDR_NPI_NUM",
+            "CLM_RFRG_PRVDR_NPI_NUM"
+          ],
+          "nullValue": "",
+          "lineSep": "\r\n",
+          "trimValues": true,
+          "skipLines": 0
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_ingest_metadata_obj878",
+        "transformation": "Expression",
+        "dependent_on": [
+          "read_file_obj878"
+        ],
+        "derived_fields": [
+          {
+            "name": "ingest_timestamp",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_date",
+            "expression": "current_date()"
+          }
+        ]
+      },
+      {
+        "name": "write_to_db_obj878",
+        "transformation": "Writer",
+        "dependent_on": [
+          "add_ingest_metadata_obj878"
+        ],
+        "target": {
+          "$ref": "#/targets/write_to_db_target_obj878"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false"
+        }
+      },
+      {
+        "name": "read_file_obj879",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/read_file_source_obj879"
+        },
+        "file_type": "FixedWidth",
+        "read_options": {
+          "fetch_size": 10000,
+          "encoding": "UTF-8",
+          "columnPositions": [
+            [
+              1,
+              14
+            ],
+            [
+              13,
+              24
+            ],
+            [
+              24,
+              35
+            ],
+            [
+              35,
+              46
+            ],
+            [
+              46,
+              48
+            ],
+            [
+              48,
+              58
+            ],
+            [
+              58,
+              60
+            ],
+            [
+              60,
+              80
+            ],
+            [
+              80,
+              81
+            ],
+            [
+              81,
+              82
+            ],
+            [
+              82,
+              106
+            ],
+            [
+              106,
+              115
+            ],
+            [
+              115,
+              117
+            ],
+            [
+              137,
+              150
+            ],
+            [
+              150,
+              152
+            ],
+            [
+              152,
+              162
+            ],
+            [
+              162,
+              172
+            ],
+            [
+              172,
+              184
+            ],
+            [
+              184,
+              193
+            ],
+            [
+              193,
+              195
+            ],
+            [
+              195,
+              230
+            ]
+          ],
+          "columnNames": [
+            "CUR_CLM_UNIQ_ID",
+            "BENE_MBI_ID",
+            "BENE_HIC_NUM",
+            "CLM_LINE_NDC_CD",
+            "CLM_TYPE_CD",
+            "CLM_LINE_FROM_DT",
+            "PRVDR_SRVC_ID_QLFYR_CD",
+            "CLM_SRVC_PRVDR_GNRC_ID_NUM",
+            "CLM_DSPNSNG_STUS_CD",
+            "CLM_DAW_PROD_SLCTN_CD",
+            "CLM_LINE_SRVC_UNIT_QTY",
+            "CLM_LINE_DAYS_SUPLY_QTY",
+            "PRVDR_PRSBNG_ID_QLFYR_CD",
+            "CLM_LINE_BENE_PMT_AMT",
+            "CLM_ADJSMT_TYPE_CD",
+            "CLM_EFCTV_DT",
+            "CLM_IDR_LD_DT",
+            "CLM_LINE_RX_SRVC_RFRNC_NUM",
+            "CLM_LINE_RX_FILL_NUM",
+            "CLM_PHRMCY_SRVC_TYPE_CD",
+            "CLM_PRSBNG_PRVDR_GNRC_ID_NUM"
+          ],
+          "nullValue": "",
+          "lineSep": "\r\n",
+          "trimValues": true,
+          "skipLines": 0
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_ingest_metadata_obj879",
+        "transformation": "Expression",
+        "dependent_on": [
+          "read_file_obj879"
+        ],
+        "derived_fields": [
+          {
+            "name": "ingest_timestamp",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_date",
+            "expression": "current_date()"
+          }
+        ]
+      },
+      {
+        "name": "write_to_db_obj879",
+        "transformation": "Writer",
+        "dependent_on": [
+          "add_ingest_metadata_obj879"
+        ],
+        "target": {
+          "$ref": "#/targets/write_to_db_target_obj879"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false"
+        }
+      },
+      {
+        "name": "read_file_obj880",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/read_file_source_obj880"
+        },
+        "file_type": "FixedWidth",
+        "read_options": {
+          "fetch_size": 10000,
+          "encoding": "UTF-8",
+          "columnPositions": [
+            [
+              1,
+              12
+            ],
+            [
+              11,
+              22
+            ],
+            [
+              22,
+              24
+            ],
+            [
+              24,
+              27
+            ],
+            [
+              27,
+              32
+            ],
+            [
+              32,
+              42
+            ],
+            [
+              42,
+              43
+            ],
+            [
+              43,
+              44
+            ],
+            [
+              44,
+              47
+            ],
+            [
+              47,
+              49
+            ],
+            [
+              49,
+              51
+            ],
+            [
+              51,
+              61
+            ],
+            [
+              61,
+              71
+            ],
+            [
+              71,
+              81
+            ],
+            [
+              81,
+              111
+            ],
+            [
+              111,
+              126
+            ],
+            [
+              126,
+              166
+            ],
+            [
+              166,
+              167
+            ],
+            [
+              167,
+              168
+            ],
+            [
+              168,
+              178
+            ],
+            [
+              178,
+              188
+            ],
+            [
+              188,
+              233
+            ],
+            [
+              233,
+              278
+            ],
+            [
+              278,
+              318
+            ],
+            [
+              318,
+              358
+            ],
+            [
+              358,
+              398
+            ],
+            [
+              398,
+              438
+            ],
+            [
+              438,
+              538
+            ],
+            [
+              538,
+              540
+            ],
+            [
+              540,
+              545
+            ],
+            [
+              545,
+              549
+            ]
+          ],
+          "columnNames": [
+            "BENE_MBI_ID",
+            "BENE_HIC_NUM",
+            "BENE_FIPS_STATE_CD",
+            "BENE_FIPS_CNTY_CD",
+            "BENE_ZIP_CD",
+            "BENE_DOB",
+            "BENE_SEX_CD",
+            "BENE_RACE_CD",
+            "BENE_AGE",
+            "BENE_MDCR_STUS_CD",
+            "BENE_DUAL_STUS_CD",
+            "BENE_DEATH_DT",
+            "BENE_RNG_BGN_DT",
+            "BENE_RNG_END_DT",
+            "BENE_1ST_NAME",
+            "BENE_MIDL_NAME",
+            "BENE_LAST_NAME",
+            "BENE_ORGNL_ENTLMT_RSN_CD",
+            "BENE_ENTLMT_BUYIN_IND",
+            "BENE_PART_A_ENRLMT_BGN_DT",
+            "BENE_PART_B_ENRLMT_BGN_DT",
+            "BENE_LINE_1_ADR",
+            "BENE_LINE_2_ADR",
+            "BENE_LINE_3_ADR",
+            "BENE_LINE_4_ADR",
+            "BENE_LINE_5_ADR",
+            "BENE_LINE_6_ADR",
+            "GEO_ZIP_PLC_NAME",
+            "GEO_USPS_STATE_CD",
+            "GEO_ZIP5_CD",
+            "GEO_ZIP4_CD"
+          ],
+          "nullValue": "",
+          "lineSep": "\r\n",
+          "trimValues": true,
+          "skipLines": 0
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_ingest_metadata_obj880",
+        "transformation": "Expression",
+        "dependent_on": [
+          "read_file_obj880"
+        ],
+        "derived_fields": [
+          {
+            "name": "ingest_timestamp",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_date",
+            "expression": "current_date()"
+          }
+        ]
+      },
+      {
+        "name": "write_to_db_obj880",
+        "transformation": "Writer",
+        "dependent_on": [
+          "add_ingest_metadata_obj880"
+        ],
+        "target": {
+          "$ref": "#/targets/write_to_db_target_obj880"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false"
+        }
+      },
+      {
+        "name": "read_file_obj881",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/read_file_source_obj881"
+        },
+        "file_type": "FixedWidth",
+        "read_options": {
+          "fetch_size": 10000,
+          "encoding": "UTF-8",
+          "columnPositions": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              12
+            ],
+            [
+              12,
+              23
+            ],
+            [
+              23,
+              33
+            ],
+            [
+              33,
+              43
+            ]
+          ],
+          "columnNames": [
+            "HICN_MBI_XREF_IND",
+            "CRNT_NUM",
+            "PRVS_NUM",
+            "PRVS_ID_EFCTV_DT",
+            "PRVS_ID_OBSLT_DT"
+          ],
+          "nullValue": "",
+          "lineSep": "\r\n",
+          "trimValues": true,
+          "skipLines": 0
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_ingest_metadata_obj881",
+        "transformation": "Expression",
+        "dependent_on": [
+          "read_file_obj881"
+        ],
+        "derived_fields": [
+          {
+            "name": "ingest_timestamp",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_date",
+            "expression": "current_date()"
+          }
+        ]
+      },
+      {
+        "name": "write_to_db_obj881",
+        "transformation": "Writer",
+        "dependent_on": [
+          "add_ingest_metadata_obj881"
+        ],
+        "target": {
+          "$ref": "#/targets/write_to_db_target_obj881"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false"
+        }
+      },
+      {
+        "name": "read_file_obj882",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/read_file_source_obj882"
+        },
+        "file_type": "FixedWidth",
+        "read_options": {
+          "fetch_size": 10000,
+          "encoding": "UTF-8",
+          "columnPositions": [
+            [
+              1,
+              14
+            ],
+            [
+              13,
+              24
+            ],
+            [
+              24,
+              35
+            ],
+            [
+              35,
+              37
+            ],
+            [
+              37,
+              47
+            ],
+            [
+              47,
+              48
+            ],
+            [
+              48,
+              49
+            ],
+            [
+              49,
+              50
+            ],
+            [
+              50,
+              51
+            ],
+            [
+              51,
+              52
+            ],
+            [
+              52,
+              54
+            ],
+            [
+              54,
+              56
+            ],
+            [
+              56,
+              58
+            ],
+            [
+              58,
+              60
+            ],
+            [
+              60,
+              62
+            ],
+            [
+              62,
+              81
+            ],
+            [
+              81,
+              100
+            ],
+            [
+              100,
+              101
+            ],
+            [
+              101,
+              120
+            ],
+            [
+              120,
+              135
+            ],
+            [
+              135,
+              154
+            ],
+            [
+              154,
+              169
+            ],
+            [
+              169,
+              184
+            ],
+            [
+              184,
+              203
+            ],
+            [
+              203,
+              222
+            ],
+            [
+              222,
+              224
+            ],
+            [
+              224,
+              243
+            ],
+            [
+              243,
+              262
+            ],
+            [
+              262,
+              281
+            ],
+            [
+              281,
+              300
+            ],
+            [
+              300,
+              303
+            ],
+            [
+              303,
+              305
+            ],
+            [
+              305,
+              324
+            ]
+          ],
+          "columnNames": [
+            "CUR_CLM_UNIQ_ID",
+            "BENE_MBI_ID",
+            "BENE_HIC_NUM",
+            "CLM_TYPE_CD",
+            "CLM_ACTV_CARE_FROM_DT",
+            "CLM_NGACO_PBPMT_SW",
+            "CLM_NGACO_PDSCHRG_HCBS_SW",
+            "CLM_NGACO_SNF_WVR_SW",
+            "CLM_NGACO_TLHLTH_SW",
+            "CLM_NGACO_CPTATN_SW",
+            "CLM_DEMO_1ST_NUM",
+            "CLM_DEMO_2ND_NUM",
+            "CLM_DEMO_3RD_NUM",
+            "CLM_DEMO_4TH_NUM",
+            "CLM_DEMO_5TH_NUM",
+            "CLM_PBP_INCLSN_AMT",
+            "CLM_PBP_RDCTN_AMT",
+            "CLM_NGACO_CMG_WVR_SW",
+            "CLM_INSTNL_PER_DIEM_AMT",
+            "CLM_MDCR_IP_BENE_DDCTBL_AMT",
+            "CLM_MDCR_COINSRNC_AMT",
+            "CLM_BLOOD_LBLTY_AMT",
+            "CLM_INSTNL_PRFNL_AMT",
+            "CLM_NCVRD_CHRG_AMT",
+            "CLM_MDCR_DDCTBL_AMT",
+            "CLM_RLT_COND_CD",
+            "CLM_OPRTNL_OUTLR_AMT",
+            "CLM_MDCR_NEW_TECH_AMT",
+            "CLM_ISLET_ISOLN_AMT",
+            "CLM_SQSTRTN_RDCTN_AMT",
+            "CLM_1_REV_CNTR_ANSI_RSN_CD",
+            "CLM_1_REV_CNTR_ANSI_GRP_CD",
+            "CLM_MIPS_PMT_AMT"
+          ],
+          "nullValue": "",
+          "lineSep": "\r\n",
+          "trimValues": true,
+          "skipLines": 0
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_ingest_metadata_obj882",
+        "transformation": "Expression",
+        "dependent_on": [
+          "read_file_obj882"
+        ],
+        "derived_fields": [
+          {
+            "name": "ingest_timestamp",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_date",
+            "expression": "current_date()"
+          }
+        ]
+      },
+      {
+        "name": "write_to_db_obj882",
+        "transformation": "Writer",
+        "dependent_on": [
+          "add_ingest_metadata_obj882"
+        ],
+        "target": {
+          "$ref": "#/targets/write_to_db_target_obj882"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false"
+        }
+      },
+      {
+        "name": "read_file_obj883",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/read_file_source_obj883"
+        },
+        "file_type": "FixedWidth",
+        "read_options": {
+          "fetch_size": 10000,
+          "encoding": "UTF-8",
+          "columnPositions": [
+            [
+              1,
+              14
+            ],
+            [
+              13,
+              23
+            ],
+            [
+              23,
+              34
+            ],
+            [
+              34,
+              45
+            ],
+            [
+              45,
+              47
+            ],
+            [
+              47,
+              48
+            ],
+            [
+              48,
+              49
+            ],
+            [
+              49,
+              50
+            ],
+            [
+              50,
+              51
+            ],
+            [
+              51,
+              52
+            ],
+            [
+              52,
+              54
+            ],
+            [
+              54,
+              56
+            ],
+            [
+              56,
+              58
+            ],
+            [
+              58,
+              60
+            ],
+            [
+              60,
+              62
+            ],
+            [
+              62,
+              77
+            ],
+            [
+              77,
+              92
+            ],
+            [
+              92,
+              93
+            ],
+            [
+              93,
+              112
+            ],
+            [
+              112,
+              122
+            ]
+          ],
+          "columnNames": [
+            "CUR_CLM_UNIQ_ID",
+            "CLM_LINE_NUM",
+            "BENE_MBI_ID",
+            "BENE_HIC_NUM",
+            "CLM_TYPE_CD",
+            "CLM_LINE_NGACO_PBPMT_SW",
+            "CLM_LINE_NGACO_PDSCHRG_HCBS_SW",
+            "CLM_LINE_NGACO_SNF_WVR_SW",
+            "CLM_LINE_NGACO_TLHLTH_SW",
+            "CLM_LINE_NGACO_CPTATN_SW",
+            "CLM_DEMO_1ST_NUM",
+            "CLM_DEMO_2ND_NUM",
+            "CLM_DEMO_3RD_NUM",
+            "CLM_DEMO_4TH_NUM",
+            "CLM_DEMO_5TH_NUM",
+            "CLM_PBP_INCLSN_AMT",
+            "CLM_PBP_RDCTN_AMT",
+            "CLM_NGACO_CMG_WVR_SW",
+            "CLM_MDCR_DDCTBL_AMT",
+            "CLM_SQSTRTN_RDCTN_AMT"
+          ],
+          "nullValue": "",
+          "lineSep": "\r\n",
+          "trimValues": true,
+          "skipLines": 0
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_ingest_metadata_obj883",
+        "transformation": "Expression",
+        "dependent_on": [
+          "read_file_obj883"
+        ],
+        "derived_fields": [
+          {
+            "name": "ingest_timestamp",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_date",
+            "expression": "current_date()"
+          }
+        ]
+      },
+      {
+        "name": "write_to_db_obj883",
+        "transformation": "Writer",
+        "dependent_on": [
+          "add_ingest_metadata_obj883"
+        ],
+        "target": {
+          "$ref": "#/targets/write_to_db_target_obj883"
+        },
+        "post_sql": "-- =====================================================================\n-- CCLF Bronze to Silver Raw Transformation Views (Databricks Delta)\n-- Adheres strictly to the v5 Mapping Specification\n-- Target Schema: cinqdev.silverraw_claims\n-- Source Schema: cinqdev.bronze_claims\n-- =====================================================================\n\nCREATE SCHEMA IF NOT EXISTS cinqdev.silverraw_claims;\n\n-- =====================================================================\n-- 1) vw_claim_header\n-- =====================================================================\nCREATE OR REPLACE VIEW cinqdev.silverraw_claims.vw_claim_header AS\nSELECT\n  c1.batch_id AS batch_id,\n  CAST(NULL AS STRING) AS record_hash,\n  'claim_pipeline' AS created_by,\n  CURRENT_TIMESTAMP() AS created_at,\n  'claim_pipeline' AS updated_by,\n  CURRENT_TIMESTAMP() AS updated_at,\n  'D0284_CCLF' AS source_system,\n  CAST(NULL AS BOOLEAN) AS is_active,\n  CAST(c1.CUR_CLM_UNIQ_ID AS STRING) AS source_claim_id,\n  CASE WHEN TRIM(c1.CLM_TYPE_CD) IN ('10', '71', '72', '81', '82') THEN 'IP'\n       WHEN TRIM(c1.CLM_TYPE_CD) IN ('20', '30', '50', '60') THEN 'OP'\n       WHEN TRIM(c1.CLM_TYPE_CD) IN ('40', '45') THEN 'PROF'\n       ELSE NULL\n  END AS claim_type,\n  CAST(NULL AS STRING) AS source_resource_id,\n  CAST(NULL AS STRING) AS source_resource_type,\n  CAST(NULL AS STRING) AS source_format,\n  COALESCE(NULLIF(TRIM(c1.BENE_MBI_ID), ''), NULLIF(TRIM(c1.BENE_HIC_NUM), '')) AS patient_id,\n  CAST(NULL AS STRING) AS source_billing_org_id,\n  CAST(NULL AS STRING) AS source_rendering_org_id,\n  CAST(cay.CLM_ACTV_CARE_FROM_DT AS DATE) AS admission_date,\n  CASE WHEN TRIM(c1.CLM_TYPE_CD) IN ('10', '71', '72', '81', '82') THEN CAST(c1.CLM_THRU_DT AS DATE)\n       ELSE NULL\n  END AS discharge_date,\n  CAST(c1.CLM_FROM_DT AS DATE) AS statement_from,\n  CAST(c1.CLM_THRU_DT AS DATE) AS statement_through,\n  CAST(NULL AS DATE) AS paid_date,\n  CAST(c1.CLM_EFCTV_DT AS DATE) AS claim_effective_date,\n  CAST(c1.CLM_IDR_LD_DT AS DATE) AS claim_received_date,\n  CAST(NULL AS INT) AS claim_version_num,\n  NULLIF(TRIM(c1.CLM_ORG_CNTL_NUM), '') AS adjusted_claim_id,\n  NULLIF(TRIM(c1.DGNS_DRG_CD), '') AS drg_code,\n  CAST(NULL AS STRING) AS drg_code_system,\n  CASE WHEN NULLIF(TRIM(c1.CLM_BILL_FAC_TYPE_CD), '') IS NULL \n            AND NULLIF(TRIM(c1.CLM_BILL_CLSFCTN_CD), '') IS NULL \n            AND NULLIF(TRIM(c1.CLM_BILL_FREQ_CD), '') IS NULL THEN NULL\n       ELSE CONCAT(\n              COALESCE(NULLIF(TRIM(c1.CLM_BILL_FAC_TYPE_CD), ''), ''),\n              COALESCE(NULLIF(TRIM(c1.CLM_BILL_CLSFCTN_CD), ''), ''),\n              COALESCE(NULLIF(TRIM(c1.CLM_BILL_FREQ_CD), ''), '')\n            )\n  END AS bill_type,\n  NULLIF(TRIM(c1.CLM_ADMSN_TYPE_CD), '') AS admission_type,\n  NULLIF(TRIM(c1.CLM_ADMSN_SRC_CD), '') AS admission_source,\n  NULLIF(TRIM(c1.BENE_PTNT_STUS_CD), '') AS discharge_status,\n  CASE WHEN TRIM(c1.CLM_ADJSMT_TYPE_CD) = '0' THEN 'ORIGINAL'\n       WHEN TRIM(c1.CLM_ADJSMT_TYPE_CD) = '1' THEN 'ADJUSTMENT'\n       WHEN TRIM(c1.CLM_ADJSMT_TYPE_CD) = '2' THEN 'CANCELLATION'\n       ELSE NULL\n  END AS claim_adjustment_type_cd,\n  NULLIF(TRIM(c1.CLM_MDCR_NPMT_RSN_CD), '') AS claim_status,\n  CAST(NULL AS STRING) AS reason_for_visit,\n  CAST(NULL AS STRING) AS actual_length_of_stay,\n  CAST(NULL AS STRING) AS covered_length_of_stay,\n  CAST(NULL AS STRING) AS line_of_business,\n  CAST(NULL AS STRING) AS product,\n  CAST(NULL AS STRING) AS primary_payer\nFROM cinqdev.bronze_claims.cclf_c1 c1\nLEFT JOIN cinqdev.bronze_claims.cclf_cay cay ON c1.CUR_CLM_UNIQ_ID = cay.CUR_CLM_UNIQ_ID\nWHERE NULLIF(TRIM(c1.CUR_CLM_UNIQ_ID), '') IS NOT NULL;\n\n\n-- =====================================================================\n-- 2) vw_claim_line\n-- =====================================================================\nCREATE OR REPLACE VIEW cinqdev.silverraw_claims.vw_claim_line AS\nWITH union_lines AS (\n  -- cclf_c5 (Professional lines - Priority 1)\n  SELECT\n    c5.batch_id AS batch_id,\n    CAST(NULL AS STRING) AS record_hash,\n    'claim_pipeline' AS created_by,\n    CURRENT_TIMESTAMP() AS created_at,\n    'claim_pipeline' AS updated_by,\n    CURRENT_TIMESTAMP() AS updated_at,\n    'D0284_CCLF' AS source_system,\n    CAST(NULL AS BOOLEAN) AS is_active,\n    NULLIF(TRIM(c5.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n    CAST(c5.CLM_LINE_NUM AS INT) AS line_number,\n    COALESCE(NULLIF(TRIM(c5.CLM_CNTL_NUM), ''), CONCAT(c5.CUR_CLM_UNIQ_ID, '-', CAST(c5.CLM_LINE_NUM AS STRING))) AS source_line_id,\n    CAST(COALESCE(c5.CLM_LINE_FROM_DT, c5.CLM_FROM_DT) AS DATE) AS service_date,\n    CAST(COALESCE(c5.CLM_LINE_THRU_DT, c5.CLM_THRU_DT) AS DATE) AS service_end_date,\n    CAST(NULL AS STRING) AS revenue_code,\n    CAST(NULL AS STRING) AS revenue_code_system,\n    NULLIF(TRIM(c5.CLM_POS_CD), '') AS place_of_service,\n    CAST(c5.CLM_LINE_SRVC_UNIT_QTY AS DECIMAL(18,4)) AS billed_units,\n    CAST(NULL AS STRING) AS capitation_indicator,\n    NULLIF(TRIM(c5.HCPCS_1_MDFR_CD), '') AS modifier_1,\n    NULLIF(TRIM(c5.HCPCS_2_MDFR_CD), '') AS modifier_2,\n    NULLIF(TRIM(c5.HCPCS_3_MDFR_CD), '') AS modifier_3,\n    NULLIF(TRIM(c5.HCPCS_4_MDFR_CD), '') AS modifier_4,\n    NULLIF(TRIM(c5.HCPCS_5_MDFR_CD), '') AS modifier_5,\n    1 AS source_priority\n  FROM cinqdev.bronze_claims.cclf_c5 c5\n  WHERE NULLIF(TRIM(c5.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n    AND NULLIF(TRIM(c5.CLM_LINE_NUM), '') IS NOT NULL\n    AND CAST(c5.CLM_LINE_NUM AS INT) IS NOT NULL\n\n  UNION ALL\n\n  -- cclf_c6 (DME/Carrier lines - Priority 2)\n  SELECT\n    c6.batch_id AS batch_id,\n    CAST(NULL AS STRING) AS record_hash,\n    'claim_pipeline' AS created_by,\n    CURRENT_TIMESTAMP() AS created_at,\n    'claim_pipeline' AS updated_by,\n    CURRENT_TIMESTAMP() AS updated_at,\n    'D0284_CCLF' AS source_system,\n    CAST(NULL AS BOOLEAN) AS is_active,\n    NULLIF(TRIM(c6.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n    CAST(c6.CLM_LINE_NUM AS INT) AS line_number,\n    COALESCE(NULLIF(TRIM(c6.CLM_CNTL_NUM), ''), CONCAT(c6.CUR_CLM_UNIQ_ID, '-', CAST(c6.CLM_LINE_NUM AS STRING))) AS source_line_id,\n    CAST(COALESCE(c6.CLM_LINE_FROM_DT, c6.CLM_FROM_DT) AS DATE) AS service_date,\n    CAST(COALESCE(c6.CLM_LINE_THRU_DT, c6.CLM_THRU_DT) AS DATE) AS service_end_date,\n    CAST(NULL AS STRING) AS revenue_code,\n    CAST(NULL AS STRING) AS revenue_code_system,\n    NULLIF(TRIM(c6.CLM_POS_CD), '') AS place_of_service,\n    CAST(NULL AS DECIMAL(18,4)) AS billed_units,\n    CAST(NULL AS STRING) AS capitation_indicator,\n    CAST(NULL AS STRING) AS modifier_1,\n    CAST(NULL AS STRING) AS modifier_2,\n    CAST(NULL AS STRING) AS modifier_3,\n    CAST(NULL AS STRING) AS modifier_4,\n    CAST(NULL AS STRING) AS modifier_5,\n    2 AS source_priority\n  FROM cinqdev.bronze_claims.cclf_c6 c6\n  WHERE NULLIF(TRIM(c6.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n    AND NULLIF(TRIM(c6.CLM_LINE_NUM), '') IS NOT NULL\n    AND CAST(c6.CLM_LINE_NUM AS INT) IS NOT NULL\n\n  UNION ALL\n\n  -- cclf_c2 (Institutional revenue lines - Priority 3)\n  SELECT\n    c2.batch_id AS batch_id,\n    CAST(NULL AS STRING) AS record_hash,\n    'claim_pipeline' AS created_by,\n    CURRENT_TIMESTAMP() AS created_at,\n    'claim_pipeline' AS updated_by,\n    CURRENT_TIMESTAMP() AS updated_at,\n    'D0284_CCLF' AS source_system,\n    CAST(NULL AS BOOLEAN) AS is_active,\n    NULLIF(TRIM(c2.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n    CAST(c2.CLM_LINE_NUM AS INT) AS line_number,\n    CONCAT(c2.CUR_CLM_UNIQ_ID, '-', CAST(c2.CLM_LINE_NUM AS STRING)) AS source_line_id,\n    CAST(COALESCE(c2.CLM_LINE_FROM_DT, c2.CLM_LINE_INSTNL_REV_CTR_DT, c2.CLM_FROM_DT) AS DATE) AS service_date,\n    CAST(COALESCE(c2.CLM_LINE_THRU_DT, c2.CLM_THRU_DT) AS DATE) AS service_end_date,\n    COALESCE(NULLIF(TRIM(c2.CLM_LINE_PROD_REV_CTR_CD), ''), NULLIF(TRIM(c2.CLM_REV_APC_HIPPS_CD), '')) AS revenue_code,\n    CAST(NULL AS STRING) AS revenue_code_system,\n    CAST(NULL AS STRING) AS place_of_service,\n    CAST(c2.CLM_LINE_SRVC_UNIT_QTY AS DECIMAL(18,4)) AS billed_units,\n    CAST(NULL AS STRING) AS capitation_indicator,\n    NULLIF(TRIM(c2.HCPCS_1_MDFR_CD), '') AS modifier_1,\n    NULLIF(TRIM(c2.HCPCS_2_MDFR_CD), '') AS modifier_2,\n    NULLIF(TRIM(c2.HCPCS_3_MDFR_CD), '') AS modifier_3,\n    NULLIF(TRIM(c2.HCPCS_4_MDFR_CD), '') AS modifier_4,\n    NULLIF(TRIM(c2.HCPCS_5_MDFR_CD), '') AS modifier_5,\n    3 AS source_priority\n  FROM cinqdev.bronze_claims.cclf_c2 c2\n  WHERE NULLIF(TRIM(c2.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n    AND NULLIF(TRIM(c2.CLM_LINE_NUM), '') IS NOT NULL\n    AND CAST(c2.CLM_LINE_NUM AS INT) IS NOT NULL\n\n  UNION ALL\n\n  -- cclf_cby (Demonstration keys-only stub - Priority 4)\n  SELECT\n    cby.batch_id AS batch_id,\n    CAST(NULL AS STRING) AS record_hash,\n    'claim_pipeline' AS created_by,\n    CURRENT_TIMESTAMP() AS created_at,\n    'claim_pipeline' AS updated_by,\n    CURRENT_TIMESTAMP() AS updated_at,\n    'D0284_CCLF' AS source_system,\n    CAST(NULL AS BOOLEAN) AS is_active,\n    NULLIF(TRIM(cby.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n    CAST(cby.CLM_LINE_NUM AS INT) AS line_number,\n    CONCAT(cby.CUR_CLM_UNIQ_ID, '-', CAST(cby.CLM_LINE_NUM AS STRING)) AS source_line_id,\n    CAST(NULL AS DATE) AS service_date,\n    CAST(NULL AS DATE) AS service_end_date,\n    CAST(NULL AS STRING) AS revenue_code,\n    CAST(NULL AS STRING) AS revenue_code_system,\n    CAST(NULL AS STRING) AS place_of_service,\n    CAST(NULL AS DECIMAL(18,4)) AS billed_units,\n    CAST(NULL AS STRING) AS capitation_indicator,\n    CAST(NULL AS STRING) AS modifier_1,\n    CAST(NULL AS STRING) AS modifier_2,\n    CAST(NULL AS STRING) AS modifier_3,\n    CAST(NULL AS STRING) AS modifier_4,\n    CAST(NULL AS STRING) AS modifier_5,\n    4 AS source_priority\n  FROM cinqdev.bronze_claims.cclf_cby cby\n  WHERE NULLIF(TRIM(cby.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n    AND NULLIF(TRIM(cby.CLM_LINE_NUM), '') IS NOT NULL\n    AND CAST(cby.CLM_LINE_NUM AS INT) IS NOT NULL\n),\nranked_lines AS (\n  SELECT *,\n         ROW_NUMBER() OVER (\n           PARTITION BY source_system, source_claim_id, line_number\n           ORDER BY source_priority\n         ) AS rn\n  FROM union_lines\n)\nSELECT\n  batch_id,\n  record_hash,\n  created_by,\n  created_at,\n  updated_by,\n  updated_at,\n  source_system,\n  is_active,\n  source_claim_id,\n  line_number,\n  source_line_id,\n  service_date,\n  service_end_date,\n  revenue_code,\n  revenue_code_system,\n  place_of_service,\n  billed_units,\n  capitation_indicator,\n  modifier_1,\n  modifier_2,\n  modifier_3,\n  modifier_4,\n  modifier_5\nFROM ranked_lines\nWHERE rn = 1;\n\n\n-- =====================================================================\n-- 3) vw_claim_diagnosis\n-- =====================================================================\nCREATE OR REPLACE VIEW cinqdev.silverraw_claims.vw_claim_diagnosis AS\nWITH diagnosis_union AS (\n  -- cclf_c1 Admitting Diagnosis (sequence 0)\n  SELECT\n    c1.batch_id AS batch_id,\n    CAST(NULL AS STRING) AS record_hash,\n    'claim_pipeline' AS created_by,\n    CURRENT_TIMESTAMP() AS created_at,\n    'claim_pipeline' AS updated_by,\n    CURRENT_TIMESTAMP() AS updated_at,\n    'D0284_CCLF' AS source_system,\n    CAST(NULL AS BOOLEAN) AS is_active,\n    NULLIF(TRIM(c1.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n    NULLIF(TRIM(c1.ADMTG_DGNS_CD), '') AS source_diagnosis_code,\n    CASE WHEN TRIM(c1.DGNS_PRCDR_ICD_IND) = '0' THEN 'ICD-10-CM'\n         WHEN TRIM(c1.DGNS_PRCDR_ICD_IND) = '9' THEN 'ICD-9-CM'\n         ELSE NULL\n    END AS source_diagnosis_code_system,\n    0 AS diagnosis_sequence,\n    'admitting' AS diagnosis_type,\n    CAST(NULL AS STRING) AS poa_flag\n  FROM cinqdev.bronze_claims.cclf_c1 c1\n  WHERE NULLIF(TRIM(c1.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n    AND NULLIF(TRIM(c1.ADMTG_DGNS_CD), '') IS NOT NULL\n\n  UNION ALL\n\n  -- cclf_c1 Principal Diagnosis (sequence 1)\n  SELECT\n    c1.batch_id AS batch_id,\n    CAST(NULL AS STRING) AS record_hash,\n    'claim_pipeline' AS created_by,\n    CURRENT_TIMESTAMP() AS created_at,\n    'claim_pipeline' AS updated_by,\n    CURRENT_TIMESTAMP() AS updated_at,\n    'D0284_CCLF' AS source_system,\n    CAST(NULL AS BOOLEAN) AS is_active,\n    NULLIF(TRIM(c1.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n    NULLIF(TRIM(c1.PRNCPL_DGNS_CD), '') AS source_diagnosis_code,\n    CASE WHEN TRIM(c1.DGNS_PRCDR_ICD_IND) = '0' THEN 'ICD-10-CM'\n         WHEN TRIM(c1.DGNS_PRCDR_ICD_IND) = '9' THEN 'ICD-9-CM'\n         ELSE NULL\n    END AS source_diagnosis_code_system,\n    1 AS diagnosis_sequence,\n    'principal' AS diagnosis_type,\n    CAST(NULL AS STRING) AS poa_flag\n  FROM cinqdev.bronze_claims.cclf_c1 c1\n  WHERE NULLIF(TRIM(c1.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n    AND NULLIF(TRIM(c1.PRNCPL_DGNS_CD), '') IS NOT NULL\n\n  UNION ALL\n\n  -- cclf_c4 Secondary Diagnoses (sequence 11..99)\n  SELECT\n    c4.batch_id AS batch_id,\n    CAST(NULL AS STRING) AS record_hash,\n    'claim_pipeline' AS created_by,\n    CURRENT_TIMESTAMP() AS created_at,\n    'claim_pipeline' AS updated_by,\n    CURRENT_TIMESTAMP() AS updated_at,\n    'D0284_CCLF' AS source_system,\n    CAST(NULL AS BOOLEAN) AS is_active,\n    NULLIF(TRIM(c4.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n    NULLIF(TRIM(c4.CLM_DGNS_CD), '') AS source_diagnosis_code,\n    CASE WHEN TRIM(c4.DGNS_PRCDR_ICD_IND) = '0' THEN 'ICD-10-CM'\n         WHEN TRIM(c4.DGNS_PRCDR_ICD_IND) = '9' THEN 'ICD-9-CM'\n         ELSE NULL\n    END AS source_diagnosis_code_system,\n    CAST(10 + CAST(c4.CLM_VAL_SQNC_NUM AS INT) AS INT) AS diagnosis_sequence,\n    'secondary' AS diagnosis_type,\n    NULLIF(TRIM(c4.CLM_POA_IND), '') AS poa_flag\n  FROM cinqdev.bronze_claims.cclf_c4 c4\n  WHERE NULLIF(TRIM(c4.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n    AND NULLIF(TRIM(c4.CLM_DGNS_CD), '') IS NOT NULL\n    AND NULLIF(TRIM(c4.CLM_VAL_SQNC_NUM), '') IS NOT NULL\n    AND CAST(c4.CLM_VAL_SQNC_NUM AS INT) >= 1\n\n  UNION ALL\n\n  -- cclf_c5 Wide Secondary Diagnoses CLM_DGNS_1..12 (sequence 101..112)\n  SELECT\n    c5.batch_id AS batch_id,\n    CAST(NULL AS STRING) AS record_hash,\n    'claim_pipeline' AS created_by,\n    CURRENT_TIMESTAMP() AS created_at,\n    'claim_pipeline' AS updated_by,\n    CURRENT_TIMESTAMP() AS updated_at,\n    'D0284_CCLF' AS source_system,\n    CAST(NULL AS BOOLEAN) AS is_active,\n    NULLIF(TRIM(c5.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n    NULLIF(TRIM(pos.code), '') AS source_diagnosis_code,\n    CASE WHEN TRIM(c5.DGNS_PRCDR_ICD_IND) = '0' THEN 'ICD-10-CM'\n         WHEN TRIM(c5.DGNS_PRCDR_ICD_IND) = '9' THEN 'ICD-9-CM'\n         ELSE NULL\n    END AS source_diagnosis_code_system,\n    pos.seq AS diagnosis_sequence,\n    'secondary' AS diagnosis_type,\n    CAST(NULL AS STRING) AS poa_flag\n  FROM cinqdev.bronze_claims.cclf_c5 c5\n  LATERAL VIEW inline(array(\n    struct(101, c5.CLM_DGNS_1_CD),\n    struct(102, c5.CLM_DGNS_2_CD),\n    struct(103, c5.CLM_DGNS_3_CD),\n    struct(104, c5.CLM_DGNS_4_CD),\n    struct(105, c5.CLM_DGNS_5_CD),\n    struct(106, c5.CLM_DGNS_6_CD),\n    struct(107, c5.CLM_DGNS_7_CD),\n    struct(108, c5.CLM_DGNS_8_CD),\n    struct(109, c5.CLM_DGNS_9_CD),\n    struct(110, c5.CLM_DGNS_10_CD),\n    struct(111, c5.CLM_DGNS_11_CD),\n    struct(112, c5.CLM_DGNS_12_CD)\n  )) pos(seq, code)\n  WHERE NULLIF(TRIM(c5.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n    AND NULLIF(TRIM(pos.code), '') IS NOT NULL\n\n  UNION ALL\n\n  -- cclf_c5 Line-level Diagnoses (sequence 201..)\n  SELECT\n    c5.batch_id AS batch_id,\n    CAST(NULL AS STRING) AS record_hash,\n    'claim_pipeline' AS created_by,\n    CURRENT_TIMESTAMP() AS created_at,\n    'claim_pipeline' AS updated_by,\n    CURRENT_TIMESTAMP() AS updated_at,\n    'D0284_CCLF' AS source_system,\n    CAST(NULL AS BOOLEAN) AS is_active,\n    NULLIF(TRIM(c5.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n    NULLIF(TRIM(c5.CLM_LINE_DGNS_CD), '') AS source_diagnosis_code,\n    CASE WHEN TRIM(c5.DGNS_PRCDR_ICD_IND) = '0' THEN 'ICD-10-CM'\n         WHEN TRIM(c5.DGNS_PRCDR_ICD_IND) = '9' THEN 'ICD-9-CM'\n         ELSE NULL\n    END AS source_diagnosis_code_system,\n    CAST(200 + CAST(c5.CLM_LINE_NUM AS INT) AS INT) AS diagnosis_sequence,\n    'secondary' AS diagnosis_type,\n    CAST(NULL AS STRING) AS poa_flag\n  FROM cinqdev.bronze_claims.cclf_c5 c5\n  WHERE NULLIF(TRIM(c5.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n    AND NULLIF(TRIM(c5.CLM_LINE_DGNS_CD), '') IS NOT NULL\n    AND NULLIF(TRIM(c5.CLM_LINE_NUM), '') IS NOT NULL\n    AND CAST(c5.CLM_LINE_NUM AS INT) IS NOT NULL\n),\nranked_diagnosis AS (\n  SELECT *,\n         ROW_NUMBER() OVER (\n           PARTITION BY source_system, source_claim_id, source_diagnosis_code\n           ORDER BY diagnosis_sequence\n         ) AS rn\n  FROM diagnosis_union\n)\nSELECT\n  batch_id,\n  record_hash,\n  created_by,\n  created_at,\n  updated_by,\n  updated_at,\n  source_system,\n  is_active,\n  source_claim_id,\n  source_diagnosis_code,\n  source_diagnosis_code_system,\n  diagnosis_sequence,\n  diagnosis_type,\n  poa_flag\nFROM ranked_diagnosis\nWHERE rn = 1;\n\n\n-- =====================================================================\n-- 4) vw_claim_procedure\n-- =====================================================================\nCREATE OR REPLACE VIEW cinqdev.silverraw_claims.vw_claim_procedure AS\nSELECT\n  c3.batch_id AS batch_id,\n  CAST(NULL AS STRING) AS record_hash,\n  'claim_pipeline' AS created_by,\n  CURRENT_TIMESTAMP() AS created_at,\n  'claim_pipeline' AS updated_by,\n  CURRENT_TIMESTAMP() AS updated_at,\n  'D0284_CCLF' AS source_system,\n  CAST(NULL AS BOOLEAN) AS is_active,\n  NULLIF(TRIM(c3.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n  0 AS line_number,\n  CAST(c3.CLM_VAL_SQNC_NUM AS INT) AS procedure_sequence,\n  NULLIF(TRIM(c3.CLM_PRCDR_CD), '') AS source_procedure_code,\n  CASE WHEN TRIM(c3.DGNS_PRCDR_ICD_IND) = '0' THEN 'ICD-10-PCS'\n       WHEN TRIM(c3.DGNS_PRCDR_ICD_IND) = '9' THEN 'ICD-9-PCS'\n       ELSE NULL\n  END AS source_procedure_code_system,\n  CAST(NULL AS STRING) AS procedure_type,\n  CAST(COALESCE(c3.CLM_PRCDR_PRFRM_DT, c3.CLM_FROM_DT) AS DATE) AS procedure_date\nFROM cinqdev.bronze_claims.cclf_c3 c3\nWHERE NULLIF(TRIM(c3.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n  AND NULLIF(TRIM(c3.CLM_PRCDR_CD), '') IS NOT NULL\n  AND NULLIF(TRIM(c3.CLM_VAL_SQNC_NUM), '') IS NOT NULL\n  AND CAST(c3.CLM_VAL_SQNC_NUM AS INT) IS NOT NULL;\n\n\n-- =====================================================================\n-- 5) vw_claim_provider\n-- =====================================================================\nCREATE OR REPLACE VIEW cinqdev.silverraw_claims.vw_claim_provider AS\nSELECT DISTINCT\n  batch_id,\n  record_hash,\n  created_by,\n  created_at,\n  updated_by,\n  updated_at,\n  source_system,\n  is_active,\n  source_claim_id,\n  line_number,\n  provider_role_code,\n  provider_role_system,\n  provider_identifier_system,\n  provider_identifier_value,\n  npi,\n  tin\nFROM (\n  -- cclf_c1 (Header scope provider NPI unpivot)\n  SELECT\n    c1.batch_id AS batch_id,\n    CAST(NULL AS STRING) AS record_hash,\n    'claim_pipeline' AS created_by,\n    CURRENT_TIMESTAMP() AS created_at,\n    'claim_pipeline' AS updated_by,\n    CURRENT_TIMESTAMP() AS updated_at,\n    'D0284_CCLF' AS source_system,\n    CAST(NULL AS BOOLEAN) AS is_active,\n    NULLIF(TRIM(c1.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n    0 AS line_number,\n    p.role_code AS provider_role_code,\n    'X12' AS provider_role_system,\n    CASE WHEN p.npi IS NOT NULL THEN 'NPI' ELSE 'OSCAR' END AS provider_identifier_system,\n    COALESCE(p.npi, NULLIF(TRIM(c1.PRVDR_OSCAR_NUM), ''), NULLIF(TRIM(c1.CLM_BLG_PRVDR_OSCAR_NUM), '')) AS provider_identifier_value,\n    p.npi AS npi,\n    CAST(NULL AS STRING) AS tin\n  FROM cinqdev.bronze_claims.cclf_c1 c1\n  LATERAL VIEW inline(array(\n    struct('OPERATING', COALESCE(NULLIF(TRIM(c1.OPRTG_PRVDR_NPI_NUM),''), NULLIF(TRIM(c1.CLM_OPRTG_PRVDR_NPI_NUM),''))),\n    struct('ATTENDING', COALESCE(NULLIF(TRIM(c1.ATNDG_PRVDR_NPI_NUM),''), NULLIF(TRIM(c1.CLM_ATNDG_PRVDR_NPI_NUM),''))),\n    struct('FACILITY', NULLIF(TRIM(c1.FAC_PRVDR_NPI_NUM),'')),\n    struct('BILLING', NULLIF(TRIM(c1.CLM_BLG_PRVDR_NPI_NUM),'')),\n    struct('REFERRING', COALESCE(NULLIF(TRIM(c1.OTHR_PRVDR_NPI_NUM),''), NULLIF(TRIM(c1.CLM_OTHR_PRVDR_NPI_NUM),'')))\n  )) p(role_code, npi)\n  WHERE NULLIF(TRIM(c1.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n    AND COALESCE(p.npi, NULLIF(TRIM(c1.PRVDR_OSCAR_NUM), ''), NULLIF(TRIM(c1.CLM_BLG_PRVDR_OSCAR_NUM), '')) IS NOT NULL\n\n  UNION ALL\n\n  -- cclf_c5 (Line scope provider NPI unpivot - rendering & referring)\n  SELECT\n    c5.batch_id AS batch_id,\n    CAST(NULL AS STRING) AS record_hash,\n    'claim_pipeline' AS created_by,\n    CURRENT_TIMESTAMP() AS created_at,\n    'claim_pipeline' AS updated_by,\n    CURRENT_TIMESTAMP() AS updated_at,\n    'D0284_CCLF' AS source_system,\n    CAST(NULL AS BOOLEAN) AS is_active,\n    NULLIF(TRIM(c5.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n    CAST(c5.CLM_LINE_NUM AS INT) AS line_number,\n    p.role_code AS provider_role_code,\n    'X12' AS provider_role_system,\n    'NPI' AS provider_identifier_system,\n    p.npi AS provider_identifier_value,\n    p.npi AS npi,\n    CASE WHEN p.role_code = 'RENDERING' THEN NULLIF(TRIM(c5.CLM_RNDRG_PRVDR_TAX_NUM), '') ELSE NULL END AS tin\n  FROM cinqdev.bronze_claims.cclf_c5 c5\n  LATERAL VIEW inline(array(\n    struct('RENDERING', COALESCE(NULLIF(TRIM(c5.RNDRG_PRVDR_NPI_NUM),''), NULLIF(TRIM(c5.CLM_RNDRG_PRVDR_NPI_NUM),''))),\n    struct('REFERRING', NULLIF(TRIM(c5.CLM_RFRG_PRVDR_NPI_NUM),''))\n  )) p(role_code, npi)\n  WHERE NULLIF(TRIM(c5.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n    AND NULLIF(TRIM(c5.CLM_LINE_NUM), '') IS NOT NULL\n    AND CAST(c5.CLM_LINE_NUM AS INT) IS NOT NULL\n    AND p.npi IS NOT NULL\n\n  UNION ALL\n\n  -- cclf_c6 (Line scope provider NPI unpivot - billing & referring & ordering)\n  SELECT\n    c6.batch_id AS batch_id,\n    CAST(NULL AS STRING) AS record_hash,\n    'claim_pipeline' AS created_by,\n    CURRENT_TIMESTAMP() AS created_at,\n    'claim_pipeline' AS updated_by,\n    CURRENT_TIMESTAMP() AS updated_at,\n    'D0284_CCLF' AS source_system,\n    CAST(NULL AS BOOLEAN) AS is_active,\n    NULLIF(TRIM(c6.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n    CAST(c6.CLM_LINE_NUM AS INT) AS line_number,\n    p.role_code AS provider_role_code,\n    'X12' AS provider_role_system,\n    'NPI' AS provider_identifier_system,\n    p.npi AS provider_identifier_value,\n    p.npi AS npi,\n    CAST(NULL AS STRING) AS tin\n  FROM cinqdev.bronze_claims.cclf_c6 c6\n  LATERAL VIEW inline(array(\n    struct('BILLING', COALESCE(NULLIF(TRIM(c6.PAYTO_PRVDR_NPI_NUM),''), NULLIF(TRIM(c6.CLM_BLG_PRVDR_NPI_NUM),''))),\n    struct('REFERRING', NULLIF(TRIM(c6.CLM_RFRG_PRVDR_NPI_NUM),'')),\n    struct('REFERRING', NULLIF(TRIM(c6.ORDRG_PRVDR_NPI_NUM),''))\n  )) p(role_code, npi)\n  WHERE NULLIF(TRIM(c6.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n    AND NULLIF(TRIM(c6.CLM_LINE_NUM), '') IS NOT NULL\n    AND CAST(c6.CLM_LINE_NUM AS INT) IS NOT NULL\n    AND p.npi IS NOT NULL\n) AS provider_stack;\n\n\n-- =====================================================================\n-- 6) vw_claim_line_adjudication\n-- =====================================================================\nCREATE OR REPLACE VIEW cinqdev.silverraw_claims.vw_claim_line_adjudication AS\nSELECT DISTINCT\n  batch_id,\n  record_hash,\n  created_by,\n  created_at,\n  updated_by,\n  updated_at,\n  source_system,\n  is_active,\n  source_claim_id,\n  line_number,\n  adjudication_type,\n  adjudication_category_code,\n  adjudication_category_bb_code,\n  adjudication_category_system,\n  adjudication_reason_code,\n  adjudication_reason_system,\n  amount,\n  currency,\n  value\nFROM (\n  -- cclf_c2 (Institutional line adjudication - paid only)\n  SELECT\n    c2.batch_id AS batch_id,\n    CAST(NULL AS STRING) AS record_hash,\n    'claim_pipeline' AS created_by,\n    CURRENT_TIMESTAMP() AS created_at,\n    'claim_pipeline' AS updated_by,\n    CURRENT_TIMESTAMP() AS updated_at,\n    'D0284_CCLF' AS source_system,\n    CAST(NULL AS BOOLEAN) AS is_active,\n    NULLIF(TRIM(c2.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n    CAST(c2.CLM_LINE_NUM AS INT) AS line_number,\n    CAST(NULL AS STRING) AS adjudication_type,\n    'paid' AS adjudication_category_code,\n    'paid' AS adjudication_category_bb_code,\n    'FHIR' AS adjudication_category_system,\n    CAST(NULL AS STRING) AS adjudication_reason_code,\n    CAST(NULL AS STRING) AS adjudication_reason_system,\n    CAST(c2.CLM_LINE_CVRD_PD_AMT AS DECIMAL(18,4)) AS amount,\n    'USD' AS currency,\n    CAST(NULL AS STRING) AS value\n  FROM cinqdev.bronze_claims.cclf_c2 c2\n  WHERE NULLIF(TRIM(c2.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n    AND NULLIF(TRIM(c2.CLM_LINE_NUM), '') IS NOT NULL\n    AND CAST(c2.CLM_LINE_NUM AS INT) IS NOT NULL\n    AND NULLIF(TRIM(c2.CLM_LINE_CVRD_PD_AMT), '') IS NOT NULL\n    AND CAST(c2.CLM_LINE_CVRD_PD_AMT AS DECIMAL(18,4)) IS NOT NULL\n\n  UNION ALL\n\n  -- cclf_c5 (Professional line adjudication - paid and eligible)\n  SELECT\n    c5.batch_id AS batch_id,\n    CAST(NULL AS STRING) AS record_hash,\n    'claim_pipeline' AS created_by,\n    CURRENT_TIMESTAMP() AS created_at,\n    'claim_pipeline' AS updated_by,\n    CURRENT_TIMESTAMP() AS updated_at,\n    'D0284_CCLF' AS source_system,\n    CAST(NULL AS BOOLEAN) AS is_active,\n    NULLIF(TRIM(c5.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n    CAST(c5.CLM_LINE_NUM AS INT) AS line_number,\n    CAST(NULL AS STRING) AS adjudication_type,\n    p.category_code AS adjudication_category_code,\n    p.category_code AS adjudication_category_bb_code,\n    'FHIR' AS adjudication_category_system,\n    NULLIF(TRIM(c5.CLM_CARR_PMT_DNL_CD), '') AS adjudication_reason_code,\n    CAST(NULL AS STRING) AS adjudication_reason_system,\n    p.amt AS amount,\n    'USD' AS currency,\n    CAST(NULL AS STRING) AS value\n  FROM cinqdev.bronze_claims.cclf_c5 c5\n  LATERAL VIEW inline(array(\n    struct('paid', CAST(c5.CLM_LINE_CVRD_PD_AMT AS DECIMAL(18,4))),\n    struct('eligible', CAST(c5.CLM_LINE_ALOWD_CHRG_AMT AS DECIMAL(18,4)))\n  )) p(category_code, amt)\n  WHERE NULLIF(TRIM(c5.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n    AND NULLIF(TRIM(c5.CLM_LINE_NUM), '') IS NOT NULL\n    AND CAST(c5.CLM_LINE_NUM AS INT) IS NOT NULL\n    AND p.amt IS NOT NULL\n\n  UNION ALL\n\n  -- cclf_c6 (DME line adjudication - paid and eligible)\n  SELECT\n    c6.batch_id AS batch_id,\n    CAST(NULL AS STRING) AS record_hash,\n    'claim_pipeline' AS created_by,\n    CURRENT_TIMESTAMP() AS created_at,\n    'claim_pipeline' AS updated_by,\n    CURRENT_TIMESTAMP() AS updated_at,\n    'D0284_CCLF' AS source_system,\n    CAST(NULL AS BOOLEAN) AS is_active,\n    NULLIF(TRIM(c6.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n    CAST(c6.CLM_LINE_NUM AS INT) AS line_number,\n    CAST(NULL AS STRING) AS adjudication_type,\n    p.category_code AS adjudication_category_code,\n    p.category_code AS adjudication_category_bb_code,\n    'FHIR' AS adjudication_category_system,\n    NULLIF(TRIM(c6.CLM_CARR_PMT_DNL_CD), '') AS adjudication_reason_code,\n    CAST(NULL AS STRING) AS adjudication_reason_system,\n    p.amt AS amount,\n    'USD' AS currency,\n    CAST(NULL AS STRING) AS value\n  FROM cinqdev.bronze_claims.cclf_c6 c6\n  LATERAL VIEW inline(array(\n    struct('paid', CAST(c6.CLM_LINE_CVRD_PD_AMT AS DECIMAL(18,4))),\n    struct('eligible', CAST(c6.CLM_LINE_ALOWD_CHRG_AMT AS DECIMAL(18,4)))\n  )) p(category_code, amt)\n  WHERE NULLIF(TRIM(c6.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n    AND NULLIF(TRIM(c6.CLM_LINE_NUM), '') IS NOT NULL\n    AND CAST(c6.CLM_LINE_NUM AS INT) IS NOT NULL\n    AND p.amt IS NOT NULL\n) AS adjudication_stack;\n\n\n-- =====================================================================\n-- 7) vw_pharmacy_claim_header\n-- =====================================================================\nCREATE OR REPLACE VIEW cinqdev.silverraw_claims.vw_pharmacy_claim_header AS\nSELECT\n  batch_id AS batch_id,\n  CAST(NULL AS STRING) AS record_hash,\n  FALSE AS is_deleted,\n  'claim_pipeline' AS created_by,\n  CURRENT_TIMESTAMP() AS created_at,\n  'claim_pipeline' AS updated_by,\n  CURRENT_TIMESTAMP() AS updated_at,\n  'D0284_CCLF' AS source_system,\n  CAST(NULL AS BOOLEAN) AS is_active,\n  NULLIF(TRIM(CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n  'RX' AS claim_type,\n  CAST(NULL AS STRING) AS external_claim_id,\n  COALESCE(NULLIF(TRIM(BENE_MBI_ID), ''), NULLIF(TRIM(BENE_HIC_NUM), '')) AS patient_id,\n  CAST(NULL AS STRING) AS primary_payer_id,\n  CAST(CLM_EFCTV_DT AS DATE) AS claim_effective_date,\n  NULLIF(TRIM(CLM_DSPNSNG_STUS_CD), '') AS claim_status,\n  CAST(NULL AS STRING) AS denial_reason,\n  CAST(NULL AS INT) AS quantity_units\nFROM cinqdev.bronze_claims.cclf_c7\nWHERE NULLIF(TRIM(CUR_CLM_UNIQ_ID), '') IS NOT NULL;\n\n\n-- =====================================================================\n-- 8) vw_patient\n-- =====================================================================\nCREATE OR REPLACE VIEW cinqdev.silverraw_claims.vw_patient AS\nSELECT\n  c8.batch_id AS batch_id,\n  CAST(NULL AS STRING) AS record_hash,\n  'claim_pipeline' AS created_by,\n  CURRENT_TIMESTAMP() AS created_at,\n  'claim_pipeline' AS updated_by,\n  CURRENT_TIMESTAMP() AS updated_at,\n  'D0284_CCLF' AS source_system,\n  CAST(NULL AS BOOLEAN) AS is_active,\n  COALESCE(NULLIF(TRIM(c8.BENE_MBI_ID), ''), NULLIF(TRIM(c8.BENE_HIC_NUM), ''), NULLIF(TRIM(c9.CRNT_NUM), '')) AS source_member_id,\n  COALESCE(NULLIF(TRIM(c8.BENE_MBI_ID), ''), CASE WHEN TRIM(c9.HICN_MBI_XREF_IND) = 'M' THEN NULLIF(TRIM(c9.CRNT_NUM), '') ELSE NULL END) AS mbi_id,\n  COALESCE(NULLIF(TRIM(c8.BENE_HIC_NUM), ''), CASE WHEN TRIM(c9.HICN_MBI_XREF_IND) = 'H' THEN NULLIF(TRIM(c9.PRVS_NUM), '') ELSE NULL END) AS hicn,\n  NULLIF(TRIM(c8.BENE_1ST_NAME), '') AS first_name,\n  NULLIF(TRIM(c8.BENE_MIDL_NAME), '') AS middle_name,\n  NULLIF(TRIM(c8.BENE_LAST_NAME), '') AS last_name,\n  CAST(c8.BENE_DOB AS DATE) AS date_of_birth,\n  CAST(c8.BENE_DEATH_DT AS DATE) AS deceased_date,\n  (NULLIF(TRIM(c8.BENE_DEATH_DT), '') IS NOT NULL) AS death_indicator,\n  CASE WHEN TRIM(c8.BENE_SEX_CD) IN ('1', 'M') THEN 'MALE'\n       WHEN TRIM(c8.BENE_SEX_CD) IN ('2', 'F') THEN 'FEMALE'\n       WHEN TRIM(c8.BENE_SEX_CD) = '0' THEN 'UNKNOWN'\n       ELSE 'OTHER'\n  END AS gender,\n  NULLIF(TRIM(c8.BENE_RACE_CD), '') AS race_code,\n  CAST(NULL AS STRING) AS ethnicity_code,\n  NULLIF(TRIM(c8.BENE_LINE_1_ADR), '') AS address_line1,\n  NULLIF(TRIM(c8.BENE_LINE_2_ADR), '') AS address_line2,\n  NULLIF(TRIM(c8.GEO_ZIP_PLC_NAME), '') AS city,\n  NULLIF(TRIM(c8.GEO_USPS_STATE_CD), '') AS state,\n  NULLIF(TRIM(c8.BENE_ZIP_CD), '') AS zip_code,\n  CAST(NULL AS STRING) AS country,\n  NULLIF(TRIM(c8.BENE_LINE_3_ADR), '') AS address_line3,\n  NULLIF(TRIM(c8.BENE_LINE_4_ADR), '') AS address_line4,\n  NULLIF(TRIM(c8.BENE_LINE_5_ADR), '') AS address_line5,\n  NULLIF(TRIM(c8.BENE_LINE_6_ADR), '') AS address_line6,\n  NULLIF(TRIM(c8.BENE_FIPS_CNTY_CD), '') AS county_fips_code,\n  NULLIF(TRIM(c8.BENE_FIPS_STATE_CD), '') AS state_fips_code,\n  NULLIF(TRIM(c8.GEO_ZIP5_CD), '') AS zip5,\n  NULLIF(TRIM(c8.GEO_ZIP4_CD), '') AS zip4,\n  NULLIF(TRIM(c8.BENE_MDCR_STUS_CD), '') AS mdcr_status_code,\n  NULLIF(TRIM(c8.BENE_DUAL_STUS_CD), '') AS dual_status_code,\n  NULLIF(TRIM(c8.BENE_ORGNL_ENTLMT_RSN_CD), '') AS original_entitlement_reason_code,\n  NULLIF(TRIM(c8.BENE_ENTLMT_BUYIN_IND), '') AS entitlement_buyin_indicator,\n  CAST(c8.BENE_PART_A_ENRLMT_BGN_DT AS DATE) AS part_a_enrollment_begin_date,\n  CAST(c8.BENE_PART_B_ENRLMT_BGN_DT AS DATE) AS part_b_enrollment_begin_date,\n  CAST(COALESCE(c8.BENE_RNG_BGN_DT, c9.PRVS_ID_EFCTV_DT) AS DATE) AS bene_rng_bgn_dt,\n  CAST(COALESCE(c8.BENE_RNG_END_DT, c9.PRVS_ID_OBSLT_DT) AS DATE) AS bene_rng_end_dt\nFROM cinqdev.bronze_claims.cclf_c8 c8\nLEFT JOIN cinqdev.bronze_claims.cclf_c9 c9 ON (c8.BENE_MBI_ID = c9.CRNT_NUM OR c8.BENE_HIC_NUM = c9.CRNT_NUM)\nWHERE COALESCE(NULLIF(TRIM(c8.BENE_MBI_ID), ''), NULLIF(TRIM(c8.BENE_HIC_NUM), ''), NULLIF(TRIM(c9.CRNT_NUM), '')) IS NOT NULL;\n\n\n-- =====================================================================\n-- 9) vw_claim_adjudication\n-- =====================================================================\nCREATE OR REPLACE VIEW cinqdev.silverraw_claims.vw_claim_adjudication AS\nSELECT DISTINCT\n  batch_id,\n  record_hash,\n  is_deleted,\n  created_by,\n  created_at,\n  updated_by,\n  updated_at,\n  source_system,\n  is_active,\n  source_claim_id,\n  adjudication_type,\n  adjudication_category_code,\n  adjudication_category_system,\n  adjudication_reason_code,\n  adjudication_reason_system,\n  amount,\n  currency,\n  value\nFROM (\n  SELECT\n    c1.batch_id AS batch_id,\n    CAST(NULL AS STRING) AS record_hash,\n    FALSE AS is_deleted,\n    'claim_pipeline' AS created_by,\n    CURRENT_TIMESTAMP() AS created_at,\n    'claim_pipeline' AS updated_by,\n    CURRENT_TIMESTAMP() AS updated_at,\n    'D0284_CCLF' AS source_system,\n    CAST(NULL AS BOOLEAN) AS is_active,\n    NULLIF(TRIM(c1.CUR_CLM_UNIQ_ID), '') AS source_claim_id,\n    CAST(NULL AS STRING) AS adjudication_type,\n    p.category_code AS adjudication_category_code,\n    'FHIR' AS adjudication_category_system,\n    CAST(NULL AS STRING) AS adjudication_reason_code,\n    CAST(NULL AS STRING) AS adjudication_reason_system,\n    p.amt AS amount,\n    'USD' AS currency,\n    CAST(NULL AS STRING) AS value\n  FROM cinqdev.bronze_claims.cclf_c1 c1\n  LATERAL VIEW inline(array(\n    struct('paid', CAST(c1.CLM_PMT_AMT AS DECIMAL(18,4))),\n    struct('submitted', CAST(c1.CLM_MDCR_INSTNL_TOT_CHRG_AMT AS DECIMAL(18,4)))\n  )) p(category_code, amt)\n  WHERE NULLIF(TRIM(c1.CUR_CLM_UNIQ_ID), '') IS NOT NULL\n    AND p.amt IS NOT NULL\n) AS adjudication_stack;",
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false"
+        }
+      }
+    ],
+    "description": "Ingest files from any supported source and write to any supported database"
+  },
+  "pipeline_type": "design",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
