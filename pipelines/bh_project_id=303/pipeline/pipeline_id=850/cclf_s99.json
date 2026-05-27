@@ -2456,7 +2456,76 @@
         }
       }
     ],
-    "description": "Ingest files from any supported source and write to any supported database"
+    "description": "Ingest files from any supported source and write to any supported database",
+    "batch_control": {
+  "enabled": true,
+  "feed_name": "d0284_cclf_v1",
+  "business_date": "2026-05-27",
+  "delivery_id": "d0284_cclf_v1_2026-05-27",
+  "batch_id": 1,
+  "use_existing_batch_id": false,
+  "validate_existing_batch": true,
+  "require_input_acceptance": true,
+  "auto_accept_input_on_batch_init": true,
+  "input_registry_processed_on_stage": "bronze",
+  "seed_stage_rows": true,
+  "stages": [
+    "bronze"
+  ],
+  "storage": {
+    "connection": {
+      "name": "control_delta",
+      "connection_type": "DatabricksDeltaLake"
+    },
+    "namespace": {
+      "catalog": "main",
+      "schema": "control_cclf_s999"
+    }
+  },
+  "stage_to_transformations": {
+    "bronze": [
+      "read_file_obj912",
+      "add_ingest_metadata_obj912",
+      "write_to_db_obj912",
+      "read_file_obj913",
+      "add_ingest_metadata_obj913",
+      "write_to_db_obj913",
+      "read_file_obj914",
+      "add_ingest_metadata_obj914",
+      "write_to_db_obj914",
+      "read_file_obj915",
+      "add_ingest_metadata_obj915",
+      "write_to_db_obj915",
+      "read_file_obj916",
+      "add_ingest_metadata_obj916",
+      "write_to_db_obj916",
+      "read_file_obj917",
+      "add_ingest_metadata_obj917",
+      "write_to_db_obj917",
+      "read_file_obj918",
+      "add_ingest_metadata_obj918",
+      "write_to_db_obj918",
+      "read_file_obj919",
+      "add_ingest_metadata_obj919",
+      "write_to_db_obj919",
+      "read_file_obj920",
+      "add_ingest_metadata_obj920",
+      "write_to_db_obj920",
+      "read_file_obj921",
+      "add_ingest_metadata_obj921",
+      "write_to_db_obj921",
+      "read_file_obj922",
+      "add_ingest_metadata_obj922",
+      "write_to_db_obj922"
+    ]
+  },
+  "error_threshold_pct": 50.0,
+  "run_scope": "GROUP",
+  "atomic_commit_enabled": true,
+  "group_id": 286,
+  "expected_group_members": 11,
+  "group_run_id": "d0284_cclf_v1_20260527T000000Z"
+}
   },
   "pipeline_type": "design",
   "engine_type": "pyspark",
