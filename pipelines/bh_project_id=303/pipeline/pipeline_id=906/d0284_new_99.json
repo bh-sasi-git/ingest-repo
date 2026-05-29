@@ -1,0 +1,605 @@
+{
+  "created_at": "2026-05-29T07:44:17.928222Z",
+  "updated_at": "2026-05-29T08:01:00.550135Z",
+  "created_by": "muthukumar@bighammer.ai",
+  "updated_by": "muthukumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 4,
+  "pipeline_id": 906,
+  "pipeline_name": "D0284_NEW_99",
+  "pipeline_key": "d0284_new_99",
+  "bh_project_id": 303,
+  "notes": null,
+  "tags": null,
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "Project_s1",
+  "bh_github_username": "bh-sasi-git",
+  "pipeline_json": {
+    "name": "D0284_NEW_99",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "parameters": [
+      {
+        "key": "safeharbor_coverage",
+        "value": "bhargs/3-Claims/3-Claims/D0284/2025 Data/safeharbor_Coverage.ndjson"
+      },
+      {
+        "key": "safeharbor_explanationofbenefit",
+        "value": "bhargs/3-Claims/3-Claims/D0284/2025 Data/safeharbor_ExplanationOfBenefit.ndjson"
+      },
+      {
+        "key": "safeharbor_patient",
+        "value": "bhargs/3-Claims/3-Claims/D0284/2025 Data/safeharbor_Patient.ndjson"
+      }
+    ],
+    "connections": {
+      "landing_d0284_coverage_file_connection_obj1059": {
+        "name": "landing_d0284_coverage_file_connection_obj1059",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "bronze_d0284_coverage_db_connection_obj1059": {
+        "name": "bronze_d0284_coverage_db_connection_obj1059",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "sasi",
+        "schema": "bronze_claims",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureconns1",
+        "connection_config_id": 190
+      },
+      "landing_d0284_explanationofbenefit_file_connection_obj1060": {
+        "name": "landing_d0284_explanationofbenefit_file_connection_obj1060",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "bronze_d0284_explanationofbenefit_db_connection_obj1060": {
+        "name": "bronze_d0284_explanationofbenefit_db_connection_obj1060",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "sasi",
+        "schema": "bronze_claims",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureconns1",
+        "connection_config_id": 190
+      },
+      "landing_d0284_patient_file_connection_obj1061": {
+        "name": "landing_d0284_patient_file_connection_obj1061",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "bronze_d0284_patient_db_connection_obj1061": {
+        "name": "bronze_d0284_patient_db_connection_obj1061",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "sasi",
+        "schema": "bronze_claims",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureconns1",
+        "connection_config_id": 190
+      }
+    },
+    "sources": {
+      "landing_source_d0284_coverage_obj1059": {
+        "name": "landing_source_d0284_coverage_obj1059",
+        "source_type": "File",
+        "file_name": "${safeharbor_coverage}",
+        "connection": {
+          "$ref": "#/connections/landing_d0284_coverage_file_connection_obj1059"
+        },
+        "data_src_id": 1952
+      },
+      "landing_source_d0284_explanationofbenefit_obj1060": {
+        "name": "landing_source_d0284_explanationofbenefit_obj1060",
+        "source_type": "File",
+        "file_name": "${safeharbor_explanationofbenefit}",
+        "connection": {
+          "$ref": "#/connections/landing_d0284_explanationofbenefit_file_connection_obj1060"
+        },
+        "data_src_id": 1954
+      },
+      "landing_source_d0284_patient_obj1061": {
+        "name": "landing_source_d0284_patient_obj1061",
+        "source_type": "File",
+        "file_name": "${safeharbor_patient}",
+        "connection": {
+          "$ref": "#/connections/landing_d0284_patient_file_connection_obj1061"
+        },
+        "data_src_id": 1956
+      }
+    },
+    "targets": {
+      "bronze_target_d0284_coverage_obj1059": {
+        "name": "bronze_target_d0284_coverage_obj1059",
+        "target_type": "Relational",
+        "table_name": "d0284_coverage",
+        "connection": {
+          "$ref": "#/connections/bronze_d0284_coverage_db_connection_obj1059"
+        },
+        "load_mode": "append",
+        "schema": "bronze_claims",
+        "data_src_id": 1953
+      },
+      "bronze_target_d0284_explanationofbenefit_obj1060": {
+        "name": "bronze_target_d0284_explanationofbenefit_obj1060",
+        "target_type": "Relational",
+        "table_name": "d0284_explanationofbenefit",
+        "connection": {
+          "$ref": "#/connections/bronze_d0284_explanationofbenefit_db_connection_obj1060"
+        },
+        "load_mode": "append",
+        "schema": "bronze_claims",
+        "data_src_id": 1955
+      },
+      "bronze_target_d0284_patient_obj1061": {
+        "name": "bronze_target_d0284_patient_obj1061",
+        "target_type": "Relational",
+        "table_name": "d0284_patient",
+        "connection": {
+          "$ref": "#/connections/bronze_d0284_patient_db_connection_obj1061"
+        },
+        "load_mode": "append",
+        "schema": "bronze_claims",
+        "data_src_id": 1957
+      }
+    },
+    "transformations": [
+      {
+        "name": "landing_read_d0284_coverage_obj1059",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_d0284_coverage_obj1059"
+        },
+        "file_type": "RAWTEXT",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ":",
+          "encoding": "UTF-8",
+          "header": false,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\r\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "rename_columns": {
+          "value": "raw_record"
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj1059",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_d0284_coverage_obj1059"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'d0284_new_99'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "corrupt_record",
+            "expression": "cast(null as string)"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj1059",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj1059"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "d0284_coverage",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_d0284_coverage_obj1059",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj1059"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_d0284_coverage_obj1059"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_d0284_explanationofbenefit_obj1060",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_d0284_explanationofbenefit_obj1060"
+        },
+        "file_type": "RAWTEXT",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ":",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\r\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "rename_columns": {
+          "value": "raw_record"
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj1060",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_d0284_explanationofbenefit_obj1060"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'d0284_new_99'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "corrupt_record",
+            "expression": "cast(null as string)"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj1060",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj1060"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "d0284_explanationofbenefit",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_d0284_explanationofbenefit_obj1060",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj1060"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_d0284_explanationofbenefit_obj1060"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_d0284_patient_obj1061",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_d0284_patient_obj1061"
+        },
+        "file_type": "RAWTEXT",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ":",
+          "encoding": "UTF-8",
+          "header": false,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\r\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "rename_columns": {
+          "value": "raw_record"
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj1061",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_d0284_patient_obj1061"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'d0284_new_99'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "corrupt_record",
+            "expression": "cast(null as string)"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj1061",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj1061"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "d0284_patient",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_d0284_patient_obj1061",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj1061"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_d0284_patient_obj1061"
+        },
+        "post_sql": "CREATE OR REPLACE VIEW sasi.bronze_claims.d0284_claim_header AS\nWITH max_batch AS (\n  SELECT max(cast(batch_id AS bigint)) AS max_batch_id\n  FROM sasi.bronze_claims.d0284_explanationofbenefit\n) \nSELECT\n  cast(base.batch_id AS bigint)                                                           AS batch_id,\n  sha2(concat_ws('|', 'FHIR_EOB', eob.id, eob.status,\n    coalesce(eob.patient.reference,'')), 256)                                             AS record_hash,\n  cast(false AS boolean)                                                                  AS is_deleted,\n  cast(null AS string)                                                                    AS created_by,\n  base.ingest_ts                                                                          AS created_at,\n  cast(null AS string)                                                                    AS updated_by,\n  current_timestamp()                                                                     AS updated_at,\n  'FHIR_EOB'                                                                             AS source_system,\n  eob.id                                                                                  AS silver_id,\n  coalesce(eob.id, eob.identifier[0].value)                                              AS source_claim_id,\n  CASE\n    WHEN upper(trim(eob.type.coding[0].code)) = 'professional'  THEN 'PROF'\n    WHEN upper(trim(eob.type.coding[0].code)) = 'oral'          THEN 'DENTAL'\n    WHEN upper(trim(eob.type.coding[0].code)) = 'institutional'\n         AND filter(eob.supportingInfo,\n               s -> s.category.coding[0].code IN ('admission-type','admission')\n             )[0] IS NOT NULL                                    THEN 'IP'\n    WHEN upper(trim(eob.type.coding[0].code)) = 'institutional'\n         AND eob.diagnosisRelatedGroup IS NOT NULL               THEN 'IP'\n    WHEN upper(trim(eob.type.coding[0].code)) = 'institutional' THEN 'OP'\n    ELSE 'UNKNOWN'\n  END                                                                                     AS claim_type,\n  eob.id                                                                                  AS source_resource_id,\n  eob.resourceType                                                                        AS source_resource_type,\n  'FHIR_R4_JSON'                                                                         AS source_format,\n  sha2(concat_ws('|', 'FHIR_EOB',\n    coalesce(eob.patient.reference, 'UNKNOWN_PATIENT')), 256)                            AS patient_id,\n  coalesce(\n    filter(eob.careTeam, c -> c.role.coding[0].code = 'billing')[0].provider.identifier[0].value,\n    eob.careTeam[0].provider.identifier[0].value\n  )                                                                                       AS billing_provider_id,\n  coalesce(\n    filter(eob.careTeam, c -> c.role.coding[0].code = 'billing')[0].provider.identifier[0].value,\n    eob.careTeam[0].provider.identifier[0].value\n  )                                                                                       AS billing_provider_npi,\n  filter(eob.careTeam,\n    c -> c.role.coding[0].code IN ('attending','ATND')\n  )[0].provider.identifier[0].value                                                      AS attending_provider_id,\n  filter(eob.careTeam,\n    c -> c.role.coding[0].code IN ('attending','ATND')\n  )[0].provider.identifier[0].value                                                      AS attending_provider_npi,\n  coalesce(\n    filter(filter(eob.contained,\n      c -> c.resourceType = 'Organization')[0].identifier,\n      i -> i.type.coding[0].code = 'PRN')[0].value,\n    filter(filter(eob.contained,\n      c -> c.resourceType = 'Organization')[0].identifier,\n      i -> i.system = 'http://hl7.org/fhir/sid/us-npi')[0].value\n  )                                                                                       AS source_billing_org_id,\n  filter(eob.careTeam,\n    c -> c.role.coding[0].code IN ('rendering','performing')\n  )[0].provider.identifier[0].value                                                      AS source_rendering_org_id,\n  to_date(filter(eob.supportingInfo,\n    s -> s.category.coding[0].code IN ('admission-date','admission')\n  )[0].timingDate)                                                                        AS admission_date,\n  to_date(filter(eob.supportingInfo,\n    s -> s.category.coding[0].code = 'discharge-date'\n  )[0].timingDate)                                                                        AS discharge_date,\n  to_date(eob.billablePeriod.start)                                                      AS statement_from,\n  to_date(eob.billablePeriod.`end`)                                                      AS statement_through,\n  to_date(filter(eob.supportingInfo,\n    s -> s.category.coding[0].code =\n      'https://bluebutton.cms.gov/resources/variables/nch_wkly_proc_dt'\n  )[0].timingDate)                                                                        AS paid_date,\n  to_date(coalesce(\n    filter(eob.supportingInfo,\n      s -> s.category.coding[0].code = 'clmrecvddate')[0].timingDate,\n    filter(eob.supportingInfo,\n      s -> s.category.coding[0].code =\n        'https://bluebutton.cms.gov/resources/variables/nch_wkly_proc_dt'\n    )[0].timingDate,\n    eob.billablePeriod.start\n  ))                                                                                      AS claim_effective_date,\n  to_date(eob.created)                                                                   AS claim_received_date,\n  cast(1 AS int)                                                                          AS claim_version_num,\n  CASE\n  WHEN eob.related IS NOT NULL\n       AND size(eob.related) > 0\n       AND coalesce(element_at(eob.related, 1).claim.reference, '') <> ''\n    THEN regexp_extract(element_at(eob.related, 1).claim.reference, '([^/]+)$', 1)\n  END                                                                                     AS replaced_claim_id,\n  d.drg_code                                                                              AS drg_code,\n  d.drg_code_system                                                                       AS drg_code_system,\n  concat(\n    coalesce(filter(eob.extension,\n      e -> e.url = 'https://bluebutton.cms.gov/resources/variables/clm_fac_type_cd'\n    )[0].valueCoding.code, ''),\n    coalesce(filter(eob.extension,\n      e -> e.url = 'https://bluebutton.cms.gov/resources/variables/clm_srvc_clsfctn_type_cd'\n    )[0].valueCoding.code, ''),\n    coalesce(\n      filter(eob.supportingInfo,\n        s -> s.code.coding[0].system =\n          'https://bluebutton.cms.gov/resources/variables/clm_freq_cd'\n      )[0].code.coding[0].code,\n      filter(eob.extension,\n        e -> e.url = 'https://bluebutton.cms.gov/resources/variables/clm_freq_cd'\n      )[0].valueCoding.code,\n      ''\n    )\n  )                                                                                       AS bill_type,\n  coalesce(\n    filter(eob.supportingInfo,\n      s -> s.category.coding[0].code =\n        'https://bluebutton.cms.gov/resources/variables/clm_ip_admsn_type_cd'\n    )[0].code.coding[0].code,\n    filter(eob.extension,\n      e -> e.url = 'https://bluebutton.cms.gov/resources/variables/clm_admsn_type_cd'\n    )[0].valueCoding.code\n  )                                                                                       AS admission_type,\n  coalesce(\n    filter(eob.supportingInfo,\n      s -> s.code.coding[0].system =\n        'https://bluebutton.cms.gov/resources/variables/clm_src_ip_admsn_cd'\n    )[0].code.coding[0].code,\n    filter(eob.extension,\n      e -> e.url = 'https://bluebutton.cms.gov/resources/variables/clm_admsn_src_cd'\n    )[0].valueCoding.code\n  )                                                                                       AS admission_source,\n  coalesce(\n    filter(eob.supportingInfo,\n      s -> s.code.coding[0].system =\n        'https://bluebutton.cms.gov/resources/variables/ptnt_dschrg_stus_cd'\n    )[0].code.coding[0].code,\n    eob.hospitalization.dischargeDisposition.coding[0].code\n  )                                                                                       AS discharge_status,\n  coalesce(\n    CASE\n      WHEN eob.related IS NOT NULL\n           AND size(eob.related) > 0\n           AND element_at(eob.related, 1).relationship IS NOT NULL\n           AND size(coalesce(element_at(eob.related, 1).relationship.coding, array())) > 0\n        THEN element_at(eob.related, 1).relationship.coding[0].code\n    END,\n    filter(eob.extension,\n      e -> e.url =\n        'https://bluebutton.cms.gov/resources/variables/clm_adjsmt_type_cd'\n    )[0].valueCoding.code\n  )                                                                                      AS claim_adjustment_type_cd,\n  coalesce(eob.status, 'unknown')                                                        AS claim_status\nFROM (\n  SELECT\n    batch_id, ingest_ts,\n    from_json(value,\n      'STRUCT<id: STRING, meta: STRUCT<lastUpdated: STRING>,\n        resourceType: STRING, status: STRING, created: STRING,\n        identifier: ARRAY<STRUCT<system: STRING, value: STRING>>,\n        type: STRUCT<text: STRING, coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n        patient: STRUCT<reference: STRING>,\n        billablePeriod: STRUCT<start: STRING, end: STRING>,\n        insurer: STRUCT<reference: STRING, display: STRING>,\n        insurance: ARRAY<STRUCT<focal: BOOLEAN, coverage: STRUCT<reference: STRING>>>,\n        hospitalization: STRUCT<dischargeDisposition: STRUCT<coding: ARRAY<STRUCT<code: STRING>>>>,\n        extension: ARRAY<STRUCT<url: STRING, valueCoding: STRUCT<code: STRING>>>,\n        contained: ARRAY<STRUCT<resourceType: STRING, id: STRING,\n          identifier: ARRAY<STRUCT<type: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n            system: STRING, value: STRING>>>>,\n        careTeam: ARRAY<STRUCT<sequence: INT,\n          role: STRUCT<coding: ARRAY<STRUCT<code: STRING>>>,\n          provider: STRUCT<reference: STRING, display: STRING,\n            identifier: ARRAY<STRUCT<type: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n              system: STRING, value: STRING>>>>>,\n        supportingInfo: ARRAY<STRUCT<\n          category: STRUCT<coding: ARRAY<STRUCT<code: STRING, display: STRING, system: STRING>>>,\n          code: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n          timingDate: STRING,\n          valueCodeableConcept: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>>>,\n        diagnosisRelatedGroup: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n        related: ARRAY<STRUCT<relationship: STRUCT<coding: ARRAY<STRUCT<code: STRING>>>,\n          claim: STRUCT<reference: STRING>>>,\n        item: ARRAY<STRUCT<sequence: INT,\n          productOrService: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>>>>') AS eob\n  FROM sasi.bronze_claims.d0284_explanationofbenefit\n  INNER JOIN max_batch mb ON cast(batch_id AS bigint) = mb.max_batch_id\n) base\nLEFT JOIN (\n  SELECT b.batch_id,\n    max(coalesce(si.valueString,\n      si.valueCodeableConcept.coding[0].code,\n      si.valueCodeableConcept.text))          AS drg_code,\n    max(si.valueCodeableConcept.coding[0].system) AS drg_code_system\n  FROM (\n    SELECT batch_id,\n      from_json(value,\n        'STRUCT<id: STRING,\n          supportingInfo: ARRAY<STRUCT<\n            category: STRUCT<coding: ARRAY<STRUCT<code: STRING, display: STRING, system: STRING>>>,\n            valueString: STRING,\n            valueCodeableConcept: STRUCT<text: STRING,\n              coding: ARRAY<STRUCT<system: STRING, code: STRING>>>>>>')  AS eob\n    FROM sasi.bronze_claims.d0284_explanationofbenefit\n    INNER JOIN max_batch mb ON cast(batch_id AS bigint) = mb.max_batch_id\n  ) b\n  LATERAL VIEW outer explode(b.eob.supportingInfo) sv AS si\n  WHERE lower(coalesce(si.category.coding[0].code, '')) rlike 'drg|grouper|ms'\n     OR lower(coalesce(si.category.coding[0].display, '')) rlike 'drg|grouper|ms'\n  GROUP BY b.batch_id\n) d ON d.batch_id = base.batch_id\nWHERE size(filter(base.eob.item, i ->\n    coalesce(i.productOrService.coding[0].system, '') <> 'http://hl7.org/fhir/sid/ndc'\n    AND coalesce(i.productOrService.coding[0].code, '') <> '')) > 0;\n\nCREATE OR REPLACE VIEW sasi.bronze_claims.d0284_claim_line AS\nWITH max_batch AS (\n  SELECT max(cast(batch_id AS bigint)) AS max_batch_id\n  FROM sasi.bronze_claims.d0284_explanationofbenefit\n) \nSELECT\n  cast(batch_id AS bigint)                                                                AS batch_id,\n  sha2(concat_ws('|', 'FHIR_EOB', claim_fhir_id, cast(item.sequence AS string),\n    coalesce(item.productOrService.coding[0].code,'')), 256)                             AS record_hash,\n  cast(false AS boolean)                                                                  AS is_deleted,\n  cast(null AS string)                                                                    AS created_by,\n  ingest_ts                                                                               AS created_at,\n  cast(null AS string)                                                                    AS updated_by,\n  current_timestamp()                                                                     AS updated_at,\n  'FHIR_EOB'                                                                             AS source_system,\n  claim_fhir_id                                                                           AS silver_id,\n  claim_fhir_id                                                                           AS source_claim_id,\n  item.sequence                                                                           AS line_number,\n  concat_ws(':', claim_fhir_id, cast(item.sequence AS string))                           AS source_line_id,\n  to_date(coalesce(item.servicedDate, item.servicedPeriod.start, billable_start))        AS service_date,\n  to_date(item.servicedPeriod.`end`)                                                     AS service_end_date,\n  coalesce(item.productOrService.coding[0].code,\n    item.productOrService.text)                                                           AS procedure_code,\n  item.productOrService.coding[0].system                                                 AS source_code_system,\n  cast(null AS string)                                                                    AS procedure_code_version,\n  item.revenue.coding[0].code                                                             AS revenue_code,\n  item.revenue.coding[0].system                                                           AS revenue_code_system,\n  coalesce(item.locationCodeableConcept.coding[0].code,\n    item.locationAddress.state)                                                           AS place_of_service,\n  cast(item.quantity.value AS decimal(18,4))                                              AS billed_units,\n  item.modifier[0].coding[0].code                                                         AS modifier_1,\n  item.modifier[1].coding[0].code                                                         AS modifier_2,\n  item.modifier[2].coding[0].code                                                         AS modifier_3,\n  item.modifier[3].coding[0].code                                                         AS modifier_4,\n  item.modifier[4].coding[0].code                                                         AS modifier_5\nFROM (\n  SELECT\n    eob.id                          AS claim_fhir_id,\n    eob.billablePeriod.start        AS billable_start,\n    posexplode_outer(eob.item)      AS (pos, item),\n    batch_id, ingest_ts\n  FROM (\n    SELECT batch_id, ingest_ts,\n      from_json(value,\n        'STRUCT<id: STRING,\n          type: STRUCT<text: STRING, coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n          billablePeriod: STRUCT<start: STRING, end: STRING>,\n          item: ARRAY<STRUCT<\n            sequence: INT,\n            quantity: STRUCT<value: DOUBLE>,\n            servicedPeriod: STRUCT<start: STRING, end: STRING>,\n            servicedDate: STRING,\n            locationAddress: STRUCT<state: STRING>,\n            locationCodeableConcept: STRUCT<coding: ARRAY<STRUCT<code: STRING, system: STRING>>>,\n            revenue: STRUCT<coding: ARRAY<STRUCT<code: STRING, system: STRING>>>,\n            modifier: ARRAY<STRUCT<coding: ARRAY<STRUCT<code: STRING>>>>,\n            careTeamSequence: ARRAY<INT>,\n            diagnosisSequence: ARRAY<INT>,\n            productOrService: STRUCT<text: STRING, coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n            adjudication: ARRAY<STRUCT<\n              category: STRUCT<coding: ARRAY<STRUCT<code: STRING>>>,\n              amount: STRUCT<value: DOUBLE, currency: STRING>>>,\n            procedureSequence: ARRAY<INT>>>>') AS eob\n    FROM sasi.bronze_claims.d0284_explanationofbenefit\n    INNER JOIN max_batch mb ON cast(batch_id AS bigint) = mb.max_batch_id\n  ) parsed\n  WHERE eob.item IS NOT NULL\n) exploded\nWHERE coalesce(item.productOrService.coding[0].system, '') <> 'http://hl7.org/fhir/sid/ndc'\n  AND coalesce(item.productOrService.coding[0].code, '') <> '';\n\nCREATE OR REPLACE VIEW sasi.bronze_claims.d0284_claim_diagnosis AS\nWITH max_batch AS (\n  SELECT max(cast(batch_id AS bigint)) AS max_batch_id\n  FROM sasi.bronze_claims.d0284_explanationofbenefit\n) \nSELECT\n  cast(batch_id AS bigint)                                                                AS batch_id,\n  sha2(concat_ws('|', source_claim_id, cast(diagnosis_sequence AS string),\n    source_diagnosis_code), 256)                                                          AS record_hash,\n  cast(false AS boolean)                                                                  AS is_deleted,\n  cast(null AS string)                                                                    AS created_by,\n  ingest_ts                                                                               AS created_at,\n  cast(null AS string)                                                                    AS updated_by,\n  current_timestamp()                                                                     AS updated_at,\n  'FHIR_EOB'                                                                             AS source_system,\n  source_claim_id                                                                         AS silver_id,\n  source_claim_id,\n  source_diagnosis_code,\n  source_diagnosis_code_system,\n  diagnosis_sequence,\n  diagnosis_type,\n  poa_flag\nFROM (\n  SELECT\n    eob.id                                                          AS source_claim_id,\n    diag.sequence                                                   AS diagnosis_sequence,\n    diag.diagnosisCodeableConcept.coding[0].system                 AS source_diagnosis_code_system,\n    coalesce(diag.diagnosisCodeableConcept.coding[0].code,\n      diag.diagnosisCodeableConcept.text)                          AS source_diagnosis_code,\n    regexp_extract(cast(diag.type AS string),\n      '\\\\\\\\\\\\\\\"code\\\\\\\\\\\\\\\":\\\\\\\\\\\\\\\"([^\\\\\\\\\\\\\\\"]+)\\\\\\\\\\\\\\\"', 1)                            AS diagnosis_type,\n    filter(diag.extension,\n      e -> e.url =\n        'https://bluebutton.cms.gov/resources/variables/clm_poa_ind_sw1'\n    )[0].valueCoding.code                                           AS poa_flag,\n    batch_id, ingest_ts\n  FROM (\n    SELECT batch_id, ingest_ts,\n      from_json(value,\n        'STRUCT<id: STRING,\n          type: STRUCT<text: STRING, coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n          diagnosis: ARRAY<STRUCT<\n            sequence: INT,\n            diagnosisCodeableConcept: STRUCT<text: STRING,\n              coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n            type: ARRAY<STRUCT<coding: ARRAY<STRUCT<code: STRING, system: STRING, display: STRING>>>>,\n            extension: ARRAY<STRUCT<url: STRING,\n              valueCoding: STRUCT<code: STRING>>>>>,\n          item: ARRAY<STRUCT<\n            productOrService: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>>>>') AS eob\n    FROM sasi.bronze_claims.d0284_explanationofbenefit\n    INNER JOIN max_batch mb ON cast(batch_id AS bigint) = mb.max_batch_id\n  ) parsed\n  LATERAL VIEW explode(eob.diagnosis) t AS diag\n  WHERE eob.diagnosis IS NOT NULL\n    AND diag.diagnosisCodeableConcept.coding[0].code IS NOT NULL\n    AND size(filter(parsed.eob.item, i ->\n      coalesce(i.productOrService.coding[0].system, '') <> 'http://hl7.org/fhir/sid/ndc'\n      AND coalesce(i.productOrService.coding[0].code, '') <> '')) > 0\n) z;\n\nCREATE OR REPLACE VIEW sasi.bronze_claims.d0284_claim_procedure AS\nWITH max_batch AS (\n  SELECT max(cast(batch_id AS bigint)) AS max_batch_id\n  FROM sasi.bronze_claims.d0284_explanationofbenefit\n) \nSELECT\n  cast(lp.batch_id AS bigint)                                                            AS batch_id,\n  sha2(concat_ws('|', lp.source_claim_id, cast(lp.line_number AS string),\n    cast(lp.procedure_sequence AS string), lp.procedure_code), 256)                     AS record_hash,\n  cast(false AS boolean)                                                                 AS is_deleted,\n  cast(null AS string)                                                                   AS created_by,\n  lp.ingest_ts                                                                           AS created_at,\n  cast(null AS string)                                                                   AS updated_by,\n  current_timestamp()                                                                    AS updated_at,\n  'FHIR_EOB'                                                                            AS source_system,\n  lp.source_claim_id                                                                     AS silver_id,\n  lp.source_claim_id,\n  lp.line_number,\n  lp.procedure_sequence,\n  lp.procedure_code                                                                      AS source_procedure_code,\n  lp.procedure_system                                                                    AS source_procedure_code_system,\n  lp.procedure_type,\n  lp.procedure_date\nFROM (\n  SELECT\n    lp_inner.batch_id,\n    lp_inner.ingest_ts,\n    lp_inner.source_claim_id,\n    lp_inner.line_number,\n    pr.procedure_sequence,\n    pr.procedure_code,\n    pr.procedure_system,\n    pr.procedure_type,\n    to_date(coalesce(lp_inner.serviced_date, lp_inner.serviced_period_start)) AS procedure_date\n  FROM (\n    SELECT\n      eob.id                                                 AS source_claim_id,\n      item.sequence                                          AS line_number,\n      concat_ws(':', eob.id, cast(item.sequence AS string)) AS source_line_id,\n      item.servicedDate                                      AS serviced_date,\n      item.servicedPeriod.start                              AS serviced_period_start,\n      proc_seq,\n      batch_id, ingest_ts\n    FROM (\n      SELECT batch_id, ingest_ts,\n        from_json(value,\n          'STRUCT<id: STRING,\n            item: ARRAY<STRUCT<\n              sequence: INT,\n              productOrService: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n              procedureSequence: ARRAY<INT>,\n              servicedDate: STRING,\n              servicedPeriod: STRUCT<start: STRING, end: STRING>>>,\n            procedure: ARRAY<STRUCT<\n              sequence: INT,\n              date: STRING,\n              type: ARRAY<STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>>,\n              procedureCodeableConcept: STRUCT<text: STRING,\n                coding: ARRAY<STRUCT<system: STRING, code: STRING>>>>>,\n            type: STRUCT<text: STRING, coding: ARRAY<STRUCT<system: STRING, code: STRING>>>>') AS eob\n      FROM sasi.bronze_claims.d0284_explanationofbenefit\n      INNER JOIN max_batch mb ON cast(batch_id AS bigint) = mb.max_batch_id\n    ) base\n    LATERAL VIEW explode(eob.item)                     it AS item\n    LATERAL VIEW outer explode(item.procedureSequence) ps AS proc_seq\n    WHERE eob.item      IS NOT NULL\n      AND eob.procedure IS NOT NULL\n      AND proc_seq      IS NOT NULL\n      AND coalesce(item.productOrService.coding[0].system, '') <> 'http://hl7.org/fhir/sid/ndc'\n  ) lp_inner\n  INNER JOIN (\n    SELECT\n      eob.id                                                                AS source_claim_id,\n      proc.sequence                                                         AS procedure_sequence,\n      coalesce(proc.procedureCodeableConcept.coding[0].system, 'UNKNOWN')  AS procedure_system,\n      coalesce(\n        proc.procedureCodeableConcept.coding[0].code,\n        proc.procedureCodeableConcept.text\n      )                                                                     AS procedure_code,\n      filter(proc.type, t -> t IS NOT NULL)[0].coding[0].code              AS procedure_type,\n      proc.date                                                             AS procedure_date,\n      batch_id\n    FROM (\n      SELECT batch_id,\n        from_json(value,\n          'STRUCT<id: STRING,\n            procedure: ARRAY<STRUCT<\n              sequence: INT,\n              date: STRING,\n              type: ARRAY<STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>>,\n              procedureCodeableConcept: STRUCT<text: STRING,\n                coding: ARRAY<STRUCT<system: STRING, code: STRING>>>>>>') AS eob\n      FROM sasi.bronze_claims.d0284_explanationofbenefit\n      INNER JOIN max_batch mb ON cast(batch_id AS bigint) = mb.max_batch_id\n    ) p\n    LATERAL VIEW explode(eob.procedure) t AS proc\n    WHERE eob.procedure IS NOT NULL\n  ) pr\n    ON  pr.source_claim_id    = lp_inner.source_claim_id\n    AND pr.procedure_sequence = lp_inner.proc_seq\n    AND pr.batch_id           = lp_inner.batch_id\n\n  UNION ALL\n\n  SELECT\n    batch_id,\n    ingest_ts,\n    eob.id                                                AS source_claim_id,\n    item.sequence                                         AS line_number,\n    item.sequence                                         AS procedure_sequence,\n    coalesce(\n      item.productOrService.coding[0].code,\n      item.productOrService.text\n    )                                                     AS procedure_code,\n    coalesce(\n      item.productOrService.coding[0].system,\n      'UNKNOWN'\n    )                                                     AS procedure_system,\n    cast(null AS string)                                  AS procedure_type,\n    to_date(coalesce(\n      item.servicedDate,\n      item.servicedPeriod.start\n    ))                                                    AS procedure_date\n  FROM (\n    SELECT batch_id, ingest_ts,\n      from_json(value,\n        'STRUCT<id: STRING,\n          type: STRUCT<text: STRING, coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n          item: ARRAY<STRUCT<\n            sequence: INT,\n            servicedDate: STRING,\n            servicedPeriod: STRUCT<start: STRING, end: STRING>,\n            productOrService: STRUCT<text: STRING,\n              coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n            procedureSequence: ARRAY<INT>>>,\n          procedure: ARRAY<STRUCT<sequence: INT>>>') AS eob\n    FROM sasi.bronze_claims.d0284_explanationofbenefit\n    INNER JOIN max_batch mb ON cast(batch_id AS bigint) = mb.max_batch_id\n  ) base\n  LATERAL VIEW explode(eob.item) it AS item\n  WHERE eob.item      IS NOT NULL\n    AND eob.procedure IS NULL\n    AND coalesce(item.productOrService.coding[0].system, '') <> 'http://hl7.org/fhir/sid/ndc'\n    AND coalesce(item.productOrService.coding[0].code,   '') <> ''\n) lp;\n\nCREATE OR REPLACE VIEW sasi.bronze_claims.d0284_claim_provider AS\nWITH max_batch AS (\n  SELECT max(cast(batch_id AS bigint)) AS max_batch_id\n  FROM sasi.bronze_claims.d0284_explanationofbenefit\n) \nSELECT\n  cast(batch_id AS bigint)                                                                AS batch_id,\n  sha2(concat_ws('|', eob.id, cast(ct.sequence AS string),\n    coalesce(ct.role.coding[0].code, ''), 'HEADER'), 256)                                AS record_hash,\n  cast(false AS boolean)                                                                  AS is_deleted,\n  cast(null AS string)                                                                    AS created_by,\n  ingest_ts                                                                               AS created_at,\n  cast(null AS string)                                                                    AS updated_by,\n  current_timestamp()                                                                     AS updated_at,\n  'FHIR_EOB'                                                                             AS source_system,\n  eob.id                                                                                  AS silver_id,\n  eob.id                                                                                  AS source_claim_id,\n  ct.sequence                                                                             AS provider_sequence,\n  ct.role.coding[0].code                                                                  AS provider_role_code,\n  ct.role.coding[0].system                                                                AS provider_role_system,\n  ct.provider.identifier[0].system                                                        AS provider_identifier_system,\n  ct.provider.identifier[0].value                                                         AS provider_identifier_value,\n  cast(null AS string)                                                                    AS source_line_id,\n  'HEADER'                                                                                AS provider_scope,\n  filter(ct.provider.identifier, i -> i.system LIKE '%npi%')[0].value                   AS npi,\n  cast(null AS string)                                                                    AS tin\nFROM (\n  SELECT batch_id, ingest_ts,\n    from_json(value,\n      'STRUCT<id: STRING,\n        item: ARRAY<STRUCT<\n          sequence: INT,\n          careTeamSequence: ARRAY<INT>,\n          productOrService: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>>>,\n        careTeam: ARRAY<STRUCT<\n          sequence: INT,\n          role: STRUCT<coding: ARRAY<STRUCT<code: STRING, system: STRING>>>,\n          provider: STRUCT<\n            reference: STRING, display: STRING,\n            identifier: ARRAY<STRUCT<\n              type: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n              system: STRING, value: STRING>>>>>>') AS eob\n  FROM sasi.bronze_claims.d0284_explanationofbenefit\n  INNER JOIN max_batch mb ON cast(batch_id AS bigint) = mb.max_batch_id\n) base\nLATERAL VIEW explode(eob.careTeam) ctm AS ct\nWHERE eob.careTeam IS NOT NULL\n  AND size(filter(eob.item, i ->\n    coalesce(i.productOrService.coding[0].system, '') <> 'http://hl7.org/fhir/sid/ndc'\n    AND coalesce(i.productOrService.coding[0].code, '') <> '')) > 0\n\nUNION ALL\n\nSELECT\n  cast(batch_id AS bigint)                                                                AS batch_id,\n  sha2(concat_ws('|', eob.id, cast(item.sequence AS string),\n    cast(ct.sequence AS string), coalesce(ct.role.coding[0].code, ''), 'LINE'), 256)    AS record_hash,\n  cast(false AS boolean)                                                                  AS is_deleted,\n  cast(null AS string)                                                                    AS created_by,\n  ingest_ts                                                                               AS created_at,\n  cast(null AS string)                                                                    AS updated_by,\n  current_timestamp()                                                                     AS updated_at,\n  'FHIR_EOB'                                                                             AS source_system,\n  eob.id                                                                                  AS silver_id,\n  eob.id                                                                                  AS source_claim_id,\n  ct.sequence                                                                             AS provider_sequence,\n  ct.role.coding[0].code                                                                  AS provider_role_code,\n  ct.role.coding[0].system                                                                AS provider_role_system,\n  ct.provider.identifier[0].system                                                        AS provider_identifier_system,\n  ct.provider.identifier[0].value                                                         AS provider_identifier_value,\n  cast(item.sequence AS string)                                                           AS source_line_id,\n  'LINE'                                                                                  AS provider_scope,\n  filter(ct.provider.identifier, i -> i.system LIKE '%npi%')[0].value                   AS npi,\n  cast(null AS string)                                                                    AS tin\nFROM (\n  SELECT batch_id, ingest_ts,\n    from_json(value,\n      'STRUCT<id: STRING,\n        item: ARRAY<STRUCT<\n          sequence: INT,\n          careTeamSequence: ARRAY<INT>,\n          productOrService: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>>>,\n        careTeam: ARRAY<STRUCT<\n          sequence: INT,\n          role: STRUCT<coding: ARRAY<STRUCT<code: STRING, system: STRING>>>,\n          provider: STRUCT<\n            reference: STRING, display: STRING,\n            identifier: ARRAY<STRUCT<\n              type: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n              system: STRING, value: STRING>>>>>>') AS eob\n  FROM sasi.bronze_claims.d0284_explanationofbenefit\n  INNER JOIN max_batch mb ON cast(batch_id AS bigint) = mb.max_batch_id\n) base\nLATERAL VIEW explode(eob.item) it AS item\nLATERAL VIEW outer explode(item.careTeamSequence) cs AS cts\nLATERAL VIEW explode(eob.careTeam) ctm AS ct\nWHERE eob.item IS NOT NULL\n  AND cts IS NOT NULL\n  AND ct.sequence = cts\n  AND coalesce(item.productOrService.coding[0].system, '') <> 'http://hl7.org/fhir/sid/ndc';\n\nCREATE OR REPLACE VIEW sasi.bronze_claims.d0284_claim_line_adjudication AS\nWITH max_batch AS (\n  SELECT max(cast(batch_id AS bigint)) AS max_batch_id\n  FROM sasi.bronze_claims.d0284_explanationofbenefit\n)\nSELECT\n  cast(batch_id AS bigint)                                                                AS batch_id,\n  sha2(concat_ws('|', source_claim_id, coalesce(source_line_id, 'H'),\n    coalesce(adjudication_category_code, ''),\n    cast(amount AS string)), 256)                                                         AS record_hash,\n  cast(false AS boolean)                                                                  AS is_deleted,\n  cast(null AS string)                                                                    AS created_by,\n  ingest_ts                                                                               AS created_at,\n  cast(null AS string)                                                                    AS updated_by,\n  current_timestamp()                                                                     AS updated_at,\n  'FHIR_EOB'                                                                             AS source_system,\n  source_claim_id                                                                         AS silver_id,\n  source_claim_id,\n  source_line_id,\n  adjudication_type,\n  adjudication_category_code,\n  adjudication_category_system,\n  adjudication_category_bb_code,\n  adjudication_reason_code,\n  adjudication_reason_system,\n  cast(amount AS decimal(18,4))                                                           AS amount,\n  currency,\n  value\nFROM (\n  SELECT\n    batch_id,\n    ingest_ts,\n    eob.id                              AS source_claim_id,\n    cast(item.sequence AS string)       AS source_line_id,\n    cast(null AS string)                AS adjudication_type,\n    element_at(\n      filter(adj.category.coding,\n        c -> coalesce(c.system, '') =\n          'http://terminology.hl7.org/CodeSystem/adjudication'),\n      1\n    ).code                              AS adjudication_category_code,\n    element_at(\n      filter(adj.category.coding,\n        c -> coalesce(c.system, '') =\n          'http://terminology.hl7.org/CodeSystem/adjudication'),\n      1\n    ).system                            AS adjudication_category_system,\n    regexp_extract(\n      element_at(\n        filter(adj.category.coding,\n          c -> coalesce(c.system, '') =\n            'https://bluebutton.cms.gov/resources/codesystem/adjudication'),\n        1\n      ).code,\n      '([^/]+)$',\n      1\n    )                                   AS adjudication_category_bb_code,\n    adj.reason.coding[0].code           AS adjudication_reason_code,\n    adj.reason.coding[0].system         AS adjudication_reason_system,\n    adj.amount.value                    AS amount,\n    adj.amount.currency                 AS currency,\n    cast(adj.value AS string)           AS value\n  FROM (\n    SELECT batch_id, ingest_ts,\n      from_json(value,\n        'STRUCT<id: STRING,\n          item: ARRAY<STRUCT<\n            sequence: INT,\n            productOrService: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n            adjudication: ARRAY<STRUCT<\n              category: STRUCT<coding: ARRAY<STRUCT<code: STRING, system: STRING>>>,\n              reason: STRUCT<coding: ARRAY<STRUCT<code: STRING, system: STRING>>>,\n              amount: STRUCT<value: DOUBLE, currency: STRING>,\n              value: DOUBLE>>>>>') AS eob\n    FROM sasi.bronze_claims.d0284_explanationofbenefit\n    INNER JOIN max_batch mb ON cast(batch_id AS bigint) = mb.max_batch_id\n  ) p\n  LATERAL VIEW explode(eob.item) t AS item\n  LATERAL VIEW outer explode(item.adjudication) a AS adj\n  WHERE eob.item IS NOT NULL\n    AND item.adjudication IS NOT NULL\n    AND adj IS NOT NULL\n    AND coalesce(item.productOrService.coding[0].system, '') <> 'http://hl7.org/fhir/sid/ndc'\n) u;\n\nCREATE OR REPLACE VIEW sasi.bronze_claims.d0284_claim_adjudication AS\nWITH max_batch AS (\n  SELECT max(cast(batch_id AS bigint)) AS max_batch_id\n  FROM sasi.bronze_claims.d0284_explanationofbenefit\n) \nSELECT\n  cast(batch_id AS bigint)                                                                AS batch_id,\n  sha2(concat_ws('|', source_claim_id,\n    coalesce(adjudication_category_code, ''),\n    cast(amount AS string)), 256)                                                         AS record_hash,\n  cast(false AS boolean)                                                                  AS is_deleted,\n  cast(null AS string)                                                                    AS created_by,\n  ingest_ts                                                                               AS created_at,\n  cast(null AS string)                                                                    AS updated_by,\n  current_timestamp()                                                                     AS updated_at,\n  'FHIR_EOB'                                                                             AS source_system,\n  source_claim_id                                                                         AS silver_id,\n  source_claim_id,\n  adjudication_type,\n  adjudication_category_code,\n  adjudication_category_system,\n  adjudication_reason_code,\n  adjudication_reason_system,\n  cast(amount AS decimal(18,4))                                                           AS amount,\n  currency,\n  value\nFROM (\n  SELECT\n    batch_id, ingest_ts,\n    eob.id                              AS source_claim_id,\n    cast(null AS string)                AS adjudication_type,\n    tot.category.coding[0].code         AS adjudication_category_code,\n    tot.category.coding[0].system       AS adjudication_category_system,\n    cast(null AS string)                AS adjudication_reason_code,\n    cast(null AS string)                AS adjudication_reason_system,\n    tot.amount.value                    AS amount,\n    tot.amount.currency                 AS currency,\n    cast(null AS string)                AS value\n  FROM (\n    SELECT batch_id, ingest_ts,\n      from_json(value,\n        'STRUCT<id: STRING,\n          item: ARRAY<STRUCT<\n            productOrService: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>>>,\n          total: ARRAY<STRUCT<\n            category: STRUCT<coding: ARRAY<STRUCT<code: STRING, system: STRING>>>,\n            amount: STRUCT<value: DOUBLE, currency: STRING>>>>') AS eob\n    FROM sasi.bronze_claims.d0284_explanationofbenefit\n    INNER JOIN max_batch mb ON cast(batch_id AS bigint) = mb.max_batch_id\n  ) p2\n  LATERAL VIEW outer explode(eob.total) tt AS tot\n  WHERE size(filter(eob.item, i ->\n    coalesce(i.productOrService.coding[0].system, '') <> 'http://hl7.org/fhir/sid/ndc'\n    AND coalesce(i.productOrService.coding[0].code, '') <> '')) > 0\n\n  UNION ALL\n\n  SELECT\n    batch_id, ingest_ts,\n    eob.id                              AS source_claim_id,\n    cast(null AS string)                AS adjudication_type,\n    CASE\n      WHEN adj.reason.coding[0].code = 'IME'                THEN 'ime'\n      WHEN adj.reason.coding[0].code = 'DSH'                THEN 'dsh'\n      WHEN adj.reason.coding[0].code = 'uncompensated-care' THEN 'uncompensated_care'\n      ELSE adj.reason.coding[0].code\n    END                                 AS adjudication_category_code,\n    coalesce(adj.reason.coding[0].system,\n      'payer-defined')                  AS adjudication_category_system,\n    adj.reason.coding[0].code           AS adjudication_reason_code,\n    adj.reason.coding[0].system         AS adjudication_reason_system,\n    adj.amount.value                    AS amount,\n    adj.amount.currency                 AS currency,\n    cast(null AS string)                AS value\n  FROM (\n    SELECT batch_id, ingest_ts,\n      from_json(value,\n        'STRUCT<id: STRING,\n          item: ARRAY<STRUCT<\n            productOrService: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>>>,\n          payment: STRUCT<\n            adjustment: ARRAY<STRUCT<\n              reason: STRUCT<coding: ARRAY<STRUCT<code: STRING, system: STRING>>>,\n              amount: STRUCT<value: DOUBLE, currency: STRING>>>>>') AS eob\n    FROM sasi.bronze_claims.d0284_explanationofbenefit\n    INNER JOIN max_batch mb ON cast(batch_id AS bigint) = mb.max_batch_id\n  ) p3\n  LATERAL VIEW outer explode(eob.payment.adjustment) pa AS adj\n  WHERE adj IS NOT NULL\n    AND size(filter(eob.item, i ->\n      coalesce(i.productOrService.coding[0].system, '') <> 'http://hl7.org/fhir/sid/ndc'\n      AND coalesce(i.productOrService.coding[0].code, '') <> '')) > 0\n) u;\n\nCREATE OR REPLACE VIEW sasi.bronze_claims.d0284_pharmacy_claim_header AS\nWITH max_batch AS (\n  SELECT max(cast(batch_id AS bigint)) AS max_batch_id\n  FROM sasi.bronze_claims.d0284_explanationofbenefit\n) \nSELECT\n  cast(base.batch_id AS bigint)                                                           AS batch_id,\n  sha2(concat_ws('|', 'FHIR_EOB', eob.id, eob.status,\n    coalesce(eob.patient.reference,'')), 256)                                             AS record_hash,\n  cast(false AS boolean)                                                                  AS is_deleted,\n  cast(null AS string)                                                                    AS created_by,\n  base.ingest_ts                                                                          AS created_at,\n  cast(null AS string)                                                                    AS updated_by,\n  current_timestamp()                                                                     AS updated_at,\n  'FHIR_EOB'                                                                             AS source_system,\n  eob.id                                                                                  AS silver_id,\n  coalesce(eob.id, eob.identifier[0].value)                                              AS source_claim_id,\n  'RX'                                                                                    AS claim_type,\n  eob.identifier[0].value                                                                 AS external_claim_id,\n  sha2(concat_ws('|', 'FHIR_EOB',\n    coalesce(eob.patient.reference, 'UNKNOWN_PATIENT')), 256)                            AS patient_id,\n  eob.insurance[0].coverage.reference                                                     AS primary_payer_id,\n  to_date(eob.billablePeriod.start)                                                      AS claim_effective_date,\n  coalesce(eob.status, 'unknown')                                                        AS claim_status,\n  filter(eob.extension,\n    e -> e.url =\n      'https://bluebutton.cms.gov/resources/variables/clm_mdcr_non_pmt_rsn_cd'\n  )[0].valueCoding.code                                                                   AS denial_reason,\n  item.sequence                                                                           AS line_number,\n  to_date(item.servicedDate)                                                             AS prescription_date,\n  to_date(item.servicedDate)                                                             AS filled_date,\n  to_date(coalesce(item.servicedDate,\n    item.servicedPeriod.start, eob.billablePeriod.start))                                 AS service_date,\n  item.productOrService.coding[0].code                                                    AS ndc_code,\n  cast(null AS string)                                                                    AS source_drug_code,\n  item.productOrService.coding[0].system                                                  AS source_code_system,\n  cast(item.quantity.value AS decimal(18,4))                                              AS quantity,\n  cast(filter(eob.supportingInfo,\n    s -> s.category.coding[0].code = 'dayssupply'\n  )[0].valueQuantity.value AS int)                                                        AS days_supply,\n  filter(eob.careTeam,\n    c -> c.role.coding[0].code = 'prescribing'\n  )[0].provider.identifier[0].value                                                      AS prescriber_id,\n  filter(eob.careTeam,\n    c -> c.role.coding[0].code = 'prescribing'\n  )[0].provider.identifier[0].value                                                      AS prescriber_npi,\n  filter(eob.careTeam,\n    c -> c.role.coding[0].code = 'pharmacy'\n  )[0].provider.identifier[0].value                                                      AS dispensing_facility_id,\n  cast(filter(item.adjudication,\n    a -> a.category.coding[0].code = 'submitted'\n  )[0].amount.value AS decimal(18,4))                                                    AS line_charge,\n  cast(filter(item.adjudication,\n    a -> a.category.coding[0].code = 'benefit'\n  )[0].amount.value AS decimal(18,4))                                                    AS allowed_amount,\n  cast(coalesce(\n    filter(item.adjudication,\n      a -> a.category.coding[0].code = 'provider_paid')[0].amount.value,\n    filter(item.adjudication,\n      a -> a.category.coding[0].code =\n        'https://bluebutton.cms.gov/resources/variables/ptnt_pay_amt')[0].amount.value\n  ) AS decimal(18,4))                                                                     AS plan_paid_amount,\n  cast(filter(item.adjudication,\n    a -> a.category.coding[0].code = 'patientresponsibility'\n  )[0].amount.value AS decimal(18,4))                                                    AS member_responsibility\nFROM (\n  SELECT batch_id, ingest_ts,\n    from_json(value,\n      'STRUCT<id: STRING, status: STRING,\n        identifier: ARRAY<STRUCT<system: STRING, value: STRING>>,\n        type: STRUCT<text: STRING, coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n        patient: STRUCT<reference: STRING>,\n        billablePeriod: STRUCT<start: STRING, end: STRING>,\n        insurance: ARRAY<STRUCT<focal: BOOLEAN, coverage: STRUCT<reference: STRING>>>,\n        extension: ARRAY<STRUCT<url: STRING,\n          valueCoding: STRUCT<code: STRING>,\n          valueMoney: STRUCT<value: DOUBLE, currency: STRING>>>,\n        careTeam: ARRAY<STRUCT<\n          sequence: INT,\n          role: STRUCT<coding: ARRAY<STRUCT<code: STRING>>>,\n          provider: STRUCT<reference: STRING,\n            identifier: ARRAY<STRUCT<\n              type: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n              system: STRING, value: STRING>>>>>,\n        supportingInfo: ARRAY<STRUCT<\n          category: STRUCT<coding: ARRAY<STRUCT<code: STRING, system: STRING>>>,\n          valueQuantity: STRUCT<value: DOUBLE, unit: STRING>,\n          timingDate: STRING>>,\n        item: ARRAY<STRUCT<\n          sequence: INT,\n          servicedDate: STRING,\n          servicedPeriod: STRUCT<start: STRING, end: STRING>,\n          quantity: STRUCT<value: DOUBLE>,\n          productOrService: STRUCT<coding: ARRAY<STRUCT<system: STRING, code: STRING>>>,\n          adjudication: ARRAY<STRUCT<\n            category: STRUCT<coding: ARRAY<STRUCT<code: STRING>>>,\n            amount: STRUCT<value: DOUBLE, currency: STRING>>>>>>') AS eob\n  FROM sasi.bronze_claims.d0284_explanationofbenefit\n  INNER JOIN max_batch mb ON cast(batch_id AS bigint) = mb.max_batch_id\n) base\nLATERAL VIEW posexplode_outer(eob.item) it AS pos, item\nWHERE coalesce(item.productOrService.coding[0].system, '') = 'http://hl7.org/fhir/sid/ndc'\n  AND coalesce(item.productOrService.coding[0].code, '') <> '';\n\nCREATE OR REPLACE VIEW sasi.bronze_claims.d0284_patient_view AS\nWITH max_batch AS (\n  SELECT max(cast(batch_id AS bigint)) AS max_batch_id\n  FROM sasi.bronze_claims.d0284_patient\n),\nparsed_patient AS (\n  SELECT\n    cast(batch_id AS bigint)  AS batch_id,\n    ingest_ts,\n    created_ts,\n    updated_ts,\n    from_json(value,\n      'STRUCT<\n        id: STRING,\n        gender: STRING,\n        birthDate: STRING,\n        deceasedBoolean: BOOLEAN,\n        deceasedDateTime: STRING,\n        name: ARRAY<STRUCT<\n          use: STRING, family: STRING,\n          given: ARRAY<STRING>>>,\n        identifier: ARRAY<STRUCT<\n          system: STRING,\n          value: STRING,\n          type: STRUCT<coding: ARRAY<STRUCT<\n            system: STRING, code: STRING,\n            extension: ARRAY<STRUCT<\n              url: STRING,\n              valueCoding: STRUCT<system: STRING, code: STRING>>>>>>,\n          period: STRUCT<start: STRING, end: STRING>>>,\n        address: ARRAY<STRUCT<\n          line: ARRAY<STRING>,\n          city: STRING, state: STRING,\n          postalCode: STRING, country: STRING>>,\n        extension: ARRAY<STRUCT<\n          url: STRING,\n          valueCoding: STRUCT<system: STRING, code: STRING>,\n          extension: ARRAY<STRUCT<\n            url: STRING,\n            valueCoding: STRUCT<system: STRING, code: STRING>>>>>\n      >') AS pt\n  FROM sasi.bronze_claims.d0284_patient\n  INNER JOIN max_batch mb ON cast(batch_id AS bigint) = mb.max_batch_id\n),\nparsed_coverage AS (\n  SELECT\n    from_json(value,\n      'STRUCT<\n        id: STRING,\n        status: STRING,\n        beneficiary: STRUCT<reference: STRING>,\n        period: STRUCT<start: STRING, end: STRING>,\n        class: ARRAY<STRUCT<\n          type: STRUCT<coding: ARRAY<STRUCT<code: STRING>>>,\n          value: STRING,\n          period: STRUCT<start: STRING, end: STRING>>>,\n        extension: ARRAY<STRUCT<\n          url: STRING,\n          valueCoding: STRUCT<system: STRING, code: STRING>>>\n      >') AS cov\n  FROM sasi.bronze_claims.d0284_coverage\n),\ncoverage_agg AS (\n  SELECT\n    REPLACE(cov.beneficiary.reference, 'Patient/', '')               AS patient_id,\n    first_value(\n      filter(cov.extension,\n        e -> e.url = 'https://bluebutton.cms.gov/resources/variables/ms_cd'\n      )[0].valueCoding.code\n    ) IGNORE NULLS OVER (PARTITION BY cov.beneficiary.reference)     AS mdcr_status_code,\n    first_value(\n      filter(cov.extension,\n        e -> e.url RLIKE\n          'https://bluebutton.cms.gov/resources/variables/dual_[0-9]{2}$'\n      )[0].valueCoding.code\n    ) IGNORE NULLS OVER (PARTITION BY cov.beneficiary.reference)     AS dual_status_code,\n    first_value(\n      filter(cov.extension,\n        e -> e.url = 'https://bluebutton.cms.gov/resources/variables/orec'\n      )[0].valueCoding.code\n    ) IGNORE NULLS OVER (PARTITION BY cov.beneficiary.reference)     AS original_entitlement_reason_code,\n    first_value(\n      filter(cov.extension,\n        e -> e.url RLIKE\n          'https://bluebutton.cms.gov/resources/variables/buyin[0-9]{2}$'\n      )[0].valueCoding.code\n    ) IGNORE NULLS OVER (PARTITION BY cov.beneficiary.reference)     AS entitlement_buyin_indicator,\n    first_value(\n      coalesce(\n        filter(cov.class, c -> c.value = 'PARTA')[0].period.start,\n        filter(cov.extension,\n          e -> e.url LIKE '%parta%')[0].valueCoding.code\n      )\n    ) IGNORE NULLS OVER (PARTITION BY cov.beneficiary.reference)     AS part_a_enrollment_begin_date,\n    first_value(\n      coalesce(\n        filter(cov.class, c -> c.value = 'PARTB')[0].period.start,\n        filter(cov.extension,\n          e -> e.url LIKE '%partb%')[0].valueCoding.code\n      )\n    ) IGNORE NULLS OVER (PARTITION BY cov.beneficiary.reference)     AS part_b_enrollment_begin_date\n  FROM parsed_coverage\n  WHERE cov.beneficiary.reference IS NOT NULL\n)\nSELECT DISTINCT\n  pp.batch_id,\n  sha2(concat_ws('|', 'FHIR_PATIENT', pt.id,\n    coalesce(pt.gender,''), coalesce(pt.birthDate,'')), 256)          AS record_hash,\n  cast(false AS boolean)                                               AS is_deleted,\n  cast(null AS string)                                                 AS created_by,\n  pp.created_ts                                                        AS created_at,\n  cast(null AS string)                                                 AS updated_by,\n  pp.updated_ts                                                        AS updated_at,\n  'FHIR_PATIENT'                                                       AS source_system,\n  coalesce(\n    filter(pt.identifier,\n      i -> i.type.coding[0].code = 'member-id'\n    )[0].value,\n    filter(pt.identifier,\n      i -> i.type.coding[0].code = 'MB'\n    )[0].value,\n    cov_agg.patient_id,\n    pt.id\n  )                                                                    AS source_member_id,\n  coalesce(\n    filter(pt.identifier, i ->\n      i.system = 'http://hl7.org/fhir/sid/us-mbi'\n      AND i.type.coding[0].code = 'MC'\n      AND filter(i.type.coding[0].extension,\n            e -> e.url =\n              'https://bluebutton.cms.gov/resources/codesystem/identifier-currency'\n              AND e.valueCoding.code = 'current'\n          )[0] IS NOT NULL\n    )[0].value,\n    filter(pt.identifier,\n      i -> i.system = 'http://hl7.org/fhir/sid/us-mbi'\n    )[0].value\n  )                                                                    AS mbi_id,\n  filter(pt.identifier,\n    i -> i.system LIKE '%hicn%'\n  )[0].value                                                           AS hicn,\n  pt.name[0].given[0]                                                  AS first_name,\n  pt.name[0].given[1]                                                  AS middle_name,\n  pt.name[0].family                                                    AS last_name,\n  to_date(pt.birthDate)                                                AS date_of_birth,\n  to_date(pt.deceasedDateTime)                                         AS deceased_date,\n  coalesce(\n    pt.deceasedBoolean,\n    pt.deceasedDateTime IS NOT NULL\n  )                                                                    AS death_indicator,\n  upper(pt.gender)                                                     AS gender,\n  coalesce(\n    filter(pt.extension,\n      e -> e.url =\n        'https://bluebutton.cms.gov/resources/variables/race'\n    )[0].valueCoding.code,\n    filter(pt.extension,\n      e -> e.url =\n        'http://hl7.org/fhir/us/core/StructureDefinition/us-core-race'\n    )[0].extension[0].valueCoding.code,\n    filter(pt.extension,\n      e -> e.url LIKE '%race%'\n    )[0].valueCoding.code\n  )                                                                    AS race_code,\n  filter(pt.extension,\n    e -> e.url LIKE '%ethnicity%'\n  )[0].valueCoding.code                                                AS ethnicity_code,\n  pt.address[0].line[0]                                                AS address_line1,\n  pt.address[0].line[1]                                                AS address_line2,\n  pt.address[0].city                                                   AS city,\n  pt.address[0].state                                                  AS state,\n  pt.address[0].postalCode                                             AS zip_code,\n  pt.address[0].country                                                AS country,\n  pt.address[0].line[2]                                                AS address_line3,\n  pt.address[0].line[3]                                                AS address_line4,\n  pt.address[0].line[4]                                                AS address_line5,\n  pt.address[0].line[5]                                                AS address_line6,\n  cast(null AS string)                                                 AS county_fips_code,\n  cast(null AS string)                                                 AS state_fips_code,\n  regexp_extract(coalesce(pt.address[0].postalCode, ''),\n    '^([0-9]{5})', 1)                                                  AS zip5,\n  regexp_extract(coalesce(pt.address[0].postalCode, ''),\n    '(?:-([0-9]{4})|([0-9]{4})$)', 1)                                 AS zip4,\n  cov_agg.mdcr_status_code,\n  cov_agg.dual_status_code,\n  cov_agg.original_entitlement_reason_code,\n  cov_agg.entitlement_buyin_indicator,\n  to_date(cov_agg.part_a_enrollment_begin_date)                        AS part_a_enrollment_begin_date,\n  to_date(cov_agg.part_b_enrollment_begin_date)                        AS part_b_enrollment_begin_date,\n  cast(null AS date)                                                   AS bene_rng_bgn_dt,\n  cast(null AS date)                                                   AS bene_rng_end_dt\nFROM parsed_patient pp\nLEFT JOIN (\n  SELECT DISTINCT patient_id,\n    first_value(mdcr_status_code)\n      IGNORE NULLS OVER (PARTITION BY patient_id)              AS mdcr_status_code,\n    first_value(dual_status_code)\n      IGNORE NULLS OVER (PARTITION BY patient_id)              AS dual_status_code,\n    first_value(original_entitlement_reason_code)\n      IGNORE NULLS OVER (PARTITION BY patient_id)              AS original_entitlement_reason_code,\n    first_value(entitlement_buyin_indicator)\n      IGNORE NULLS OVER (PARTITION BY patient_id)              AS entitlement_buyin_indicator,\n    first_value(part_a_enrollment_begin_date)\n      IGNORE NULLS OVER (PARTITION BY patient_id)              AS part_a_enrollment_begin_date,\n    first_value(part_b_enrollment_begin_date)\n      IGNORE NULLS OVER (PARTITION BY patient_id)              AS part_b_enrollment_begin_date\n  FROM coverage_agg\n) cov_agg ON cov_agg.patient_id = pt.id\nWHERE pt.id IS NOT NULL;",
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      }
+    ],
+    "description": "Cloned from File to DB Ingestion V2",
+    "batch_control": {
+      "enabled": true,
+      "feed_name": "d0284_new_99",
+      "business_date": "2026-05-29",
+      "delivery_id": "d0284_new_99_2026-05-29",
+      "batch_id": 1,
+      "use_existing_batch_id": false,
+      "validate_existing_batch": true,
+      "require_input_acceptance": true,
+      "auto_accept_input_on_batch_init": true,
+      "input_registry_processed_on_stage": "bronze",
+      "seed_stage_rows": true,
+      "stages": [
+        "bronze"
+      ],
+      "storage": {
+        "connection": {
+          "name": "control_delta",
+          "connection_type": "DatabricksDeltaLake"
+        },
+        "namespace": {
+          "catalog": "cinqdev",
+          "schema": "control"
+        }
+      },
+      "stage_to_transformations": {
+        "bronze": [
+          "landing_read_d0284_coverage_obj1059",
+          "add_lineage_metadata_obj1059",
+          "schema_drift_guard_obj1059",
+          "bronze_write_d0284_coverage_obj1059",
+          "landing_read_d0284_explanationofbenefit_obj1060",
+          "add_lineage_metadata_obj1060",
+          "schema_drift_guard_obj1060",
+          "bronze_write_d0284_explanationofbenefit_obj1060",
+          "landing_read_d0284_patient_obj1061",
+          "add_lineage_metadata_obj1061",
+          "schema_drift_guard_obj1061",
+          "bronze_write_d0284_patient_obj1061"
+        ]
+      },
+      "error_threshold_pct": 50.0,
+      "run_scope": "GROUP",
+      "atomic_commit_enabled": true,
+      "group_id": 455,
+      "expected_group_members": 3,
+      "group_run_id": "d0284_new_99_20260529T080100Z"
+    }
+  },
+  "pipeline_type": "design",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
