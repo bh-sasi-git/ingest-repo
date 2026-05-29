@@ -1,0 +1,122 @@
+{
+  "created_at": "2026-05-29T17:37:55.701627Z",
+  "updated_at": "2026-05-29T17:37:55.701627Z",
+  "created_by": "muthukumar@bighammer.ai",
+  "updated_by": "muthukumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 4,
+  "pipeline_id": 919,
+  "pipeline_name": "silver_raw_d0284_to_claims_load_260529_a3ae",
+  "pipeline_key": "silver_raw_d0284_to_claims_load_260529_a3ae",
+  "bh_project_id": 303,
+  "notes": "",
+  "tags": {
+    "data_domain_id": 281,
+    "data_domain_name": "MSSP_1",
+    "source_count": 9,
+    "target_count": 9
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "Project_s1",
+  "bh_github_username": "bh-sasi-git",
+  "pipeline_json": {
+    "data_domain_id": 281,
+    "data_domain_name": "MSSP_1",
+    "ingestion_group_id": 461,
+    "source_rows": [
+      {
+        "data_src_id": 1940,
+        "ingest_object_id": null,
+        "label": "d0284_patient_view"
+      },
+      {
+        "data_src_id": 1938,
+        "ingest_object_id": null,
+        "label": "d0284_claim_procedure"
+      },
+      {
+        "data_src_id": 1942,
+        "ingest_object_id": null,
+        "label": "d0284_claim_provider"
+      },
+      {
+        "data_src_id": 1941,
+        "ingest_object_id": null,
+        "label": "d0284_pharmacy_claim_header"
+      },
+      {
+        "data_src_id": 1939,
+        "ingest_object_id": null,
+        "label": "d0284_claim_line_adjudication"
+      },
+      {
+        "data_src_id": 1937,
+        "ingest_object_id": null,
+        "label": "d0284_claim_adjudication"
+      },
+      {
+        "data_src_id": 1936,
+        "ingest_object_id": null,
+        "label": "d0284_claim_line"
+      },
+      {
+        "data_src_id": 1935,
+        "ingest_object_id": null,
+        "label": "d0284_claim_header"
+      },
+      {
+        "data_src_id": 1934,
+        "ingest_object_id": null,
+        "label": "d0284_claim_diagnosis"
+      }
+    ],
+    "target_rows": [
+      {
+        "data_src_id": 1951,
+        "label": "patient \u00b7 silverraw_claims.patient"
+      },
+      {
+        "data_src_id": 1950,
+        "label": "claim_provider \u00b7 silverraw_claims.claim_provider"
+      },
+      {
+        "data_src_id": 1949,
+        "label": "claim_diagnosis \u00b7 silverraw_claims.claim_diagnosis"
+      },
+      {
+        "data_src_id": 1948,
+        "label": "pharmacy_claim_header \u00b7 silverraw_claims.pharmacy_claim_header"
+      },
+      {
+        "data_src_id": 1947,
+        "label": "claim_line \u00b7 silverraw_claims.claim_line"
+      },
+      {
+        "data_src_id": 1946,
+        "label": "claim_procedure \u00b7 silverraw_claims.claim_procedure"
+      },
+      {
+        "data_src_id": 1945,
+        "label": "claim_header \u00b7 silverraw_claims.claim_header"
+      },
+      {
+        "data_src_id": 1944,
+        "label": "claim_line_adjudication \u00b7 silverraw_claims.claim_line_adjudication"
+      },
+      {
+        "data_src_id": 1943,
+        "label": "claim_adjudication \u00b7 silverraw_claims.claim_adjudication"
+      }
+    ]
+  },
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
