@@ -7,7 +7,7 @@
   "deleted_by": null,
   "tenant_id": 4,
   "pipeline_id": 933,
-  "pipeline_name": "silver_raw_tables_to_test_tables_id_name_map_260601_e7ca",
+  "pipeline_name": "silverraw",
   "pipeline_key": "silver_raw_tables_to_test_tables_id_name_map_260601_e7ca",
   "bh_project_id": 303,
   "notes": "",
