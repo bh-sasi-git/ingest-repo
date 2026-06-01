@@ -1,6 +1,6 @@
 {
   "created_at": "2026-06-01T08:51:31.611381Z",
-  "updated_at": "2026-06-01T08:51:31.611381Z",
+  "updated_at": "2026-06-01T08:54:29.120646Z",
   "created_by": "sasikumar@bighammer.ai",
   "updated_by": "sasikumar@bighammer.ai",
   "is_deleted": false,
@@ -10,7 +10,7 @@
   "flow_name": "test1_29",
   "flow_key": "test1_29",
   "recipient_email": {},
-  "notes": "test1",
+  "notes": null,
   "tags": null,
   "bh_project_name": "Ingest_repo1",
   "bh_project_id": 3,
@@ -35,7 +35,7 @@
           "flow_key": "test1_29",
           "bh_project_id": 3,
           "recipient_email": {},
-          "notes": "test1",
+          "notes": null,
           "tags": null,
           "status": "active",
           "alert_settings": {
@@ -308,7 +308,6 @@
                 }
               ],
               "bh_environment_id": 1,
-              "template_parameters": [],
               "bh_project_id": 3,
               "bh_environment_name": "databricks_batch",
               "cloud_provider": "databricks",
@@ -333,7 +332,7 @@
           "flow_version_id": null,
           "schema_id": null,
           "cron_expression": null,
-          "last_deployed_at": null,
+          "last_deployed_at": "2026-06-01 08:54:24.650233+00:00",
           "tenant_id": 1,
           "is_deleted": false,
           "deleted_by": null
