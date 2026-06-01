@@ -291,10 +291,30 @@
                   "nodeId": "Submit_Job_Run Jobs_test1"
                 },
                 {
+                  "task_id": "Run Jobs_silver_raw_records_to_test_tables_map_260601_4147",
+                  "type": "SubmitJob",
+                  "depends_on": [
+                    "Run Jobs_test1"
+                  ],
+                  "bh_project_name": "Ingest_repo1",
+                  "pipeline_key": "silver_raw_records_to_test_tables_map_260601_4147",
+                  "pipeline_name": "silver_raw_records_to_test_tables_map_260601_4147",
+                  "pipeline_id": 14,
+                  "compute_binding": {
+                    "source_task_id": "Create Compute",
+                    "source_output_id": "compute_id"
+                  },
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "cloud_type": "databricks",
+                  "airflow_connection_id": "databricks_default",
+                  "name": "Submit_Job_2",
+                  "nodeId": "Submit_Job_Run Jobs_silver_raw_records_to_test_tables_map_260601_4147"
+                },
+                {
                   "task_id": "Delete Compute",
                   "type": "DeleteCompute",
                   "depends_on": [
-                    "Run Jobs_test1"
+                    "Run Jobs_silver_raw_records_to_test_tables_map_260601_4147"
                   ],
                   "airflow_connection_id": "databricks_default",
                   "compute_type": "DATABRICKS_CLUSTER",
