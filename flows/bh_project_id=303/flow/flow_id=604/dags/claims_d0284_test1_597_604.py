@@ -827,7 +827,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_pipelines_claims_d0284_test1_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/test/pipelines/bh_project_id=303/pipeline/pipeline_id=1096/claims_d0284_test1.json",
+                "/Workspace/Shared/codespace/pipelines/bh_project_id=303/pipeline/pipeline_id=1096/claims_d0284_test1.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ]
@@ -999,7 +999,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_pipelines_silver_raw_d0284_to_claim_tables_load_260619_4085_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/test/pipelines/bh_project_id=303/pipeline/pipeline_id=1097/silver_raw_d0284_to_claim_tables_load_260619_4085.json",
+                "/Workspace/Shared/codespace/pipelines/bh_project_id=303/pipeline/pipeline_id=1097/silver_raw_d0284_to_claim_tables_load_260619_4085.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ]
