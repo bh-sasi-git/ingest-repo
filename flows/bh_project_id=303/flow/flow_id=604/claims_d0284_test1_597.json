@@ -515,7 +515,6 @@
                 }
               ],
               "bh_environment_id": 321,
-              "template_parameters": [],
               "bh_project_id": 303,
               "bh_environment_name": "kiran_databricks",
               "cloud_provider": "databricks",
