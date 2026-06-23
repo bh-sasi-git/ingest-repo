@@ -286,7 +286,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_jobs_testing_schema1_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/test/pipelines/bh_project_id=303/pipeline/pipeline_id=1106/testing_schema1.json",
+                "/Workspace/Shared/codespace/pipelines/bh_project_id=303/pipeline/pipeline_id=1106/testing_schema1.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ]
