@@ -412,8 +412,8 @@
       "delivery_id": "testing_ods_99_2026-06-30",
       "storage": {
         "namespace": {
-          "catalog": "cinqdev",
-          "schema": "control"
+           "catalog": "sasi",
+          "schema": "ods_testing"
         },
         "connection": {
           "name": "control_delta",
