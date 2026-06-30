@@ -422,7 +422,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_pipelines_test_ods3_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/test/pipelines/bh_project_id=303/pipeline/pipeline_id=1135/test_ods3.json",
+                "/Workspace/Shared/codespace/pipelines/bh_project_id=303/pipeline/pipeline_id=1135/test_ods3.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ]
@@ -601,7 +601,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_pipelines_silver_raw_d0284_claims_to_silver_raw_load_260630_fca9_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/test/pipelines/bh_project_id=303/pipeline/pipeline_id=1136/silver_raw_d0284_claims_to_silver_raw_load_260630_fca9.json",
+                "/Workspace/Shared/codespace/pipelines/bh_project_id=303/pipeline/pipeline_id=1136/silver_raw_d0284_claims_to_silver_raw_load_260630_fca9.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ]
@@ -780,7 +780,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_pipelines_testing_ods_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/test/pipelines/bh_project_id=303/pipeline/pipeline_id=1134/testing_ods.json",
+                "/Workspace/Shared/codespace/pipelines/bh_project_id=303/pipeline/pipeline_id=1134/testing_ods.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ]
