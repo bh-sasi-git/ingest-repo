@@ -1,0 +1,572 @@
+{
+  "created_at": "2026-06-30T09:44:46.442778Z",
+  "updated_at": "2026-06-30T09:44:46.442778Z",
+  "created_by": "muthukumar@bighammer.ai",
+  "updated_by": "muthukumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 4,
+  "flow_id": 624,
+  "flow_name": "test_ods99_645",
+  "flow_key": "test_ods99_645",
+  "recipient_email": {},
+  "notes": "test_ods99",
+  "tags": null,
+  "status": "active",
+  "bh_project_name": "Project_s1",
+  "bh_project_id": 303,
+  "alert_settings": {
+    "on_job_start": false,
+    "on_job_failure": false,
+    "on_job_success": false,
+    "long_running": false
+  },
+  "_graph": {
+    "root": {
+      "model": "Flow",
+      "pk": 624
+    },
+    "nodes": [
+      {
+        "model": "Flow",
+        "pk": 624,
+        "data": {
+          "flow_id": 624,
+          "flow_name": "test_ods99_645",
+          "flow_key": "test_ods99_645",
+          "bh_project_id": 303,
+          "recipient_email": {},
+          "notes": "test_ods99",
+          "tags": null,
+          "status": "active",
+          "alert_settings": {
+            "on_job_start": false,
+            "on_job_failure": false,
+            "on_job_success": false,
+            "long_running": false
+          },
+          "bh_bundle_id": null,
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowPipelineMapping",
+        "pk": 254,
+        "data": {
+          "flow_pipeline_mapping_id": 254,
+          "flow_id": 624,
+          "pipeline_id": 1134,
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowPipelineMapping",
+        "pk": 253,
+        "data": {
+          "flow_pipeline_mapping_id": 253,
+          "flow_id": 624,
+          "pipeline_id": 1138,
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowPipelineMapping",
+        "pk": 252,
+        "data": {
+          "flow_pipeline_mapping_id": 252,
+          "flow_id": 624,
+          "pipeline_id": 1137,
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 1694,
+        "data": {
+          "flow_parameter_id": 1694,
+          "flow_id": 624,
+          "parameter_name": "sources",
+          "parameter_value": "[{\"source_name\": \"employees\", \"prefix\": \"testing\", \"filename_regex\": \"employees.csv\", \"ignore_subfolders\": true, \"is_required\": true, \"min_bytes\": 10, \"min_files\": 1}]",
+          "parameter_type": "USER",
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 1701,
+        "data": {
+          "flow_parameter_id": 1701,
+          "flow_id": 624,
+          "parameter_name": "source_prefix",
+          "parameter_value": "testing",
+          "parameter_type": "USER",
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 1699,
+        "data": {
+          "flow_parameter_id": 1699,
+          "flow_id": 624,
+          "parameter_name": "pipelines",
+          "parameter_value": "[{\"id\": 1137, \"name\": \"test_ods99\", \"pipeline_name\": \"test_ods99\"}, {\"id\": 1138, \"name\": \"silver_raw_employees_direct_map_260630_233b\", \"pipeline_name\": \"silver_raw_employees_direct_map_260630_233b\"}, {\"id\": 1134, \"name\": \"testing_ods\", \"pipeline_name\": \"testing_ods\"}]",
+          "parameter_type": "USER",
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 1691,
+        "data": {
+          "flow_parameter_id": 1691,
+          "flow_id": 624,
+          "parameter_name": "parallelization_factor",
+          "parameter_value": 1,
+          "parameter_type": "USER",
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 1696,
+        "data": {
+          "flow_parameter_id": 1696,
+          "flow_id": 624,
+          "parameter_name": "files",
+          "parameter_value": "[{\"key\": \"testing/employees.csv\", \"base_name\": \"employees.csv\", \"source_name\": \"employees\", \"relative_key\": \"employees.csv\", \"size_bytes\": 253}]",
+          "parameter_type": "USER",
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 1695,
+        "data": {
+          "flow_parameter_id": 1695,
+          "flow_id": 624,
+          "parameter_name": "fail_on_invalid",
+          "parameter_value": true,
+          "parameter_type": "USER",
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 1690,
+        "data": {
+          "flow_parameter_id": 1690,
+          "flow_id": 624,
+          "parameter_name": "execute_in_parallel",
+          "parameter_value": false,
+          "parameter_type": "USER",
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 1697,
+        "data": {
+          "flow_parameter_id": 1697,
+          "flow_id": 624,
+          "parameter_name": "delete_source",
+          "parameter_value": true,
+          "parameter_type": "USER",
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 1693,
+        "data": {
+          "flow_parameter_id": 1693,
+          "flow_id": 624,
+          "parameter_name": "compute_type",
+          "parameter_value": "DATABRICKS_CLUSTER",
+          "parameter_type": "USER",
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 1692,
+        "data": {
+          "flow_parameter_id": 1692,
+          "flow_id": 624,
+          "parameter_name": "cloud_type",
+          "parameter_value": "databricks",
+          "parameter_type": "USER",
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 1700,
+        "data": {
+          "flow_parameter_id": 1700,
+          "flow_id": 624,
+          "parameter_name": "bucket_name",
+          "parameter_value": "my-test-bucket",
+          "parameter_type": "USER",
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 1702,
+        "data": {
+          "flow_parameter_id": 1702,
+          "flow_id": 624,
+          "parameter_name": "archive_prefix",
+          "parameter_value": "Archive/testing",
+          "parameter_type": "USER",
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 1698,
+        "data": {
+          "flow_parameter_id": 1698,
+          "flow_id": 624,
+          "parameter_name": "allow_empty",
+          "parameter_value": true,
+          "parameter_type": "USER",
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowDefinition",
+        "pk": 624,
+        "data": {
+          "flow_definition_id": 624,
+          "flow_id": 624,
+          "flow_json": {
+            "flowJson": {
+              "$schema": "https://json-schema.org/draft-07/schema#",
+              "name": "test_ods99_645",
+              "flow_name": "test_ods99_645",
+              "flow_id": 624,
+              "flow_key": "test_ods99_645",
+              "flow_type": "INGESTION",
+              "description": "test_ods99",
+              "version": "1.0.0",
+              "project_id": 303,
+              "project_name": "Project_s1",
+              "cron_expression": "0 0 1 * *",
+              "tenant_id": 4,
+              "flow_tags": [
+                {
+                  "key": "environment",
+                  "value": "dev"
+                }
+              ],
+              "parameters": [
+                {
+                  "key": "allow_empty",
+                  "value": true
+                },
+                {
+                  "key": "archive_prefix",
+                  "value": "Archive/testing"
+                },
+                {
+                  "key": "bucket_name",
+                  "value": "my-test-bucket"
+                },
+                {
+                  "key": "cloud_type",
+                  "value": "databricks"
+                },
+                {
+                  "key": "compute_type",
+                  "value": "DATABRICKS_CLUSTER"
+                },
+                {
+                  "key": "delete_source",
+                  "value": true
+                },
+                {
+                  "key": "execute_in_parallel",
+                  "value": false
+                },
+                {
+                  "key": "fail_on_invalid",
+                  "value": true
+                },
+                {
+                  "key": "files",
+                  "value": "[{\"key\": \"testing/employees.csv\", \"base_name\": \"employees.csv\", \"source_name\": \"employees\", \"relative_key\": \"employees.csv\", \"size_bytes\": 253}]"
+                },
+                {
+                  "key": "parallelization_factor",
+                  "value": 1
+                },
+                {
+                  "key": "pipelines",
+                  "value": "[{\"id\": 1137, \"name\": \"test_ods99\", \"pipeline_name\": \"test_ods99\"}, {\"id\": 1138, \"name\": \"silver_raw_employees_direct_map_260630_233b\", \"pipeline_name\": \"silver_raw_employees_direct_map_260630_233b\"}, {\"id\": 1134, \"name\": \"testing_ods\", \"pipeline_name\": \"testing_ods\"}]"
+                },
+                {
+                  "key": "source_prefix",
+                  "value": "testing"
+                },
+                {
+                  "key": "sources",
+                  "value": "[{\"source_name\": \"employees\", \"prefix\": \"testing\", \"filename_regex\": \"employees.csv\", \"ignore_subfolders\": true, \"is_required\": true, \"min_bytes\": 10, \"min_files\": 1}]"
+                }
+              ],
+              "tasks": [
+                {
+                  "task_id": "validate_inbound_files",
+                  "type": "ValidateInboundFiles",
+                  "depends_on": [],
+                  "bucket_name": "my-test-bucket",
+                  "source_prefix": "testing",
+                  "cloud_type": "databricks",
+                  "airflow_connection_id": "databricks_default",
+                  "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+                  "fail_on_invalid": true,
+                  "sources": [
+                    {
+                      "source_name": "employees",
+                      "prefix": "testing",
+                      "filename_regex": "employees.csv",
+                      "ignore_subfolders": true,
+                      "is_required": true,
+                      "min_bytes": 10,
+                      "min_files": 1
+                    }
+                  ],
+                  "feed_name": "test_ods99",
+                  "name": "Validate",
+                  "nodeId": "validate_validate_inbound_files"
+                },
+                {
+                  "task_id": "create_compute",
+                  "type": "CreateCompute",
+                  "depends_on": [
+                    "validate_inbound_files"
+                  ],
+                  "cluster_name": "New_compute_99",
+                  "compute_config": {
+                    "compute_config_id": 152,
+                    "compute_config_name": "New_compute_99",
+                    "compute_type": "DATABRICKS_CLUSTER",
+                    "bh_env_id": 321,
+                    "compute_config": {
+                      "cluster_name": "new_compute_7799",
+                      "spark_version": "15.4.x-scala2.12",
+                      "node_type_id": "Standard_D16ds_v5",
+                      "num_workers": 0,
+                      "autoscale": null,
+                      "driver_node_type_id": null,
+                      "runtime_engine": null,
+                      "data_security_mode": "SINGLE_USER",
+                      "single_user_name": "sathish@bighammer.ai",
+                      "policy_id": null,
+                      "apply_policy_default_values": true,
+                      "idempotency_token": null,
+                      "aws_attributes": null,
+                      "azure_attributes": null,
+                      "gcp_attributes": null,
+                      "single_node": true,
+                      "autotermination_minutes": 30,
+                      "enable_elastic_disk": true,
+                      "spark_conf": {},
+                      "spark_env_vars": {
+                        "SECRET_MANAGER_PROVIDER": "databricks",
+                        "PIPELINE_EXECUTION_MODE": "parallel",
+                        "PIPELINE_PARALLEL_MAX_WORKERS": "12"
+                      },
+                      "custom_tags": {},
+                      "cluster_log_conf": null,
+                      "init_scripts": [
+                        "/Workspace/Shared/dev-utils/scripts/bh_databricks_grpc_server.sh"
+                      ],
+                      "libraries": [],
+                      "databricks_region": "us-west-2",
+                      "bh_tags": []
+                    }
+                  },
+                  "cloud_type": "databricks",
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "airflow_connection_id": "databricks_default",
+                  "output_variables": [
+                    {
+                      "id": "compute_id",
+                      "label": "Cluster / job identifier",
+                      "xcom_key": "return_value"
+                    }
+                  ],
+                  "name": "Create_Compute",
+                  "nodeId": "create_compute_create_compute"
+                },
+                {
+                  "task_id": "run_pipelines_test_ods99",
+                  "type": "SubmitJob",
+                  "depends_on": [
+                    "create_compute"
+                  ],
+                  "bh_project_name": "Project_s1",
+                  "pipeline_key": "test_ods99",
+                  "pipeline_name": "test_ods99",
+                  "pipeline_id": 1137,
+                  "compute_binding": {
+                    "source_task_id": "create_compute",
+                    "source_output_id": "compute_id"
+                  },
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "cloud_type": "databricks",
+                  "airflow_connection_id": "databricks_default",
+                  "valid_files": "{{ task_instance.xcom_pull(task_ids='validate_inbound_files', key='valid_files') }}",
+                  "batch_id": "{{ task_instance.xcom_pull(task_ids='validate_inbound_files', key='batch_id') }}",
+                  "name": "Submit_Job",
+                  "nodeId": "Submit_Job_run_pipelines_test_ods99"
+                },
+                {
+                  "task_id": "run_pipelines_silver_raw_employees_direct_map_260630_233b",
+                  "type": "SubmitJob",
+                  "depends_on": [
+                    "run_pipelines_test_ods99"
+                  ],
+                  "bh_project_name": "Project_s1",
+                  "pipeline_key": "silver_raw_employees_direct_map_260630_233b",
+                  "pipeline_name": "silver_raw_employees_direct_map_260630_233b",
+                  "pipeline_id": 1138,
+                  "compute_binding": {
+                    "source_task_id": "create_compute",
+                    "source_output_id": "compute_id"
+                  },
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "cloud_type": "databricks",
+                  "airflow_connection_id": "databricks_default",
+                  "valid_files": "{{ task_instance.xcom_pull(task_ids='validate_inbound_files', key='valid_files') }}",
+                  "batch_id": "{{ task_instance.xcom_pull(task_ids='validate_inbound_files', key='batch_id') }}",
+                  "name": "Submit_Job_2",
+                  "nodeId": "Submit_Job_run_pipelines_silver_raw_employees_direct_map_260630_233b"
+                },
+                {
+                  "task_id": "run_pipelines_testing_ods",
+                  "type": "SubmitJob",
+                  "depends_on": [
+                    "run_pipelines_silver_raw_employees_direct_map_260630_233b"
+                  ],
+                  "bh_project_name": "Project_s1",
+                  "pipeline_key": "testing_ods",
+                  "pipeline_name": "testing_ods",
+                  "pipeline_id": 1134,
+                  "compute_binding": {
+                    "source_task_id": "create_compute",
+                    "source_output_id": "compute_id"
+                  },
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "cloud_type": "databricks",
+                  "airflow_connection_id": "databricks_default",
+                  "valid_files": "{{ task_instance.xcom_pull(task_ids='validate_inbound_files', key='valid_files') }}",
+                  "batch_id": "{{ task_instance.xcom_pull(task_ids='validate_inbound_files', key='batch_id') }}",
+                  "name": "Submit_Job_3",
+                  "nodeId": "Submit_Job_run_pipelines_testing_ods"
+                },
+                {
+                  "task_id": "archive_processed_files",
+                  "type": "ArchiveProcessedFiles",
+                  "depends_on": [
+                    "run_pipelines_testing_ods"
+                  ],
+                  "bucket_name": "my-test-bucket",
+                  "cloud_type": "databricks",
+                  "archive_prefix": "Archive/testing",
+                  "files": "{{ task_instance.xcom_pull(task_ids='validate_inbound_files', key='valid_files') }}",
+                  "airflow_connection_id": "databricks_default",
+                  "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+                  "delete_source": true,
+                  "allow_empty": true,
+                  "name": "Archive",
+                  "nodeId": "archive_archive_processed_files"
+                },
+                {
+                  "task_id": "delete_compute",
+                  "type": "DeleteCompute",
+                  "depends_on": [
+                    "archive_processed_files"
+                  ],
+                  "cloud_type": "databricks",
+                  "compute_type": "DATABRICKS_CLUSTER",
+                  "airflow_connection_id": "databricks_default",
+                  "compute_binding": {
+                    "source_task_id": "create_compute",
+                    "source_output_id": "compute_id"
+                  },
+                  "name": "Delete_Compute",
+                  "nodeId": "delete_compute_delete_compute"
+                }
+              ],
+              "bh_environment_id": 321,
+              "template_parameters": [],
+              "bh_project_id": 303,
+              "bh_environment_name": "kiran_databricks",
+              "cloud_provider": "databricks",
+              "vault_url": "https://bh-dev-westus3-kv-key.vault.azure.net",
+              "ingestion_group_id": 645
+            }
+          },
+          "schema_id": null,
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowDeployment",
+        "pk": 624,
+        "data": {
+          "flow_deployment_id": 624,
+          "flow_id": 624,
+          "bh_env_id": 321,
+          "bh_airflow_id": null,
+          "flow_version_id": null,
+          "schema_id": null,
+          "cron_expression": null,
+          "last_deployed_at": null,
+          "tenant_id": 4,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      }
+    ]
+  }
+}
