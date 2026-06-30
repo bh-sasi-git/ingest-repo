@@ -1,0 +1,367 @@
+{
+  "created_at": "2026-06-30T09:16:30.218656Z",
+  "updated_at": "2026-06-30T09:43:58.988382Z",
+  "created_by": "muthukumar@bighammer.ai",
+  "updated_by": "muthukumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 4,
+  "pipeline_id": 1137,
+  "pipeline_name": "test_ods99",
+  "pipeline_key": "test_ods99",
+  "bh_project_id": 303,
+  "notes": null,
+  "tags": null,
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "Project_s1",
+  "bh_github_username": "bh-sasi-git",
+  "pipeline_json": {
+    "name": "test_ods99",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "parameters": [
+      {
+        "key": "employees",
+        "value": "testing/employees.csv"
+      }
+    ],
+    "connections": {
+      "landing_employees_file_connection_obj1560": {
+        "name": "landing_employees_file_connection_obj1560",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-azureblobconn",
+        "connection_config_id": 164
+      },
+      "bronze_employees_db_connection_obj1560": {
+        "name": "bronze_employees_db_connection_obj1560",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "sasi",
+        "schema": "testing_bronze",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureconnss1",
+        "connection_config_id": 196
+      }
+    },
+    "sources": {
+      "landing_source_employees_obj1560": {
+        "name": "landing_source_employees_obj1560",
+        "source_type": "File",
+        "file_name": "${employees}",
+        "connection": {
+          "$ref": "#/connections/landing_employees_file_connection_obj1560"
+        },
+        "data_src_id": 2348
+      }
+    },
+    "targets": {
+      "bronze_target_employees_obj1560": {
+        "name": "bronze_target_employees_obj1560",
+        "target_type": "Relational",
+        "table_name": "employees",
+        "connection": {
+          "$ref": "#/connections/bronze_employees_db_connection_obj1560"
+        },
+        "load_mode": "append",
+        "schema": "testing_bronze",
+        "data_src_id": 2349
+      }
+    },
+    "transformations": [
+      {
+        "name": "landing_read_employees_obj1560",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_employees_obj1560"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ",",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\r\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string"
+          },
+          {
+            "name": "first_name",
+            "type": "string"
+          },
+          {
+            "name": "last_name",
+            "type": "string"
+          },
+          {
+            "name": "phone_number",
+            "type": "string"
+          },
+          {
+            "name": "department",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "salary",
+            "type": "string"
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string"
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj1560",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_employees_obj1560"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'test_ods99'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj1560",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj1560"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "expected_schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "phone_number",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "department",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "salary",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "batch_id",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          }
+        ],
+        "dataset_id": "employees",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_employees_obj1560",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj1560"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_employees_obj1560"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      }
+    ],
+    "description": "Cloned from File to DB Ingestion V2",
+    "batch_control": {
+      "enabled": true,
+      "feed_name": "test_ods99",
+      "business_date": "2026-06-30",
+      "delivery_id": "test_ods99_2026-06-30",
+      "batch_id": 1,
+      "use_existing_batch_id": false,
+      "validate_existing_batch": true,
+      "require_input_acceptance": true,
+      "auto_accept_input_on_batch_init": true,
+      "input_registry_processed_on_stage": "bronze",
+      "seed_stage_rows": true,
+      "stages": [
+        "bronze"
+      ],
+      "storage": {
+        "connection": {
+          "name": "control_delta",
+          "connection_type": "DatabricksDeltaLake"
+        },
+        "namespace": {
+          "catalog": "cinqdev",
+          "schema": "control"
+        }
+      },
+      "stage_to_transformations": {
+        "bronze": [
+          "landing_read_employees_obj1560",
+          "add_lineage_metadata_obj1560",
+          "schema_drift_guard_obj1560",
+          "bronze_write_employees_obj1560"
+        ]
+      },
+      "error_threshold_pct": 50.0,
+      "run_scope": "GROUP",
+      "atomic_commit_enabled": true,
+      "group_id": 645,
+      "expected_group_members": 1,
+      "group_run_id": "test_ods99_20260630T094358Z"
+    }
+  },
+  "pipeline_type": "design",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
