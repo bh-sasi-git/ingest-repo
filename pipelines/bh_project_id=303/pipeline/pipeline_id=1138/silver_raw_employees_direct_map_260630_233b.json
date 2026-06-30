@@ -1,0 +1,403 @@
+{
+  "created_at": "2026-06-30T09:37:49.778161Z",
+  "updated_at": "2026-06-30T09:44:03.130832Z",
+  "created_by": "muthukumar@bighammer.ai",
+  "updated_by": "muthukumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 4,
+  "pipeline_id": 1138,
+  "pipeline_name": "silver_raw_employees_direct_map_260630_233b",
+  "pipeline_key": "silver_raw_employees_direct_map_260630_233b",
+  "bh_project_id": 303,
+  "notes": "",
+  "tags": {
+    "data_domain_id": 281,
+    "data_domain_name": "MSSP_1",
+    "source_count": 1,
+    "target_count": 1
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": null,
+  "bh_github_username": null,
+  "pipeline_json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "silver_raw_employees_direct_map_260630_233b",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "azure_conn_ss1_sasi": {
+        "connection_config_id": 196,
+        "name": "azure_conn_ss1_sasi",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "sasi",
+        "schema": "testing_bronze",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureconnss1"
+      },
+      "azure_conn_s1_sasi": {
+        "connection_config_id": 190,
+        "name": "azure_conn_s1_sasi",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "sasi",
+        "schema": "testing_k1",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureconns1"
+      }
+    },
+    "sources": {
+      "employees_qos58": {
+        "data_src_id": 2349,
+        "name": "employees_qos58",
+        "source_type": "Relational",
+        "table_name": "employees_qos58",
+        "connection": {
+          "$ref": "#/connections/azure_conn_ss1_sasi"
+        },
+        "fields": [
+          "employee_id",
+          "first_name",
+          "last_name",
+          "phone_number",
+          "department",
+          "title",
+          "salary",
+          "corrupt_record",
+          "batch_id",
+          "feed_name",
+          "ingest_ts",
+          "ingest_year",
+          "ingest_month",
+          "ingest_day"
+        ],
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "phone_number",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "department",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "salary",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": "testing_bronze"
+      }
+    },
+    "targets": {
+      "test_table": {
+        "data_src_id": 2021,
+        "name": "test_table",
+        "target_type": "Relational",
+        "table_name": "test_table",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/azure_conn_s1_sasi"
+        },
+        "schema": "testing_k1",
+        "merge_keys": [
+          "id",
+          "name"
+        ],
+        "process_deletes": true,
+        "scd_config": {
+          "scd_type_1_columns": []
+        },
+        "delete_config": {
+          "delete_type": "infer",
+          "delete_action": "soft_delete"
+        }
+      }
+    },
+    "transformations": [
+      {
+        "name": "employees_qos58",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/employees_qos58"
+        },
+        "rename_columns": {
+          "employee_id": "employee_id_src_1",
+          "first_name": "first_name_src_1",
+          "last_name": "last_name_src_1",
+          "phone_number": "phone_number_src_1",
+          "department": "department_src_1",
+          "title": "title_src_1",
+          "salary": "salary_src_1",
+          "corrupt_record": "corrupt_record_src_1",
+          "batch_id": "batch_id_src_1",
+          "feed_name": "feed_name_src_1",
+          "ingest_ts": "ingest_ts_src_1",
+          "ingest_year": "ingest_year_src_1",
+          "ingest_month": "ingest_month_src_1",
+          "ingest_day": "ingest_day_src_1"
+        },
+        "schema": [
+          {
+            "name": "employee_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "phone_number",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "department",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "salary",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "read_options": {}
+      },
+      {
+        "name": "employees_qos58_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "employees_qos58"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_1) OVER ()"
+          }
+        ]
+      },
+      {
+        "name": "employees_qos58_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "employees_qos58_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')"
+      },
+      {
+        "name": "MapToTestTable",
+        "transformation": "Expression",
+        "dependent_on": [
+          "employees_qos58_IngestFilter"
+        ],
+        "derived_fields": [
+          {
+            "name": "id",
+            "expression": "CAST(employee_id_src_1 AS INTEGER)"
+          },
+          {
+            "name": "name",
+            "expression": "first_name_src_1"
+          },
+          {
+            "name": "created_by",
+            "expression": "'employees'"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'employees'"
+          },
+          {
+            "name": "source_system",
+            "expression": "'EMPLOYEES'"
+          }
+        ],
+        "select_columns": [
+          "id",
+          "name",
+          "batch_id_src_1",
+          "created_by",
+          "updated_by",
+          "source_system"
+        ],
+        "rename_columns": {
+          "batch_id_src_1": "batch_id"
+        }
+      },
+      {
+        "name": "test_table",
+        "transformation": "Writer",
+        "dependent_on": [
+          "MapToTestTable"
+        ],
+        "target": {
+          "$ref": "#/targets/test_table"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "test_table_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "test_table"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "id",
+          "name"
+        ]
+      }
+    ],
+    "batch_control": {
+      "enabled": true,
+      "feed_name": "test_ods99",
+      "business_date": "2026-06-30",
+      "stages": [
+        "silver_raw"
+      ],
+      "stage_to_transformations": {
+        "silver_raw": [
+          "employees_qos58",
+          "employees_qos58_MaxBatchExpr",
+          "employees_qos58_IngestFilter",
+          "MapToTestTable",
+          "test_table",
+          "test_table_final"
+        ]
+      },
+      "require_input_acceptance": true,
+      "auto_accept_input_on_batch_init": true,
+      "seed_stage_rows": true,
+      "delivery_id": "test_ods99_2026-06-30",
+      "storage": {
+        "namespace": {
+          "catalog": "cinqdev",
+          "schema": "control"
+        },
+        "connection": {
+          "name": "control_delta",
+          "connection_type": "DatabricksDeltaLake"
+        }
+      }
+    }
+  },
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
