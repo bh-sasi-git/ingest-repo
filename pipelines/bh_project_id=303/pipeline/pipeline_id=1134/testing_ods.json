@@ -1678,8 +1678,8 @@
           "connection_type": "DatabricksDeltaLake"
         },
         "namespace": {
-          "catalog": "sasi",
-          "schema": "control_cclf1"
+           "catalog": "sasi",
+          "schema": "ods_testing"
         }
       },
       "stage_to_transformations": {
