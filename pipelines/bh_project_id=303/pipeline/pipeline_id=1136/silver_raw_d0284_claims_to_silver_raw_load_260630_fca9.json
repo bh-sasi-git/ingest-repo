@@ -22,120 +22,5849 @@
   "bh_project_name": null,
   "bh_github_username": null,
   "pipeline_json": {
-    "data_domain_id": 281,
-    "data_domain_name": "MSSP_1",
-    "ingestion_group_id": 644,
-    "source_rows": [
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "silver_raw_d0284_cclf_to_silver_raw_load_260624_2d3f",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "cinqdev-databricks-dev_cinqdev": {
+        "connection_config_id": 2,
+        "name": "cinqdev-databricks-dev_cinqdev",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "bronze_cclf_test",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureconns1"
+      }
+    },
+    "sources": {
+      "d0284_cclf_claim_line_adjudication_view": {
+        "data_src_id": 869,
+        "name": "d0284_cclf_claim_line_adjudication_view",
+        "source_type": "Relational",
+        "table_name": "d0284_cclf_claim_line_adjudication_view",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "fields": [
+          "batch_id",
+          "record_hash",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "is_active",
+          "source_claim_id",
+          "line_number",
+          "adjudication_type",
+          "adjudication_category_code",
+          "adjudication_category_bb_code",
+          "adjudication_category_system",
+          "adjudication_reason_code",
+          "adjudication_reason_system",
+          "amount",
+          "currency",
+          "value"
+        ],
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "line_number",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "adjudication_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "adjudication_category_code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "adjudication_category_bb_code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "adjudication_category_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "adjudication_reason_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "adjudication_reason_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "amount",
+            "type": "decimal(0,0)",
+            "nullable": true
+          },
+          {
+            "name": "currency",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "bronze_cclf_test"
+      },
+      "d0284_cclf_claim_procedure_view": {
+        "data_src_id": 870,
+        "name": "d0284_cclf_claim_procedure_view",
+        "source_type": "Relational",
+        "table_name": "d0284_cclf_claim_procedure_view",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "fields": [
+          "batch_id",
+          "record_hash",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "is_active",
+          "source_claim_id",
+          "line_number",
+          "procedure_sequence",
+          "source_procedure_code",
+          "source_procedure_code_system",
+          "procedure_type",
+          "procedure_date",
+          "DGNS_PRCDR_ICD_IND"
+        ],
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "line_number",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "procedure_sequence",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "source_procedure_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_procedure_code_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "procedure_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "procedure_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "DGNS_PRCDR_ICD_IND",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "bronze_cclf_test"
+      },
+      "d0284_cclf_claim_header_view": {
+        "data_src_id": 871,
+        "name": "d0284_cclf_claim_header_view",
+        "source_type": "Relational",
+        "table_name": "d0284_cclf_claim_header_view",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "fields": [
+          "batch_id",
+          "record_hash",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "is_active",
+          "source_claim_id",
+          "claim_type",
+          "source_resource_id",
+          "source_resource_type",
+          "source_format",
+          "patient_id",
+          "source_billing_org_id",
+          "source_rendering_org_id",
+          "discharge_date",
+          "statement_from",
+          "statement_through",
+          "paid_date",
+          "claim_effective_date",
+          "claim_received_date",
+          "claim_version_num",
+          "adjusted_claim_id",
+          "drg_code",
+          "drg_code_system",
+          "bill_type",
+          "admission_type",
+          "admission_source",
+          "discharge_status",
+          "claim_adjustment_type_cd",
+          "claim_status",
+          "reason_for_visit",
+          "actual_length_of_stay",
+          "covered_length_of_stay",
+          "line_of_business",
+          "product",
+          "primary_payer",
+          "CLM_TYPE_CD",
+          "CLM_OP_SRVC_TYPE_CD",
+          "DGNS_PRCDR_ICD_IND",
+          "CLM_PRCSG_IND_CD",
+          "CLM_CNTL_NUM",
+          "CLM_CNTRCTR_NUM",
+          "CLM_DISP_CD"
+        ],
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "claim_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_resource_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_resource_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_format",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "patient_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_billing_org_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_rendering_org_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "discharge_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "statement_from",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "statement_through",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "paid_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "claim_effective_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "claim_received_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "claim_version_num",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "adjusted_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "drg_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "drg_code_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "bill_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "admission_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "admission_source",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "discharge_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "claim_adjustment_type_cd",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "claim_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "reason_for_visit",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "actual_length_of_stay",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "covered_length_of_stay",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "line_of_business",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "product",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "primary_payer",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_TYPE_CD",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_OP_SRVC_TYPE_CD",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "DGNS_PRCDR_ICD_IND",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_PRCSG_IND_CD",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_CNTL_NUM",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_CNTRCTR_NUM",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_DISP_CD",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "bronze_cclf_test"
+      },
+      "d0284_cclf_claim_diagnosis_view": {
+        "data_src_id": 872,
+        "name": "d0284_cclf_claim_diagnosis_view",
+        "source_type": "Relational",
+        "table_name": "d0284_cclf_claim_diagnosis_view",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "fields": [
+          "batch_id",
+          "record_hash",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "is_active",
+          "source_claim_id",
+          "source_diagnosis_code",
+          "source_diagnosis_code_system",
+          "diagnosis_sequence",
+          "diagnosis_type",
+          "poa_flag",
+          "CLM_PROD_TYPE_CD"
+        ],
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_diagnosis_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_diagnosis_code_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "diagnosis_sequence",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "diagnosis_type",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "poa_flag",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_PROD_TYPE_CD",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "bronze_cclf_test"
+      },
+      "d0284_cclf_claim_adjudication_view": {
+        "data_src_id": 873,
+        "name": "d0284_cclf_claim_adjudication_view",
+        "source_type": "Relational",
+        "table_name": "d0284_cclf_claim_adjudication_view",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "fields": [
+          "batch_id",
+          "record_hash",
+          "is_deleted",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "is_active",
+          "source_claim_id",
+          "adjudication_type",
+          "adjudication_category_code",
+          "adjudication_category_system",
+          "adjudication_reason_code",
+          "adjudication_reason_system",
+          "amount",
+          "currency",
+          "value"
+        ],
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "is_deleted",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "adjudication_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "adjudication_category_code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "adjudication_category_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "adjudication_reason_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "adjudication_reason_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "amount",
+            "type": "decimal(0,0)",
+            "nullable": true
+          },
+          {
+            "name": "currency",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "bronze_cclf_test"
+      },
+      "d0284_cclf_claim_line_view": {
+        "data_src_id": 874,
+        "name": "d0284_cclf_claim_line_view",
+        "source_type": "Relational",
+        "table_name": "d0284_cclf_claim_line_view",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "fields": [
+          "batch_id",
+          "record_hash",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "is_active",
+          "source_claim_id",
+          "line_number",
+          "source_line_id",
+          "service_date",
+          "service_end_date",
+          "revenue_code",
+          "revenue_code_system",
+          "place_of_service",
+          "billed_units",
+          "capitation_indicator",
+          "modifier_1",
+          "modifier_2",
+          "modifier_3",
+          "modifier_4",
+          "modifier_5",
+          "CLM_REV_APC_HIPPS_CD",
+          "HCPCS_BETOS_CD"
+        ],
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "line_number",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "source_line_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "service_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "service_end_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "revenue_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "revenue_code_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "place_of_service",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "billed_units",
+            "type": "decimal(0,0)",
+            "nullable": true
+          },
+          {
+            "name": "capitation_indicator",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "modifier_1",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "modifier_2",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "modifier_3",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "modifier_4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "modifier_5",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_REV_APC_HIPPS_CD",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "HCPCS_BETOS_CD",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "bronze_cclf_test"
+      },
+      "d0284_cclf_claim_provider_view": {
+        "data_src_id": 875,
+        "name": "d0284_cclf_claim_provider_view",
+        "source_type": "Relational",
+        "table_name": "d0284_cclf_claim_provider_view",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "fields": [
+          "batch_id",
+          "record_hash",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "is_active",
+          "source_claim_id",
+          "line_number",
+          "provider_role_code",
+          "provider_role_system",
+          "provider_identifier_system",
+          "provider_identifier_value",
+          "npi",
+          "tin",
+          "servicing_facility_name",
+          "servicing_facility_category",
+          "RNDRG_PRVDR_TYPE_CD",
+          "CLM_PRVDR_SPCLTY_CD",
+          "location"
+        ],
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "line_number",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "provider_role_code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "provider_role_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "provider_identifier_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "provider_identifier_value",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "npi",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "tin",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "servicing_facility_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "servicing_facility_category",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "RNDRG_PRVDR_TYPE_CD",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_PRVDR_SPCLTY_CD",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "location",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "db_schema": "bronze_cclf_test"
+      },
+      "d0284_cclf_pharmacy_claim_view": {
+        "data_src_id": 876,
+        "name": "d0284_cclf_pharmacy_claim_view",
+        "source_type": "Relational",
+        "table_name": "d0284_cclf_pharmacy_claim_view",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "fields": [
+          "batch_id",
+          "record_hash",
+          "is_deleted",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "is_active",
+          "source_claim_id",
+          "claim_type",
+          "claim_adjustment_type_cd",
+          "claim_effective_date",
+          "patient_id",
+          "source_member_id",
+          "line_number",
+          "service_date",
+          "ndc_code",
+          "source_code_system",
+          "quantity",
+          "days_supply",
+          "prescriber_id",
+          "dispensing_facility_id",
+          "member_responsibility",
+          "external_claim_id",
+          "replaced_claim_id",
+          "claim_received_date",
+          "primary_payer_id",
+          "primary_payer",
+          "claim_status",
+          "denial_reason",
+          "quantity_units",
+          "prescription_date",
+          "filled_date",
+          "source_drug_code",
+          "product",
+          "prescriber_npi",
+          "line_charge",
+          "allowed_amount",
+          "plan_paid_amount"
+        ],
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "is_deleted",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "claim_type",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "claim_adjustment_type_cd",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "claim_effective_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "patient_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_member_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "line_number",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "service_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "ndc_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_code_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "quantity",
+            "type": "decimal(0,0)",
+            "nullable": true
+          },
+          {
+            "name": "days_supply",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "prescriber_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "dispensing_facility_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "member_responsibility",
+            "type": "decimal(0,0)",
+            "nullable": true
+          },
+          {
+            "name": "external_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "replaced_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "claim_received_date",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "primary_payer_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "primary_payer",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "claim_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "denial_reason",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "quantity_units",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "prescription_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "filled_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "source_drug_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "product",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "prescriber_npi",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "line_charge",
+            "type": "decimal(0,0)",
+            "nullable": true
+          },
+          {
+            "name": "allowed_amount",
+            "type": "decimal(0,0)",
+            "nullable": true
+          },
+          {
+            "name": "plan_paid_amount",
+            "type": "decimal(0,0)",
+            "nullable": true
+          }
+        ],
+        "db_schema": "bronze_cclf_test"
+      },
+      "d0284_cclf_patient_view": {
+        "data_src_id": 877,
+        "name": "d0284_cclf_patient_view",
+        "source_type": "Relational",
+        "table_name": "d0284_cclf_patient_view",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "fields": [
+          "batch_id",
+          "record_hash",
+          "is_deleted",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "is_active",
+          "source_member_id",
+          "mbi_id",
+          "hicn",
+          "first_name",
+          "middle_name",
+          "last_name",
+          "date_of_birth",
+          "deceased_date",
+          "death_indicator",
+          "gender",
+          "race_code",
+          "ethnicity_code",
+          "address_line1",
+          "address_line2",
+          "city",
+          "state",
+          "zip_code",
+          "country",
+          "address_line3",
+          "address_line4",
+          "address_line5",
+          "address_line6",
+          "county_fips_code",
+          "state_fips_code",
+          "zip5",
+          "zip4",
+          "mdcr_status_code",
+          "dual_status_code",
+          "original_entitlement_reason_code",
+          "entitlement_buyin_indicator",
+          "part_a_enrollment_begin_date",
+          "part_b_enrollment_begin_date",
+          "bene_rng_bgn_dt",
+          "bene_rng_end_dt"
+        ],
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "is_deleted",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_member_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "mbi_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "hicn",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "middle_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "date_of_birth",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "deceased_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "death_indicator",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "gender",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "race_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ethnicity_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "address_line1",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "address_line2",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "city",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "state",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "zip_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "country",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "address_line3",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "address_line4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "address_line5",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "address_line6",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "county_fips_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "state_fips_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "zip5",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "zip4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "mdcr_status_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "dual_status_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "original_entitlement_reason_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "entitlement_buyin_indicator",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "part_a_enrollment_begin_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "part_b_enrollment_begin_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "bene_rng_bgn_dt",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "bene_rng_end_dt",
+            "type": "date",
+            "nullable": true
+          }
+        ],
+        "db_schema": "bronze_cclf_test"
+      }
+    },
+    "targets": {
+      "claims_header": {
+        "data_src_id": 840,
+        "name": "claims_header",
+        "target_type": "Relational",
+        "table_name": "claims_header",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "schema": "silverraw_cclf_test",
+        "merge_keys": [
+          "source_system",
+          "source_claim_id"
+        ],
+        "process_deletes": false,
+        "scd_config": {
+          "scd_type_1_columns": [
+            "claim_received_date",
+            "source_system",
+            "source_claim_id",
+            "claim_type",
+            "source_resource_id",
+            "source_resource_type",
+            "source_format",
+            "patient_id",
+            "source_billing_org_id",
+            "source_rendering_org_id",
+            "admission_date",
+            "discharge_date",
+            "statement_from",
+            "statement_through",
+            "paid_date",
+            "claim_effective_date",
+            "claim_version_num",
+            "adjusted_claim_id",
+            "drg_code",
+            "drg_code_system",
+            "bill_type",
+            "admission_type",
+            "admission_source",
+            "discharge_status",
+            "claim_adjustment_type_cd",
+            "claim_status",
+            "reason_for_visit",
+            "actual_length_of_stay",
+            "covered_length_of_stay",
+            "line_of_business",
+            "product",
+            "primary_payer",
+            "clm_type_cd",
+            "clm_op_srvc_type_cd",
+            "dgns_prcdr_icd_ind",
+            "clm_prcsg_ind_cd",
+            "clm_cntl_num",
+            "clm_cntrctr_num",
+            "clm_disp_cd"
+          ]
+        },
+        "delete_config": {
+          "delete_type": "infer",
+          "delete_action": "soft_delete"
+        }
+      },
+      "claims_line": {
+        "data_src_id": 836,
+        "name": "claims_line",
+        "target_type": "Relational",
+        "table_name": "claims_line",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "schema": "silverraw_cclf_test",
+        "merge_keys": [
+          "source_system",
+          "source_claim_id",
+          "line_number"
+        ],
+        "process_deletes": false,
+        "scd_config": {
+          "scd_type_1_columns": [
+            "source_system",
+            "source_claim_id",
+            "line_number",
+            "source_line_id",
+            "service_date",
+            "service_end_date",
+            "revenue_code",
+            "revenue_code_system",
+            "place_of_service",
+            "billed_units",
+            "capitation_indicator",
+            "modifier_1",
+            "modifier_2",
+            "modifier_3",
+            "modifier_4",
+            "modifier_5",
+            "clm_rev_apc_hipps_cd",
+            "hcpcs_betos_cd"
+          ]
+        },
+        "delete_config": {
+          "delete_type": "infer",
+          "delete_action": "soft_delete"
+        }
+      },
+      "claims_procedure": {
+        "data_src_id": 837,
+        "name": "claims_procedure",
+        "target_type": "Relational",
+        "table_name": "claims_procedure",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "schema": "silverraw_cclf_test",
+        "merge_keys": [
+          "source_system",
+          "source_claim_id",
+          "line_number",
+          "procedure_sequence"
+        ],
+        "process_deletes": false,
+        "scd_config": {
+          "scd_type_1_columns": [
+            "line_number",
+            "source_system",
+            "source_claim_id",
+            "procedure_sequence",
+            "source_procedure_code",
+            "source_procedure_code_system",
+            "procedure_type",
+            "procedure_date",
+            "dgns_prcdr_icd_ind"
+          ]
+        },
+        "delete_config": {
+          "delete_type": "infer",
+          "delete_action": "soft_delete"
+        }
+      },
+      "claims_diagnosis": {
+        "data_src_id": 839,
+        "name": "claims_diagnosis",
+        "target_type": "Relational",
+        "table_name": "claims_diagnosis",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "schema": "silverraw_cclf_test",
+        "merge_keys": [
+          "source_system",
+          "source_claim_id",
+          "diagnosis_sequence"
+        ],
+        "process_deletes": false,
+        "scd_config": {
+          "scd_type_1_columns": [
+            "source_system",
+            "source_claim_id",
+            "source_diagnosis_code",
+            "source_diagnosis_code_system",
+            "diagnosis_sequence",
+            "diagnosis_type",
+            "poa_flag",
+            "clm_prod_type_cd"
+          ]
+        },
+        "delete_config": {
+          "delete_type": "infer",
+          "delete_action": "soft_delete"
+        }
+      },
+      "claims_provider": {
+        "data_src_id": 841,
+        "name": "claims_provider",
+        "target_type": "Relational",
+        "table_name": "claims_provider",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "schema": "silverraw_cclf_test",
+        "merge_keys": [
+          "source_system",
+          "source_claim_id",
+          "line_number",
+          "provider_role_code",
+          "provider_identifier_value"
+        ],
+        "process_deletes": false,
+        "scd_config": {
+          "scd_type_1_columns": [
+            "source_system",
+            "source_claim_id",
+            "line_number",
+            "provider_role_code",
+            "provider_role_system",
+            "provider_identifier_system",
+            "provider_identifier_value",
+            "npi",
+            "tin",
+            "servicing_facility_name",
+            "servicing_facility_category",
+            "rndrg_prvdr_type_cd",
+            "clm_prvdr_spclty_cd",
+            "location"
+          ]
+        },
+        "delete_config": {
+          "delete_type": "infer",
+          "delete_action": "soft_delete"
+        }
+      },
+      "claims_adjudication": {
+        "data_src_id": 835,
+        "name": "claims_adjudication",
+        "target_type": "Relational",
+        "table_name": "claims_adjudication",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "schema": "silverraw_cclf_test",
+        "merge_keys": [
+          "source_system",
+          "source_claim_id",
+          "adjudication_category_code"
+        ],
+        "process_deletes": false,
+        "scd_config": {
+          "scd_type_1_columns": [
+            "source_system",
+            "source_claim_id",
+            "adjudication_type",
+            "adjudication_category_code",
+            "adjudication_category_system",
+            "adjudication_reason_code",
+            "adjudication_reason_system",
+            "amount",
+            "currency",
+            "value"
+          ]
+        },
+        "delete_config": {
+          "delete_type": "infer",
+          "delete_action": "soft_delete"
+        }
+      },
+      "claims_line_adjudication": {
+        "data_src_id": 838,
+        "name": "claims_line_adjudication",
+        "target_type": "Relational",
+        "table_name": "claims_line_adjudication",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "schema": "silverraw_cclf_test",
+        "merge_keys": [
+          "source_system",
+          "source_claim_id",
+          "line_number",
+          "adjudication_category_bb_code"
+        ],
+        "process_deletes": false,
+        "scd_config": {
+          "scd_type_1_columns": [
+            "source_system",
+            "source_claim_id",
+            "line_number",
+            "adjudication_type",
+            "adjudication_category_code",
+            "adjudication_category_bb_code",
+            "adjudication_category_system",
+            "adjudication_reason_code",
+            "adjudication_reason_system",
+            "amount",
+            "currency",
+            "value"
+          ]
+        },
+        "delete_config": {
+          "delete_type": "infer",
+          "delete_action": "soft_delete"
+        }
+      },
+      "patients": {
+        "data_src_id": 842,
+        "name": "patients",
+        "target_type": "Relational",
+        "table_name": "patients",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "schema": "silverraw_cclf_test",
+        "merge_keys": [
+          "source_system",
+          "source_member_id"
+        ],
+        "process_deletes": false,
+        "scd_config": {
+          "scd_type_1_columns": [
+            "part_b_enrollment_begin_date",
+            "source_system",
+            "source_member_id",
+            "mbi_id",
+            "hicn",
+            "first_name",
+            "middle_name",
+            "last_name",
+            "date_of_birth",
+            "deceased_date",
+            "death_indicator",
+            "gender",
+            "race_code",
+            "ethnicity_code",
+            "address_line1",
+            "address_line2",
+            "city",
+            "state",
+            "zip_code",
+            "country",
+            "address_line3",
+            "address_line4",
+            "address_line5",
+            "address_line6",
+            "county_fips_code",
+            "state_fips_code",
+            "zip5",
+            "zip4",
+            "mdcr_status_code",
+            "dual_status_code",
+            "original_entitlement_reason_code",
+            "entitlement_buyin_indicator",
+            "part_a_enrollment_begin_date",
+            "bene_rng_bgn_dt",
+            "bene_rng_end_dt"
+          ]
+        },
+        "delete_config": {
+          "delete_type": "infer",
+          "delete_action": "soft_delete"
+        }
+      },
+      "pharmacy_claim": {
+        "data_src_id": 827,
+        "name": "pharmacy_claim",
+        "target_type": "Relational",
+        "table_name": "pharmacy_claim",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/cinqdev-databricks-dev_cinqdev"
+        },
+        "schema": "silverraw_cclf_test",
+        "merge_keys": [
+          "source_system",
+          "source_claim_id"
+        ],
+        "process_deletes": false,
+        "scd_config": {
+          "scd_type_1_columns": [
+            "source_system",
+            "silver_id",
+            "source_claim_id",
+            "claim_type",
+            "external_claim_id",
+            "replaced_claim_id",
+            "claim_adjustment_type_cd",
+            "claim_received_date",
+            "patient_id",
+            "source_member_id",
+            "primary_payer_id",
+            "primary_payer",
+            "claim_effective_date",
+            "claim_status",
+            "denial_reason",
+            "quantity_units",
+            "line_number",
+            "prescription_date",
+            "filled_date",
+            "service_date",
+            "ndc_code",
+            "source_drug_code",
+            "source_code_system",
+            "product",
+            "quantity",
+            "days_supply",
+            "prescriber_id",
+            "prescriber_npi",
+            "dispensing_facility_id",
+            "line_charge",
+            "allowed_amount",
+            "plan_paid_amount",
+            "member_responsibility"
+          ]
+        },
+        "delete_config": {
+          "delete_type": "infer",
+          "delete_action": "soft_delete"
+        }
+      }
+    },
+    "transformations": [
       {
-        "data_src_id": 2345,
-        "ingest_object_id": null,
-        "label": "p_d0284_aco_zcby26_d260501_7nmuz \u00b7 staging.p_d0284_aco_zcby26_d260501"
+        "name": "d0284_cclf_claim_line_adjudication_view",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/d0284_cclf_claim_line_adjudication_view"
+        },
+        "rename_columns": {
+          "batch_id": "batch_id_src_1",
+          "record_hash": "record_hash_src_1",
+          "created_by": "created_by_src_1",
+          "created_at": "created_at_src_1",
+          "updated_by": "updated_by_src_1",
+          "updated_at": "updated_at_src_1",
+          "source_system": "source_system_src_1",
+          "is_active": "is_active_src_1",
+          "source_claim_id": "source_claim_id_src_1",
+          "line_number": "line_number_src_1",
+          "adjudication_type": "adjudication_type_src_1",
+          "adjudication_category_code": "adjudication_category_code_src_1",
+          "adjudication_category_bb_code": "adjudication_category_bb_code_src_1",
+          "adjudication_category_system": "adjudication_category_system_src_1",
+          "adjudication_reason_code": "adjudication_reason_code_src_1",
+          "adjudication_reason_system": "adjudication_reason_system_src_1",
+          "amount": "amount_src_1",
+          "currency": "currency_src_1",
+          "value": "value_src_1"
+        },
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "line_number",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "adjudication_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "adjudication_category_code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "adjudication_category_bb_code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "adjudication_category_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "adjudication_reason_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "adjudication_reason_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "amount",
+            "type": "decimal(0,0)",
+            "nullable": true
+          },
+          {
+            "name": "currency",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "read_options": {}
       },
       {
-        "data_src_id": 2343,
-        "ingest_object_id": null,
-        "label": "p_d0284_aco_zcay26_d260501_ke8b0 \u00b7 staging.p_d0284_aco_zcay26_d260501"
+        "name": "d0284_cclf_claim_line_adjudication_view_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "d0284_cclf_claim_line_adjudication_view"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_1) OVER ()"
+          }
+        ]
       },
       {
-        "data_src_id": 2341,
-        "ingest_object_id": null,
-        "label": "p_d0284_aco_zc9y26_d260501_bsmd8 \u00b7 staging.p_d0284_aco_zc9y26_d260501"
+        "name": "d0284_cclf_claim_line_adjudication_view_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "d0284_cclf_claim_line_adjudication_view_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_1 = max_batch_id"
       },
       {
-        "data_src_id": 2339,
-        "ingest_object_id": null,
-        "label": "p_d0284_aco_zc8y26_d260501_0hxcf \u00b7 staging.p_d0284_aco_zc8y26_d260501"
+        "name": "d0284_cclf_claim_procedure_view",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/d0284_cclf_claim_procedure_view"
+        },
+        "rename_columns": {
+          "batch_id": "batch_id_src_2",
+          "record_hash": "record_hash_src_2",
+          "created_by": "created_by_src_2",
+          "created_at": "created_at_src_2",
+          "updated_by": "updated_by_src_2",
+          "updated_at": "updated_at_src_2",
+          "source_system": "source_system_src_2",
+          "is_active": "is_active_src_2",
+          "source_claim_id": "source_claim_id_src_2",
+          "line_number": "line_number_src_2",
+          "procedure_sequence": "procedure_sequence_src_2",
+          "source_procedure_code": "source_procedure_code_src_2",
+          "source_procedure_code_system": "source_procedure_code_system_src_2",
+          "procedure_type": "procedure_type_src_2",
+          "procedure_date": "procedure_date_src_2",
+          "DGNS_PRCDR_ICD_IND": "DGNS_PRCDR_ICD_IND_src_2"
+        },
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "line_number",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "procedure_sequence",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "source_procedure_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_procedure_code_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "procedure_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "procedure_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "DGNS_PRCDR_ICD_IND",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "read_options": {}
       },
       {
-        "data_src_id": 2337,
-        "ingest_object_id": null,
-        "label": "p_d0284_aco_zc7y26_d260501_ljidh \u00b7 staging.p_d0284_aco_zc7y26_d260501"
+        "name": "d0284_cclf_claim_procedure_view_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "d0284_cclf_claim_procedure_view"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_2) OVER ()"
+          }
+        ]
       },
       {
-        "data_src_id": 2335,
-        "ingest_object_id": null,
-        "label": "p_d0284_aco_zc6y26_d260501_b2nod \u00b7 staging.p_d0284_aco_zc6y26_d260501"
+        "name": "d0284_cclf_claim_procedure_view_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "d0284_cclf_claim_procedure_view_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_2 = max_batch_id"
       },
       {
-        "data_src_id": 2333,
-        "ingest_object_id": null,
-        "label": "p_d0284_aco_zc5y26_d260501_djmuz \u00b7 staging.p_d0284_aco_zc5y26_d260501"
+        "name": "d0284_cclf_claim_header_view",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/d0284_cclf_claim_header_view"
+        },
+        "rename_columns": {
+          "batch_id": "batch_id_src_3",
+          "record_hash": "record_hash_src_3",
+          "created_by": "created_by_src_3",
+          "created_at": "created_at_src_3",
+          "updated_by": "updated_by_src_3",
+          "updated_at": "updated_at_src_3",
+          "source_system": "source_system_src_3",
+          "is_active": "is_active_src_3",
+          "source_claim_id": "source_claim_id_src_3",
+          "claim_type": "claim_type_src_3",
+          "source_resource_id": "source_resource_id_src_3",
+          "source_resource_type": "source_resource_type_src_3",
+          "source_format": "source_format_src_3",
+          "patient_id": "patient_id_src_3",
+          "source_billing_org_id": "source_billing_org_id_src_3",
+          "source_rendering_org_id": "source_rendering_org_id_src_3",
+          "discharge_date": "discharge_date_src_3",
+          "statement_from": "statement_from_src_3",
+          "statement_through": "statement_through_src_3",
+          "paid_date": "paid_date_src_3",
+          "claim_effective_date": "claim_effective_date_src_3",
+          "claim_received_date": "claim_received_date_src_3",
+          "claim_version_num": "claim_version_num_src_3",
+          "adjusted_claim_id": "adjusted_claim_id_src_3",
+          "drg_code": "drg_code_src_3",
+          "drg_code_system": "drg_code_system_src_3",
+          "bill_type": "bill_type_src_3",
+          "admission_type": "admission_type_src_3",
+          "admission_source": "admission_source_src_3",
+          "discharge_status": "discharge_status_src_3",
+          "claim_adjustment_type_cd": "claim_adjustment_type_cd_src_3",
+          "claim_status": "claim_status_src_3",
+          "reason_for_visit": "reason_for_visit_src_3",
+          "actual_length_of_stay": "actual_length_of_stay_src_3",
+          "covered_length_of_stay": "covered_length_of_stay_src_3",
+          "line_of_business": "line_of_business_src_3",
+          "product": "product_src_3",
+          "primary_payer": "primary_payer_src_3",
+          "CLM_TYPE_CD": "CLM_TYPE_CD_src_3",
+          "CLM_OP_SRVC_TYPE_CD": "CLM_OP_SRVC_TYPE_CD_src_3",
+          "DGNS_PRCDR_ICD_IND": "DGNS_PRCDR_ICD_IND_src_3",
+          "CLM_PRCSG_IND_CD": "CLM_PRCSG_IND_CD_src_3",
+          "CLM_CNTL_NUM": "CLM_CNTL_NUM_src_3",
+          "CLM_CNTRCTR_NUM": "CLM_CNTRCTR_NUM_src_3",
+          "CLM_DISP_CD": "CLM_DISP_CD_src_3"
+        },
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "claim_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_resource_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_resource_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_format",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "patient_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_billing_org_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_rendering_org_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "discharge_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "statement_from",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "statement_through",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "paid_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "claim_effective_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "claim_received_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "claim_version_num",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "adjusted_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "drg_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "drg_code_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "bill_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "admission_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "admission_source",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "discharge_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "claim_adjustment_type_cd",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "claim_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "reason_for_visit",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "actual_length_of_stay",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "covered_length_of_stay",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "line_of_business",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "product",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "primary_payer",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_TYPE_CD",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_OP_SRVC_TYPE_CD",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "DGNS_PRCDR_ICD_IND",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_PRCSG_IND_CD",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_CNTL_NUM",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_CNTRCTR_NUM",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_DISP_CD",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "read_options": {}
       },
       {
-        "data_src_id": 2331,
-        "ingest_object_id": null,
-        "label": "p_d0284_aco_zc4y26_d260501_8sg20 \u00b7 staging.p_d0284_aco_zc4y26_d260501"
+        "name": "d0284_cclf_claim_header_view_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "d0284_cclf_claim_header_view"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_3) OVER ()"
+          }
+        ]
       },
       {
-        "data_src_id": 2329,
-        "ingest_object_id": null,
-        "label": "p_d0284_aco_zc3y26_d260501_fo2db \u00b7 staging.p_d0284_aco_zc3y26_d260501"
+        "name": "d0284_cclf_claim_header_view_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "d0284_cclf_claim_header_view_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_3 = max_batch_id"
       },
       {
-        "data_src_id": 2327,
-        "ingest_object_id": null,
-        "label": "p_d0284_aco_zc2y26_d260501_87gx5 \u00b7 staging.p_d0284_aco_zc2y26_d260501"
+        "name": "d0284_cclf_claim_diagnosis_view",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/d0284_cclf_claim_diagnosis_view"
+        },
+        "rename_columns": {
+          "batch_id": "batch_id_src_4",
+          "record_hash": "record_hash_src_4",
+          "created_by": "created_by_src_4",
+          "created_at": "created_at_src_4",
+          "updated_by": "updated_by_src_4",
+          "updated_at": "updated_at_src_4",
+          "source_system": "source_system_src_4",
+          "is_active": "is_active_src_4",
+          "source_claim_id": "source_claim_id_src_4",
+          "source_diagnosis_code": "source_diagnosis_code_src_4",
+          "source_diagnosis_code_system": "source_diagnosis_code_system_src_4",
+          "diagnosis_sequence": "diagnosis_sequence_src_4",
+          "diagnosis_type": "diagnosis_type_src_4",
+          "poa_flag": "poa_flag_src_4",
+          "CLM_PROD_TYPE_CD": "CLM_PROD_TYPE_CD_src_4"
+        },
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_diagnosis_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_diagnosis_code_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "diagnosis_sequence",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "diagnosis_type",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "poa_flag",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_PROD_TYPE_CD",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "read_options": {}
       },
       {
-        "data_src_id": 2325,
-        "ingest_object_id": null,
-        "label": "p_d0284_aco_zc1y26_d260501_mqccu \u00b7 staging.p_d0284_aco_zc1y26_d260501"
+        "name": "d0284_cclf_claim_diagnosis_view_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "d0284_cclf_claim_diagnosis_view"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_4) OVER ()"
+          }
+        ]
+      },
+      {
+        "name": "d0284_cclf_claim_diagnosis_view_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "d0284_cclf_claim_diagnosis_view_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_4 = max_batch_id"
+      },
+      {
+        "name": "d0284_cclf_claim_adjudication_view",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/d0284_cclf_claim_adjudication_view"
+        },
+        "rename_columns": {
+          "batch_id": "batch_id_src_5",
+          "record_hash": "record_hash_src_5",
+          "is_deleted": "is_deleted_src_5",
+          "created_by": "created_by_src_5",
+          "created_at": "created_at_src_5",
+          "updated_by": "updated_by_src_5",
+          "updated_at": "updated_at_src_5",
+          "source_system": "source_system_src_5",
+          "is_active": "is_active_src_5",
+          "source_claim_id": "source_claim_id_src_5",
+          "adjudication_type": "adjudication_type_src_5",
+          "adjudication_category_code": "adjudication_category_code_src_5",
+          "adjudication_category_system": "adjudication_category_system_src_5",
+          "adjudication_reason_code": "adjudication_reason_code_src_5",
+          "adjudication_reason_system": "adjudication_reason_system_src_5",
+          "amount": "amount_src_5",
+          "currency": "currency_src_5",
+          "value": "value_src_5"
+        },
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "is_deleted",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "adjudication_type",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "adjudication_category_code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "adjudication_category_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "adjudication_reason_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "adjudication_reason_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "amount",
+            "type": "decimal(0,0)",
+            "nullable": true
+          },
+          {
+            "name": "currency",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "read_options": {}
+      },
+      {
+        "name": "d0284_cclf_claim_adjudication_view_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "d0284_cclf_claim_adjudication_view"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_5) OVER ()"
+          }
+        ]
+      },
+      {
+        "name": "d0284_cclf_claim_adjudication_view_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "d0284_cclf_claim_adjudication_view_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_5 = max_batch_id"
+      },
+      {
+        "name": "d0284_cclf_claim_line_view",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/d0284_cclf_claim_line_view"
+        },
+        "rename_columns": {
+          "batch_id": "batch_id_src_6",
+          "record_hash": "record_hash_src_6",
+          "created_by": "created_by_src_6",
+          "created_at": "created_at_src_6",
+          "updated_by": "updated_by_src_6",
+          "updated_at": "updated_at_src_6",
+          "source_system": "source_system_src_6",
+          "is_active": "is_active_src_6",
+          "source_claim_id": "source_claim_id_src_6",
+          "line_number": "line_number_src_6",
+          "source_line_id": "source_line_id_src_6",
+          "service_date": "service_date_src_6",
+          "service_end_date": "service_end_date_src_6",
+          "revenue_code": "revenue_code_src_6",
+          "revenue_code_system": "revenue_code_system_src_6",
+          "place_of_service": "place_of_service_src_6",
+          "billed_units": "billed_units_src_6",
+          "capitation_indicator": "capitation_indicator_src_6",
+          "modifier_1": "modifier_1_src_6",
+          "modifier_2": "modifier_2_src_6",
+          "modifier_3": "modifier_3_src_6",
+          "modifier_4": "modifier_4_src_6",
+          "modifier_5": "modifier_5_src_6",
+          "CLM_REV_APC_HIPPS_CD": "CLM_REV_APC_HIPPS_CD_src_6",
+          "HCPCS_BETOS_CD": "HCPCS_BETOS_CD_src_6"
+        },
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "line_number",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "source_line_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "service_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "service_end_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "revenue_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "revenue_code_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "place_of_service",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "billed_units",
+            "type": "decimal(0,0)",
+            "nullable": true
+          },
+          {
+            "name": "capitation_indicator",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "modifier_1",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "modifier_2",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "modifier_3",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "modifier_4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "modifier_5",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_REV_APC_HIPPS_CD",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "HCPCS_BETOS_CD",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "read_options": {}
+      },
+      {
+        "name": "d0284_cclf_claim_line_view_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "d0284_cclf_claim_line_view"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_6) OVER ()"
+          }
+        ]
+      },
+      {
+        "name": "d0284_cclf_claim_line_view_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "d0284_cclf_claim_line_view_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_6 = max_batch_id"
+      },
+      {
+        "name": "d0284_cclf_claim_provider_view",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/d0284_cclf_claim_provider_view"
+        },
+        "rename_columns": {
+          "batch_id": "batch_id_src_7",
+          "record_hash": "record_hash_src_7",
+          "created_by": "created_by_src_7",
+          "created_at": "created_at_src_7",
+          "updated_by": "updated_by_src_7",
+          "updated_at": "updated_at_src_7",
+          "source_system": "source_system_src_7",
+          "is_active": "is_active_src_7",
+          "source_claim_id": "source_claim_id_src_7",
+          "line_number": "line_number_src_7",
+          "provider_role_code": "provider_role_code_src_7",
+          "provider_role_system": "provider_role_system_src_7",
+          "provider_identifier_system": "provider_identifier_system_src_7",
+          "provider_identifier_value": "provider_identifier_value_src_7",
+          "npi": "npi_src_7",
+          "tin": "tin_src_7",
+          "servicing_facility_name": "servicing_facility_name_src_7",
+          "servicing_facility_category": "servicing_facility_category_src_7",
+          "RNDRG_PRVDR_TYPE_CD": "RNDRG_PRVDR_TYPE_CD_src_7",
+          "CLM_PRVDR_SPCLTY_CD": "CLM_PRVDR_SPCLTY_CD_src_7",
+          "location": "location_src_7"
+        },
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "line_number",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "provider_role_code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "provider_role_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "provider_identifier_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "provider_identifier_value",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "npi",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "tin",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "servicing_facility_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "servicing_facility_category",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "RNDRG_PRVDR_TYPE_CD",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "CLM_PRVDR_SPCLTY_CD",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "location",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "read_options": {}
+      },
+      {
+        "name": "d0284_cclf_claim_provider_view_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "d0284_cclf_claim_provider_view"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_7) OVER ()"
+          }
+        ]
+      },
+      {
+        "name": "d0284_cclf_claim_provider_view_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "d0284_cclf_claim_provider_view_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_7 = max_batch_id"
+      },
+      {
+        "name": "d0284_cclf_pharmacy_claim_view",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/d0284_cclf_pharmacy_claim_view"
+        },
+        "rename_columns": {
+          "batch_id": "batch_id_src_8",
+          "record_hash": "record_hash_src_8",
+          "is_deleted": "is_deleted_src_8",
+          "created_by": "created_by_src_8",
+          "created_at": "created_at_src_8",
+          "updated_by": "updated_by_src_8",
+          "updated_at": "updated_at_src_8",
+          "source_system": "source_system_src_8",
+          "is_active": "is_active_src_8",
+          "source_claim_id": "source_claim_id_src_8",
+          "claim_type": "claim_type_src_8",
+          "claim_adjustment_type_cd": "claim_adjustment_type_cd_src_8",
+          "claim_effective_date": "claim_effective_date_src_8",
+          "patient_id": "patient_id_src_8",
+          "source_member_id": "source_member_id_src_8",
+          "line_number": "line_number_src_8",
+          "service_date": "service_date_src_8",
+          "ndc_code": "ndc_code_src_8",
+          "source_code_system": "source_code_system_src_8",
+          "quantity": "quantity_src_8",
+          "days_supply": "days_supply_src_8",
+          "prescriber_id": "prescriber_id_src_8",
+          "dispensing_facility_id": "dispensing_facility_id_src_8",
+          "member_responsibility": "member_responsibility_src_8",
+          "external_claim_id": "external_claim_id_src_8",
+          "replaced_claim_id": "replaced_claim_id_src_8",
+          "claim_received_date": "claim_received_date_src_8",
+          "primary_payer_id": "primary_payer_id_src_8",
+          "primary_payer": "primary_payer_src_8",
+          "claim_status": "claim_status_src_8",
+          "denial_reason": "denial_reason_src_8",
+          "quantity_units": "quantity_units_src_8",
+          "prescription_date": "prescription_date_src_8",
+          "filled_date": "filled_date_src_8",
+          "source_drug_code": "source_drug_code_src_8",
+          "product": "product_src_8",
+          "prescriber_npi": "prescriber_npi_src_8",
+          "line_charge": "line_charge_src_8",
+          "allowed_amount": "allowed_amount_src_8",
+          "plan_paid_amount": "plan_paid_amount_src_8"
+        },
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "is_deleted",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "claim_type",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "claim_adjustment_type_cd",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "claim_effective_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "patient_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_member_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "line_number",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "service_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "ndc_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "source_code_system",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "quantity",
+            "type": "decimal(0,0)",
+            "nullable": true
+          },
+          {
+            "name": "days_supply",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "prescriber_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "dispensing_facility_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "member_responsibility",
+            "type": "decimal(0,0)",
+            "nullable": true
+          },
+          {
+            "name": "external_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "replaced_claim_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "claim_received_date",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "primary_payer_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "primary_payer",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "claim_status",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "denial_reason",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "quantity_units",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "prescription_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "filled_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "source_drug_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "product",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "prescriber_npi",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "line_charge",
+            "type": "decimal(0,0)",
+            "nullable": true
+          },
+          {
+            "name": "allowed_amount",
+            "type": "decimal(0,0)",
+            "nullable": true
+          },
+          {
+            "name": "plan_paid_amount",
+            "type": "decimal(0,0)",
+            "nullable": true
+          }
+        ],
+        "read_options": {}
+      },
+      {
+        "name": "d0284_cclf_pharmacy_claim_view_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "d0284_cclf_pharmacy_claim_view"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_8) OVER ()"
+          }
+        ]
+      },
+      {
+        "name": "d0284_cclf_pharmacy_claim_view_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "d0284_cclf_pharmacy_claim_view_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_8 = max_batch_id"
+      },
+      {
+        "name": "d0284_cclf_patient_view",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/d0284_cclf_patient_view"
+        },
+        "rename_columns": {
+          "batch_id": "batch_id_src_9",
+          "record_hash": "record_hash_src_9",
+          "is_deleted": "is_deleted_src_9",
+          "created_by": "created_by_src_9",
+          "created_at": "created_at_src_9",
+          "updated_by": "updated_by_src_9",
+          "updated_at": "updated_at_src_9",
+          "source_system": "source_system_src_9",
+          "is_active": "is_active_src_9",
+          "source_member_id": "source_member_id_src_9",
+          "mbi_id": "mbi_id_src_9",
+          "hicn": "hicn_src_9",
+          "first_name": "first_name_src_9",
+          "middle_name": "middle_name_src_9",
+          "last_name": "last_name_src_9",
+          "date_of_birth": "date_of_birth_src_9",
+          "deceased_date": "deceased_date_src_9",
+          "death_indicator": "death_indicator_src_9",
+          "gender": "gender_src_9",
+          "race_code": "race_code_src_9",
+          "ethnicity_code": "ethnicity_code_src_9",
+          "address_line1": "address_line1_src_9",
+          "address_line2": "address_line2_src_9",
+          "city": "city_src_9",
+          "state": "state_src_9",
+          "zip_code": "zip_code_src_9",
+          "country": "country_src_9",
+          "address_line3": "address_line3_src_9",
+          "address_line4": "address_line4_src_9",
+          "address_line5": "address_line5_src_9",
+          "address_line6": "address_line6_src_9",
+          "county_fips_code": "county_fips_code_src_9",
+          "state_fips_code": "state_fips_code_src_9",
+          "zip5": "zip5_src_9",
+          "zip4": "zip4_src_9",
+          "mdcr_status_code": "mdcr_status_code_src_9",
+          "dual_status_code": "dual_status_code_src_9",
+          "original_entitlement_reason_code": "original_entitlement_reason_code_src_9",
+          "entitlement_buyin_indicator": "entitlement_buyin_indicator_src_9",
+          "part_a_enrollment_begin_date": "part_a_enrollment_begin_date_src_9",
+          "part_b_enrollment_begin_date": "part_b_enrollment_begin_date_src_9",
+          "bene_rng_bgn_dt": "bene_rng_bgn_dt_src_9",
+          "bene_rng_end_dt": "bene_rng_end_dt_src_9"
+        },
+        "schema": [
+          {
+            "name": "batch_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "record_hash",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "is_deleted",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "created_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "created_at",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "updated_by",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "updated_at",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "source_system",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "is_active",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "source_member_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "mbi_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "hicn",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "middle_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "date_of_birth",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "deceased_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "death_indicator",
+            "type": "boolean",
+            "nullable": false
+          },
+          {
+            "name": "gender",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "race_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ethnicity_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "address_line1",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "address_line2",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "city",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "state",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "zip_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "country",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "address_line3",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "address_line4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "address_line5",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "address_line6",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "county_fips_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "state_fips_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "zip5",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "zip4",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "mdcr_status_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "dual_status_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "original_entitlement_reason_code",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "entitlement_buyin_indicator",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "part_a_enrollment_begin_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "part_b_enrollment_begin_date",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "bene_rng_bgn_dt",
+            "type": "date",
+            "nullable": true
+          },
+          {
+            "name": "bene_rng_end_dt",
+            "type": "date",
+            "nullable": true
+          }
+        ],
+        "read_options": {}
+      },
+      {
+        "name": "d0284_cclf_patient_view_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "d0284_cclf_patient_view"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_9) OVER ()"
+          }
+        ]
+      },
+      {
+        "name": "d0284_cclf_patient_view_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "d0284_cclf_patient_view_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_9 = max_batch_id"
+      },
+      {
+        "name": "ClaimHeaderDedup",
+        "transformation": "Deduplicator",
+        "dependent_on": [
+          "d0284_cclf_claim_header_view_IngestFilter"
+        ],
+        "dedup_by": [
+          "source_claim_id_src_3"
+        ],
+        "keep": "first",
+        "order_by": [
+          {
+            "column": "source_claim_id_src_3",
+            "order": "asc"
+          }
+        ]
+      },
+      {
+        "name": "ClaimHeaderExpression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ClaimHeaderDedup"
+        ],
+        "derived_fields": [
+          {
+            "name": "batch_id",
+            "expression": "CAST(batch_id_src_3 AS STRING)"
+          },
+          {
+            "name": "created_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "created_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "updated_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "source_system",
+            "expression": "'CCLF_D0284'"
+          },
+          {
+            "name": "source_claim_id",
+            "expression": "source_claim_id_src_3"
+          },
+          {
+            "name": "claim_type",
+            "expression": "claim_type_src_3"
+          },
+          {
+            "name": "source_resource_id",
+            "expression": "source_resource_id_src_3"
+          },
+          {
+            "name": "source_resource_type",
+            "expression": "source_resource_type_src_3"
+          },
+          {
+            "name": "source_format",
+            "expression": "source_format_src_3"
+          },
+          {
+            "name": "patient_id",
+            "expression": "patient_id_src_3"
+          },
+          {
+            "name": "source_billing_org_id",
+            "expression": "source_billing_org_id_src_3"
+          },
+          {
+            "name": "source_rendering_org_id",
+            "expression": "source_rendering_org_id_src_3"
+          },
+          {
+            "name": "discharge_date",
+            "expression": "discharge_date_src_3"
+          },
+          {
+            "name": "statement_from",
+            "expression": "statement_from_src_3"
+          },
+          {
+            "name": "statement_through",
+            "expression": "statement_through_src_3"
+          },
+          {
+            "name": "paid_date",
+            "expression": "paid_date_src_3"
+          },
+          {
+            "name": "claim_effective_date",
+            "expression": "claim_effective_date_src_3"
+          },
+          {
+            "name": "claim_received_date",
+            "expression": "claim_received_date_src_3"
+          },
+          {
+            "name": "claim_version_num",
+            "expression": "claim_version_num_src_3"
+          },
+          {
+            "name": "adjusted_claim_id",
+            "expression": "adjusted_claim_id_src_3"
+          },
+          {
+            "name": "drg_code",
+            "expression": "drg_code_src_3"
+          },
+          {
+            "name": "drg_code_system",
+            "expression": "drg_code_system_src_3"
+          },
+          {
+            "name": "bill_type",
+            "expression": "bill_type_src_3"
+          },
+          {
+            "name": "admission_type",
+            "expression": "admission_type_src_3"
+          },
+          {
+            "name": "admission_source",
+            "expression": "admission_source_src_3"
+          },
+          {
+            "name": "discharge_status",
+            "expression": "discharge_status_src_3"
+          },
+          {
+            "name": "claim_adjustment_type_cd",
+            "expression": "claim_adjustment_type_cd_src_3"
+          },
+          {
+            "name": "claim_status",
+            "expression": "claim_status_src_3"
+          },
+          {
+            "name": "reason_for_visit",
+            "expression": "reason_for_visit_src_3"
+          },
+          {
+            "name": "actual_length_of_stay",
+            "expression": "actual_length_of_stay_src_3"
+          },
+          {
+            "name": "covered_length_of_stay",
+            "expression": "covered_length_of_stay_src_3"
+          },
+          {
+            "name": "line_of_business",
+            "expression": "line_of_business_src_3"
+          },
+          {
+            "name": "product",
+            "expression": "product_src_3"
+          },
+          {
+            "name": "primary_payer",
+            "expression": "primary_payer_src_3"
+          },
+          {
+            "name": "clm_type_cd",
+            "expression": "CLM_TYPE_CD_src_3"
+          },
+          {
+            "name": "clm_op_srvc_type_cd",
+            "expression": "CLM_OP_SRVC_TYPE_CD_src_3"
+          },
+          {
+            "name": "dgns_prcdr_icd_ind",
+            "expression": "DGNS_PRCDR_ICD_IND_src_3"
+          },
+          {
+            "name": "clm_prcsg_ind_cd",
+            "expression": "CLM_PRCSG_IND_CD_src_3"
+          },
+          {
+            "name": "clm_cntl_num",
+            "expression": "CLM_CNTL_NUM_src_3"
+          },
+          {
+            "name": "clm_cntrctr_num",
+            "expression": "CLM_CNTRCTR_NUM_src_3"
+          },
+          {
+            "name": "clm_disp_cd",
+            "expression": "CLM_DISP_CD_src_3"
+          }
+        ],
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_claim_id",
+          "claim_type",
+          "source_resource_id",
+          "source_resource_type",
+          "source_format",
+          "patient_id",
+          "source_billing_org_id",
+          "source_rendering_org_id",
+          "discharge_date",
+          "statement_from",
+          "statement_through",
+          "paid_date",
+          "claim_effective_date",
+          "claim_received_date",
+          "claim_version_num",
+          "adjusted_claim_id",
+          "drg_code",
+          "drg_code_system",
+          "bill_type",
+          "admission_type",
+          "admission_source",
+          "discharge_status",
+          "claim_adjustment_type_cd",
+          "claim_status",
+          "reason_for_visit",
+          "actual_length_of_stay",
+          "covered_length_of_stay",
+          "line_of_business",
+          "product",
+          "primary_payer",
+          "clm_type_cd",
+          "clm_op_srvc_type_cd",
+          "dgns_prcdr_icd_ind",
+          "clm_prcsg_ind_cd",
+          "clm_cntl_num",
+          "clm_cntrctr_num",
+          "clm_disp_cd"
+        ]
+      },
+      {
+        "name": "claims_header_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ClaimHeaderExpression"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_claim_id",
+          "claim_type",
+          "source_resource_id",
+          "source_resource_type",
+          "source_format",
+          "patient_id",
+          "source_billing_org_id",
+          "source_rendering_org_id",
+          "discharge_date",
+          "statement_from",
+          "statement_through",
+          "paid_date",
+          "claim_effective_date",
+          "claim_received_date",
+          "claim_version_num",
+          "adjusted_claim_id",
+          "drg_code",
+          "drg_code_system",
+          "bill_type",
+          "admission_type",
+          "admission_source",
+          "discharge_status",
+          "claim_adjustment_type_cd",
+          "claim_status",
+          "reason_for_visit",
+          "actual_length_of_stay",
+          "covered_length_of_stay",
+          "line_of_business",
+          "product",
+          "primary_payer",
+          "clm_type_cd",
+          "clm_op_srvc_type_cd",
+          "dgns_prcdr_icd_ind",
+          "clm_prcsg_ind_cd",
+          "clm_cntl_num",
+          "clm_cntrctr_num",
+          "clm_disp_cd",
+          "record_hash",
+          "is_active",
+          "admission_date"
+        ],
+        "derived_fields": [
+          {
+            "name": "record_hash",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "is_active",
+            "expression": "CAST(NULL AS BOOLEAN)"
+          },
+          {
+            "name": "admission_date",
+            "expression": "CAST(NULL AS DATE)"
+          }
+        ]
+      },
+      {
+        "name": "claims_header",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claims_header_final"
+        ],
+        "target": {
+          "$ref": "#/targets/claims_header"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "ClaimLineDedup",
+        "transformation": "Deduplicator",
+        "dependent_on": [
+          "d0284_cclf_claim_line_view_IngestFilter"
+        ],
+        "dedup_by": [
+          "source_claim_id_src_6",
+          "line_number_src_6"
+        ],
+        "keep": "first",
+        "order_by": [
+          {
+            "column": "source_claim_id_src_6",
+            "order": "asc"
+          },
+          {
+            "column": "line_number_src_6",
+            "order": "asc"
+          }
+        ]
+      },
+      {
+        "name": "ClaimLineExpression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ClaimLineDedup"
+        ],
+        "derived_fields": [
+          {
+            "name": "batch_id",
+            "expression": "CAST(batch_id_src_6 AS STRING)"
+          },
+          {
+            "name": "created_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "created_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "updated_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "source_system",
+            "expression": "'CCLF_D0284'"
+          },
+          {
+            "name": "source_claim_id",
+            "expression": "source_claim_id_src_6"
+          },
+          {
+            "name": "line_number",
+            "expression": "line_number_src_6"
+          },
+          {
+            "name": "source_line_id",
+            "expression": "source_line_id_src_6"
+          },
+          {
+            "name": "service_date",
+            "expression": "service_date_src_6"
+          },
+          {
+            "name": "service_end_date",
+            "expression": "service_end_date_src_6"
+          },
+          {
+            "name": "revenue_code",
+            "expression": "revenue_code_src_6"
+          },
+          {
+            "name": "revenue_code_system",
+            "expression": "revenue_code_system_src_6"
+          },
+          {
+            "name": "place_of_service",
+            "expression": "place_of_service_src_6"
+          },
+          {
+            "name": "billed_units",
+            "expression": "billed_units_src_6"
+          },
+          {
+            "name": "capitation_indicator",
+            "expression": "capitation_indicator_src_6"
+          },
+          {
+            "name": "modifier_1",
+            "expression": "modifier_1_src_6"
+          },
+          {
+            "name": "modifier_2",
+            "expression": "modifier_2_src_6"
+          },
+          {
+            "name": "modifier_3",
+            "expression": "modifier_3_src_6"
+          },
+          {
+            "name": "modifier_4",
+            "expression": "modifier_4_src_6"
+          },
+          {
+            "name": "modifier_5",
+            "expression": "modifier_5_src_6"
+          },
+          {
+            "name": "clm_rev_apc_hipps_cd",
+            "expression": "CLM_REV_APC_HIPPS_CD_src_6"
+          },
+          {
+            "name": "hcpcs_betos_cd",
+            "expression": "HCPCS_BETOS_CD_src_6"
+          }
+        ],
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_claim_id",
+          "line_number",
+          "source_line_id",
+          "service_date",
+          "service_end_date",
+          "revenue_code",
+          "revenue_code_system",
+          "place_of_service",
+          "billed_units",
+          "capitation_indicator",
+          "modifier_1",
+          "modifier_2",
+          "modifier_3",
+          "modifier_4",
+          "modifier_5",
+          "clm_rev_apc_hipps_cd",
+          "hcpcs_betos_cd"
+        ]
+      },
+      {
+        "name": "claims_line_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ClaimLineExpression"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_claim_id",
+          "line_number",
+          "source_line_id",
+          "service_date",
+          "service_end_date",
+          "revenue_code",
+          "revenue_code_system",
+          "place_of_service",
+          "billed_units",
+          "capitation_indicator",
+          "modifier_1",
+          "modifier_2",
+          "modifier_3",
+          "modifier_4",
+          "modifier_5",
+          "clm_rev_apc_hipps_cd",
+          "hcpcs_betos_cd",
+          "record_hash",
+          "is_active"
+        ],
+        "derived_fields": [
+          {
+            "name": "record_hash",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "is_active",
+            "expression": "CAST(NULL AS BOOLEAN)"
+          }
+        ]
+      },
+      {
+        "name": "claims_line",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claims_line_final"
+        ],
+        "target": {
+          "$ref": "#/targets/claims_line"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "ClaimProcedureDedup",
+        "transformation": "Deduplicator",
+        "dependent_on": [
+          "d0284_cclf_claim_procedure_view_IngestFilter"
+        ],
+        "dedup_by": [
+          "source_claim_id_src_2",
+          "line_number_src_2",
+          "procedure_sequence_src_2"
+        ],
+        "keep": "first",
+        "order_by": [
+          {
+            "column": "source_claim_id_src_2",
+            "order": "asc"
+          },
+          {
+            "column": "line_number_src_2",
+            "order": "asc"
+          },
+          {
+            "column": "procedure_sequence_src_2",
+            "order": "asc"
+          }
+        ]
+      },
+      {
+        "name": "ClaimProcedureExpression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ClaimProcedureDedup"
+        ],
+        "derived_fields": [
+          {
+            "name": "batch_id",
+            "expression": "CAST(batch_id_src_2 AS STRING)"
+          },
+          {
+            "name": "created_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "created_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "updated_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "source_system",
+            "expression": "'CCLF_D0284'"
+          },
+          {
+            "name": "source_claim_id",
+            "expression": "source_claim_id_src_2"
+          },
+          {
+            "name": "line_number",
+            "expression": "line_number_src_2"
+          },
+          {
+            "name": "procedure_sequence",
+            "expression": "procedure_sequence_src_2"
+          },
+          {
+            "name": "source_procedure_code",
+            "expression": "source_procedure_code_src_2"
+          },
+          {
+            "name": "source_procedure_code_system",
+            "expression": "source_procedure_code_system_src_2"
+          },
+          {
+            "name": "procedure_type",
+            "expression": "procedure_type_src_2"
+          },
+          {
+            "name": "procedure_date",
+            "expression": "procedure_date_src_2"
+          },
+          {
+            "name": "dgns_prcdr_icd_ind",
+            "expression": "DGNS_PRCDR_ICD_IND_src_2"
+          }
+        ],
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_claim_id",
+          "line_number",
+          "procedure_sequence",
+          "source_procedure_code",
+          "source_procedure_code_system",
+          "procedure_type",
+          "procedure_date",
+          "dgns_prcdr_icd_ind"
+        ]
+      },
+      {
+        "name": "claims_procedure_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ClaimProcedureExpression"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_claim_id",
+          "line_number",
+          "procedure_sequence",
+          "source_procedure_code",
+          "source_procedure_code_system",
+          "procedure_type",
+          "procedure_date",
+          "dgns_prcdr_icd_ind",
+          "record_hash",
+          "is_active"
+        ],
+        "derived_fields": [
+          {
+            "name": "record_hash",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "is_active",
+            "expression": "CAST(NULL AS BOOLEAN)"
+          }
+        ]
+      },
+      {
+        "name": "claims_procedure",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claims_procedure_final"
+        ],
+        "target": {
+          "$ref": "#/targets/claims_procedure"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "ClaimDiagnosisDedup",
+        "transformation": "Deduplicator",
+        "dependent_on": [
+          "d0284_cclf_claim_diagnosis_view_IngestFilter"
+        ],
+        "dedup_by": [
+          "source_claim_id_src_4",
+          "diagnosis_sequence_src_4"
+        ],
+        "keep": "first",
+        "order_by": [
+          {
+            "column": "source_claim_id_src_4",
+            "order": "asc"
+          },
+          {
+            "column": "diagnosis_sequence_src_4",
+            "order": "asc"
+          }
+        ]
+      },
+      {
+        "name": "ClaimDiagnosisExpression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ClaimDiagnosisDedup"
+        ],
+        "derived_fields": [
+          {
+            "name": "batch_id",
+            "expression": "CAST(batch_id_src_4 AS STRING)"
+          },
+          {
+            "name": "created_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "created_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "updated_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "source_system",
+            "expression": "'CCLF_D0284'"
+          },
+          {
+            "name": "source_claim_id",
+            "expression": "source_claim_id_src_4"
+          },
+          {
+            "name": "source_diagnosis_code",
+            "expression": "source_diagnosis_code_src_4"
+          },
+          {
+            "name": "source_diagnosis_code_system",
+            "expression": "source_diagnosis_code_system_src_4"
+          },
+          {
+            "name": "diagnosis_sequence",
+            "expression": "diagnosis_sequence_src_4"
+          },
+          {
+            "name": "diagnosis_type",
+            "expression": "diagnosis_type_src_4"
+          },
+          {
+            "name": "poa_flag",
+            "expression": "poa_flag_src_4"
+          },
+          {
+            "name": "clm_prod_type_cd",
+            "expression": "CLM_PROD_TYPE_CD_src_4"
+          }
+        ],
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_claim_id",
+          "source_diagnosis_code",
+          "source_diagnosis_code_system",
+          "diagnosis_sequence",
+          "diagnosis_type",
+          "poa_flag",
+          "clm_prod_type_cd"
+        ]
+      },
+      {
+        "name": "claims_diagnosis_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ClaimDiagnosisExpression"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_claim_id",
+          "source_diagnosis_code",
+          "source_diagnosis_code_system",
+          "diagnosis_sequence",
+          "diagnosis_type",
+          "poa_flag",
+          "clm_prod_type_cd",
+          "record_hash",
+          "is_active"
+        ],
+        "derived_fields": [
+          {
+            "name": "record_hash",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "is_active",
+            "expression": "CAST(NULL AS BOOLEAN)"
+          }
+        ]
+      },
+      {
+        "name": "claims_diagnosis",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claims_diagnosis_final"
+        ],
+        "target": {
+          "$ref": "#/targets/claims_diagnosis"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "ClaimProviderDedup",
+        "transformation": "Deduplicator",
+        "dependent_on": [
+          "d0284_cclf_claim_provider_view_IngestFilter"
+        ],
+        "dedup_by": [
+          "source_claim_id_src_7",
+          "line_number_src_7",
+          "provider_role_code_src_7",
+          "provider_identifier_value_src_7"
+        ],
+        "keep": "first",
+        "order_by": [
+          {
+            "column": "source_claim_id_src_7",
+            "order": "asc"
+          },
+          {
+            "column": "line_number_src_7",
+            "order": "asc"
+          },
+          {
+            "column": "provider_role_code_src_7",
+            "order": "asc"
+          },
+          {
+            "column": "provider_identifier_value_src_7",
+            "order": "asc"
+          }
+        ]
+      },
+      {
+        "name": "ClaimProviderExpression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ClaimProviderDedup"
+        ],
+        "derived_fields": [
+          {
+            "name": "batch_id",
+            "expression": "batch_id_src_7"
+          },
+          {
+            "name": "created_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "created_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "updated_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "source_system",
+            "expression": "'CCLF_D0284'"
+          },
+          {
+            "name": "source_claim_id",
+            "expression": "source_claim_id_src_7"
+          },
+          {
+            "name": "line_number",
+            "expression": "line_number_src_7"
+          },
+          {
+            "name": "provider_role_code",
+            "expression": "provider_role_code_src_7"
+          },
+          {
+            "name": "provider_role_system",
+            "expression": "provider_role_system_src_7"
+          },
+          {
+            "name": "provider_identifier_system",
+            "expression": "provider_identifier_system_src_7"
+          },
+          {
+            "name": "provider_identifier_value",
+            "expression": "provider_identifier_value_src_7"
+          },
+          {
+            "name": "npi",
+            "expression": "npi_src_7"
+          },
+          {
+            "name": "tin",
+            "expression": "tin_src_7"
+          },
+          {
+            "name": "servicing_facility_name",
+            "expression": "servicing_facility_name_src_7"
+          },
+          {
+            "name": "servicing_facility_category",
+            "expression": "servicing_facility_category_src_7"
+          },
+          {
+            "name": "rndrg_prvdr_type_cd",
+            "expression": "RNDRG_PRVDR_TYPE_CD_src_7"
+          },
+          {
+            "name": "clm_prvdr_spclty_cd",
+            "expression": "CLM_PRVDR_SPCLTY_CD_src_7"
+          },
+          {
+            "name": "location",
+            "expression": "location_src_7"
+          }
+        ],
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_claim_id",
+          "line_number",
+          "provider_role_code",
+          "provider_role_system",
+          "provider_identifier_system",
+          "provider_identifier_value",
+          "npi",
+          "tin",
+          "servicing_facility_name",
+          "servicing_facility_category",
+          "rndrg_prvdr_type_cd",
+          "clm_prvdr_spclty_cd",
+          "location"
+        ]
+      },
+      {
+        "name": "claims_provider_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ClaimProviderExpression"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_claim_id",
+          "line_number",
+          "provider_role_code",
+          "provider_role_system",
+          "provider_identifier_system",
+          "provider_identifier_value",
+          "npi",
+          "tin",
+          "servicing_facility_name",
+          "servicing_facility_category",
+          "rndrg_prvdr_type_cd",
+          "clm_prvdr_spclty_cd",
+          "location",
+          "record_hash",
+          "is_active"
+        ],
+        "derived_fields": [
+          {
+            "name": "record_hash",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "is_active",
+            "expression": "CAST(NULL AS BOOLEAN)"
+          }
+        ]
+      },
+      {
+        "name": "claims_provider",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claims_provider_final"
+        ],
+        "target": {
+          "$ref": "#/targets/claims_provider"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "ClaimAdjudicationDedup",
+        "transformation": "Deduplicator",
+        "dependent_on": [
+          "d0284_cclf_claim_adjudication_view_IngestFilter"
+        ],
+        "dedup_by": [
+          "source_claim_id_src_5",
+          "adjudication_category_code_src_5"
+        ],
+        "keep": "first",
+        "order_by": [
+          {
+            "column": "source_claim_id_src_5",
+            "order": "asc"
+          },
+          {
+            "column": "adjudication_category_code_src_5",
+            "order": "asc"
+          }
+        ]
+      },
+      {
+        "name": "ClaimAdjudicationExpression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ClaimAdjudicationDedup"
+        ],
+        "derived_fields": [
+          {
+            "name": "batch_id",
+            "expression": "CAST(batch_id_src_5 AS STRING)"
+          },
+          {
+            "name": "created_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "created_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "updated_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "source_system",
+            "expression": "'CCLF_D0284'"
+          },
+          {
+            "name": "source_claim_id",
+            "expression": "source_claim_id_src_5"
+          },
+          {
+            "name": "adjudication_type",
+            "expression": "adjudication_type_src_5"
+          },
+          {
+            "name": "adjudication_category_code",
+            "expression": "adjudication_category_code_src_5"
+          },
+          {
+            "name": "adjudication_category_system",
+            "expression": "adjudication_category_system_src_5"
+          },
+          {
+            "name": "adjudication_reason_code",
+            "expression": "adjudication_reason_code_src_5"
+          },
+          {
+            "name": "adjudication_reason_system",
+            "expression": "adjudication_reason_system_src_5"
+          },
+          {
+            "name": "amount",
+            "expression": "amount_src_5"
+          },
+          {
+            "name": "currency",
+            "expression": "currency_src_5"
+          },
+          {
+            "name": "value",
+            "expression": "value_src_5"
+          }
+        ],
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_claim_id",
+          "adjudication_type",
+          "adjudication_category_code",
+          "adjudication_category_system",
+          "adjudication_reason_code",
+          "adjudication_reason_system",
+          "amount",
+          "currency",
+          "value"
+        ]
+      },
+      {
+        "name": "claims_adjudication_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ClaimAdjudicationExpression"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_claim_id",
+          "adjudication_type",
+          "adjudication_category_code",
+          "adjudication_category_system",
+          "adjudication_reason_code",
+          "adjudication_reason_system",
+          "amount",
+          "currency",
+          "value",
+          "record_hash",
+          "is_deleted",
+          "is_active"
+        ],
+        "derived_fields": [
+          {
+            "name": "record_hash",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "is_deleted",
+            "expression": "CAST(NULL AS BOOLEAN)"
+          },
+          {
+            "name": "is_active",
+            "expression": "CAST(NULL AS BOOLEAN)"
+          }
+        ]
+      },
+      {
+        "name": "claims_adjudication",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claims_adjudication_final"
+        ],
+        "target": {
+          "$ref": "#/targets/claims_adjudication"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "ClaimLineAdjudicationDedup",
+        "transformation": "Deduplicator",
+        "dependent_on": [
+          "d0284_cclf_claim_line_adjudication_view_IngestFilter"
+        ],
+        "dedup_by": [
+          "source_claim_id_src_1",
+          "line_number_src_1",
+          "adjudication_category_bb_code_src_1"
+        ],
+        "keep": "first",
+        "order_by": [
+          {
+            "column": "source_claim_id_src_1",
+            "order": "asc"
+          },
+          {
+            "column": "line_number_src_1",
+            "order": "asc"
+          },
+          {
+            "column": "adjudication_category_bb_code_src_1",
+            "order": "asc"
+          }
+        ]
+      },
+      {
+        "name": "ClaimLineAdjudicationExpression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ClaimLineAdjudicationDedup"
+        ],
+        "derived_fields": [
+          {
+            "name": "batch_id",
+            "expression": "CAST(batch_id_src_1 AS STRING)"
+          },
+          {
+            "name": "created_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "created_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "updated_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "source_system",
+            "expression": "'CCLF_D0284'"
+          },
+          {
+            "name": "source_claim_id",
+            "expression": "source_claim_id_src_1"
+          },
+          {
+            "name": "line_number",
+            "expression": "line_number_src_1"
+          },
+          {
+            "name": "adjudication_type",
+            "expression": "adjudication_type_src_1"
+          },
+          {
+            "name": "adjudication_category_code",
+            "expression": "adjudication_category_code_src_1"
+          },
+          {
+            "name": "adjudication_category_bb_code",
+            "expression": "adjudication_category_bb_code_src_1"
+          },
+          {
+            "name": "adjudication_category_system",
+            "expression": "adjudication_category_system_src_1"
+          },
+          {
+            "name": "adjudication_reason_code",
+            "expression": "adjudication_reason_code_src_1"
+          },
+          {
+            "name": "adjudication_reason_system",
+            "expression": "adjudication_reason_system_src_1"
+          },
+          {
+            "name": "amount",
+            "expression": "amount_src_1"
+          },
+          {
+            "name": "currency",
+            "expression": "currency_src_1"
+          },
+          {
+            "name": "value",
+            "expression": "value_src_1"
+          }
+        ],
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_claim_id",
+          "line_number",
+          "adjudication_type",
+          "adjudication_category_code",
+          "adjudication_category_bb_code",
+          "adjudication_category_system",
+          "adjudication_reason_code",
+          "adjudication_reason_system",
+          "amount",
+          "currency",
+          "value"
+        ]
+      },
+      {
+        "name": "claims_line_adjudication_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ClaimLineAdjudicationExpression"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_claim_id",
+          "line_number",
+          "adjudication_type",
+          "adjudication_category_code",
+          "adjudication_category_bb_code",
+          "adjudication_category_system",
+          "adjudication_reason_code",
+          "adjudication_reason_system",
+          "amount",
+          "currency",
+          "value",
+          "record_hash",
+          "is_active"
+        ],
+        "derived_fields": [
+          {
+            "name": "record_hash",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "is_active",
+            "expression": "CAST(NULL AS BOOLEAN)"
+          }
+        ]
+      },
+      {
+        "name": "claims_line_adjudication",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claims_line_adjudication_final"
+        ],
+        "target": {
+          "$ref": "#/targets/claims_line_adjudication"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "PatientDedup",
+        "transformation": "Deduplicator",
+        "dependent_on": [
+          "d0284_cclf_patient_view_IngestFilter"
+        ],
+        "dedup_by": [
+          "source_member_id_src_9"
+        ],
+        "keep": "first",
+        "order_by": [
+          {
+            "column": "source_member_id_src_9",
+            "order": "asc"
+          }
+        ]
+      },
+      {
+        "name": "PatientExpression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "PatientDedup"
+        ],
+        "derived_fields": [
+          {
+            "name": "batch_id",
+            "expression": "batch_id_src_9"
+          },
+          {
+            "name": "created_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "created_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "updated_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "source_system",
+            "expression": "'CCLF_D0284'"
+          },
+          {
+            "name": "source_member_id",
+            "expression": "source_member_id_src_9"
+          },
+          {
+            "name": "mbi_id",
+            "expression": "mbi_id_src_9"
+          },
+          {
+            "name": "hicn",
+            "expression": "hicn_src_9"
+          },
+          {
+            "name": "first_name",
+            "expression": "first_name_src_9"
+          },
+          {
+            "name": "middle_name",
+            "expression": "middle_name_src_9"
+          },
+          {
+            "name": "last_name",
+            "expression": "last_name_src_9"
+          },
+          {
+            "name": "date_of_birth",
+            "expression": "date_of_birth_src_9"
+          },
+          {
+            "name": "deceased_date",
+            "expression": "deceased_date_src_9"
+          },
+          {
+            "name": "death_indicator",
+            "expression": "death_indicator_src_9"
+          },
+          {
+            "name": "gender",
+            "expression": "gender_src_9"
+          },
+          {
+            "name": "race_code",
+            "expression": "race_code_src_9"
+          },
+          {
+            "name": "ethnicity_code",
+            "expression": "ethnicity_code_src_9"
+          },
+          {
+            "name": "address_line1",
+            "expression": "address_line1_src_9"
+          },
+          {
+            "name": "address_line2",
+            "expression": "address_line2_src_9"
+          },
+          {
+            "name": "city",
+            "expression": "city_src_9"
+          },
+          {
+            "name": "state",
+            "expression": "state_src_9"
+          },
+          {
+            "name": "zip_code",
+            "expression": "zip_code_src_9"
+          },
+          {
+            "name": "country",
+            "expression": "country_src_9"
+          },
+          {
+            "name": "address_line3",
+            "expression": "address_line3_src_9"
+          },
+          {
+            "name": "address_line4",
+            "expression": "address_line4_src_9"
+          },
+          {
+            "name": "address_line5",
+            "expression": "address_line5_src_9"
+          },
+          {
+            "name": "address_line6",
+            "expression": "address_line6_src_9"
+          },
+          {
+            "name": "county_fips_code",
+            "expression": "county_fips_code_src_9"
+          },
+          {
+            "name": "state_fips_code",
+            "expression": "state_fips_code_src_9"
+          },
+          {
+            "name": "zip5",
+            "expression": "zip5_src_9"
+          },
+          {
+            "name": "zip4",
+            "expression": "zip4_src_9"
+          },
+          {
+            "name": "mdcr_status_code",
+            "expression": "mdcr_status_code_src_9"
+          },
+          {
+            "name": "dual_status_code",
+            "expression": "dual_status_code_src_9"
+          },
+          {
+            "name": "original_entitlement_reason_code",
+            "expression": "original_entitlement_reason_code_src_9"
+          },
+          {
+            "name": "entitlement_buyin_indicator",
+            "expression": "entitlement_buyin_indicator_src_9"
+          },
+          {
+            "name": "part_a_enrollment_begin_date",
+            "expression": "part_a_enrollment_begin_date_src_9"
+          },
+          {
+            "name": "part_b_enrollment_begin_date",
+            "expression": "part_b_enrollment_begin_date_src_9"
+          },
+          {
+            "name": "bene_rng_bgn_dt",
+            "expression": "bene_rng_bgn_dt_src_9"
+          },
+          {
+            "name": "bene_rng_end_dt",
+            "expression": "bene_rng_end_dt_src_9"
+          }
+        ],
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_member_id",
+          "mbi_id",
+          "hicn",
+          "first_name",
+          "middle_name",
+          "last_name",
+          "date_of_birth",
+          "deceased_date",
+          "death_indicator",
+          "gender",
+          "race_code",
+          "ethnicity_code",
+          "address_line1",
+          "address_line2",
+          "city",
+          "state",
+          "zip_code",
+          "country",
+          "address_line3",
+          "address_line4",
+          "address_line5",
+          "address_line6",
+          "county_fips_code",
+          "state_fips_code",
+          "zip5",
+          "zip4",
+          "mdcr_status_code",
+          "dual_status_code",
+          "original_entitlement_reason_code",
+          "entitlement_buyin_indicator",
+          "part_a_enrollment_begin_date",
+          "part_b_enrollment_begin_date",
+          "bene_rng_bgn_dt",
+          "bene_rng_end_dt"
+        ]
+      },
+      {
+        "name": "patients_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "PatientExpression"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_member_id",
+          "mbi_id",
+          "hicn",
+          "first_name",
+          "middle_name",
+          "last_name",
+          "date_of_birth",
+          "deceased_date",
+          "death_indicator",
+          "gender",
+          "race_code",
+          "ethnicity_code",
+          "address_line1",
+          "address_line2",
+          "city",
+          "state",
+          "zip_code",
+          "country",
+          "address_line3",
+          "address_line4",
+          "address_line5",
+          "address_line6",
+          "county_fips_code",
+          "state_fips_code",
+          "zip5",
+          "zip4",
+          "mdcr_status_code",
+          "dual_status_code",
+          "original_entitlement_reason_code",
+          "entitlement_buyin_indicator",
+          "part_a_enrollment_begin_date",
+          "part_b_enrollment_begin_date",
+          "bene_rng_bgn_dt",
+          "bene_rng_end_dt",
+          "record_hash",
+          "is_active"
+        ],
+        "derived_fields": [
+          {
+            "name": "record_hash",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "is_active",
+            "expression": "CAST(NULL AS BOOLEAN)"
+          }
+        ]
+      },
+      {
+        "name": "patients",
+        "transformation": "Writer",
+        "dependent_on": [
+          "patients_final"
+        ],
+        "target": {
+          "$ref": "#/targets/patients"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "PharmacyClaimDedup",
+        "transformation": "Deduplicator",
+        "dependent_on": [
+          "d0284_cclf_pharmacy_claim_view_IngestFilter"
+        ],
+        "dedup_by": [
+          "source_claim_id_src_8"
+        ],
+        "keep": "first",
+        "order_by": [
+          {
+            "column": "source_claim_id_src_8",
+            "order": "asc"
+          }
+        ]
+      },
+      {
+        "name": "PharmacyClaimExpression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "PharmacyClaimDedup"
+        ],
+        "derived_fields": [
+          {
+            "name": "batch_id",
+            "expression": "batch_id_src_8"
+          },
+          {
+            "name": "created_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "created_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'CLAIMS_PIPELINE'"
+          },
+          {
+            "name": "updated_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "source_system",
+            "expression": "'CCLF_D0284'"
+          },
+          {
+            "name": "silver_id",
+            "expression": "uuid()"
+          },
+          {
+            "name": "source_claim_id",
+            "expression": "source_claim_id_src_8"
+          },
+          {
+            "name": "claim_type",
+            "expression": "claim_type_src_8"
+          },
+          {
+            "name": "external_claim_id",
+            "expression": "external_claim_id_src_8"
+          },
+          {
+            "name": "replaced_claim_id",
+            "expression": "replaced_claim_id_src_8"
+          },
+          {
+            "name": "claim_adjustment_type_cd",
+            "expression": "claim_adjustment_type_cd_src_8"
+          },
+          {
+            "name": "claim_received_date",
+            "expression": "claim_received_date_src_8"
+          },
+          {
+            "name": "patient_id",
+            "expression": "patient_id_src_8"
+          },
+          {
+            "name": "source_member_id",
+            "expression": "source_member_id_src_8"
+          },
+          {
+            "name": "primary_payer_id",
+            "expression": "primary_payer_id_src_8"
+          },
+          {
+            "name": "primary_payer",
+            "expression": "primary_payer_src_8"
+          },
+          {
+            "name": "claim_effective_date",
+            "expression": "claim_effective_date_src_8"
+          },
+          {
+            "name": "claim_status",
+            "expression": "claim_status_src_8"
+          },
+          {
+            "name": "denial_reason",
+            "expression": "denial_reason_src_8"
+          },
+          {
+            "name": "quantity_units",
+            "expression": "quantity_units_src_8"
+          },
+          {
+            "name": "line_number",
+            "expression": "line_number_src_8"
+          },
+          {
+            "name": "prescription_date",
+            "expression": "prescription_date_src_8"
+          },
+          {
+            "name": "filled_date",
+            "expression": "filled_date_src_8"
+          },
+          {
+            "name": "service_date",
+            "expression": "service_date_src_8"
+          },
+          {
+            "name": "ndc_code",
+            "expression": "ndc_code_src_8"
+          },
+          {
+            "name": "source_drug_code",
+            "expression": "source_drug_code_src_8"
+          },
+          {
+            "name": "source_code_system",
+            "expression": "source_code_system_src_8"
+          },
+          {
+            "name": "product",
+            "expression": "product_src_8"
+          },
+          {
+            "name": "quantity",
+            "expression": "quantity_src_8"
+          },
+          {
+            "name": "days_supply",
+            "expression": "days_supply_src_8"
+          },
+          {
+            "name": "prescriber_id",
+            "expression": "prescriber_id_src_8"
+          },
+          {
+            "name": "prescriber_npi",
+            "expression": "prescriber_npi_src_8"
+          },
+          {
+            "name": "dispensing_facility_id",
+            "expression": "dispensing_facility_id_src_8"
+          },
+          {
+            "name": "line_charge",
+            "expression": "line_charge_src_8"
+          },
+          {
+            "name": "allowed_amount",
+            "expression": "allowed_amount_src_8"
+          },
+          {
+            "name": "plan_paid_amount",
+            "expression": "plan_paid_amount_src_8"
+          },
+          {
+            "name": "member_responsibility",
+            "expression": "member_responsibility_src_8"
+          }
+        ],
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "silver_id",
+          "source_claim_id",
+          "claim_type",
+          "external_claim_id",
+          "replaced_claim_id",
+          "claim_adjustment_type_cd",
+          "claim_received_date",
+          "patient_id",
+          "source_member_id",
+          "primary_payer_id",
+          "primary_payer",
+          "claim_effective_date",
+          "claim_status",
+          "denial_reason",
+          "quantity_units",
+          "line_number",
+          "prescription_date",
+          "filled_date",
+          "service_date",
+          "ndc_code",
+          "source_drug_code",
+          "source_code_system",
+          "product",
+          "quantity",
+          "days_supply",
+          "prescriber_id",
+          "prescriber_npi",
+          "dispensing_facility_id",
+          "line_charge",
+          "allowed_amount",
+          "plan_paid_amount",
+          "member_responsibility"
+        ]
+      },
+      {
+        "name": "pharmacy_claim_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "PharmacyClaimExpression"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "silver_id",
+          "source_claim_id",
+          "claim_type",
+          "external_claim_id",
+          "replaced_claim_id",
+          "claim_adjustment_type_cd",
+          "claim_received_date",
+          "patient_id",
+          "source_member_id",
+          "primary_payer_id",
+          "primary_payer",
+          "claim_effective_date",
+          "claim_status",
+          "denial_reason",
+          "quantity_units",
+          "line_number",
+          "prescription_date",
+          "filled_date",
+          "service_date",
+          "ndc_code",
+          "source_drug_code",
+          "source_code_system",
+          "product",
+          "quantity",
+          "days_supply",
+          "prescriber_id",
+          "prescriber_npi",
+          "dispensing_facility_id",
+          "line_charge",
+          "allowed_amount",
+          "plan_paid_amount",
+          "member_responsibility",
+          "record_hash",
+          "is_deleted",
+          "is_active"
+        ],
+        "derived_fields": [
+          {
+            "name": "record_hash",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "is_deleted",
+            "expression": "CAST(NULL AS BOOLEAN)"
+          },
+          {
+            "name": "is_active",
+            "expression": "CAST(NULL AS BOOLEAN)"
+          }
+        ]
+      },
+      {
+        "name": "pharmacy_claim",
+        "transformation": "Writer",
+        "dependent_on": [
+          "pharmacy_claim_final"
+        ],
+        "target": {
+          "$ref": "#/targets/pharmacy_claim"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
       }
     ],
-    "target_rows": [
-      {
-        "data_src_id": 1951,
-        "label": "patient \u00b7 silverraw_claims.patient"
-      },
-      {
-        "data_src_id": 1950,
-        "label": "claim_provider \u00b7 silverraw_claims.claim_provider"
-      },
-      {
-        "data_src_id": 1949,
-        "label": "claim_diagnosis \u00b7 silverraw_claims.claim_diagnosis"
-      },
-      {
-        "data_src_id": 1948,
-        "label": "pharmacy_claim_header \u00b7 silverraw_claims.pharmacy_claim_header"
-      },
-      {
-        "data_src_id": 1947,
-        "label": "claim_line \u00b7 silverraw_claims.claim_line"
-      },
-      {
-        "data_src_id": 1946,
-        "label": "claim_procedure \u00b7 silverraw_claims.claim_procedure"
-      },
-      {
-        "data_src_id": 1945,
-        "label": "claim_header \u00b7 silverraw_claims.claim_header"
-      },
-      {
-        "data_src_id": 1944,
-        "label": "claim_line_adjudication \u00b7 silverraw_claims.claim_line_adjudication"
-      },
-      {
-        "data_src_id": 1943,
-        "label": "claim_adjudication \u00b7 silverraw_claims.claim_adjudication"
-      }
-    ],
-    "batch_control": {
+     "batch_control": {
       "enabled": true,
+      "feed_name": "test_ods3",
+      "business_date": "2026-06-30",
+      "delivery_id": "test_ods3_2026-06-30",
+      "batch_id": 1,
+      "use_existing_batch_id": false,
+      "validate_existing_batch": true,
+      "require_input_acceptance": true,
+      "auto_accept_input_on_batch_init": true,
+      "input_registry_processed_on_stage": "silver_raw",
+      "seed_stage_rows": true,
       "stages": [
         "silver_raw"
       ],
-      "feed_name": "test_ods3",
       "storage": {
-        "namespace": {
-          "catalog": "cinqdev",
-          "schema": "control"
-        },
         "connection": {
           "name": "control_delta",
           "connection_type": "DatabricksDeltaLake"
+        },
+        "namespace": {
+          "catalog": "sasi",
+          "schema": "ods_control"
         }
-      }
+      },
+      "stage_to_transformations": {
+        "silver_raw": [
+          "d0284_cclf_claim_line_adjudication_view",
+          "d0284_cclf_claim_line_adjudication_view_MaxBatchExpr",
+          "d0284_cclf_claim_line_adjudication_view_IngestFilter",
+          "d0284_cclf_claim_procedure_view",
+          "d0284_cclf_claim_procedure_view_MaxBatchExpr",
+          "d0284_cclf_claim_procedure_view_IngestFilter",
+          "d0284_cclf_claim_header_view",
+          "d0284_cclf_claim_header_view_MaxBatchExpr",
+          "d0284_cclf_claim_header_view_IngestFilter",
+          "d0284_cclf_claim_diagnosis_view",
+          "d0284_cclf_claim_diagnosis_view_MaxBatchExpr",
+          "d0284_cclf_claim_diagnosis_view_IngestFilter",
+          "d0284_cclf_claim_adjudication_view",
+          "d0284_cclf_claim_adjudication_view_MaxBatchExpr",
+          "d0284_cclf_claim_adjudication_view_IngestFilter",
+          "d0284_cclf_claim_line_view",
+          "d0284_cclf_claim_line_view_MaxBatchExpr",
+          "d0284_cclf_claim_line_view_IngestFilter",
+          "d0284_cclf_claim_provider_view",
+          "d0284_cclf_claim_provider_view_MaxBatchExpr",
+          "d0284_cclf_claim_provider_view_IngestFilter",
+          "d0284_cclf_pharmacy_claim_view",
+          "d0284_cclf_pharmacy_claim_view_MaxBatchExpr",
+          "d0284_cclf_pharmacy_claim_view_IngestFilter",
+          "d0284_cclf_patient_view",
+          "d0284_cclf_patient_view_MaxBatchExpr",
+          "d0284_cclf_patient_view_IngestFilter",
+          "ClaimHeaderDedup",
+          "ClaimHeaderExpression",
+          "claims_header_final",
+          "claims_header",
+          "ClaimLineDedup",
+          "ClaimLineExpression",
+          "claims_line_final",
+          "claims_line",
+          "ClaimProcedureDedup",
+          "ClaimProcedureExpression",
+          "claims_procedure_final",
+          "claims_procedure",
+          "ClaimDiagnosisDedup",
+          "ClaimDiagnosisExpression",
+          "claims_diagnosis_final",
+          "claims_diagnosis",
+          "ClaimProviderDedup",
+          "ClaimProviderExpression",
+          "claims_provider_final",
+          "claims_provider",
+          "ClaimAdjudicationDedup",
+          "ClaimAdjudicationExpression",
+          "claims_adjudication_final",
+          "claims_adjudication",
+          "ClaimLineAdjudicationDedup",
+          "ClaimLineAdjudicationExpression",
+          "claims_line_adjudication_final",
+          "claims_line_adjudication",
+          "PatientDedup",
+          "PatientExpression",
+          "patients_final",
+          "patients",
+          "PharmacyClaimDedup",
+          "PharmacyClaimExpression",
+          "pharmacy_claim_final",
+          "pharmacy_claim"
+        ]
+      },
+     "error_threshold_pct": 50.0,
+      "run_scope": "GROUP",
+      "atomic_commit_enabled": true,
+      "group_id": 644,
+      "expected_group_members": 11,
+      "group_run_id": "test_ods3_20260630T074111Z"
     }
   },
   "pipeline_type": "requirement",
