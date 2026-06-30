@@ -1,0 +1,1756 @@
+{
+  "created_at": "2026-06-30T07:18:33.363521Z",
+  "updated_at": "2026-06-30T07:41:20.761144Z",
+  "created_by": "muthukumar@bighammer.ai",
+  "updated_by": "muthukumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 4,
+  "pipeline_id": 1134,
+  "pipeline_name": "testing_ods",
+  "pipeline_key": "testing_ods",
+  "bh_project_id": 303,
+  "notes": null,
+  "tags": null,
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "Project_s1",
+  "bh_github_username": "bh-sasi-git",
+  "pipeline_json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "testing_ods",
+    "description": "Silver raw to silver ODS \u2014 medical claims only (7 tables). Enrollment via members_enrollment_segments for claim_header patient_sk.",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [
+      {
+        "key": "catalog",
+        "value": "sasi"
+      },
+      {
+        "key": "batch_id",
+        "value": "1"
+      },
+      {
+        "key": "raw_schema",
+        "value": "cclf_silverraw"
+      },
+      {
+        "key": "ods_schema",
+        "value": "cclf_silverods"
+      },
+      {
+        "key": "enrollment_schema",
+        "value": "cclf_silverraw"
+      },
+      {
+        "key": "enrollment_catalog",
+        "value": "sasi"
+      }
+    ],
+    "connections": {
+      "databricks_raw": {
+        "name": "databricks_raw",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "${catalog}",
+        "schema": "${raw_schema}",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azuredatabrickslocal"
+      },
+      "databricks_ods": {
+        "name": "databricks_ods",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "${catalog}",
+        "schema": "${ods_schema}",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azuredatabrickslocal"
+      },
+      "databricks_enrollment": {
+        "name": "databricks_enrollment",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "${enrollment_catalog}",
+        "schema": "${enrollment_schema}",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azuredatabrickslocal"
+      }
+    },
+    "sources": {
+      "raw_claim_header": {
+        "name": "raw_claim_header",
+        "source_type": "Relational",
+        "table_name": "claim_header",
+        "connection": {
+          "$ref": "#/connections/databricks_raw"
+        }
+      },
+      "raw_claim_line": {
+        "name": "raw_claim_line",
+        "source_type": "Relational",
+        "table_name": "claim_line",
+        "connection": {
+          "$ref": "#/connections/databricks_raw"
+        }
+      },
+      "raw_claim_diagnosis": {
+        "name": "raw_claim_diagnosis",
+        "source_type": "Relational",
+        "table_name": "claim_diagnosis",
+        "connection": {
+          "$ref": "#/connections/databricks_raw"
+        }
+      },
+      "raw_claim_procedure": {
+        "name": "raw_claim_procedure",
+        "source_type": "Relational",
+        "table_name": "claim_procedure",
+        "connection": {
+          "$ref": "#/connections/databricks_raw"
+        }
+      },
+      "raw_claim_provider": {
+        "name": "raw_claim_provider",
+        "source_type": "Relational",
+        "table_name": "claim_provider",
+        "connection": {
+          "$ref": "#/connections/databricks_raw"
+        }
+      },
+      "raw_claim_adjudication": {
+        "name": "raw_claim_adjudication",
+        "source_type": "Relational",
+        "table_name": "claim_adjudication",
+        "connection": {
+          "$ref": "#/connections/databricks_raw"
+        }
+      },
+      "raw_claim_line_adjudication": {
+        "name": "raw_claim_line_adjudication",
+        "source_type": "Relational",
+        "table_name": "claim_line_adjudication",
+        "connection": {
+          "$ref": "#/connections/databricks_raw"
+        }
+      },
+      "enrollment_members_enrollment_segments": {
+        "name": "enrollment_members_enrollment_segments",
+        "source_type": "Relational",
+        "table_name": "members_enrollment_segments",
+        "connection": {
+          "$ref": "#/connections/databricks_enrollment"
+        }
+      }
+    },
+    "targets": {
+      "ods_claim_header": {
+        "name": "ods_claim_header",
+        "target_type": "Relational",
+        "table_name": "claim_header",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/databricks_ods"
+        },
+        "merge_keys": [
+          "business_key_hash"
+        ],
+        "process_deletes": false
+      },
+      "ods_claim_line": {
+        "name": "ods_claim_line",
+        "target_type": "Relational",
+        "table_name": "claim_line",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/databricks_ods"
+        },
+        "merge_keys": [
+          "business_key_hash"
+        ],
+        "process_deletes": false
+      },
+      "ods_claim_diagnosis": {
+        "name": "ods_claim_diagnosis",
+        "target_type": "Relational",
+        "table_name": "claim_diagnosis",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/databricks_ods"
+        },
+        "merge_keys": [
+          "business_key_hash"
+        ],
+        "process_deletes": false
+      },
+      "ods_claim_procedure": {
+        "name": "ods_claim_procedure",
+        "target_type": "Relational",
+        "table_name": "claim_procedure",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/databricks_ods"
+        },
+        "merge_keys": [
+          "business_key_hash"
+        ],
+        "process_deletes": false
+      },
+      "ods_claim_provider": {
+        "name": "ods_claim_provider",
+        "target_type": "Relational",
+        "table_name": "claim_provider",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/databricks_ods"
+        },
+        "merge_keys": [
+          "business_key_hash"
+        ],
+        "process_deletes": false
+      },
+      "ods_claim_adjudication": {
+        "name": "ods_claim_adjudication",
+        "target_type": "Relational",
+        "table_name": "claim_adjudication",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/databricks_ods"
+        },
+        "merge_keys": [
+          "business_key_hash"
+        ],
+        "process_deletes": false
+      },
+      "ods_claim_line_adjudication": {
+        "name": "ods_claim_line_adjudication",
+        "target_type": "Relational",
+        "table_name": "claim_line_adjudication",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/databricks_ods"
+        },
+        "merge_keys": [
+          "business_key_hash"
+        ],
+        "process_deletes": false
+      }
+    },
+    "transformations": [
+      {
+        "name": "read_raw_claim_header",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "debug_preview": true,
+        "debug_count": true,
+        "source": {
+          "$ref": "#/sources/raw_claim_header"
+        },
+        "sql_override": "SELECT * FROM read_raw_claim_header WHERE batch_id = '${batch_id}'"
+      },
+      {
+        "name": "enrich_claim_header",
+        "transformation": "SQL",
+        "dependent_on": [
+          "read_raw_claim_header"
+        ],
+        "queries": {
+          "result_inserts": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_header via member enrollment (cinq_id as patient_sk)\nWITH raw_batch AS (\n  SELECT\n    r.*,\n    p.mbi_id,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.claim_type as string)), ''),\n      coalesce(trim(cast(r.source_resource_id as string)), ''),\n      coalesce(trim(cast(r.source_resource_type as string)), ''),\n      coalesce(trim(cast(r.source_format as string)), ''),\n      coalesce(trim(cast(r.patient_id as string)), ''),\n      coalesce(trim(cast(r.source_billing_org_id as string)), ''),\n      coalesce(trim(cast(r.source_rendering_org_id as string)), ''),\n      coalesce(trim(cast(r.admission_date as string)), ''),\n      coalesce(trim(cast(r.discharge_date as string)), ''),\n      coalesce(trim(cast(r.statement_from as string)), ''),\n      coalesce(trim(cast(r.statement_through as string)), ''),\n      coalesce(trim(cast(r.paid_date as string)), ''),\n      coalesce(trim(cast(r.claim_effective_date as string)), ''),\n      coalesce(trim(cast(r.claim_received_date as string)), ''),\n      coalesce(trim(cast(r.claim_version_num as string)), ''),\n      coalesce(trim(cast(r.adjusted_claim_id as string)), ''),\n      coalesce(trim(cast(r.drg_code as string)), ''),\n      coalesce(trim(cast(r.drg_code_system as string)), ''),\n      coalesce(trim(cast(r.bill_type as string)), ''),\n      coalesce(trim(cast(r.admission_type as string)), ''),\n      coalesce(trim(cast(r.admission_source as string)), ''),\n      coalesce(trim(cast(r.discharge_status as string)), ''),\n      coalesce(trim(cast(r.claim_adjustment_type_cd as string)), ''),\n      coalesce(trim(cast(r.claim_status as string)), ''),\n      coalesce(trim(cast(r.reason_for_visit as string)), ''),\n      coalesce(trim(cast(r.actual_length_of_stay as string)), ''),\n      coalesce(trim(cast(r.covered_length_of_stay as string)), ''),\n      coalesce(trim(cast(r.line_of_business as string)), ''),\n      coalesce(trim(cast(r.product as string)), ''),\n      coalesce(trim(cast(r.primary_payer as string)), ''),\n      coalesce(trim(cast(r.clm_type_cd as string)), ''),\n      coalesce(trim(cast(r.clm_op_srvc_type_cd as string)), ''),\n      coalesce(trim(cast(r.dgns_prcdr_icd_ind as string)), ''),\n      coalesce(trim(cast(r.clm_prcsg_ind_cd as string)), ''),\n      coalesce(trim(cast(r.clm_cntl_num as string)), ''),\n      coalesce(trim(cast(r.clm_cntrctr_num as string)), ''),\n      coalesce(trim(cast(r.clm_disp_cd as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_header r\n  INNER JOIN ${catalog}.${raw_schema}.patient p\n    ON r.patient_id = p.source_member_id\n   AND r.source_system = p.source_system\n  WHERE r.batch_id = '${batch_id}'\n),\nenrollment_match AS (\n  SELECT\n    mes.cinq_id,\n    mes.insurance_id,\n    r.patient_id,\n    ROW_NUMBER() OVER (\n      PARTITION BY r.patient_id, mes.insurance_id, mes.cinq_id\n      ORDER BY mes.batch_id DESC\n    ) AS dup_seq\n  FROM ${enrollment_catalog}.${enrollment_schema}.members_enrollment_segments mes\n  INNER JOIN raw_batch r\n    ON mes.insurance_id = r.mbi_id\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.claim_type, r.source_resource_id, r.source_resource_type, r.source_format,\n    r.patient_id, r.source_billing_org_id, r.source_rendering_org_id,\n    r.admission_date, r.discharge_date, r.statement_from, r.statement_through, r.paid_date,\n    r.claim_effective_date, r.claim_received_date, r.claim_version_num, r.adjusted_claim_id,\n    r.drg_code, cast(null as string) AS drg_code_desc, r.drg_code_system,\n    r.bill_type, r.admission_type, r.admission_source, r.discharge_status,\n    r.claim_adjustment_type_cd, r.claim_status, r.reason_for_visit,\n    r.actual_length_of_stay, r.covered_length_of_stay, r.line_of_business, r.product, r.primary_payer,\n    r.clm_type_cd, r.clm_op_srvc_type_cd, r.dgns_prcdr_icd_ind, r.clm_prcsg_ind_cd,\n    r.clm_cntl_num, r.clm_cntrctr_num, r.clm_disp_cd,\n    mes.cinq_id AS patient_sk\n  FROM raw_batch r\n  INNER JOIN enrollment_match mes\n    ON r.patient_id = mes.patient_id\n   AND mes.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.claim_type, e.source_resource_id, e.source_resource_type, e.source_format,\n    e.patient_id, e.source_billing_org_id, e.source_rendering_org_id,\n    e.admission_date, e.discharge_date, e.statement_from, e.statement_through, e.paid_date,\n    e.claim_effective_date, e.claim_received_date, e.claim_version_num, e.adjusted_claim_id,\n    e.drg_code, coalesce(o.drg_code_desc, e.drg_code_desc) AS drg_code_desc, e.drg_code_system,\n    e.bill_type, e.admission_type, e.admission_source, e.discharge_status,\n    e.claim_adjustment_type_cd, e.claim_status, e.reason_for_visit,\n    e.actual_length_of_stay, e.covered_length_of_stay, e.line_of_business, e.product, e.primary_payer,\n    e.clm_type_cd, e.clm_op_srvc_type_cd, e.dgns_prcdr_icd_ind, e.clm_prcsg_ind_cd,\n    e.clm_cntl_num, e.clm_cntrctr_num, e.clm_disp_cd,\n    coalesce(o.claim_id_sk, uuid()) AS claim_id_sk,\n    coalesce(o.patient_sk, e.patient_sk) AS patient_sk,\n    CASE\n      WHEN o.claim_id_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.source_claim_id\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_header o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.source_claim_id = e.source_claim_id\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'INSERT'",
+          "result_updates": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_header via member enrollment (cinq_id as patient_sk)\nWITH raw_batch AS (\n  SELECT\n    r.*,\n    p.mbi_id,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.claim_type as string)), ''),\n      coalesce(trim(cast(r.source_resource_id as string)), ''),\n      coalesce(trim(cast(r.source_resource_type as string)), ''),\n      coalesce(trim(cast(r.source_format as string)), ''),\n      coalesce(trim(cast(r.patient_id as string)), ''),\n      coalesce(trim(cast(r.source_billing_org_id as string)), ''),\n      coalesce(trim(cast(r.source_rendering_org_id as string)), ''),\n      coalesce(trim(cast(r.admission_date as string)), ''),\n      coalesce(trim(cast(r.discharge_date as string)), ''),\n      coalesce(trim(cast(r.statement_from as string)), ''),\n      coalesce(trim(cast(r.statement_through as string)), ''),\n      coalesce(trim(cast(r.paid_date as string)), ''),\n      coalesce(trim(cast(r.claim_effective_date as string)), ''),\n      coalesce(trim(cast(r.claim_received_date as string)), ''),\n      coalesce(trim(cast(r.claim_version_num as string)), ''),\n      coalesce(trim(cast(r.adjusted_claim_id as string)), ''),\n      coalesce(trim(cast(r.drg_code as string)), ''),\n      coalesce(trim(cast(r.drg_code_system as string)), ''),\n      coalesce(trim(cast(r.bill_type as string)), ''),\n      coalesce(trim(cast(r.admission_type as string)), ''),\n      coalesce(trim(cast(r.admission_source as string)), ''),\n      coalesce(trim(cast(r.discharge_status as string)), ''),\n      coalesce(trim(cast(r.claim_adjustment_type_cd as string)), ''),\n      coalesce(trim(cast(r.claim_status as string)), ''),\n      coalesce(trim(cast(r.reason_for_visit as string)), ''),\n      coalesce(trim(cast(r.actual_length_of_stay as string)), ''),\n      coalesce(trim(cast(r.covered_length_of_stay as string)), ''),\n      coalesce(trim(cast(r.line_of_business as string)), ''),\n      coalesce(trim(cast(r.product as string)), ''),\n      coalesce(trim(cast(r.primary_payer as string)), ''),\n      coalesce(trim(cast(r.clm_type_cd as string)), ''),\n      coalesce(trim(cast(r.clm_op_srvc_type_cd as string)), ''),\n      coalesce(trim(cast(r.dgns_prcdr_icd_ind as string)), ''),\n      coalesce(trim(cast(r.clm_prcsg_ind_cd as string)), ''),\n      coalesce(trim(cast(r.clm_cntl_num as string)), ''),\n      coalesce(trim(cast(r.clm_cntrctr_num as string)), ''),\n      coalesce(trim(cast(r.clm_disp_cd as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_header r\n  INNER JOIN ${catalog}.${raw_schema}.patient p\n    ON r.patient_id = p.source_member_id\n   AND r.source_system = p.source_system\n  WHERE r.batch_id = '${batch_id}'\n),\nenrollment_match AS (\n  SELECT\n    mes.cinq_id,\n    mes.insurance_id,\n    r.patient_id,\n    ROW_NUMBER() OVER (\n      PARTITION BY r.patient_id, mes.insurance_id, mes.cinq_id\n      ORDER BY mes.batch_id DESC\n    ) AS dup_seq\n  FROM ${enrollment_catalog}.${enrollment_schema}.members_enrollment_segments mes\n  INNER JOIN raw_batch r\n    ON mes.insurance_id = r.mbi_id\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.claim_type, r.source_resource_id, r.source_resource_type, r.source_format,\n    r.patient_id, r.source_billing_org_id, r.source_rendering_org_id,\n    r.admission_date, r.discharge_date, r.statement_from, r.statement_through, r.paid_date,\n    r.claim_effective_date, r.claim_received_date, r.claim_version_num, r.adjusted_claim_id,\n    r.drg_code, cast(null as string) AS drg_code_desc, r.drg_code_system,\n    r.bill_type, r.admission_type, r.admission_source, r.discharge_status,\n    r.claim_adjustment_type_cd, r.claim_status, r.reason_for_visit,\n    r.actual_length_of_stay, r.covered_length_of_stay, r.line_of_business, r.product, r.primary_payer,\n    r.clm_type_cd, r.clm_op_srvc_type_cd, r.dgns_prcdr_icd_ind, r.clm_prcsg_ind_cd,\n    r.clm_cntl_num, r.clm_cntrctr_num, r.clm_disp_cd,\n    mes.cinq_id AS patient_sk\n  FROM raw_batch r\n  INNER JOIN enrollment_match mes\n    ON r.patient_id = mes.patient_id\n   AND mes.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.claim_type, e.source_resource_id, e.source_resource_type, e.source_format,\n    e.patient_id, e.source_billing_org_id, e.source_rendering_org_id,\n    e.admission_date, e.discharge_date, e.statement_from, e.statement_through, e.paid_date,\n    e.claim_effective_date, e.claim_received_date, e.claim_version_num, e.adjusted_claim_id,\n    e.drg_code, coalesce(o.drg_code_desc, e.drg_code_desc) AS drg_code_desc, e.drg_code_system,\n    e.bill_type, e.admission_type, e.admission_source, e.discharge_status,\n    e.claim_adjustment_type_cd, e.claim_status, e.reason_for_visit,\n    e.actual_length_of_stay, e.covered_length_of_stay, e.line_of_business, e.product, e.primary_payer,\n    e.clm_type_cd, e.clm_op_srvc_type_cd, e.dgns_prcdr_icd_ind, e.clm_prcsg_ind_cd,\n    e.clm_cntl_num, e.clm_cntrctr_num, e.clm_disp_cd,\n    coalesce(o.claim_id_sk, uuid()) AS claim_id_sk,\n    coalesce(o.patient_sk, e.patient_sk) AS patient_sk,\n    CASE\n      WHEN o.claim_id_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.source_claim_id\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_header o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.source_claim_id = e.source_claim_id\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'UPDATE'",
+          "result_deletes": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_header via member enrollment (cinq_id as patient_sk)\nWITH raw_batch AS (\n  SELECT\n    r.*,\n    p.mbi_id,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.claim_type as string)), ''),\n      coalesce(trim(cast(r.source_resource_id as string)), ''),\n      coalesce(trim(cast(r.source_resource_type as string)), ''),\n      coalesce(trim(cast(r.source_format as string)), ''),\n      coalesce(trim(cast(r.patient_id as string)), ''),\n      coalesce(trim(cast(r.source_billing_org_id as string)), ''),\n      coalesce(trim(cast(r.source_rendering_org_id as string)), ''),\n      coalesce(trim(cast(r.admission_date as string)), ''),\n      coalesce(trim(cast(r.discharge_date as string)), ''),\n      coalesce(trim(cast(r.statement_from as string)), ''),\n      coalesce(trim(cast(r.statement_through as string)), ''),\n      coalesce(trim(cast(r.paid_date as string)), ''),\n      coalesce(trim(cast(r.claim_effective_date as string)), ''),\n      coalesce(trim(cast(r.claim_received_date as string)), ''),\n      coalesce(trim(cast(r.claim_version_num as string)), ''),\n      coalesce(trim(cast(r.adjusted_claim_id as string)), ''),\n      coalesce(trim(cast(r.drg_code as string)), ''),\n      coalesce(trim(cast(r.drg_code_system as string)), ''),\n      coalesce(trim(cast(r.bill_type as string)), ''),\n      coalesce(trim(cast(r.admission_type as string)), ''),\n      coalesce(trim(cast(r.admission_source as string)), ''),\n      coalesce(trim(cast(r.discharge_status as string)), ''),\n      coalesce(trim(cast(r.claim_adjustment_type_cd as string)), ''),\n      coalesce(trim(cast(r.claim_status as string)), ''),\n      coalesce(trim(cast(r.reason_for_visit as string)), ''),\n      coalesce(trim(cast(r.actual_length_of_stay as string)), ''),\n      coalesce(trim(cast(r.covered_length_of_stay as string)), ''),\n      coalesce(trim(cast(r.line_of_business as string)), ''),\n      coalesce(trim(cast(r.product as string)), ''),\n      coalesce(trim(cast(r.primary_payer as string)), ''),\n      coalesce(trim(cast(r.clm_type_cd as string)), ''),\n      coalesce(trim(cast(r.clm_op_srvc_type_cd as string)), ''),\n      coalesce(trim(cast(r.dgns_prcdr_icd_ind as string)), ''),\n      coalesce(trim(cast(r.clm_prcsg_ind_cd as string)), ''),\n      coalesce(trim(cast(r.clm_cntl_num as string)), ''),\n      coalesce(trim(cast(r.clm_cntrctr_num as string)), ''),\n      coalesce(trim(cast(r.clm_disp_cd as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_header r\n  INNER JOIN ${catalog}.${raw_schema}.patient p\n    ON r.patient_id = p.source_member_id\n   AND r.source_system = p.source_system\n  WHERE r.batch_id = '${batch_id}'\n),\nenrollment_match AS (\n  SELECT\n    mes.cinq_id,\n    mes.insurance_id,\n    r.patient_id,\n    ROW_NUMBER() OVER (\n      PARTITION BY r.patient_id, mes.insurance_id, mes.cinq_id\n      ORDER BY mes.batch_id DESC\n    ) AS dup_seq\n  FROM ${enrollment_catalog}.${enrollment_schema}.members_enrollment_segments mes\n  INNER JOIN raw_batch r\n    ON mes.insurance_id = r.mbi_id\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.claim_type, r.source_resource_id, r.source_resource_type, r.source_format,\n    r.patient_id, r.source_billing_org_id, r.source_rendering_org_id,\n    r.admission_date, r.discharge_date, r.statement_from, r.statement_through, r.paid_date,\n    r.claim_effective_date, r.claim_received_date, r.claim_version_num, r.adjusted_claim_id,\n    r.drg_code, cast(null as string) AS drg_code_desc, r.drg_code_system,\n    r.bill_type, r.admission_type, r.admission_source, r.discharge_status,\n    r.claim_adjustment_type_cd, r.claim_status, r.reason_for_visit,\n    r.actual_length_of_stay, r.covered_length_of_stay, r.line_of_business, r.product, r.primary_payer,\n    r.clm_type_cd, r.clm_op_srvc_type_cd, r.dgns_prcdr_icd_ind, r.clm_prcsg_ind_cd,\n    r.clm_cntl_num, r.clm_cntrctr_num, r.clm_disp_cd,\n    mes.cinq_id AS patient_sk\n  FROM raw_batch r\n  INNER JOIN enrollment_match mes\n    ON r.patient_id = mes.patient_id\n   AND mes.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.claim_type, e.source_resource_id, e.source_resource_type, e.source_format,\n    e.patient_id, e.source_billing_org_id, e.source_rendering_org_id,\n    e.admission_date, e.discharge_date, e.statement_from, e.statement_through, e.paid_date,\n    e.claim_effective_date, e.claim_received_date, e.claim_version_num, e.adjusted_claim_id,\n    e.drg_code, coalesce(o.drg_code_desc, e.drg_code_desc) AS drg_code_desc, e.drg_code_system,\n    e.bill_type, e.admission_type, e.admission_source, e.discharge_status,\n    e.claim_adjustment_type_cd, e.claim_status, e.reason_for_visit,\n    e.actual_length_of_stay, e.covered_length_of_stay, e.line_of_business, e.product, e.primary_payer,\n    e.clm_type_cd, e.clm_op_srvc_type_cd, e.dgns_prcdr_icd_ind, e.clm_prcsg_ind_cd,\n    e.clm_cntl_num, e.clm_cntrctr_num, e.clm_disp_cd,\n    coalesce(o.claim_id_sk, uuid()) AS claim_id_sk,\n    coalesce(o.patient_sk, e.patient_sk) AS patient_sk,\n    CASE\n      WHEN o.claim_id_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.source_claim_id\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_header o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.source_claim_id = e.source_claim_id\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'DELETE'"
+        }
+      },
+      {
+        "name": "claim_header_insert_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_header"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "patient_sk",
+          "claim_id_sk",
+          "source_claim_id",
+          "claim_type",
+          "source_resource_id",
+          "source_resource_type",
+          "source_format",
+          "patient_id",
+          "source_billing_org_id",
+          "source_rendering_org_id",
+          "admission_date",
+          "discharge_date",
+          "statement_from",
+          "statement_through",
+          "paid_date",
+          "claim_effective_date",
+          "claim_received_date",
+          "claim_version_num",
+          "adjusted_claim_id",
+          "drg_code",
+          "drg_code_desc",
+          "drg_code_system",
+          "bill_type",
+          "admission_type",
+          "admission_source",
+          "discharge_status",
+          "claim_adjustment_type_cd",
+          "claim_status",
+          "reason_for_visit",
+          "actual_length_of_stay",
+          "covered_length_of_stay",
+          "line_of_business",
+          "product",
+          "primary_payer",
+          "clm_type_cd",
+          "clm_op_srvc_type_cd",
+          "dgns_prcdr_icd_ind",
+          "clm_prcsg_ind_cd",
+          "clm_cntl_num",
+          "clm_cntrctr_num",
+          "clm_disp_cd"
+        ],
+        "input_selection": {
+          "enrich_claim_header": [
+            "enrich_claim_header_inserts"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_header_insert",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_header_insert_final"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_header"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "claim_header_update_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_header"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "patient_sk",
+          "claim_id_sk",
+          "source_claim_id",
+          "claim_type",
+          "source_resource_id",
+          "source_resource_type",
+          "source_format",
+          "patient_id",
+          "source_billing_org_id",
+          "source_rendering_org_id",
+          "admission_date",
+          "discharge_date",
+          "statement_from",
+          "statement_through",
+          "paid_date",
+          "claim_effective_date",
+          "claim_received_date",
+          "claim_version_num",
+          "adjusted_claim_id",
+          "drg_code",
+          "drg_code_desc",
+          "drg_code_system",
+          "bill_type",
+          "admission_type",
+          "admission_source",
+          "discharge_status",
+          "claim_adjustment_type_cd",
+          "claim_status",
+          "reason_for_visit",
+          "actual_length_of_stay",
+          "covered_length_of_stay",
+          "line_of_business",
+          "product",
+          "primary_payer",
+          "clm_type_cd",
+          "clm_op_srvc_type_cd",
+          "dgns_prcdr_icd_ind",
+          "clm_prcsg_ind_cd",
+          "clm_cntl_num",
+          "clm_cntrctr_num",
+          "clm_disp_cd"
+        ],
+        "input_selection": {
+          "enrich_claim_header": [
+            "enrich_claim_header_updates"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_header_update",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_header_update_final",
+          "write_claim_header_insert"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_header"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "claim_header_delete_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_header"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "patient_sk",
+          "claim_id_sk",
+          "source_claim_id",
+          "claim_type",
+          "source_resource_id",
+          "source_resource_type",
+          "source_format",
+          "patient_id",
+          "source_billing_org_id",
+          "source_rendering_org_id",
+          "admission_date",
+          "discharge_date",
+          "statement_from",
+          "statement_through",
+          "paid_date",
+          "claim_effective_date",
+          "claim_received_date",
+          "claim_version_num",
+          "adjusted_claim_id",
+          "drg_code",
+          "drg_code_desc",
+          "drg_code_system",
+          "bill_type",
+          "admission_type",
+          "admission_source",
+          "discharge_status",
+          "claim_adjustment_type_cd",
+          "claim_status",
+          "reason_for_visit",
+          "actual_length_of_stay",
+          "covered_length_of_stay",
+          "line_of_business",
+          "product",
+          "primary_payer",
+          "clm_type_cd",
+          "clm_op_srvc_type_cd",
+          "dgns_prcdr_icd_ind",
+          "clm_prcsg_ind_cd",
+          "clm_cntl_num",
+          "clm_cntrctr_num",
+          "clm_disp_cd"
+        ],
+        "input_selection": {
+          "enrich_claim_header": [
+            "enrich_claim_header_deletes"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_header_delete",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_header_delete_final",
+          "write_claim_header_update"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_header"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "read_raw_claim_line",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/raw_claim_line"
+        },
+        "sql_override": "SELECT * FROM read_raw_claim_line WHERE batch_id = '${batch_id}'"
+      },
+      {
+        "name": "enrich_claim_line",
+        "transformation": "SQL",
+        "dependent_on": [
+          "read_raw_claim_line",
+          "write_claim_header_delete"
+        ],
+        "queries": {
+          "result_inserts": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_line\nWITH raw_batch AS (\n  SELECT\n    r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(cast(r.line_number as string), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.service_date as string)), ''),\n      coalesce(trim(cast(r.service_end_date as string)), ''),\n      coalesce(trim(cast(r.revenue_code as string)), ''),\n      coalesce(trim(cast(r.revenue_code_system as string)), ''),\n      coalesce(trim(cast(r.place_of_service as string)), ''),\n      coalesce(trim(cast(r.billed_units as string)), ''),\n      coalesce(trim(cast(r.capitation_indicator as string)), ''),\n      coalesce(trim(cast(r.modifier_1 as string)), ''),\n      coalesce(trim(cast(r.modifier_2 as string)), ''),\n      coalesce(trim(cast(r.modifier_3 as string)), ''),\n      coalesce(trim(cast(r.modifier_4 as string)), ''),\n      coalesce(trim(cast(r.modifier_5 as string)), ''),\n      coalesce(trim(cast(r.clm_rev_apc_hipps_cd as string)), ''),\n      coalesce(trim(cast(r.hcpcs_betos_cd as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_line r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_header_parent AS (\n  SELECT\n    claim_id_sk,\n    source_claim_id,\n    patient_sk,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_header\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.line_number, r.source_line_id, r.service_date, r.service_end_date,\n    r.revenue_code, cast(null as string) AS revenue_code_desc, r.revenue_code_system,\n    r.place_of_service, r.billed_units, r.capitation_indicator,\n    r.modifier_1, r.modifier_2, r.modifier_3, r.modifier_4, r.modifier_5,\n    r.clm_rev_apc_hipps_cd, r.hcpcs_betos_cd,\n    p.claim_id_sk AS parent_claim_id_sk\n  FROM raw_batch r\n  INNER JOIN claim_header_parent p\n    ON p.source_claim_id = r.source_claim_id\n   AND p.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.line_number, e.source_line_id, e.service_date, e.service_end_date,\n    e.revenue_code, coalesce(o.revenue_code_desc, e.revenue_code_desc) AS revenue_code_desc,\n    e.revenue_code_system, e.place_of_service, e.billed_units, e.capitation_indicator,\n    e.modifier_1, e.modifier_2, e.modifier_3, e.modifier_4, e.modifier_5,\n    e.clm_rev_apc_hipps_cd, e.hcpcs_betos_cd,\n    coalesce(o.claim_line_sk, uuid()) AS claim_line_sk,\n    coalesce(o.claim_id_sk, e.parent_claim_id_sk) AS claim_id_sk,\n    CASE\n      WHEN o.claim_line_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_line o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'INSERT'",
+          "result_updates": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_line\nWITH raw_batch AS (\n  SELECT\n    r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(cast(r.line_number as string), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.service_date as string)), ''),\n      coalesce(trim(cast(r.service_end_date as string)), ''),\n      coalesce(trim(cast(r.revenue_code as string)), ''),\n      coalesce(trim(cast(r.revenue_code_system as string)), ''),\n      coalesce(trim(cast(r.place_of_service as string)), ''),\n      coalesce(trim(cast(r.billed_units as string)), ''),\n      coalesce(trim(cast(r.capitation_indicator as string)), ''),\n      coalesce(trim(cast(r.modifier_1 as string)), ''),\n      coalesce(trim(cast(r.modifier_2 as string)), ''),\n      coalesce(trim(cast(r.modifier_3 as string)), ''),\n      coalesce(trim(cast(r.modifier_4 as string)), ''),\n      coalesce(trim(cast(r.modifier_5 as string)), ''),\n      coalesce(trim(cast(r.clm_rev_apc_hipps_cd as string)), ''),\n      coalesce(trim(cast(r.hcpcs_betos_cd as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_line r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_header_parent AS (\n  SELECT\n    claim_id_sk,\n    source_claim_id,\n    patient_sk,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_header\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.line_number, r.source_line_id, r.service_date, r.service_end_date,\n    r.revenue_code, cast(null as string) AS revenue_code_desc, r.revenue_code_system,\n    r.place_of_service, r.billed_units, r.capitation_indicator,\n    r.modifier_1, r.modifier_2, r.modifier_3, r.modifier_4, r.modifier_5,\n    r.clm_rev_apc_hipps_cd, r.hcpcs_betos_cd,\n    p.claim_id_sk AS parent_claim_id_sk\n  FROM raw_batch r\n  INNER JOIN claim_header_parent p\n    ON p.source_claim_id = r.source_claim_id\n   AND p.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.line_number, e.source_line_id, e.service_date, e.service_end_date,\n    e.revenue_code, coalesce(o.revenue_code_desc, e.revenue_code_desc) AS revenue_code_desc,\n    e.revenue_code_system, e.place_of_service, e.billed_units, e.capitation_indicator,\n    e.modifier_1, e.modifier_2, e.modifier_3, e.modifier_4, e.modifier_5,\n    e.clm_rev_apc_hipps_cd, e.hcpcs_betos_cd,\n    coalesce(o.claim_line_sk, uuid()) AS claim_line_sk,\n    coalesce(o.claim_id_sk, e.parent_claim_id_sk) AS claim_id_sk,\n    CASE\n      WHEN o.claim_line_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_line o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'UPDATE'",
+          "result_deletes": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_line\nWITH raw_batch AS (\n  SELECT\n    r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(cast(r.line_number as string), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.service_date as string)), ''),\n      coalesce(trim(cast(r.service_end_date as string)), ''),\n      coalesce(trim(cast(r.revenue_code as string)), ''),\n      coalesce(trim(cast(r.revenue_code_system as string)), ''),\n      coalesce(trim(cast(r.place_of_service as string)), ''),\n      coalesce(trim(cast(r.billed_units as string)), ''),\n      coalesce(trim(cast(r.capitation_indicator as string)), ''),\n      coalesce(trim(cast(r.modifier_1 as string)), ''),\n      coalesce(trim(cast(r.modifier_2 as string)), ''),\n      coalesce(trim(cast(r.modifier_3 as string)), ''),\n      coalesce(trim(cast(r.modifier_4 as string)), ''),\n      coalesce(trim(cast(r.modifier_5 as string)), ''),\n      coalesce(trim(cast(r.clm_rev_apc_hipps_cd as string)), ''),\n      coalesce(trim(cast(r.hcpcs_betos_cd as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_line r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_header_parent AS (\n  SELECT\n    claim_id_sk,\n    source_claim_id,\n    patient_sk,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_header\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.line_number, r.source_line_id, r.service_date, r.service_end_date,\n    r.revenue_code, cast(null as string) AS revenue_code_desc, r.revenue_code_system,\n    r.place_of_service, r.billed_units, r.capitation_indicator,\n    r.modifier_1, r.modifier_2, r.modifier_3, r.modifier_4, r.modifier_5,\n    r.clm_rev_apc_hipps_cd, r.hcpcs_betos_cd,\n    p.claim_id_sk AS parent_claim_id_sk\n  FROM raw_batch r\n  INNER JOIN claim_header_parent p\n    ON p.source_claim_id = r.source_claim_id\n   AND p.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.line_number, e.source_line_id, e.service_date, e.service_end_date,\n    e.revenue_code, coalesce(o.revenue_code_desc, e.revenue_code_desc) AS revenue_code_desc,\n    e.revenue_code_system, e.place_of_service, e.billed_units, e.capitation_indicator,\n    e.modifier_1, e.modifier_2, e.modifier_3, e.modifier_4, e.modifier_5,\n    e.clm_rev_apc_hipps_cd, e.hcpcs_betos_cd,\n    coalesce(o.claim_line_sk, uuid()) AS claim_line_sk,\n    coalesce(o.claim_id_sk, e.parent_claim_id_sk) AS claim_id_sk,\n    CASE\n      WHEN o.claim_line_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_line o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'DELETE'"
+        }
+      },
+      {
+        "name": "claim_line_insert_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_line"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_line_sk",
+          "claim_id_sk",
+          "source_claim_id",
+          "line_number",
+          "source_line_id",
+          "service_date",
+          "service_end_date",
+          "revenue_code",
+          "revenue_code_desc",
+          "revenue_code_system",
+          "place_of_service",
+          "billed_units",
+          "capitation_indicator",
+          "modifier_1",
+          "modifier_2",
+          "modifier_3",
+          "modifier_4",
+          "modifier_5",
+          "clm_rev_apc_hipps_cd",
+          "hcpcs_betos_cd"
+        ],
+        "input_selection": {
+          "enrich_claim_line": [
+            "enrich_claim_line_inserts"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_line_insert",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_line_insert_final"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_line"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "claim_line_update_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_line"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_line_sk",
+          "claim_id_sk",
+          "source_claim_id",
+          "line_number",
+          "source_line_id",
+          "service_date",
+          "service_end_date",
+          "revenue_code",
+          "revenue_code_desc",
+          "revenue_code_system",
+          "place_of_service",
+          "billed_units",
+          "capitation_indicator",
+          "modifier_1",
+          "modifier_2",
+          "modifier_3",
+          "modifier_4",
+          "modifier_5",
+          "clm_rev_apc_hipps_cd",
+          "hcpcs_betos_cd"
+        ],
+        "input_selection": {
+          "enrich_claim_line": [
+            "enrich_claim_line_updates"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_line_update",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_line_update_final",
+          "write_claim_line_insert"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_line"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "claim_line_delete_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_line"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_line_sk",
+          "claim_id_sk",
+          "source_claim_id",
+          "line_number",
+          "source_line_id",
+          "service_date",
+          "service_end_date",
+          "revenue_code",
+          "revenue_code_desc",
+          "revenue_code_system",
+          "place_of_service",
+          "billed_units",
+          "capitation_indicator",
+          "modifier_1",
+          "modifier_2",
+          "modifier_3",
+          "modifier_4",
+          "modifier_5",
+          "clm_rev_apc_hipps_cd",
+          "hcpcs_betos_cd"
+        ],
+        "input_selection": {
+          "enrich_claim_line": [
+            "enrich_claim_line_deletes"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_line_delete",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_line_delete_final",
+          "write_claim_line_update"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_line"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "read_raw_claim_diagnosis",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/raw_claim_diagnosis"
+        },
+        "sql_override": "SELECT * FROM read_raw_claim_diagnosis WHERE batch_id = '${batch_id}'"
+      },
+      {
+        "name": "enrich_claim_diagnosis",
+        "transformation": "SQL",
+        "dependent_on": [
+          "read_raw_claim_diagnosis",
+          "write_claim_header_delete"
+        ],
+        "queries": {
+          "result_inserts": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_diagnosis\nWITH raw_batch AS (\n  SELECT r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(cast(r.diagnosis_sequence as string), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_diagnosis_code as string)), ''),\n      coalesce(trim(cast(r.source_diagnosis_code_system as string)), ''),\n      coalesce(trim(cast(r.diagnosis_type as string)), ''),\n      coalesce(trim(cast(r.poa_flag as string)), ''),\n      coalesce(trim(cast(r.clm_prod_type_cd as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_diagnosis r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_header_parent AS (\n  SELECT\n    claim_id_sk,\n    source_claim_id,\n    patient_sk,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_header\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.diagnosis_sequence, r.source_diagnosis_code,\n    cast(null as string) AS source_diagnosis_code_desc, r.source_diagnosis_code_system,\n    r.diagnosis_type, r.poa_flag, r.clm_prod_type_cd,\n    p.claim_id_sk AS parent_claim_id_sk\n  FROM raw_batch r\n  INNER JOIN claim_header_parent p ON p.source_claim_id = r.source_claim_id AND p.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.diagnosis_sequence, e.source_diagnosis_code,\n    coalesce(o.source_diagnosis_code_desc, e.source_diagnosis_code_desc) AS source_diagnosis_code_desc,\n    e.source_diagnosis_code_system, e.diagnosis_type, e.poa_flag, e.clm_prod_type_cd,\n    coalesce(o.claim_diagnosis_sk, uuid()) AS claim_diagnosis_sk,\n    coalesce(o.claim_id_sk, e.parent_claim_id_sk) AS claim_id_sk,\n    CASE\n      WHEN o.claim_diagnosis_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_diagnosis o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'INSERT'",
+          "result_updates": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_diagnosis\nWITH raw_batch AS (\n  SELECT r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(cast(r.diagnosis_sequence as string), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_diagnosis_code as string)), ''),\n      coalesce(trim(cast(r.source_diagnosis_code_system as string)), ''),\n      coalesce(trim(cast(r.diagnosis_type as string)), ''),\n      coalesce(trim(cast(r.poa_flag as string)), ''),\n      coalesce(trim(cast(r.clm_prod_type_cd as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_diagnosis r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_header_parent AS (\n  SELECT\n    claim_id_sk,\n    source_claim_id,\n    patient_sk,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_header\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.diagnosis_sequence, r.source_diagnosis_code,\n    cast(null as string) AS source_diagnosis_code_desc, r.source_diagnosis_code_system,\n    r.diagnosis_type, r.poa_flag, r.clm_prod_type_cd,\n    p.claim_id_sk AS parent_claim_id_sk\n  FROM raw_batch r\n  INNER JOIN claim_header_parent p ON p.source_claim_id = r.source_claim_id AND p.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.diagnosis_sequence, e.source_diagnosis_code,\n    coalesce(o.source_diagnosis_code_desc, e.source_diagnosis_code_desc) AS source_diagnosis_code_desc,\n    e.source_diagnosis_code_system, e.diagnosis_type, e.poa_flag, e.clm_prod_type_cd,\n    coalesce(o.claim_diagnosis_sk, uuid()) AS claim_diagnosis_sk,\n    coalesce(o.claim_id_sk, e.parent_claim_id_sk) AS claim_id_sk,\n    CASE\n      WHEN o.claim_diagnosis_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_diagnosis o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'UPDATE'",
+          "result_deletes": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_diagnosis\nWITH raw_batch AS (\n  SELECT r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(cast(r.diagnosis_sequence as string), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_diagnosis_code as string)), ''),\n      coalesce(trim(cast(r.source_diagnosis_code_system as string)), ''),\n      coalesce(trim(cast(r.diagnosis_type as string)), ''),\n      coalesce(trim(cast(r.poa_flag as string)), ''),\n      coalesce(trim(cast(r.clm_prod_type_cd as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_diagnosis r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_header_parent AS (\n  SELECT\n    claim_id_sk,\n    source_claim_id,\n    patient_sk,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_header\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.diagnosis_sequence, r.source_diagnosis_code,\n    cast(null as string) AS source_diagnosis_code_desc, r.source_diagnosis_code_system,\n    r.diagnosis_type, r.poa_flag, r.clm_prod_type_cd,\n    p.claim_id_sk AS parent_claim_id_sk\n  FROM raw_batch r\n  INNER JOIN claim_header_parent p ON p.source_claim_id = r.source_claim_id AND p.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.diagnosis_sequence, e.source_diagnosis_code,\n    coalesce(o.source_diagnosis_code_desc, e.source_diagnosis_code_desc) AS source_diagnosis_code_desc,\n    e.source_diagnosis_code_system, e.diagnosis_type, e.poa_flag, e.clm_prod_type_cd,\n    coalesce(o.claim_diagnosis_sk, uuid()) AS claim_diagnosis_sk,\n    coalesce(o.claim_id_sk, e.parent_claim_id_sk) AS claim_id_sk,\n    CASE\n      WHEN o.claim_diagnosis_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_diagnosis o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'DELETE'"
+        }
+      },
+      {
+        "name": "claim_diagnosis_insert_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_diagnosis"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_diagnosis_sk",
+          "claim_id_sk",
+          "source_claim_id",
+          "source_diagnosis_code",
+          "source_diagnosis_code_desc",
+          "source_diagnosis_code_system",
+          "diagnosis_sequence",
+          "diagnosis_type",
+          "poa_flag",
+          "clm_prod_type_cd"
+        ],
+        "input_selection": {
+          "enrich_claim_diagnosis": [
+            "enrich_claim_diagnosis_inserts"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_diagnosis_insert",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_diagnosis_insert_final"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_diagnosis"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "claim_diagnosis_update_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_diagnosis"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_diagnosis_sk",
+          "claim_id_sk",
+          "source_claim_id",
+          "source_diagnosis_code",
+          "source_diagnosis_code_desc",
+          "source_diagnosis_code_system",
+          "diagnosis_sequence",
+          "diagnosis_type",
+          "poa_flag",
+          "clm_prod_type_cd"
+        ],
+        "input_selection": {
+          "enrich_claim_diagnosis": [
+            "enrich_claim_diagnosis_updates"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_diagnosis_update",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_diagnosis_update_final",
+          "write_claim_diagnosis_insert"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_diagnosis"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "claim_diagnosis_delete_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_diagnosis"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_diagnosis_sk",
+          "claim_id_sk",
+          "source_claim_id",
+          "source_diagnosis_code",
+          "source_diagnosis_code_desc",
+          "source_diagnosis_code_system",
+          "diagnosis_sequence",
+          "diagnosis_type",
+          "poa_flag",
+          "clm_prod_type_cd"
+        ],
+        "input_selection": {
+          "enrich_claim_diagnosis": [
+            "enrich_claim_diagnosis_deletes"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_diagnosis_delete",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_diagnosis_delete_final",
+          "write_claim_diagnosis_update"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_diagnosis"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "read_raw_claim_procedure",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/raw_claim_procedure"
+        },
+        "sql_override": "SELECT * FROM read_raw_claim_procedure WHERE batch_id = '${batch_id}'"
+      },
+      {
+        "name": "enrich_claim_procedure",
+        "transformation": "SQL",
+        "dependent_on": [
+          "read_raw_claim_procedure",
+          "write_claim_line_delete"
+        ],
+        "queries": {
+          "result_inserts": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_procedure\nWITH raw_batch AS (\n  SELECT r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(cast(r.line_number as string), ''),\n      coalesce(cast(r.procedure_sequence as string), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_procedure_code as string)), ''),\n      coalesce(trim(cast(r.source_procedure_code_system as string)), ''),\n      coalesce(trim(cast(r.procedure_type as string)), ''),\n      coalesce(trim(cast(r.procedure_date as string)), ''),\n      coalesce(trim(cast(r.dgns_prcdr_icd_ind as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_procedure r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_header_parent AS (\n  SELECT\n    claim_id_sk,\n    source_claim_id,\n    patient_sk,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_header\n  WHERE coalesce(is_active, true) = true\n),\nclaim_line_parent AS (\n  SELECT\n    claim_line_sk,\n    claim_id_sk,\n    source_claim_id,\n    line_number,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id, line_number\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_line\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.line_number, r.procedure_sequence, r.source_procedure_code,\n    cast(null as string) AS source_procedure_code_desc, r.source_procedure_code_system,\n    r.procedure_type, r.procedure_date, r.dgns_prcdr_icd_ind,\n    h.claim_id_sk AS parent_claim_id_sk,\n    CASE WHEN coalesce(r.line_number, 0) > 0 THEN l.claim_line_sk ELSE cast(null as string) END AS parent_claim_line_sk\n  FROM raw_batch r\n  INNER JOIN claim_header_parent h ON h.source_claim_id = r.source_claim_id AND h.dup_seq = 1\n  LEFT JOIN claim_line_parent l\n    ON l.source_claim_id = r.source_claim_id AND l.line_number = r.line_number AND l.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.line_number, e.procedure_sequence, e.source_procedure_code,\n    coalesce(o.source_procedure_code_desc, e.source_procedure_code_desc) AS source_procedure_code_desc,\n    e.source_procedure_code_system, e.procedure_type, e.procedure_date, e.dgns_prcdr_icd_ind,\n    coalesce(o.claim_procedure_sk, uuid()) AS claim_procedure_sk,\n    coalesce(o.claim_id_sk, e.parent_claim_id_sk) AS claim_id_sk,\n    coalesce(o.claim_line_sk, e.parent_claim_line_sk) AS claim_line_sk,\n    CASE\n      WHEN o.claim_procedure_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_procedure o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'INSERT'",
+          "result_updates": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_procedure\nWITH raw_batch AS (\n  SELECT r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(cast(r.line_number as string), ''),\n      coalesce(cast(r.procedure_sequence as string), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_procedure_code as string)), ''),\n      coalesce(trim(cast(r.source_procedure_code_system as string)), ''),\n      coalesce(trim(cast(r.procedure_type as string)), ''),\n      coalesce(trim(cast(r.procedure_date as string)), ''),\n      coalesce(trim(cast(r.dgns_prcdr_icd_ind as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_procedure r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_header_parent AS (\n  SELECT\n    claim_id_sk,\n    source_claim_id,\n    patient_sk,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_header\n  WHERE coalesce(is_active, true) = true\n),\nclaim_line_parent AS (\n  SELECT\n    claim_line_sk,\n    claim_id_sk,\n    source_claim_id,\n    line_number,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id, line_number\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_line\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.line_number, r.procedure_sequence, r.source_procedure_code,\n    cast(null as string) AS source_procedure_code_desc, r.source_procedure_code_system,\n    r.procedure_type, r.procedure_date, r.dgns_prcdr_icd_ind,\n    h.claim_id_sk AS parent_claim_id_sk,\n    CASE WHEN coalesce(r.line_number, 0) > 0 THEN l.claim_line_sk ELSE cast(null as string) END AS parent_claim_line_sk\n  FROM raw_batch r\n  INNER JOIN claim_header_parent h ON h.source_claim_id = r.source_claim_id AND h.dup_seq = 1\n  LEFT JOIN claim_line_parent l\n    ON l.source_claim_id = r.source_claim_id AND l.line_number = r.line_number AND l.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.line_number, e.procedure_sequence, e.source_procedure_code,\n    coalesce(o.source_procedure_code_desc, e.source_procedure_code_desc) AS source_procedure_code_desc,\n    e.source_procedure_code_system, e.procedure_type, e.procedure_date, e.dgns_prcdr_icd_ind,\n    coalesce(o.claim_procedure_sk, uuid()) AS claim_procedure_sk,\n    coalesce(o.claim_id_sk, e.parent_claim_id_sk) AS claim_id_sk,\n    coalesce(o.claim_line_sk, e.parent_claim_line_sk) AS claim_line_sk,\n    CASE\n      WHEN o.claim_procedure_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_procedure o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'UPDATE'",
+          "result_deletes": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_procedure\nWITH raw_batch AS (\n  SELECT r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(cast(r.line_number as string), ''),\n      coalesce(cast(r.procedure_sequence as string), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_procedure_code as string)), ''),\n      coalesce(trim(cast(r.source_procedure_code_system as string)), ''),\n      coalesce(trim(cast(r.procedure_type as string)), ''),\n      coalesce(trim(cast(r.procedure_date as string)), ''),\n      coalesce(trim(cast(r.dgns_prcdr_icd_ind as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_procedure r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_header_parent AS (\n  SELECT\n    claim_id_sk,\n    source_claim_id,\n    patient_sk,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_header\n  WHERE coalesce(is_active, true) = true\n),\nclaim_line_parent AS (\n  SELECT\n    claim_line_sk,\n    claim_id_sk,\n    source_claim_id,\n    line_number,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id, line_number\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_line\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.line_number, r.procedure_sequence, r.source_procedure_code,\n    cast(null as string) AS source_procedure_code_desc, r.source_procedure_code_system,\n    r.procedure_type, r.procedure_date, r.dgns_prcdr_icd_ind,\n    h.claim_id_sk AS parent_claim_id_sk,\n    CASE WHEN coalesce(r.line_number, 0) > 0 THEN l.claim_line_sk ELSE cast(null as string) END AS parent_claim_line_sk\n  FROM raw_batch r\n  INNER JOIN claim_header_parent h ON h.source_claim_id = r.source_claim_id AND h.dup_seq = 1\n  LEFT JOIN claim_line_parent l\n    ON l.source_claim_id = r.source_claim_id AND l.line_number = r.line_number AND l.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.line_number, e.procedure_sequence, e.source_procedure_code,\n    coalesce(o.source_procedure_code_desc, e.source_procedure_code_desc) AS source_procedure_code_desc,\n    e.source_procedure_code_system, e.procedure_type, e.procedure_date, e.dgns_prcdr_icd_ind,\n    coalesce(o.claim_procedure_sk, uuid()) AS claim_procedure_sk,\n    coalesce(o.claim_id_sk, e.parent_claim_id_sk) AS claim_id_sk,\n    coalesce(o.claim_line_sk, e.parent_claim_line_sk) AS claim_line_sk,\n    CASE\n      WHEN o.claim_procedure_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_procedure o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'DELETE'"
+        }
+      },
+      {
+        "name": "claim_procedure_insert_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_procedure"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_procedure_sk",
+          "claim_id_sk",
+          "claim_line_sk",
+          "source_claim_id",
+          "line_number",
+          "procedure_sequence",
+          "source_procedure_code",
+          "source_procedure_code_desc",
+          "source_procedure_code_system",
+          "procedure_type",
+          "procedure_date",
+          "dgns_prcdr_icd_ind"
+        ],
+        "input_selection": {
+          "enrich_claim_procedure": [
+            "enrich_claim_procedure_inserts"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_procedure_insert",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_procedure_insert_final"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_procedure"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "claim_procedure_update_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_procedure"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_procedure_sk",
+          "claim_id_sk",
+          "claim_line_sk",
+          "source_claim_id",
+          "line_number",
+          "procedure_sequence",
+          "source_procedure_code",
+          "source_procedure_code_desc",
+          "source_procedure_code_system",
+          "procedure_type",
+          "procedure_date",
+          "dgns_prcdr_icd_ind"
+        ],
+        "input_selection": {
+          "enrich_claim_procedure": [
+            "enrich_claim_procedure_updates"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_procedure_update",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_procedure_update_final",
+          "write_claim_procedure_insert"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_procedure"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "claim_procedure_delete_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_procedure"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_procedure_sk",
+          "claim_id_sk",
+          "claim_line_sk",
+          "source_claim_id",
+          "line_number",
+          "procedure_sequence",
+          "source_procedure_code",
+          "source_procedure_code_desc",
+          "source_procedure_code_system",
+          "procedure_type",
+          "procedure_date",
+          "dgns_prcdr_icd_ind"
+        ],
+        "input_selection": {
+          "enrich_claim_procedure": [
+            "enrich_claim_procedure_deletes"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_procedure_delete",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_procedure_delete_final",
+          "write_claim_procedure_update"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_procedure"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "read_raw_claim_adjudication",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/raw_claim_adjudication"
+        },
+        "sql_override": "SELECT * FROM read_raw_claim_adjudication WHERE batch_id = '${batch_id}'"
+      },
+      {
+        "name": "enrich_claim_adjudication",
+        "transformation": "SQL",
+        "dependent_on": [
+          "read_raw_claim_adjudication",
+          "write_claim_header_delete"
+        ],
+        "queries": {
+          "result_inserts": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_adjudication\nWITH raw_batch AS (\n  SELECT r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(trim(cast(r.adjudication_category_code as string)), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.adjudication_type as string)), ''),\n      coalesce(trim(cast(r.adjudication_category_system as string)), ''),\n      coalesce(trim(cast(r.adjudication_reason_code as string)), ''),\n      coalesce(trim(cast(r.adjudication_reason_system as string)), ''),\n      coalesce(trim(cast(r.amount as string)), ''),\n      coalesce(trim(cast(r.currency as string)), ''),\n      coalesce(trim(cast(r.value as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_adjudication r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_header_parent AS (\n  SELECT\n    claim_id_sk,\n    source_claim_id,\n    patient_sk,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_header\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.is_deleted, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.adjudication_type, r.adjudication_category_code,\n    cast(null as string) AS adjudication_category_desc, r.adjudication_category_system,\n    r.adjudication_reason_code, cast(null as string) AS adjudication_reason_desc,\n    r.adjudication_reason_system, r.amount, r.currency, r.value,\n    p.claim_id_sk AS parent_claim_id_sk\n  FROM raw_batch r\n  INNER JOIN claim_header_parent p ON p.source_claim_id = r.source_claim_id AND p.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.is_deleted, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.adjudication_type, e.adjudication_category_code,\n    coalesce(o.adjudication_category_desc, e.adjudication_category_desc) AS adjudication_category_desc,\n    e.adjudication_category_system, e.adjudication_reason_code,\n    coalesce(o.adjudication_reason_desc, e.adjudication_reason_desc) AS adjudication_reason_desc,\n    e.adjudication_reason_system, e.amount, e.currency, e.value,\n    coalesce(o.claim_adjudication_sk, uuid()) AS claim_adjudication_sk,\n    coalesce(o.claim_id_sk, e.parent_claim_id_sk) AS claim_id_sk,\n    CASE\n      WHEN o.claim_adjudication_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_adjudication o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'INSERT'",
+          "result_updates": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_adjudication\nWITH raw_batch AS (\n  SELECT r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(trim(cast(r.adjudication_category_code as string)), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.adjudication_type as string)), ''),\n      coalesce(trim(cast(r.adjudication_category_system as string)), ''),\n      coalesce(trim(cast(r.adjudication_reason_code as string)), ''),\n      coalesce(trim(cast(r.adjudication_reason_system as string)), ''),\n      coalesce(trim(cast(r.amount as string)), ''),\n      coalesce(trim(cast(r.currency as string)), ''),\n      coalesce(trim(cast(r.value as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_adjudication r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_header_parent AS (\n  SELECT\n    claim_id_sk,\n    source_claim_id,\n    patient_sk,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_header\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.is_deleted, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.adjudication_type, r.adjudication_category_code,\n    cast(null as string) AS adjudication_category_desc, r.adjudication_category_system,\n    r.adjudication_reason_code, cast(null as string) AS adjudication_reason_desc,\n    r.adjudication_reason_system, r.amount, r.currency, r.value,\n    p.claim_id_sk AS parent_claim_id_sk\n  FROM raw_batch r\n  INNER JOIN claim_header_parent p ON p.source_claim_id = r.source_claim_id AND p.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.is_deleted, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.adjudication_type, e.adjudication_category_code,\n    coalesce(o.adjudication_category_desc, e.adjudication_category_desc) AS adjudication_category_desc,\n    e.adjudication_category_system, e.adjudication_reason_code,\n    coalesce(o.adjudication_reason_desc, e.adjudication_reason_desc) AS adjudication_reason_desc,\n    e.adjudication_reason_system, e.amount, e.currency, e.value,\n    coalesce(o.claim_adjudication_sk, uuid()) AS claim_adjudication_sk,\n    coalesce(o.claim_id_sk, e.parent_claim_id_sk) AS claim_id_sk,\n    CASE\n      WHEN o.claim_adjudication_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_adjudication o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'UPDATE'",
+          "result_deletes": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_adjudication\nWITH raw_batch AS (\n  SELECT r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(trim(cast(r.adjudication_category_code as string)), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.adjudication_type as string)), ''),\n      coalesce(trim(cast(r.adjudication_category_system as string)), ''),\n      coalesce(trim(cast(r.adjudication_reason_code as string)), ''),\n      coalesce(trim(cast(r.adjudication_reason_system as string)), ''),\n      coalesce(trim(cast(r.amount as string)), ''),\n      coalesce(trim(cast(r.currency as string)), ''),\n      coalesce(trim(cast(r.value as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_adjudication r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_header_parent AS (\n  SELECT\n    claim_id_sk,\n    source_claim_id,\n    patient_sk,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_header\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.is_deleted, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.adjudication_type, r.adjudication_category_code,\n    cast(null as string) AS adjudication_category_desc, r.adjudication_category_system,\n    r.adjudication_reason_code, cast(null as string) AS adjudication_reason_desc,\n    r.adjudication_reason_system, r.amount, r.currency, r.value,\n    p.claim_id_sk AS parent_claim_id_sk\n  FROM raw_batch r\n  INNER JOIN claim_header_parent p ON p.source_claim_id = r.source_claim_id AND p.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.is_deleted, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.adjudication_type, e.adjudication_category_code,\n    coalesce(o.adjudication_category_desc, e.adjudication_category_desc) AS adjudication_category_desc,\n    e.adjudication_category_system, e.adjudication_reason_code,\n    coalesce(o.adjudication_reason_desc, e.adjudication_reason_desc) AS adjudication_reason_desc,\n    e.adjudication_reason_system, e.amount, e.currency, e.value,\n    coalesce(o.claim_adjudication_sk, uuid()) AS claim_adjudication_sk,\n    coalesce(o.claim_id_sk, e.parent_claim_id_sk) AS claim_id_sk,\n    CASE\n      WHEN o.claim_adjudication_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_adjudication o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'DELETE'"
+        }
+      },
+      {
+        "name": "claim_adjudication_insert_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_adjudication"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "is_deleted",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_adjudication_sk",
+          "claim_id_sk",
+          "source_claim_id",
+          "adjudication_type",
+          "adjudication_category_code",
+          "adjudication_category_desc",
+          "adjudication_category_system",
+          "adjudication_reason_code",
+          "adjudication_reason_desc",
+          "adjudication_reason_system",
+          "amount",
+          "currency",
+          "value"
+        ],
+        "input_selection": {
+          "enrich_claim_adjudication": [
+            "enrich_claim_adjudication_inserts"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_adjudication_insert",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_adjudication_insert_final"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_adjudication"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "claim_adjudication_update_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_adjudication"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "is_deleted",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_adjudication_sk",
+          "claim_id_sk",
+          "source_claim_id",
+          "adjudication_type",
+          "adjudication_category_code",
+          "adjudication_category_desc",
+          "adjudication_category_system",
+          "adjudication_reason_code",
+          "adjudication_reason_desc",
+          "adjudication_reason_system",
+          "amount",
+          "currency",
+          "value"
+        ],
+        "input_selection": {
+          "enrich_claim_adjudication": [
+            "enrich_claim_adjudication_updates"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_adjudication_update",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_adjudication_update_final",
+          "write_claim_adjudication_insert"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_adjudication"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "claim_adjudication_delete_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_adjudication"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "is_deleted",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_adjudication_sk",
+          "claim_id_sk",
+          "source_claim_id",
+          "adjudication_type",
+          "adjudication_category_code",
+          "adjudication_category_desc",
+          "adjudication_category_system",
+          "adjudication_reason_code",
+          "adjudication_reason_desc",
+          "adjudication_reason_system",
+          "amount",
+          "currency",
+          "value"
+        ],
+        "input_selection": {
+          "enrich_claim_adjudication": [
+            "enrich_claim_adjudication_deletes"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_adjudication_delete",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_adjudication_delete_final",
+          "write_claim_adjudication_update"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_adjudication"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "read_raw_claim_provider",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/raw_claim_provider"
+        },
+        "sql_override": "SELECT * FROM read_raw_claim_provider WHERE batch_id = '${batch_id}'"
+      },
+      {
+        "name": "enrich_claim_provider",
+        "transformation": "SQL",
+        "dependent_on": [
+          "read_raw_claim_provider",
+          "write_claim_line_delete"
+        ],
+        "queries": {
+          "result_inserts": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_provider\nWITH raw_batch AS (\n  SELECT r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(cast(r.line_number as string), ''),\n      coalesce(trim(cast(r.provider_role_code as string)), ''),\n      coalesce(trim(cast(r.provider_identifier_value as string)), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.provider_role_system as string)), ''),\n      coalesce(trim(cast(r.provider_identifier_system as string)), ''),\n      coalesce(trim(cast(r.npi as string)), ''),\n      coalesce(trim(cast(r.tin as string)), ''),\n      coalesce(trim(cast(r.servicing_facility_name as string)), ''),\n      coalesce(trim(cast(r.servicing_facility_category as string)), ''),\n      coalesce(trim(cast(r.rndrg_prvdr_type_cd as string)), ''),\n      coalesce(trim(cast(r.clm_prvdr_spclty_cd as string)), ''),\n      coalesce(trim(cast(r.location as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_provider r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_header_parent AS (\n  SELECT\n    claim_id_sk,\n    source_claim_id,\n    patient_sk,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_header\n  WHERE coalesce(is_active, true) = true\n),\nclaim_line_parent AS (\n  SELECT\n    claim_line_sk,\n    claim_id_sk,\n    source_claim_id,\n    line_number,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id, line_number\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_line\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.line_number, r.provider_role_code, cast(null as string) AS provider_role_code_desc,\n    r.provider_role_system, r.provider_identifier_value, r.provider_identifier_system,\n    r.npi, r.tin, r.servicing_facility_name, r.servicing_facility_category,\n    r.rndrg_prvdr_type_cd, r.clm_prvdr_spclty_cd, r.location,\n    h.claim_id_sk AS parent_claim_id_sk,\n    CASE WHEN coalesce(r.line_number, 0) > 0 THEN l.claim_line_sk ELSE cast(null as string) END AS parent_claim_line_sk\n  FROM raw_batch r\n  INNER JOIN claim_header_parent h ON h.source_claim_id = r.source_claim_id AND h.dup_seq = 1\n  LEFT JOIN claim_line_parent l\n    ON l.source_claim_id = r.source_claim_id AND l.line_number = r.line_number AND l.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.line_number, e.provider_role_code,\n    coalesce(o.provider_role_code_desc, e.provider_role_code_desc) AS provider_role_code_desc,\n    e.provider_role_system, e.provider_identifier_value, e.provider_identifier_system,\n    e.npi, e.tin, e.servicing_facility_name, e.servicing_facility_category,\n    e.rndrg_prvdr_type_cd, e.clm_prvdr_spclty_cd, e.location,\n    coalesce(o.claim_provider_sk, uuid()) AS claim_provider_sk,\n    coalesce(o.claim_id_sk, e.parent_claim_id_sk) AS claim_id_sk,\n    coalesce(o.claim_line_sk, e.parent_claim_line_sk) AS claim_line_sk,\n    CASE\n      WHEN o.claim_provider_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_provider o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'INSERT'",
+          "result_updates": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_provider\nWITH raw_batch AS (\n  SELECT r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(cast(r.line_number as string), ''),\n      coalesce(trim(cast(r.provider_role_code as string)), ''),\n      coalesce(trim(cast(r.provider_identifier_value as string)), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.provider_role_system as string)), ''),\n      coalesce(trim(cast(r.provider_identifier_system as string)), ''),\n      coalesce(trim(cast(r.npi as string)), ''),\n      coalesce(trim(cast(r.tin as string)), ''),\n      coalesce(trim(cast(r.servicing_facility_name as string)), ''),\n      coalesce(trim(cast(r.servicing_facility_category as string)), ''),\n      coalesce(trim(cast(r.rndrg_prvdr_type_cd as string)), ''),\n      coalesce(trim(cast(r.clm_prvdr_spclty_cd as string)), ''),\n      coalesce(trim(cast(r.location as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_provider r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_header_parent AS (\n  SELECT\n    claim_id_sk,\n    source_claim_id,\n    patient_sk,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_header\n  WHERE coalesce(is_active, true) = true\n),\nclaim_line_parent AS (\n  SELECT\n    claim_line_sk,\n    claim_id_sk,\n    source_claim_id,\n    line_number,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id, line_number\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_line\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.line_number, r.provider_role_code, cast(null as string) AS provider_role_code_desc,\n    r.provider_role_system, r.provider_identifier_value, r.provider_identifier_system,\n    r.npi, r.tin, r.servicing_facility_name, r.servicing_facility_category,\n    r.rndrg_prvdr_type_cd, r.clm_prvdr_spclty_cd, r.location,\n    h.claim_id_sk AS parent_claim_id_sk,\n    CASE WHEN coalesce(r.line_number, 0) > 0 THEN l.claim_line_sk ELSE cast(null as string) END AS parent_claim_line_sk\n  FROM raw_batch r\n  INNER JOIN claim_header_parent h ON h.source_claim_id = r.source_claim_id AND h.dup_seq = 1\n  LEFT JOIN claim_line_parent l\n    ON l.source_claim_id = r.source_claim_id AND l.line_number = r.line_number AND l.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.line_number, e.provider_role_code,\n    coalesce(o.provider_role_code_desc, e.provider_role_code_desc) AS provider_role_code_desc,\n    e.provider_role_system, e.provider_identifier_value, e.provider_identifier_system,\n    e.npi, e.tin, e.servicing_facility_name, e.servicing_facility_category,\n    e.rndrg_prvdr_type_cd, e.clm_prvdr_spclty_cd, e.location,\n    coalesce(o.claim_provider_sk, uuid()) AS claim_provider_sk,\n    coalesce(o.claim_id_sk, e.parent_claim_id_sk) AS claim_id_sk,\n    coalesce(o.claim_line_sk, e.parent_claim_line_sk) AS claim_line_sk,\n    CASE\n      WHEN o.claim_provider_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_provider o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'UPDATE'",
+          "result_deletes": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_provider\nWITH raw_batch AS (\n  SELECT r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(cast(r.line_number as string), ''),\n      coalesce(trim(cast(r.provider_role_code as string)), ''),\n      coalesce(trim(cast(r.provider_identifier_value as string)), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.provider_role_system as string)), ''),\n      coalesce(trim(cast(r.provider_identifier_system as string)), ''),\n      coalesce(trim(cast(r.npi as string)), ''),\n      coalesce(trim(cast(r.tin as string)), ''),\n      coalesce(trim(cast(r.servicing_facility_name as string)), ''),\n      coalesce(trim(cast(r.servicing_facility_category as string)), ''),\n      coalesce(trim(cast(r.rndrg_prvdr_type_cd as string)), ''),\n      coalesce(trim(cast(r.clm_prvdr_spclty_cd as string)), ''),\n      coalesce(trim(cast(r.location as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_provider r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_header_parent AS (\n  SELECT\n    claim_id_sk,\n    source_claim_id,\n    patient_sk,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_header\n  WHERE coalesce(is_active, true) = true\n),\nclaim_line_parent AS (\n  SELECT\n    claim_line_sk,\n    claim_id_sk,\n    source_claim_id,\n    line_number,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id, line_number\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_line\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.line_number, r.provider_role_code, cast(null as string) AS provider_role_code_desc,\n    r.provider_role_system, r.provider_identifier_value, r.provider_identifier_system,\n    r.npi, r.tin, r.servicing_facility_name, r.servicing_facility_category,\n    r.rndrg_prvdr_type_cd, r.clm_prvdr_spclty_cd, r.location,\n    h.claim_id_sk AS parent_claim_id_sk,\n    CASE WHEN coalesce(r.line_number, 0) > 0 THEN l.claim_line_sk ELSE cast(null as string) END AS parent_claim_line_sk\n  FROM raw_batch r\n  INNER JOIN claim_header_parent h ON h.source_claim_id = r.source_claim_id AND h.dup_seq = 1\n  LEFT JOIN claim_line_parent l\n    ON l.source_claim_id = r.source_claim_id AND l.line_number = r.line_number AND l.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.line_number, e.provider_role_code,\n    coalesce(o.provider_role_code_desc, e.provider_role_code_desc) AS provider_role_code_desc,\n    e.provider_role_system, e.provider_identifier_value, e.provider_identifier_system,\n    e.npi, e.tin, e.servicing_facility_name, e.servicing_facility_category,\n    e.rndrg_prvdr_type_cd, e.clm_prvdr_spclty_cd, e.location,\n    coalesce(o.claim_provider_sk, uuid()) AS claim_provider_sk,\n    coalesce(o.claim_id_sk, e.parent_claim_id_sk) AS claim_id_sk,\n    coalesce(o.claim_line_sk, e.parent_claim_line_sk) AS claim_line_sk,\n    CASE\n      WHEN o.claim_provider_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_provider o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'DELETE'"
+        }
+      },
+      {
+        "name": "claim_provider_insert_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_provider"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_provider_sk",
+          "claim_id_sk",
+          "claim_line_sk",
+          "source_claim_id",
+          "line_number",
+          "provider_role_code",
+          "provider_role_code_desc",
+          "provider_role_system",
+          "provider_identifier_system",
+          "provider_identifier_value",
+          "npi",
+          "tin",
+          "servicing_facility_name",
+          "servicing_facility_category",
+          "rndrg_prvdr_type_cd",
+          "clm_prvdr_spclty_cd",
+          "location"
+        ],
+        "input_selection": {
+          "enrich_claim_provider": [
+            "enrich_claim_provider_inserts"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_provider_insert",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_provider_insert_final"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_provider"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "claim_provider_update_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_provider"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_provider_sk",
+          "claim_id_sk",
+          "claim_line_sk",
+          "source_claim_id",
+          "line_number",
+          "provider_role_code",
+          "provider_role_code_desc",
+          "provider_role_system",
+          "provider_identifier_system",
+          "provider_identifier_value",
+          "npi",
+          "tin",
+          "servicing_facility_name",
+          "servicing_facility_category",
+          "rndrg_prvdr_type_cd",
+          "clm_prvdr_spclty_cd",
+          "location"
+        ],
+        "input_selection": {
+          "enrich_claim_provider": [
+            "enrich_claim_provider_updates"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_provider_update",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_provider_update_final",
+          "write_claim_provider_insert"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_provider"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "claim_provider_delete_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_provider"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_provider_sk",
+          "claim_id_sk",
+          "claim_line_sk",
+          "source_claim_id",
+          "line_number",
+          "provider_role_code",
+          "provider_role_code_desc",
+          "provider_role_system",
+          "provider_identifier_system",
+          "provider_identifier_value",
+          "npi",
+          "tin",
+          "servicing_facility_name",
+          "servicing_facility_category",
+          "rndrg_prvdr_type_cd",
+          "clm_prvdr_spclty_cd",
+          "location"
+        ],
+        "input_selection": {
+          "enrich_claim_provider": [
+            "enrich_claim_provider_deletes"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_provider_delete",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_provider_delete_final",
+          "write_claim_provider_update"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_provider"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "read_raw_claim_line_adjudication",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/raw_claim_line_adjudication"
+        },
+        "sql_override": "SELECT * FROM read_raw_claim_line_adjudication WHERE batch_id = '${batch_id}'"
+      },
+      {
+        "name": "enrich_claim_line_adjudication",
+        "transformation": "SQL",
+        "dependent_on": [
+          "read_raw_claim_line_adjudication",
+          "write_claim_line_delete"
+        ],
+        "queries": {
+          "result_inserts": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_line_adjudication\nWITH raw_batch AS (\n  SELECT r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(cast(r.line_number as string), ''),\n      coalesce(trim(cast(r.adjudication_category_bb_code as string)), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.adjudication_type as string)), ''),\n      coalesce(trim(cast(r.adjudication_category_code as string)), ''),\n      coalesce(trim(cast(r.adjudication_category_system as string)), ''),\n      coalesce(trim(cast(r.adjudication_reason_code as string)), ''),\n      coalesce(trim(cast(r.adjudication_reason_system as string)), ''),\n      coalesce(trim(cast(r.amount as string)), ''),\n      coalesce(trim(cast(r.currency as string)), ''),\n      coalesce(trim(cast(r.value as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_line_adjudication r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_line_parent AS (\n  SELECT\n    claim_line_sk,\n    claim_id_sk,\n    source_claim_id,\n    line_number,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id, line_number\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_line\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.line_number, r.adjudication_type, r.adjudication_category_code,\n    r.adjudication_category_bb_code, cast(null as string) AS adjudication_category_code_desc,\n    r.adjudication_category_system, r.adjudication_reason_code,\n    cast(null as string) AS adjudication_reason_code_desc, r.adjudication_reason_system,\n    r.amount, r.currency, r.value,\n    p.claim_line_sk AS parent_claim_line_sk\n  FROM raw_batch r\n  INNER JOIN claim_line_parent p\n    ON p.source_claim_id = r.source_claim_id AND p.line_number = r.line_number AND p.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.line_number, e.adjudication_type, e.adjudication_category_code,\n    e.adjudication_category_bb_code,\n    coalesce(o.adjudication_category_code_desc, e.adjudication_category_code_desc) AS adjudication_category_code_desc,\n    e.adjudication_category_system, e.adjudication_reason_code,\n    coalesce(o.adjudication_reason_code_desc, e.adjudication_reason_code_desc) AS adjudication_reason_code_desc,\n    e.adjudication_reason_system, e.amount, e.currency, e.value,\n    coalesce(o.claim_line_adjudication_sk, uuid()) AS claim_line_adjudication_sk,\n    coalesce(o.claim_line_sk, e.parent_claim_line_sk) AS claim_line_sk,\n    CASE\n      WHEN o.claim_line_adjudication_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_line_adjudication o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'INSERT'",
+          "result_updates": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_line_adjudication\nWITH raw_batch AS (\n  SELECT r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(cast(r.line_number as string), ''),\n      coalesce(trim(cast(r.adjudication_category_bb_code as string)), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.adjudication_type as string)), ''),\n      coalesce(trim(cast(r.adjudication_category_code as string)), ''),\n      coalesce(trim(cast(r.adjudication_category_system as string)), ''),\n      coalesce(trim(cast(r.adjudication_reason_code as string)), ''),\n      coalesce(trim(cast(r.adjudication_reason_system as string)), ''),\n      coalesce(trim(cast(r.amount as string)), ''),\n      coalesce(trim(cast(r.currency as string)), ''),\n      coalesce(trim(cast(r.value as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_line_adjudication r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_line_parent AS (\n  SELECT\n    claim_line_sk,\n    claim_id_sk,\n    source_claim_id,\n    line_number,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id, line_number\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_line\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.line_number, r.adjudication_type, r.adjudication_category_code,\n    r.adjudication_category_bb_code, cast(null as string) AS adjudication_category_code_desc,\n    r.adjudication_category_system, r.adjudication_reason_code,\n    cast(null as string) AS adjudication_reason_code_desc, r.adjudication_reason_system,\n    r.amount, r.currency, r.value,\n    p.claim_line_sk AS parent_claim_line_sk\n  FROM raw_batch r\n  INNER JOIN claim_line_parent p\n    ON p.source_claim_id = r.source_claim_id AND p.line_number = r.line_number AND p.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.line_number, e.adjudication_type, e.adjudication_category_code,\n    e.adjudication_category_bb_code,\n    coalesce(o.adjudication_category_code_desc, e.adjudication_category_code_desc) AS adjudication_category_code_desc,\n    e.adjudication_category_system, e.adjudication_reason_code,\n    coalesce(o.adjudication_reason_code_desc, e.adjudication_reason_code_desc) AS adjudication_reason_code_desc,\n    e.adjudication_reason_system, e.amount, e.currency, e.value,\n    coalesce(o.claim_line_adjudication_sk, uuid()) AS claim_line_adjudication_sk,\n    coalesce(o.claim_line_sk, e.parent_claim_line_sk) AS claim_line_sk,\n    CASE\n      WHEN o.claim_line_adjudication_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_line_adjudication o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'UPDATE'",
+          "result_deletes": "SELECT * FROM (-- CDC enrichment for silver_ods.claim_line_adjudication\nWITH raw_batch AS (\n  SELECT r.*,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.source_claim_id as string)), ''),\n      coalesce(cast(r.line_number as string), ''),\n      coalesce(trim(cast(r.adjudication_category_bb_code as string)), '')\n    ), 256) AS business_key_hash,\n    sha2(concat_ws('||',\n      coalesce(trim(cast(r.adjudication_type as string)), ''),\n      coalesce(trim(cast(r.adjudication_category_code as string)), ''),\n      coalesce(trim(cast(r.adjudication_category_system as string)), ''),\n      coalesce(trim(cast(r.adjudication_reason_code as string)), ''),\n      coalesce(trim(cast(r.adjudication_reason_system as string)), ''),\n      coalesce(trim(cast(r.amount as string)), ''),\n      coalesce(trim(cast(r.currency as string)), ''),\n      coalesce(trim(cast(r.value as string)), '')\n    ), 256) AS ods_record_hash\n  FROM ${catalog}.${raw_schema}.claim_line_adjudication r\n  WHERE r.batch_id = '${batch_id}'\n),\nclaim_line_parent AS (\n  SELECT\n    claim_line_sk,\n    claim_id_sk,\n    source_claim_id,\n    line_number,\n    ROW_NUMBER() OVER (\n      PARTITION BY source_claim_id, line_number\n      ORDER BY coalesce(updated_at, created_at) DESC, batch_id DESC\n    ) AS dup_seq\n  FROM ${catalog}.${ods_schema}.claim_line\n  WHERE coalesce(is_active, true) = true\n),\nenriched AS (\n  SELECT\n    r.batch_id, r.record_hash, r.ods_record_hash, r.is_active,\n    r.created_by, r.created_at, r.updated_by, r.updated_at, r.source_system, r.business_key_hash,\n    r.source_claim_id, r.line_number, r.adjudication_type, r.adjudication_category_code,\n    r.adjudication_category_bb_code, cast(null as string) AS adjudication_category_code_desc,\n    r.adjudication_category_system, r.adjudication_reason_code,\n    cast(null as string) AS adjudication_reason_code_desc, r.adjudication_reason_system,\n    r.amount, r.currency, r.value,\n    p.claim_line_sk AS parent_claim_line_sk\n  FROM raw_batch r\n  INNER JOIN claim_line_parent p\n    ON p.source_claim_id = r.source_claim_id AND p.line_number = r.line_number AND p.dup_seq = 1\n),\nwith_ods AS (\n  SELECT\n    e.batch_id, e.record_hash, e.ods_record_hash, e.is_active,\n    e.created_by, e.created_at, e.updated_by, e.updated_at, e.source_system, e.business_key_hash,\n    e.source_claim_id, e.line_number, e.adjudication_type, e.adjudication_category_code,\n    e.adjudication_category_bb_code,\n    coalesce(o.adjudication_category_code_desc, e.adjudication_category_code_desc) AS adjudication_category_code_desc,\n    e.adjudication_category_system, e.adjudication_reason_code,\n    coalesce(o.adjudication_reason_code_desc, e.adjudication_reason_code_desc) AS adjudication_reason_code_desc,\n    e.adjudication_reason_system, e.amount, e.currency, e.value,\n    coalesce(o.claim_line_adjudication_sk, uuid()) AS claim_line_adjudication_sk,\n    coalesce(o.claim_line_sk, e.parent_claim_line_sk) AS claim_line_sk,\n    CASE\n      WHEN o.claim_line_adjudication_sk IS NULL THEN 'INSERT'\n      WHEN coalesce(e.is_active, true) = false AND coalesce(o.is_active, true) = true THEN 'DELETE'\n      WHEN coalesce(e.is_active, true) = true AND coalesce(o.is_active, true) = false THEN 'UPDATE'\n      WHEN coalesce(e.record_hash, '') <> coalesce(o.record_hash, '') THEN 'UPDATE'\n      WHEN coalesce(e.ods_record_hash, '') <> coalesce(o.ods_record_hash, '') THEN 'UPDATE'\n      ELSE 'NOOP'\n    END AS cdc_action\n  FROM enriched e\n  LEFT JOIN (\n    SELECT o.*,\n      ROW_NUMBER() OVER (\n        PARTITION BY o.business_key_hash\n        ORDER BY coalesce(o.updated_at, o.created_at) DESC, o.batch_id DESC\n      ) AS dup_seq\n    FROM ${catalog}.${ods_schema}.claim_line_adjudication o\n    WHERE coalesce(o.is_active, true) = true\n  ) o\n    ON o.business_key_hash = e.business_key_hash\n   AND o.dup_seq = 1\n)\nSELECT * FROM with_ods WHERE cdc_action <> 'NOOP'\n) x WHERE cdc_action = 'DELETE'"
+        }
+      },
+      {
+        "name": "claim_line_adjudication_insert_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_line_adjudication"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_line_adjudication_sk",
+          "claim_line_sk",
+          "source_claim_id",
+          "line_number",
+          "adjudication_type",
+          "adjudication_category_code",
+          "adjudication_category_bb_code",
+          "adjudication_category_code_desc",
+          "adjudication_category_system",
+          "adjudication_reason_code",
+          "adjudication_reason_code_desc",
+          "adjudication_reason_system",
+          "amount",
+          "currency",
+          "value"
+        ],
+        "input_selection": {
+          "enrich_claim_line_adjudication": [
+            "enrich_claim_line_adjudication_inserts"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_line_adjudication_insert",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_line_adjudication_insert_final"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_line_adjudication"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "claim_line_adjudication_update_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_line_adjudication"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_line_adjudication_sk",
+          "claim_line_sk",
+          "source_claim_id",
+          "line_number",
+          "adjudication_type",
+          "adjudication_category_code",
+          "adjudication_category_bb_code",
+          "adjudication_category_code_desc",
+          "adjudication_category_system",
+          "adjudication_reason_code",
+          "adjudication_reason_code_desc",
+          "adjudication_reason_system",
+          "amount",
+          "currency",
+          "value"
+        ],
+        "input_selection": {
+          "enrich_claim_line_adjudication": [
+            "enrich_claim_line_adjudication_updates"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_line_adjudication_update",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_line_adjudication_update_final",
+          "write_claim_line_adjudication_insert"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_line_adjudication"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "claim_line_adjudication_delete_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "enrich_claim_line_adjudication"
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "ods_record_hash",
+          "business_key_hash",
+          "is_active",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "claim_line_adjudication_sk",
+          "claim_line_sk",
+          "source_claim_id",
+          "line_number",
+          "adjudication_type",
+          "adjudication_category_code",
+          "adjudication_category_bb_code",
+          "adjudication_category_code_desc",
+          "adjudication_category_system",
+          "adjudication_reason_code",
+          "adjudication_reason_code_desc",
+          "adjudication_reason_system",
+          "amount",
+          "currency",
+          "value"
+        ],
+        "input_selection": {
+          "enrich_claim_line_adjudication": [
+            "enrich_claim_line_adjudication_deletes"
+          ]
+        }
+      },
+      {
+        "name": "write_claim_line_adjudication_delete",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_line_adjudication_delete_final",
+          "write_claim_line_adjudication_update"
+        ],
+        "target": {
+          "$ref": "#/targets/ods_claim_line_adjudication"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      }
+    ],
+    "execution_order": [
+      "claim_header",
+      "claim_line",
+      "claim_diagnosis",
+      "claim_procedure",
+      "claim_adjudication",
+      "claim_provider",
+      "claim_line_adjudication"
+    ],
+    "dependency_graph": {
+      "claim_header": {
+        "depends_on_tables": [
+          "members_enrollment_segments"
+        ],
+        "note": "Enrollment lookup: ${enrollment_catalog}.${enrollment_schema}.members_enrollment_segments; patient_sk = cinq_id"
+      },
+      "claim_line": {
+        "depends_on_tables": [
+          "claim_header"
+        ]
+      },
+      "claim_diagnosis": {
+        "depends_on_tables": [
+          "claim_header"
+        ]
+      },
+      "claim_procedure": {
+        "depends_on_tables": [
+          "claim_header",
+          "claim_line"
+        ]
+      },
+      "claim_adjudication": {
+        "depends_on_tables": [
+          "claim_header"
+        ]
+      },
+      "claim_provider": {
+        "depends_on_tables": [
+          "claim_header",
+          "claim_line"
+        ]
+      },
+      "claim_line_adjudication": {
+        "depends_on_tables": [
+          "claim_line"
+        ]
+      }
+    },
+    "batch_control": {
+      "enabled": true,
+      "feed_name": "test_ods3",
+      "business_date": "2026-06-24",
+      "delivery_id": "test_ods3_2026-06-24",
+      "batch_id": 1,
+      "use_existing_batch_id": true,
+      "validate_existing_batch": true,
+      "require_input_acceptance": true,
+      "auto_accept_input_on_batch_init": true,
+      "input_registry_processed_on_stage": "silver_raw",
+      "seed_stage_rows": true,
+      "stages": [
+        "silver_ods"
+      ],
+      "storage": {
+        "connection": {
+          "name": "control_delta",
+          "connection_type": "DatabricksDeltaLake"
+        },
+        "namespace": {
+          "catalog": "sasi",
+          "schema": "control_cclf1"
+        }
+      },
+      "stage_to_transformations": {
+        "silver_ods": [
+          "read_raw_claim_header",
+          "enrich_claim_header",
+          "claim_header_insert_final",
+          "write_claim_header_insert",
+          "claim_header_update_final",
+          "write_claim_header_update",
+          "claim_header_delete_final",
+          "write_claim_header_delete",
+          "read_raw_claim_line",
+          "enrich_claim_line",
+          "claim_line_insert_final",
+          "write_claim_line_insert",
+          "claim_line_update_final",
+          "write_claim_line_update",
+          "claim_line_delete_final",
+          "write_claim_line_delete",
+          "read_raw_claim_diagnosis",
+          "enrich_claim_diagnosis",
+          "claim_diagnosis_insert_final",
+          "write_claim_diagnosis_insert",
+          "claim_diagnosis_update_final",
+          "write_claim_diagnosis_update",
+          "claim_diagnosis_delete_final",
+          "write_claim_diagnosis_delete",
+          "read_raw_claim_procedure",
+          "enrich_claim_procedure",
+          "claim_procedure_insert_final",
+          "write_claim_procedure_insert",
+          "claim_procedure_update_final",
+          "write_claim_procedure_update",
+          "claim_procedure_delete_final",
+          "write_claim_procedure_delete",
+          "read_raw_claim_adjudication",
+          "enrich_claim_adjudication",
+          "claim_adjudication_insert_final",
+          "write_claim_adjudication_insert",
+          "claim_adjudication_update_final",
+          "write_claim_adjudication_update",
+          "claim_adjudication_delete_final",
+          "write_claim_adjudication_delete",
+          "read_raw_claim_provider",
+          "enrich_claim_provider",
+          "claim_provider_insert_final",
+          "write_claim_provider_insert",
+          "claim_provider_update_final",
+          "write_claim_provider_update",
+          "claim_provider_delete_final",
+          "write_claim_provider_delete",
+          "read_raw_claim_line_adjudication",
+          "enrich_claim_line_adjudication",
+          "claim_line_adjudication_insert_final",
+          "write_claim_line_adjudication_insert",
+          "claim_line_adjudication_update_final",
+          "write_claim_line_adjudication_update",
+          "claim_line_adjudication_delete_final",
+          "write_claim_line_adjudication_delete"
+        ]
+      },
+      "error_threshold_pct": 50.0
+    }
+  },
+  "pipeline_type": null,
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
