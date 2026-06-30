@@ -336,8 +336,8 @@
           "connection_type": "DatabricksDeltaLake"
         },
         "namespace": {
-          "catalog": "cinqdev",
-          "schema": "control"
+          "catalog": "sasi",
+          "schema": "ods_testing"
         }
       },
       "stage_to_transformations": {
