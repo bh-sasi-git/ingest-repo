@@ -1,6 +1,6 @@
 {
   "created_at": "2026-06-30T07:18:33.363521Z",
-  "updated_at": "2026-06-30T09:44:06.473213Z",
+  "updated_at": "2026-06-30T11:24:36.230700Z",
   "created_by": "muthukumar@bighammer.ai",
   "updated_by": "muthukumar@bighammer.ai",
   "is_deleted": false,
@@ -1659,9 +1659,9 @@
     },
     "batch_control": {
       "enabled": true,
-      "feed_name": "test_ods99",
+      "feed_name": "testing_ods_99",
       "business_date": "2026-06-24",
-      "delivery_id": "test_ods99_2026-06-24",
+      "delivery_id": "testing_ods_99_2026-06-24",
       "batch_id": 1,
       "use_existing_batch_id": true,
       "validate_existing_batch": true,
@@ -1679,7 +1679,7 @@
         },
         "namespace": {
           "catalog": "sasi",
-          "schema": "ods_control"
+          "schema": "control_cclf1"
         }
       },
       "stage_to_transformations": {
