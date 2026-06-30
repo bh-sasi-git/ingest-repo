@@ -1679,7 +1679,7 @@
         },
         "namespace": {
           "catalog": "sasi",
-          "schema": "control_cclf1"
+          "schema": "ods_control"
         }
       },
       "stage_to_transformations": {
