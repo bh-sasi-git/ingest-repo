@@ -1,0 +1,149 @@
+{
+  "created_at": "2026-06-30T07:30:22.319124Z",
+  "updated_at": "2026-06-30T07:41:17.530000Z",
+  "created_by": "muthukumar@bighammer.ai",
+  "updated_by": "muthukumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 4,
+  "pipeline_id": 1136,
+  "pipeline_name": "silver_raw_d0284_claims_to_silver_raw_load_260630_fca9",
+  "pipeline_key": "silver_raw_d0284_claims_to_silver_raw_load_260630_fca9",
+  "bh_project_id": 303,
+  "notes": "",
+  "tags": {
+    "data_domain_id": 281,
+    "data_domain_name": "MSSP_1",
+    "source_count": 11,
+    "target_count": 9
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": null,
+  "bh_github_username": null,
+  "pipeline_json": {
+    "data_domain_id": 281,
+    "data_domain_name": "MSSP_1",
+    "ingestion_group_id": 644,
+    "source_rows": [
+      {
+        "data_src_id": 2345,
+        "ingest_object_id": null,
+        "label": "p_d0284_aco_zcby26_d260501_7nmuz \u00b7 staging.p_d0284_aco_zcby26_d260501"
+      },
+      {
+        "data_src_id": 2343,
+        "ingest_object_id": null,
+        "label": "p_d0284_aco_zcay26_d260501_ke8b0 \u00b7 staging.p_d0284_aco_zcay26_d260501"
+      },
+      {
+        "data_src_id": 2341,
+        "ingest_object_id": null,
+        "label": "p_d0284_aco_zc9y26_d260501_bsmd8 \u00b7 staging.p_d0284_aco_zc9y26_d260501"
+      },
+      {
+        "data_src_id": 2339,
+        "ingest_object_id": null,
+        "label": "p_d0284_aco_zc8y26_d260501_0hxcf \u00b7 staging.p_d0284_aco_zc8y26_d260501"
+      },
+      {
+        "data_src_id": 2337,
+        "ingest_object_id": null,
+        "label": "p_d0284_aco_zc7y26_d260501_ljidh \u00b7 staging.p_d0284_aco_zc7y26_d260501"
+      },
+      {
+        "data_src_id": 2335,
+        "ingest_object_id": null,
+        "label": "p_d0284_aco_zc6y26_d260501_b2nod \u00b7 staging.p_d0284_aco_zc6y26_d260501"
+      },
+      {
+        "data_src_id": 2333,
+        "ingest_object_id": null,
+        "label": "p_d0284_aco_zc5y26_d260501_djmuz \u00b7 staging.p_d0284_aco_zc5y26_d260501"
+      },
+      {
+        "data_src_id": 2331,
+        "ingest_object_id": null,
+        "label": "p_d0284_aco_zc4y26_d260501_8sg20 \u00b7 staging.p_d0284_aco_zc4y26_d260501"
+      },
+      {
+        "data_src_id": 2329,
+        "ingest_object_id": null,
+        "label": "p_d0284_aco_zc3y26_d260501_fo2db \u00b7 staging.p_d0284_aco_zc3y26_d260501"
+      },
+      {
+        "data_src_id": 2327,
+        "ingest_object_id": null,
+        "label": "p_d0284_aco_zc2y26_d260501_87gx5 \u00b7 staging.p_d0284_aco_zc2y26_d260501"
+      },
+      {
+        "data_src_id": 2325,
+        "ingest_object_id": null,
+        "label": "p_d0284_aco_zc1y26_d260501_mqccu \u00b7 staging.p_d0284_aco_zc1y26_d260501"
+      }
+    ],
+    "target_rows": [
+      {
+        "data_src_id": 1951,
+        "label": "patient \u00b7 silverraw_claims.patient"
+      },
+      {
+        "data_src_id": 1950,
+        "label": "claim_provider \u00b7 silverraw_claims.claim_provider"
+      },
+      {
+        "data_src_id": 1949,
+        "label": "claim_diagnosis \u00b7 silverraw_claims.claim_diagnosis"
+      },
+      {
+        "data_src_id": 1948,
+        "label": "pharmacy_claim_header \u00b7 silverraw_claims.pharmacy_claim_header"
+      },
+      {
+        "data_src_id": 1947,
+        "label": "claim_line \u00b7 silverraw_claims.claim_line"
+      },
+      {
+        "data_src_id": 1946,
+        "label": "claim_procedure \u00b7 silverraw_claims.claim_procedure"
+      },
+      {
+        "data_src_id": 1945,
+        "label": "claim_header \u00b7 silverraw_claims.claim_header"
+      },
+      {
+        "data_src_id": 1944,
+        "label": "claim_line_adjudication \u00b7 silverraw_claims.claim_line_adjudication"
+      },
+      {
+        "data_src_id": 1943,
+        "label": "claim_adjudication \u00b7 silverraw_claims.claim_adjudication"
+      }
+    ],
+    "batch_control": {
+      "enabled": true,
+      "stages": [
+        "silver_raw"
+      ],
+      "feed_name": "test_ods3",
+      "storage": {
+        "namespace": {
+          "catalog": "cinqdev",
+          "schema": "control"
+        },
+        "connection": {
+          "name": "control_delta",
+          "connection_type": "DatabricksDeltaLake"
+        }
+      }
+    }
+  },
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
