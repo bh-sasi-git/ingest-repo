@@ -20,6 +20,12 @@ with DAG(
     schedule='0 0 1 * *',
     catchup=False,
     tags=['dev']
+    params={
+  "bh_environment_name": "kiran_databricks",
+  "bh_environment_id": 321,
+  "bh_kc_secret_url": "bh-dev-westus3-kv-key-scope/bh-app-muthukumar-databricks-keycloak-321-v1-secrets",
+  "cloud_provider": "databricks"
+}
 ) as dag:
 
 
