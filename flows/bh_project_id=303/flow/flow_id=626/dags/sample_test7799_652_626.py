@@ -332,7 +332,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_pipelines_employees_652_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/test/pipelines/bh_project_id=303/pipeline/pipeline_id=1142/employees_652.json",
+                "/Workspace/Shared/codespace/pipelines/bh_project_id=303/pipeline/pipeline_id=1142/employees_652.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ]
@@ -511,7 +511,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_pipelines_silver_raw_employees_to_target_employees_map_260701_9f15_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/test/pipelines/bh_project_id=303/pipeline/pipeline_id=1143/silver_raw_employees_to_target_employees_map_260701_9f15.json",
+                "/Workspace/Shared/codespace/pipelines/bh_project_id=303/pipeline/pipeline_id=1143/silver_raw_employees_to_target_employees_map_260701_9f15.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ]
@@ -690,7 +690,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_pipelines_pharmacy_ods_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/test/pipelines/bh_project_id=303/pipeline/pipeline_id=1141/pharmacy_ods.json",
+                "/Workspace/Shared/codespace/pipelines/bh_project_id=303/pipeline/pipeline_id=1141/pharmacy_ods.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ]
