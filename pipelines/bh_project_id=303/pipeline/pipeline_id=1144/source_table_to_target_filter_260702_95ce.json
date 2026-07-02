@@ -1,0 +1,158 @@
+{
+  "created_at": "2026-07-02T06:21:59.831402Z",
+  "updated_at": "2026-07-02T06:27:07.107672Z",
+  "created_by": "muthukumar@bighammer.ai",
+  "updated_by": "muthukumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 4,
+  "pipeline_id": 1144,
+  "pipeline_name": "source_table_to_target_filter_260702_95ce",
+  "pipeline_key": "source_table_to_target_filter_260702_95ce",
+  "bh_project_id": 303,
+  "notes": "",
+  "tags": {
+    "created_from": "chat-quick-action"
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "Project_s1",
+  "bh_github_username": "bh-sasi-git",
+  "pipeline_json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "source_table_to_target_filter_260702_95ce",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "postgres2": {
+        "connection_config_id": 138,
+        "name": "postgres2",
+        "connection_type": "PostgreSQL",
+        "database": "sample_db",
+        "schema": "smaller_data",
+        "driver": "org.postgresql.Driver",
+        "host": "4.227.38.66",
+        "port": "5434",
+        "secret_name": "bh-postgres-postgres2"
+      }
+    },
+    "sources": {
+      "source_table": {
+        "data_src_id": 68,
+        "name": "source_table",
+        "source_type": "Relational",
+        "table_name": "source_table",
+        "connection": {
+          "$ref": "#/connections/postgres2"
+        },
+        "fields": [
+          "id",
+          "value"
+        ],
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "value",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": "smaller_data"
+      }
+    },
+    "targets": {
+      "target_table": {
+        "data_src_id": 69,
+        "name": "target_table",
+        "target_type": "Relational",
+        "table_name": "target_table",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres2"
+        },
+        "schema": "smaller_data"
+      }
+    },
+    "transformations": [
+      {
+        "name": "source_table",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/source_table"
+        },
+        "rename_columns": {
+          "id": "id_src_1",
+          "value": "value_src_1"
+        },
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "value",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "read_options": {
+          "dbtable": "source_table"
+        }
+      },
+      {
+        "name": "Filter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "source_table"
+        ],
+        "condition": "value_src_1 > 10"
+      },
+      {
+        "name": "Expression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "Filter"
+        ],
+        "rename_columns": {
+          "id_src_1": "id",
+          "value_src_1": "value"
+        },
+        "select_columns": [
+          "id",
+          "value"
+        ]
+      },
+      {
+        "name": "target_table",
+        "transformation": "Writer",
+        "dependent_on": [
+          "Expression"
+        ],
+        "target": {
+          "$ref": "#/targets/target_table"
+        },
+        "write_options": {
+          "mode": "overwrite",
+          "dbtable": "target_table"
+        }
+      }
+    ]
+  },
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
