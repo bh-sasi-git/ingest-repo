@@ -405,6 +405,13 @@
                       "gcp_attributes": null,
                       "single_node": true,
                       "autotermination_minutes": 30,
+                      "pool_enabled": false,
+                      "pool_max_size": 2,
+                      "pool_max_concurrent_leases": 1,
+                      "pool_lease_ttl_minutes": 30,
+                      "pool_heartbeat_interval_seconds": 120,
+                      "pool_starting_timeout_minutes": 30,
+                      "pool_acquire_wait_seconds": 300,
                       "enable_elastic_disk": true,
                       "spark_conf": {},
                       "spark_env_vars": {
@@ -419,7 +426,17 @@
                       ],
                       "libraries": [],
                       "databricks_region": "us-west-2",
-                      "bh_tags": []
+                      "bh_tags": [],
+                      "spark_custom_listener": {
+                        "enabled": true,
+                        "output_base": "abfss://my-test-bucket@bhnprddwestus3rgbd5e.dfs.core.windows.net/spark-metrics",
+                        "openlineage_enabled": true,
+                        "adaptive_enabled": true,
+                        "analyze_on_cluster": true,
+                        "python_executable": "/databricks/python3/bin/python3",
+                        "init_script": "/Workspace/Shared/dev-utils/scripts/install-plan-listener.sh",
+                        "blob_secrets_scope": "bh-dev-test-key-scope"
+                      }
                     }
                   },
                   "cloud_type": "databricks",
@@ -433,7 +450,9 @@
                     }
                   ],
                   "name": "Create_Compute",
-                  "nodeId": "create_compute_create_compute"
+                  "nodeId": "create_compute_create_compute",
+                  "compute_config_id": 152,
+                  "pool_enabled": false
                 },
                 {
                   "task_id": "run_pipelines_testing_ods_99",
@@ -455,7 +474,8 @@
                   "valid_files": "{{ task_instance.xcom_pull(task_ids='validate_inbound_files', key='valid_files') }}",
                   "batch_id": "{{ task_instance.xcom_pull(task_ids='validate_inbound_files', key='batch_id') }}",
                   "name": "Submit_Job",
-                  "nodeId": "Submit_Job_run_pipelines_testing_ods_99"
+                  "nodeId": "Submit_Job_run_pipelines_testing_ods_99",
+                  "pool_enabled": false
                 },
                 {
                   "task_id": "run_pipelines_silver_raw_employees_to_target_map_260630_6a88",
@@ -477,7 +497,8 @@
                   "valid_files": "{{ task_instance.xcom_pull(task_ids='validate_inbound_files', key='valid_files') }}",
                   "batch_id": "{{ task_instance.xcom_pull(task_ids='validate_inbound_files', key='batch_id') }}",
                   "name": "Submit_Job_2",
-                  "nodeId": "Submit_Job_run_pipelines_silver_raw_employees_to_target_map_260630_6a88"
+                  "nodeId": "Submit_Job_run_pipelines_silver_raw_employees_to_target_map_260630_6a88",
+                  "pool_enabled": false
                 },
                 {
                   "task_id": "run_pipelines_testing_ods",
@@ -499,7 +520,8 @@
                   "valid_files": "{{ task_instance.xcom_pull(task_ids='validate_inbound_files', key='valid_files') }}",
                   "batch_id": "{{ task_instance.xcom_pull(task_ids='validate_inbound_files', key='batch_id') }}",
                   "name": "Submit_Job_3",
-                  "nodeId": "Submit_Job_run_pipelines_testing_ods"
+                  "nodeId": "Submit_Job_run_pipelines_testing_ods",
+                  "pool_enabled": false
                 },
                 {
                   "task_id": "archive_processed_files",
@@ -532,14 +554,17 @@
                     "source_output_id": "compute_id"
                   },
                   "name": "Delete_Compute",
-                  "nodeId": "delete_compute_delete_compute"
+                  "nodeId": "delete_compute_delete_compute",
+                  "pool_enabled": false
                 }
               ],
               "bh_environment_id": 321,
+              "template_parameters": [],
               "bh_project_id": 303,
               "bh_environment_name": "kiran_databricks",
               "cloud_provider": "databricks",
               "vault_url": "https://bh-dev-westus3-kv-key.vault.azure.net",
+              "bh_kc_secret_url": "bh-dev-westus3-kv-key-scope/bh-app-muthukumar-databricks-keycloak-321-v1-secrets",
               "ingestion_group_id": 647
             }
           },
