@@ -1678,8 +1678,8 @@
           "connection_type": "DatabricksDeltaLake"
         },
         "namespace": {
-           "catalog": "sasi",
-          "schema": "ods_testing"
+          "catalog": "sasi",
+          "schema": "control_cclf1"
         }
       },
       "stage_to_transformations": {
@@ -1745,6 +1745,7 @@
       "error_threshold_pct": 50.0
     }
   },
+  "draft_pipeline_json": null,
   "pipeline_type": null,
   "engine_type": "pyspark",
   "total_test_scenario": null,
