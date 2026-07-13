@@ -19,8 +19,8 @@
   },
   "status": "active",
   "pipeline_version_id": null,
-  "bh_project_name": null,
-  "bh_github_username": null,
+  "bh_project_name": "Project_s1",
+  "bh_github_username": "bh-sasi-git",
   "pipeline_json": {
     "$schema": "https://json-schema.org/draft-07/schema#",
     "name": "silver_raw_employees_to_target_map_260630_6a88",
@@ -412,8 +412,8 @@
       "delivery_id": "testing_ods_99_2026-06-30",
       "storage": {
         "namespace": {
-           "catalog": "sasi",
-          "schema": "ods_testing"
+          "catalog": "cinqdev",
+          "schema": "control"
         },
         "connection": {
           "name": "control_delta",
@@ -422,6 +422,7 @@
       }
     }
   },
+  "draft_pipeline_json": null,
   "pipeline_type": "requirement",
   "engine_type": "pyspark",
   "total_test_scenario": null,
