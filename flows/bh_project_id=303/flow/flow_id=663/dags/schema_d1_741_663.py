@@ -414,7 +414,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_pipelines_schema_d1_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/test/pipelines/bh_project_id=303/pipeline/pipeline_id=1244/schema_d1.json",
+                "/Workspace/Shared/codespace/pipelines/bh_project_id=303/pipeline/pipeline_id=1244/schema_d1.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ],
@@ -639,7 +639,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_pipelines_silver_raw_employees_to_test_table_load_260713_b41a_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/test/pipelines/bh_project_id=303/pipeline/pipeline_id=1245/silver_raw_employees_to_test_table_load_260713_b41a.json",
+                "/Workspace/Shared/codespace/pipelines/bh_project_id=303/pipeline/pipeline_id=1245/silver_raw_employees_to_test_table_load_260713_b41a.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ],
