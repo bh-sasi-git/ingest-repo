@@ -94,7 +94,7 @@
           "flow_parameter_id": 1707,
           "flow_id": 625,
           "parameter_name": "sources",
-          "parameter_value": "[{\"source_name\": \"employees\", \"prefix\": \"testing\", \"filename_regex\": \"^employees_[0-9]{1,2}[.]csv$\", \"ignore_subfolders\": true, \"is_required\": true, \"min_bytes\": 10, \"min_files\": 1}]",
+          "parameter_value": "[{\"source_name\": \"employees\", \"prefix\": \"testing\", \"filename_regex\": \"employees.csv\", \"ignore_subfolders\": true, \"is_required\": true, \"min_bytes\": 10, \"min_files\": 1}]",
           "parameter_type": "USER",
           "tenant_id": 4,
           "is_deleted": false,
@@ -346,7 +346,7 @@
                 },
                 {
                   "key": "sources",
-                  "value": "[{\"source_name\": \"employees\", \"prefix\": \"testing\", \"filename_regex\": \"^employees_[0-9]{1,2}[.]csv$\", \"ignore_subfolders\": true, \"is_required\": true, \"min_bytes\": 10, \"min_files\": 1}]"
+                  "value": "[{\"source_name\": \"employees\", \"prefix\": \"testing\", \"filename_regex\": \"employees.csv\", \"ignore_subfolders\": true, \"is_required\": true, \"min_bytes\": 10, \"min_files\": 1}]"
                 }
               ],
               "tasks": [
@@ -559,7 +559,6 @@
                 }
               ],
               "bh_environment_id": 321,
-              "template_parameters": [],
               "bh_project_id": 303,
               "bh_environment_name": "kiran_databricks",
               "cloud_provider": "databricks",
