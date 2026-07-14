@@ -414,7 +414,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_pipelines_schema_d99_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/test/pipelines/bh_project_id=303/pipeline/pipeline_id=1248/schema_d99.json",
+                "/Workspace/Shared/codespace/pipelines/bh_project_id=303/pipeline/pipeline_id=1248/schema_d99.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ],
