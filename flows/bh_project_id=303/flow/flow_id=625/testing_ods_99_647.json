@@ -94,7 +94,7 @@
           "flow_parameter_id": 1707,
           "flow_id": 625,
           "parameter_name": "sources",
-          "parameter_value": "[{\"source_name\": \"employees\", \"prefix\": \"testing\", \"filename_regex\": \"employees.csv\", \"ignore_subfolders\": true, \"is_required\": true, \"min_bytes\": 10, \"min_files\": 1}]",
+          "parameter_value": "[{\"source_name\": \"employees\", \"prefix\": \"testing\", \"filename_regex\": \"^employees_[0-9]{1,2}[.]csv$\", \"ignore_subfolders\": true, \"is_required\": true, \"min_bytes\": 10, \"min_files\": 1}]",
           "parameter_type": "USER",
           "tenant_id": 4,
           "is_deleted": false,
@@ -346,7 +346,7 @@
                 },
                 {
                   "key": "sources",
-                  "value": "[{\"source_name\": \"employees\", \"prefix\": \"testing\", \"filename_regex\": \"employees.csv\", \"ignore_subfolders\": true, \"is_required\": true, \"min_bytes\": 10, \"min_files\": 1}]"
+                  "value": "[{\"source_name\": \"employees\", \"prefix\": \"testing\", \"filename_regex\": \"^employees_[0-9]{1,2}[.]csv$\", \"ignore_subfolders\": true, \"is_required\": true, \"min_bytes\": 10, \"min_files\": 1}]"
                 }
               ],
               "tasks": [
@@ -364,7 +364,7 @@
                     {
                       "source_name": "employees",
                       "prefix": "testing",
-                      "filename_regex": "employees.csv",
+                      "filename_regex": "^employees_[0-9]{1,2}[.]csv$",
                       "ignore_subfolders": true,
                       "is_required": true,
                       "min_bytes": 10,
@@ -391,7 +391,7 @@
                       "cluster_name": "new_compute_7799",
                       "spark_version": "15.4.x-scala2.12",
                       "node_type_id": "Standard_D16ds_v5",
-                      "num_workers": 0,
+                      "num_workers": 2,
                       "autoscale": null,
                       "driver_node_type_id": null,
                       "runtime_engine": null,
@@ -403,7 +403,7 @@
                       "aws_attributes": null,
                       "azure_attributes": null,
                       "gcp_attributes": null,
-                      "single_node": true,
+                      "single_node": false,
                       "autotermination_minutes": 30,
                       "pool_enabled": false,
                       "pool_max_size": 2,
@@ -559,6 +559,7 @@
                 }
               ],
               "bh_environment_id": 321,
+              "template_parameters": [],
               "bh_project_id": 303,
               "bh_environment_name": "kiran_databricks",
               "cloud_provider": "databricks",
@@ -587,7 +588,7 @@
             "is_scheduled": true,
             "cron_expression": "0 0 1 * *"
           },
-          "last_deployed_at": null,
+          "last_deployed_at": "2026-07-13 12:20:46.597188+00:00",
           "tenant_id": 4,
           "is_deleted": false,
           "deleted_by": null
