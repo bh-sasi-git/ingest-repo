@@ -66,7 +66,7 @@ with DAG(
             {
                 "source_name": "employees",
                 "prefix": "testing",
-                "filename_regex": "employees.csv",
+                "filename_regex": "^employees_[0-9]{1,2}[.]csv$",
                 "ignore_subfolders": True,
                 "is_required": True,
                 "min_bytes": 10,
@@ -124,7 +124,7 @@ with DAG(
                 "cluster_name": "New_compute_99",
                 "spark_version": "15.4.x-scala2.12",
                 "node_type_id": "Standard_D16ds_v5",
-                "num_workers": 0,
+                "num_workers": 2,
                 "autoscale": None,
                 "driver_node_type_id": None,
                 "runtime_engine": None,
@@ -136,7 +136,7 @@ with DAG(
                 "aws_attributes": None,
                 "azure_attributes": None,
                 "gcp_attributes": None,
-                "single_node": True,
+                "single_node": False,
                 "autotermination_minutes": 30,
                 "pool_enabled": False,
                 "pool_max_size": 2,
@@ -414,7 +414,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_pipelines_testing_ods_99_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/pipelines/bh_project_id=303/pipeline/pipeline_id=1139/testing_ods_99.json",
+                "/Workspace/Shared/codespace/test/pipelines/bh_project_id=303/pipeline/pipeline_id=1139/testing_ods_99.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ],
@@ -639,7 +639,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_pipelines_silver_raw_employees_to_target_map_260630_6a88_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/pipelines/bh_project_id=303/pipeline/pipeline_id=1140/silver_raw_employees_to_target_map_260630_6a88.json",
+                "/Workspace/Shared/codespace/test/pipelines/bh_project_id=303/pipeline/pipeline_id=1140/silver_raw_employees_to_target_map_260630_6a88.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ],
@@ -864,7 +864,7 @@ with DAG(
             "name": "{{ dag.dag_id }}_run_pipelines_testing_ods_{{ ts_nodash }}",
             "python_file": "/Workspace/Shared/dev-utils/pipelines/main.py",
             "parameters": [
-                "/Workspace/Shared/codespace/pipelines/bh_project_id=303/pipeline/pipeline_id=1134/testing_ods.json",
+                "/Workspace/Shared/codespace/test/pipelines/bh_project_id=303/pipeline/pipeline_id=1134/testing_ods.json",
                 "databricks",
                 "/Workspace/Shared/dev-utils/schemas"
             ],
