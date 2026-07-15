@@ -1,6 +1,6 @@
 {
   "created_at": "2026-07-15T04:52:28.524295Z",
-  "updated_at": "2026-07-15T04:52:28.524295Z",
+  "updated_at": "2026-07-15T04:53:30.879487Z",
   "created_by": "muthukumar@bighammer.ai",
   "updated_by": "muthukumar@bighammer.ai",
   "is_deleted": false,
@@ -10,7 +10,7 @@
   "flow_name": "schema_drift_test1_751",
   "flow_key": "schema_drift_test1_751",
   "recipient_email": {},
-  "notes": "schema_drift_test1",
+  "notes": null,
   "tags": null,
   "status": "active",
   "bh_project_name": "Project_s1",
@@ -36,7 +36,7 @@
           "flow_key": "schema_drift_test1_751",
           "bh_project_id": 303,
           "recipient_email": {},
-          "notes": "schema_drift_test1",
+          "notes": null,
           "tags": null,
           "status": "active",
           "alert_settings": {
@@ -489,7 +489,6 @@
                 }
               ],
               "bh_environment_id": 321,
-              "template_parameters": [],
               "bh_project_id": 303,
               "bh_environment_name": "kiran_databricks",
               "cloud_provider": "databricks",
@@ -515,7 +514,7 @@
           "flow_version_id": null,
           "schema_id": null,
           "cron_expression": null,
-          "last_deployed_at": null,
+          "last_deployed_at": "2026-07-15 04:53:27.861717+00:00",
           "tenant_id": 4,
           "is_deleted": false,
           "deleted_by": null
