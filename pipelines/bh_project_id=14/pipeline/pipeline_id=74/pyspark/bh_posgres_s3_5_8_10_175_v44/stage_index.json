@@ -1,0 +1,13 @@
+{
+  "readers": [
+    "PostgreSQL_JDBC_Table_1"
+  ],
+  "writers": [
+    "Amazon_S3_1"
+  ],
+  "scala_stages": [],
+  "data_src_ids": {
+    "PostgreSQL_JDBC_Table_1": 212,
+    "Amazon_S3_1": 214
+  }
+}
