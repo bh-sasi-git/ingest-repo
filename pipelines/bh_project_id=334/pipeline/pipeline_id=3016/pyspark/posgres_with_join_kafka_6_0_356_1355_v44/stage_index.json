@@ -1,0 +1,17 @@
+{
+  "readers": [
+    "PostgreSQL_JDBC_Table_1",
+    "PostgreSQL_JDBC_Table_2",
+    "PostgreSQL_JDBC_Table_3"
+  ],
+  "writers": [
+    "Kafka_1"
+  ],
+  "scala_stages": [],
+  "data_src_ids": {
+    "PostgreSQL_JDBC_Table_2": 2793,
+    "PostgreSQL_JDBC_Table_3": 2794,
+    "PostgreSQL_JDBC_Table_1": 2795,
+    "Kafka_1": 2797
+  }
+}
