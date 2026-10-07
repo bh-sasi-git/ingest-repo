@@ -1,0 +1,23 @@
+{
+  "readers": [
+    "Country_Risk_Lookup_lookup_src",
+    "Customer_Tenant_Join",
+    "Oracle_Customer_Source"
+  ],
+  "writers": [
+    "Amazon_S3",
+    "Customer_Risk_Events",
+    "Oracle_Risk_Result_Store"
+  ],
+  "scala_stages": [
+    "Customer_Bank_Enrichment",
+    "Oracle_Result_Preparation",
+    "Scala_Risk_Evaluation"
+  ],
+  "data_src_ids": {
+    "Customer_Tenant_Join": 240,
+    "Oracle_Customer_Source": 239,
+    "Amazon_S3": 241,
+    "Customer_Risk_Events": 242
+  }
+}
