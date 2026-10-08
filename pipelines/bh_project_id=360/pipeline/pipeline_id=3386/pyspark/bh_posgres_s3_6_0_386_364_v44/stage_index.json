@@ -1,0 +1,9 @@
+{
+  "readers": [
+    "PostgreSQL_JDBC_Table_1"
+  ],
+  "writers": [
+    "Amazon_S3_1"
+  ],
+  "scala_stages": []
+}
