@@ -1,0 +1,13 @@
+{
+  "readers": [
+    "Oracle_JDBC_Table_1"
+  ],
+  "writers": [
+    "Kafka_1"
+  ],
+  "scala_stages": [],
+  "data_src_ids": {
+    "Oracle_JDBC_Table_1": 3267,
+    "Kafka_1": 3269
+  }
+}
