@@ -1,0 +1,16 @@
+{
+  "readers": [
+    "Customer_Tenant_Join",
+    "Oracle_Customer_Source"
+  ],
+  "writers": [
+    "Amazon_S3",
+    "Customer_Risk_Events",
+    "Oracle_Risk_Result_Store"
+  ],
+  "scala_stages": [
+    "Customer_Bank_Enrichment",
+    "Java_Risk_Evaluation",
+    "Oracle_Result_Preparation"
+  ]
+}
