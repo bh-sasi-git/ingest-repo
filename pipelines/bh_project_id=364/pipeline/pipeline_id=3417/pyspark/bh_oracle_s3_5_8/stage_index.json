@@ -1,0 +1,13 @@
+{
+  "readers": [
+    "Oracle_JDBC_Table_1"
+  ],
+  "writers": [
+    "Amazon_S3_1"
+  ],
+  "scala_stages": [],
+  "data_src_ids": {
+    "Oracle_JDBC_Table_1": 3257,
+    "Amazon_S3_1": 3260
+  }
+}
