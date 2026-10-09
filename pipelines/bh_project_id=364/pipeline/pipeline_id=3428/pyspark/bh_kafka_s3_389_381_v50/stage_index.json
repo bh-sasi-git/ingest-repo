@@ -1,0 +1,13 @@
+{
+  "readers": [
+    "Kafka_1"
+  ],
+  "writers": [
+    "Amazon_S3_1"
+  ],
+  "scala_stages": [],
+  "data_src_ids": {
+    "Kafka_1": 3270,
+    "Amazon_S3_1": 3271
+  }
+}
