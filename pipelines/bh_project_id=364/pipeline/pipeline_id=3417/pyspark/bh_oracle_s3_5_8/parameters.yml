@@ -1,0 +1,7 @@
+# Pipeline parameter defaults (from StreamSets constants / BH parameters).
+# Override at submit: --param KEY=VAL, BH_PIPELINE_PARAMS JSON, or a
+# second parameters overlay shipped with the job.
+
+B: "s3a://bh-sts-poc-test-058264070106-us-east-1-an/bh-test/"
+K: AKIAVL2XFWBHGPNFEPXE
+TABLE_NAME: IP_ACL
