@@ -1,0 +1,17 @@
+{
+  "readers": [
+    "JDBC_Query_1",
+    "JDBC_Query_2"
+  ],
+  "writers": [
+    "Kafka_2"
+  ],
+  "scala_stages": [
+    "Scala_1"
+  ],
+  "data_src_ids": {
+    "JDBC_Query_2": 3679,
+    "JDBC_Query_1": 3678,
+    "Kafka_2": 3673
+  }
+}
