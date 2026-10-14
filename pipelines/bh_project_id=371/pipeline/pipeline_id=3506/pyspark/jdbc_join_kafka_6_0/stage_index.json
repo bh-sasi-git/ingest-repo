@@ -1,0 +1,23 @@
+{
+  "readers": [
+    "JDBC_Query_1",
+    "JDBC_Query_2"
+  ],
+  "writers": [
+    "Amazon_S3_1",
+    "JDBC_Table_1",
+    "Kafka_1"
+  ],
+  "scala_stages": [
+    "Scala_1",
+    "Scala_2",
+    "Scala_3"
+  ],
+  "data_src_ids": {
+    "JDBC_Query_1": 3678,
+    "JDBC_Query_2": 3679,
+    "JDBC_Table_1": 3680,
+    "Kafka_1": 3673,
+    "Amazon_S3_1": 3666
+  }
+}
