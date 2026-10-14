@@ -1,0 +1,5 @@
+# Pipeline parameter defaults (from StreamSets constants / BH parameters).
+# Override at submit: --param KEY=VAL, BH_PIPELINE_PARAMS JSON, or a
+# second parameters overlay shipped with the job.
+
+local: local[*]
