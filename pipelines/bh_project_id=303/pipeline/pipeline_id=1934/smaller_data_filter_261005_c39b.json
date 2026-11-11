@@ -1,0 +1,261 @@
+{
+  "created_at": "2026-10-05T05:53:14.378142Z",
+  "updated_at": "2026-11-11T09:28:08.529929Z",
+  "created_by": "muthukumar@bighammer.ai",
+  "updated_by": "muthukumar@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 4,
+  "pipeline_id": 1934,
+  "pipeline_name": "smaller_data_filter_261005_c39b",
+  "pipeline_key": "smaller_data_filter_261005_c39b",
+  "bh_project_id": 303,
+  "notes": "",
+  "tags": {
+    "created_from": "chat-quick-action"
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": null,
+  "bh_github_username": null,
+  "pipeline_json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "smaller_data_filter_261005_c39b",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "postgres2": {
+        "connection_config_id": 138,
+        "name": "postgres2",
+        "connection_config_name": "postgres2",
+        "connection_type": "PostgreSQL",
+        "database": "sample_db",
+        "schema": "smaller_data",
+        "driver": "org.postgresql.Driver",
+        "host": "4.227.38.66",
+        "port": "5434",
+        "secret_name": "bh-postgres-postgres2"
+      },
+      "azure_conn_ss1_sasi": {
+        "name": "azure_conn_ss1_sasi",
+        "schema": "test_scenarios",
+        "catalog": "sasi",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-azureconnss1",
+        "connection_name": "azure_unity",
+        "connection_type": "DatabricksDeltaLake",
+        "connection_config_id": 196,
+        "connection_config_name": "azure_conn_ss1"
+      }
+    },
+    "sources": {
+      "source_table": {
+        "data_src_id": 68,
+        "name": "source_table",
+        "source_type": "Relational",
+        "table_name": "source_table",
+        "connection": {
+          "$ref": "#/connections/postgres2"
+        },
+        "fields": [
+          "id",
+          "value"
+        ],
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "value",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": "smaller_data"
+      }
+    },
+    "targets": {
+      "target_table": {
+        "data_src_id": 69,
+        "name": "target_table",
+        "target_type": "Relational",
+        "table_name": "target_table",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/postgres2"
+        },
+        "schema": "smaller_data",
+        "fields": [
+          {
+            "name": "id",
+            "type": "Integer",
+            "nullable": false,
+            "is_pk": true
+          },
+          {
+            "name": "value",
+            "type": "Integer",
+            "nullable": true,
+            "is_pk": false
+          }
+        ]
+      },
+      "target_students": {
+        "name": "target_students",
+        "fields": [
+          {
+            "name": "id",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "name",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "marks",
+            "type": "Long",
+            "is_pk": false,
+            "nullable": true
+          },
+          {
+            "name": "grade",
+            "type": "String",
+            "is_pk": false,
+            "nullable": true
+          }
+        ],
+        "schema": "test_scenarios",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/azure_conn_ss1_sasi"
+        },
+        "table_name": "target_students",
+        "data_src_id": 2145,
+        "target_type": "Relational"
+      }
+    },
+    "transformations": [
+      {
+        "name": "source_table",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/source_table"
+        },
+        "rename_columns": {
+          "id": "id_src_1",
+          "value": "value_src_1"
+        },
+        "schema": [
+          {
+            "name": "id",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "value",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "read_options": {
+          "dbtable": "source_table"
+        }
+      },
+      {
+        "name": "target_table",
+        "transformation": "Writer",
+        "dependent_on": [
+          "target_table_final"
+        ],
+        "target": {
+          "$ref": "#/targets/target_table"
+        },
+        "write_options": {
+          "mode": "overwrite",
+          "dbtable": "target_table"
+        }
+      },
+      {
+        "name": "target_table_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "target_table_rename"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "id",
+          "value"
+        ]
+      },
+      {
+        "name": "filter_value_gt_10",
+        "transformation": "Filter",
+        "dependent_on": [
+          "source_table"
+        ],
+        "condition": "value_src_1 > 10"
+      },
+      {
+        "name": "target_table_rename",
+        "transformation": "Expression",
+        "dependent_on": [
+          "filter_value_gt_10"
+        ],
+        "select_columns": [
+          "id",
+          "value"
+        ],
+        "rename_columns": {
+          "id_src_1": "id",
+          "value_src_1": "value"
+        }
+      },
+      {
+        "name": "target_students_expression",
+        "dependent_on": [
+          "source_table"
+        ],
+        "derived_fields": {
+          "id": "id_src_1",
+          "name": "id_src_1"
+        },
+        "select_columns": [
+          "id",
+          "name"
+        ],
+        "transformation": "Expression"
+      },
+      {
+        "name": "target_students",
+        "target": {
+          "$ref": "#/targets/target_students"
+        },
+        "dependent_on": [
+          "target_students_expression"
+        ],
+        "transformation": "Writer"
+      }
+    ],
+    "target_prep": {
+      "target_table": "target_table_rename"
+    }
+  },
+  "draft_pipeline_json": null,
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
